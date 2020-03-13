@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{7D8B6695-990E-4653-B595-2C940264B4BF}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{26134707-72BB-4ADC-9D5E-4BFB66C76820}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -174,24 +174,34 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}"
-              SQLTask:SqlStatementSource="EXEC globalshoplanding.ExtractSourceTableData @SourceTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @TargetTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @ExtractLowDate = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC globalshoplanding.ExtractSourceTableData @LoadLogKey = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @SourceTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @TargetTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @ExtractLowDate = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="SourceRecordCount"
+                SQLTask:DtsVariableName="User::SourceRecordCount" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="0"
+                SQLTask:ParameterName="1"
                 SQLTask:DtsVariableName="User::SourceTableName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="-1" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="1"
+                SQLTask:ParameterName="2"
                 SQLTask:DtsVariableName="User::TargetTableName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="131"
                 SQLTask:ParameterSize="-1" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="2"
+                SQLTask:ParameterName="3"
                 SQLTask:DtsVariableName="User::ExtractLowDate"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="135"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
@@ -429,17 +439,13 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="210.666666666667,42.6666666666667"
-          Id="Package\SQL - Get Tables To Extract"
-          TopLeft="6.83333333333337,5.50000000000004" />
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\FEL - Loop through source tables\SQL - Extract Source Data"
+          TopLeft="5.50000000000003,108.166666666667" />
         <NodeLayout
           Size="170.666666666667,42.6666666666667"
           Id="Package\FEL - Loop through source tables\SQL - LogLoadStart"
           TopLeft="21.5,5.50000000000004" />
-        <NodeLayout
-          Size="202.666666666667,42.6666666666667"
-          Id="Package\FEL - Loop through source tables\SQL - Extract Source Data"
-          TopLeft="5.50000000000003,108.166666666667" />
         <NodeLayout
           Size="185.333333333334,42.6666666666667"
           Id="Package\FEL - Loop through source tables\SQL - LogLoadSuccess"
@@ -495,6 +501,10 @@
           Size="213.333333333334,351.333333333334"
           Id="Package\FEL - Loop through source tables"
           TopLeft="5.50000000000006,108.166666666667" />
+        <NodeLayout
+          Size="210.666666666667,42.6666666666667"
+          Id="Package\SQL - Get Tables To Extract"
+          TopLeft="6.83333333333337,5.50000000000004" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="112.166666666667,48.1666666666667">
