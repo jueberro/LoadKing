@@ -1,0 +1,14 @@
+
+*.jfm
+*.dacpac
+LoadKingDW Solution/.vs/LoadKingDW Solution/v16/.suo
+*.pdb
+*.dll
+*.user
+LoadKingDW Solution/UpgradeLog.htm
+*.dbmdl
+LoadKingDW Solution/LoadKing Command and Control DB Project/obj/Debug/LoadKing Command and Control DB Project.sqlproj.FileListAbsolute.txt
+LoadKingDW Solution/LoadKing Command and Control DB Project/obj/Debug/Model.xml
+LoadKingDW Solution/LoadKingDW DB Project/obj/Debug/LoadKingDW DB Project.sqlprojAssemblyReference.cache
+LoadKingDW Solution/LoadKingODS DB Project/obj/Debug/LoadKingODS DB Project.sqlproj.FileListAbsolute.txt
+LoadKingDW Solution/LoadKingDW DB Project/obj/Debug/LoadKingDW DB Project.sqlproj.FileListAbsolute.txt
