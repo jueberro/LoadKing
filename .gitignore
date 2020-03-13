@@ -2,6 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+*.jfm
 /LoadKingDW Solution/LoadKing Command and Control DB Project/bin/Debug
 /LoadKingDW Solution/.vs/LoadKingDW Solution/v16
 /LoadKingDW Solution/LoadKing Command and Control DB Project/obj/Debug
@@ -10,12 +11,10 @@
 /LoadKingDW Solution/LoadKing Command and Control SSIS Project/LoadKing Command and Control SSIS Project.dtproj.user
 /LoadKingDW Solution/LoadKingDW DB Project/bin/Debug
 /LoadKingDW Solution/LoadKingDW DB Project/obj/Debug
-/LoadKingDW Solution/LoadKingDW DB Project/LoadKingDW DB Project.jfm
 /LoadKingDW Solution/LoadKingDW DB Project/LoadKingDW DB Project.sqlproj.user
 /LoadKingDW Solution/LoadKingDW SSIS Project/BimlScript.biml
 /LoadKingDW Solution/LoadKingDW SSIS Project/LoadKingDW SSIS Project.dtproj.user
 /LoadKingDW Solution/LoadKingODS DB Project/obj/Debug
-/LoadKingDW Solution/LoadKingODS DB Project/LoadKingODS DB Project.jfm
 /LoadKingDW Solution/LoadKingODS DB Project/LoadKingODS DB Project.sqlproj.user
 /LoadKingDW Solution/UpgradeLog.htm
 /LoadKingDW Solution/LoadKingODS DB Project/bin/Debug
