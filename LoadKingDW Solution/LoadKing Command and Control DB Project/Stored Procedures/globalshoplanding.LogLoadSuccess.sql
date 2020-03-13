@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [globalshoplanding].[LogLoadSuccess] @LoadLogKey			INT
-													, @SourceRecordsRead	INT = 0
-													, @TargetRecordsWritten INT = 0
+													, @SourceRecordcount	INT = 0
+													
 AS
 
 BEGIN
@@ -8,8 +8,7 @@ BEGIN
 	UPDATE	globalshoplanding.LoadLog
 	SET		ExecutionStatusCode			= 'SUCC'
 			, ExecutionStatusMessage	= 'Success.'
-			, SourceRecordsRead			= @SourceRecordsRead
-			, TargetRecordsWritten		= @TargetRecordsWritten
+			, SourceRecordCount			= @SourceRecordCount
 			, EndDate					= GETUTCDATE()
 			, RecordLastUpdatedDate		= GETUTCDATE()
 			, RecordLastUpdatedByName	= SUSER_SNAME()

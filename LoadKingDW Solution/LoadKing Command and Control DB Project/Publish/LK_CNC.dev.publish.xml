@@ -5,5 +5,8 @@
     <TargetDatabaseName>LK_CNC</TargetDatabaseName>
     <DeployScriptFileName>LoadKingDW DB Project.sql</DeployScriptFileName>
     <ProfileVersionNumber>1</ProfileVersionNumber>
+    <TargetConnectionString>Data Source=RubockiPC\RUBOCKIPW_2019_A;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False</TargetConnectionString>
+    <BlockOnPossibleDataLoss>True</BlockOnPossibleDataLoss>
+    <ScriptDatabaseOptions>False</ScriptDatabaseOptions>
   </PropertyGroup>
 </Project>

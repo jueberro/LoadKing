@@ -68,4 +68,8 @@
     <None Include="Publish\LK_ODS.dev.publish.xml" />
     <None Include="Publish\LK_ODS.prod.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas\globalshoplanding.sql" />
+    <Build Include="Stored Procedures\globalshoplanding.ExtractSourceTableData.sql" />
+  </ItemGroup>
 </Project>

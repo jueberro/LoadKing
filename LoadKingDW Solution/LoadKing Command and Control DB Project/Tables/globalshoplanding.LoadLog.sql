@@ -12,8 +12,7 @@
     [StartDate]					DATETIME			NOT NULL,
     [EndDate]					DATETIME				NULL,
 
-	[SourceRecordsRead]			INT						NULL,
-	[TargetRecordsWritten]		INT						NULL,
+	[SourceRecordCount]			INT						NULL,
 
     [RecordCreateDate]			DATETIME2 (7)		NOT NULL,
     [RecordLastUpdatedDate]		DATETIME2 (7)		NOT NULL,
