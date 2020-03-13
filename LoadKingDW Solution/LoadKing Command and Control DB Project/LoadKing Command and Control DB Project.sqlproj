@@ -72,6 +72,7 @@
     <Build Include="Stored Procedures\globalshoplanding.LogLoadFailure.sql" />
     <Build Include="Stored Procedures\globalshoplanding.LogLoadStart.sql" />
     <Build Include="Stored Procedures\globalshoplanding.LogLoadSuccess.sql" />
+    <Build Include="Stored Procedures\globalshoplanding.GetTablesToExtract.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\LK_CNC.dev.publish.xml" />
