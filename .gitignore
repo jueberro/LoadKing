@@ -2,6 +2,7 @@
 *.jfm
 *.dacpac
 LoadKingDW Solution/.vs/LoadKingDW Solution/v16/.suo
+LoadKingDW Solution/.vs/slnx.sqlite
 *.pdb
 *.dll
 *.user
