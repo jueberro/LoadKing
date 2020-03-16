@@ -11,6 +11,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LoadKing Command and Contro
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LoadKingODS DB Project", "LoadKingODS DB Project\LoadKingODS DB Project.sqlproj", "{8BEEE810-7680-40C2-A3D3-150D8C8DF984}"
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "MaxTestAddSSIS", "MaxTestAddSSIS\MaxTestAddSSIS.dtproj", "{C693A212-808E-4BA6-B56F-51BD8A4B6242}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,18 @@ Global
 		{8BEEE810-7680-40C2-A3D3-150D8C8DF984}.Release|x86.ActiveCfg = Release|Any CPU
 		{8BEEE810-7680-40C2-A3D3-150D8C8DF984}.Release|x86.Build.0 = Release|Any CPU
 		{8BEEE810-7680-40C2-A3D3-150D8C8DF984}.Release|x86.Deploy.0 = Release|Any CPU
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Debug|Any CPU.ActiveCfg = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Debug|Any CPU.Build.0 = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Debug|x86.ActiveCfg = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Debug|x86.Build.0 = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Development|Any CPU.ActiveCfg = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Development|Any CPU.Build.0 = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Development|x86.ActiveCfg = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Development|x86.Build.0 = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Release|Any CPU.ActiveCfg = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Release|Any CPU.Build.0 = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Release|x86.ActiveCfg = Development
+		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Release|x86.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
