@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/7/2020 11:12:30 AM"
@@ -12,7 +12,7 @@
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
   DTS:VersionBuild="20"
-  DTS:VersionGUID="{26134707-72BB-4ADC-9D5E-4BFB66C76820}">
+  DTS:VersionGUID="{62E1185B-BE03-4B91-9D6A-55F0455ED8CC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/7/2020 11:57:12 AM"
@@ -12,7 +12,7 @@
   DTS:ObjectName="DWLookupLoadDepartment"
   DTS:PackageType="5"
   DTS:VersionBuild="2"
-  DTS:VersionGUID="{09A2376B-0C53-4BBD-A82E-FDECF08C3034}">
+  DTS:VersionGUID="{5A7F22BE-609E-449C-9F73-704E119FB764}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />

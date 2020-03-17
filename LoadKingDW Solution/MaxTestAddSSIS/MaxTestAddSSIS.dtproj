@@ -12,11 +12,11 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="DontSaveSensitive" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{f60cc88d-c582-4d54-87f4-6e3950ba3344}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">MaxTestAddSSIS</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionComments">
@@ -26,7 +26,6 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MAX</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0hAcwk7lhkCtB1cX04LuSgAAAAACAAAAAAAQZgAAAAEAACAAAAC8azQSzjxha2jgsF0d0G2A4U+iwBnPebTdtL/Vpeu92QAAAAAOgAAAAAIAACAAAAAnPZCw79jdjB6gWu/OQ7J7FCja5rZwOXzu4xZwCAHss5AAAAAjXLqsP4G+G419VJu7SC7OGM14kI09U6S1x0H86vBzioxcGl/VRzT0B3DYNkZgVISzRdc3wsonAl3sGJQWzuJK0AC/h35Q4RV5EQgN1HWGk3ibiY0SbzZMUfNdoj6M0pWisFRZB8R9k+p0tQ9MSuqGekczuCs4wO4juJYa2LjqbqCl96R7jnr7m3jOilGqKFZAAAAA586wI5/Usu+UoeBBRN4K59a+Zmh5S+aJE7yde2R+vub7qOiDNp4z/vn3ZlVoPcxPhIwjNbezSCBoWagygYdv2A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -69,7 +68,7 @@
         <ConnectionProviderMappings />
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
-        <TargetServerVersion>SQLServer2019</TargetServerVersion>
+        <TargetServerVersion>SQLServer2017</TargetServerVersion>
         <AzureMode>false</AzureMode>
         <LinkedAzureTenantId />
         <LinkedAzureAccountId />

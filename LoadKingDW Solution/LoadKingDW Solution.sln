@@ -13,6 +13,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LoadKingODS DB Project", "L
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "MaxTestAddSSIS", "MaxTestAddSSIS\MaxTestAddSSIS.dtproj", "{C693A212-808E-4BA6-B56F-51BD8A4B6242}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LK-GS-EDW", "LK-GS-EDW\LK-GS-EDW.sqlproj", "{40EA17E6-D638-4C7D-A123-1876579DEAE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,24 @@ Global
 		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Release|Any CPU.Build.0 = Development
 		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Release|x86.ActiveCfg = Development
 		{C693A212-808E-4BA6-B56F-51BD8A4B6242}.Release|x86.Build.0 = Development
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Debug|x86.Build.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Development|Any CPU.Deploy.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Development|x86.ActiveCfg = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Development|x86.Build.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Development|x86.Deploy.0 = Debug|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Release|x86.ActiveCfg = Release|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Release|x86.Build.0 = Release|Any CPU
+		{40EA17E6-D638-4C7D-A123-1876579DEAE8}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
