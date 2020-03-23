@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dw].[LoadDimCustomer] @SourceLogKey INT
+﻿CREATE PROCEDURE [dw].[LoadDimCustomer] @LoadLogKey INT
 
 AS
 
@@ -16,12 +16,12 @@ BEGIN
 
 	FROM	globalshoplanding.Customer AS Landing
 	LEFT OUTER JOIN dwlookup.somelookuptable ...
-	WHERE	Landing.LoadLogKey = @SourceLogKey
 
 
 	MERGE INTO dw.DimCustomer...
 	UPDATE/EXPIRE OLD Items
 	INSERT NEW items and new versions of existing items
+	  Include LoadLogKey/ETLBatchID
 
 	
 

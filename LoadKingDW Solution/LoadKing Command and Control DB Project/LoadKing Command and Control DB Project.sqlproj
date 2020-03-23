@@ -73,6 +73,14 @@
     <Build Include="Stored Procedures\globalshoplanding.LogLoadStart.sql" />
     <Build Include="Stored Procedures\globalshoplanding.LogLoadSuccess.sql" />
     <Build Include="Stored Procedures\globalshoplanding.GetTablesToExtract.sql" />
+    <Build Include="Schemas\dwetl.sql" />
+    <Build Include="Tables\dwetl.LoadLog.sql" />
+    <Build Include="Stored Procedures\dwetl.GetBatchesToProcess.sql" />
+    <Build Include="Stored Procedures\dwetl.LogLoadFailure.sql" />
+    <Build Include="Stored Procedures\dwetl.LogLoadStart.sql" />
+    <Build Include="Stored Procedures\dwetl.LogLoadSuccess.sql" />
+    <Build Include="Schemas\landing.sql" />
+    <Build Include="Views\landing.LoadLog.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\LK_CNC.dev.publish.xml" />

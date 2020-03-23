@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/7/2020 11:57:12 AM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{9FAC40A8-B370-48C3-A2D5-CB2737DCB6E7}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{873A722B-0703-4039-B9F4-EBF61191CEE2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -27,6 +27,21 @@
       DTS:ObjectName="FEL - Extracts Not Yet Processed in DW Table">
       <DTS:Variables />
       <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Extracts Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{16626FB7-B021-47E5-A828-9770CD0BF435}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT - Copy One Batch of ODS Data to DW Stage Table"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1" />
+          </DTS:ObjectData>
+        </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LoadDWDimCustomer"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
@@ -75,16 +90,30 @@
               SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BEA2298C-8CFA-44BD-893C-2E7AE6DD35B8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - TRUNCATE Stage Tables"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
       <DTS:PrecedenceConstraints>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{15C2A7C8-903E-445D-8C24-097610FEFECA}"
+          DTS:DTSID="{067EEBCD-6970-449B-B995-A7C207B86C14}"
           DTS:From="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
-          DTS:To="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LoadDWDimCustomer" />
+          DTS:To="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
@@ -93,6 +122,22 @@
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
           DTS:To="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LogLoadSuccess" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{CC38F9F4-0701-405B-8118-8F0CC576E87A}"
+          DTS:From="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\FEL - Extracts Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{C87FFD28-C815-4F7E-87CA-AF6320C627CC}"
+          DTS:From="Package\FEL - Extracts Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LoadDWDimCustomer" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
@@ -133,22 +178,74 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="212,42.6666666666667"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LoadDWDimCustomer"
-          TopLeft="5.50000000000003,108.166666666667" />
+          TopLeft="65.1666666666667,313.5" />
         <NodeLayout
           Size="170.666666666667,42.6666666666667"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LogLoadStart"
-          TopLeft="26.1666666666667,5.50000000000004" />
+          TopLeft="85.8333333333333,5.50000000000004" />
         <NodeLayout
           Size="185.333333333334,42.6666666666667"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LogLoadSuccess"
-          TopLeft="18.8333333333334,210.833333333334" />
+          TopLeft="78.5,416.166666666667" />
+        <EdgeLayout
+          Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
+          TopLeft="171.166666666667,356.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="225.333333333334,42.6666666666667"
+          Id="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
+          TopLeft="58.5,108.166666666667" />
         <EdgeLayout
           Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
-          TopLeft="111.5,48.1666666666667">
+          TopLeft="171.166666666667,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="338.666666666667,42.6666666666667"
+          Id="Package\FEL - Extracts Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
+          TopLeft="5.50000000000003,210.833333333334" />
+        <EdgeLayout
+          Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
+          TopLeft="173,150.833333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -169,8 +266,8 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
-          TopLeft="111.5,150.833333333333">
+          Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
+          TopLeft="173,253.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -193,28 +290,28 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="222.666666666667,308.666666666667"
-          Size="222.666666666667,351.333333333334"
+          PanelSize="349.333333333334,514"
+          Size="349.333333333334,556.666666666667"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table"
-          TopLeft="5.50000000000006,108.166666666667" />
+          TopLeft="5.50000000000009,108.166666666666" />
         <NodeLayout
           Size="210.666666666667,42.6666666666667"
           Id="Package\SQL - GetExtractsToProcess"
-          TopLeft="11.5,5.50000000000004" />
+          TopLeft="71.5,5.49999999999993" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="116.833333333333,48.1666666666667">
+          TopLeft="176.833333333333,48.1666666666666">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
