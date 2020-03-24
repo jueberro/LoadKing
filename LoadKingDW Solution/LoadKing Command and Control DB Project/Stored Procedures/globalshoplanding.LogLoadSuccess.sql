@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [globalshoplanding].[LogLoadSuccess] @LoadLogKey			INT
-													, @SourceRecordcount	INT = 0
+													, @SourceRecordCount	INT = 0
 													
 AS
 

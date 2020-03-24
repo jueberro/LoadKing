@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dwetl].[GetBatchesToProcess]
 	@DWTableName			NVARCHAR(100),
 	@SourceSystemName		NVARCHAR(100),
-	@SourceDataSetName		NVARCHAR(100),
+	@SourceDataSetName		NVARCHAR(100)
 
 AS
 BEGIN
@@ -38,6 +38,6 @@ BEGIN
 						AND	stage.SourceDataSetName		= @SourceDataSetName
 						AND stage.SourceLoadLogKey		= ODS.LoadLogKey
 						AND	stage.ExecutionStatusCode = 'SUCC') 
-	ORDER BY Lake.StartDate ASC					
+	ORDER BY ODS.StartDate ASC					
 
 END

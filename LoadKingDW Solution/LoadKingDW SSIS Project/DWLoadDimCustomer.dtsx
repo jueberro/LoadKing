@@ -11,8 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{873A722B-0703-4039-B9F4-EBF61191CEE2}">
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{F8BD6469-357E-4B28-989E-CA0705A8022B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -180,6 +181,10 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="338.666666666667,42.6666666666667"
+          Id="Package\FEL - Extracts Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
+          TopLeft="5.50000000000003,210.833333333334" />
+        <NodeLayout
           Size="212,42.6666666666667"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LoadDWDimCustomer"
           TopLeft="65.1666666666667,313.5" />
@@ -191,28 +196,6 @@
           Size="185.333333333334,42.6666666666667"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           TopLeft="78.5,416.166666666667" />
-        <EdgeLayout
-          Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
-          TopLeft="171.166666666667,356.166666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
-              Start="0,0"
-              End="0,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="225.333333333334,42.6666666666667"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
@@ -239,10 +222,28 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="338.666666666667,42.6666666666667"
-          Id="Package\FEL - Extracts Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
-          TopLeft="5.50000000000003,210.833333333334" />
+        <EdgeLayout
+          Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
+          TopLeft="171.166666666667,356.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extracts Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
           TopLeft="173,150.833333333333">

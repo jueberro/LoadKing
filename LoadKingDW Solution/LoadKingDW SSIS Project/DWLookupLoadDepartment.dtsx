@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/7/2020 11:57:12 AM"
@@ -11,8 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLookupLoadDepartment"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{5A7F22BE-609E-449C-9F73-704E119FB764}">
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{7B21A5DB-7D48-4858-85B8-4DD1862C584F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -189,7 +190,7 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="249.333333333334,308.666666666667"
+          PanelSize="249.333333333334,309.333333333334"
           Size="249.333333333334,352"
           Id="Package\FEL - Extracts Not Yet Processed in DW Table"
           TopLeft="5.50000000000004,108.166666666667" />

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/7/2020 11:12:30 AM"
@@ -11,8 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{11A9D559-DE26-44BD-8CC3-38186375103A}">
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{8BFA9DC6-DE33-4C4F-8A35-4F3DD3990617}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -101,6 +102,10 @@
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="205.333333333334,42.6666666666667"
+          Id="Package\EPT - DWFactMaster"
+          TopLeft="5.50000000000003,210.833333333334" />
+        <NodeLayout
+          Size="205.333333333334,42.6666666666667"
           Id="Package\EPT - DWLookupMaster"
           TopLeft="5.50000000000001,5.50000000000004" />
         <NodeLayout
@@ -129,10 +134,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="205.333333333334,42.6666666666667"
-          Id="Package\EPT - DWFactMaster"
-          TopLeft="5.50000000000003,210.833333333334" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="108.166666666667,150.833333333333">
