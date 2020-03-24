@@ -81,9 +81,11 @@
     <Build Include="Stored Procedures\dwetl.LogLoadSuccess.sql" />
     <Build Include="Schemas\landing.sql" />
     <Build Include="Views\landing.LoadLog.sql" />
+    <Build Include="Tables\dwetl.DWTableSource.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\LK_CNC.dev.publish.xml" />
     <None Include="Publish\LK_CNC.prod.publish.xml" />
+    <None Include="Scripts\Load.dwetl.DWTableSource.sql" />
   </ItemGroup>
 </Project>
