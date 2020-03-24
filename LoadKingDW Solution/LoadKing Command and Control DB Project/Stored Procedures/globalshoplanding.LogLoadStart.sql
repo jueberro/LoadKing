@@ -6,10 +6,6 @@
 		, @SourceDataSetName		NVARCHAR(100)
 		, @FullExtractFlag			BIT				= 0 --Incremental extract by default
 
-		, @LoadLogKey				INT				= NULL OUTPUT
-		, @ExtractLowDate			DATETIME		= NULL OUTPUT
-		, @ExtractHighDate			DATETIME		= NULL OUTPUT
-
 AS
 
 BEGIN
@@ -29,6 +25,10 @@ BEGIN
 			- ExtractLowDate	- Start date/time of previous execution, to be used as "Low" date for current execution
 			- ExtractHighDate	- Start date/time of current execution, to be used as "High" date for current execution
 	*/
+
+	DECLARE @LoadLogKey			INT				
+	DECLARE @ExtractLowDate		DATETIME		
+	DECLARE @ExtractHighDate	DATETIME		
 
 	DECLARE @PreviousLoadLogKey INT
 	DECLARE @PreviousStartDate	DATETIME

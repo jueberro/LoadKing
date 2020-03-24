@@ -1,13 +1,12 @@
 ﻿CREATE PROCEDURE [dwetl].[LogLoadStart]
-		  @PipelineName				NVARCHAR(100)
-		, @PipelineExecutionID		UNIQUEIDENTIFIER
+		  @ProcessPlatformName		NVARCHAR(100)	= 'SSIS' --default value
+		, @ProcessName				NVARCHAR(100)
+		, @ProcessExecutionId		UNIQUEIDENTIFIER
 		, @DWTableName				NVARCHAR(100)
 		, @SourceSystemName			NVARCHAR(100)
 		, @SourceDataSetName		NVARCHAR(100)
 		, @SourceLoadLogKey			INT
 
-		, @DWStageTableName			NVARCHAR(100)
-		--, @LoadLogKey				INT	OUTPUT
 AS
 
 BEGIN
@@ -17,8 +16,9 @@ BEGIN
 	*/
 
 	/*
-		- @PipelineName			- Name of Pipeline executing procedure
-		- @PipelineExecutionID	- GUID passed from Azure Data Factory/SSIS
+		- @ProcessPlatformName	- i.e. SSIS, ADF, etc.
+		- @ProcessName			- i.e. Name of SSIS package/ADF pipline
+		- @ProcessExecutionId	- i.e. a GUID tied to a unique instance of execution (SSIS, ADF, etc.)
 		- @DWTableName			- Name of DW table to be loaded includging schema (e.g. dw.DimCustomer)
 		- @SourceSystemName		- e.g. Global Shop, etc.
 		- @SourceDataSetName	- e.g. Customer, Employee, SalesOrder
@@ -50,7 +50,10 @@ BEGIN
 	END
 
 	-- Create a new entry for the current execution
-	INSERT INTO dwetl.LoadLog ([DWTableName]
+	INSERT INTO dwetl.LoadLog ([ProcessPlatformName]
+							, [ProcessName]
+							, [ProcessExecutionId]
+							, [DWTableName]
 							, [SourceSystemName]
 							, [SourceDataSetName]
 							, [SourceLoadLogKey]
@@ -58,7 +61,10 @@ BEGIN
 							, [ExecutionStatusMessage]
 							, [StartDate]
 						)
-	SELECT	  [DWTableName]				= @DWTableName
+	SELECT	  [ProcessPlatformName]		= @ProcessPlatformName
+			, [ProcessName]				= @ProcessName
+			, [ProcessExecutionId]		= @ProcessExecutionId
+			, [DWTableName]				= @DWTableName
 			, [SourceSystemName]		= @SourceSystemName
 			, [SourceDataSetName]		= @SourceDataSetName
 			, [SourceLoadLogKey]		= @SourceLoadLogKey
@@ -71,7 +77,6 @@ BEGIN
 
 	-- Return one row result set to used in pipeline
 	SELECT	  LoadLogKey			= @LoadLogKey
-			, DWStageTableName		= @DWStageTableName --only used as pass-through to ADF, not used for logging
 
 END
 
