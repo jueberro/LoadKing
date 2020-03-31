@@ -72,6 +72,7 @@
     <Build Include="Stored Procedures\dw.LoadDimCustomer.sql" />
     <Build Include="Stored Procedures\dwlookup.LoadDepartment.sql" />
     <Build Include="Stored Procedures\dbo.TestStoredProcedure.sql" />
+    <Build Include="Tables\dwstage.Employee.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

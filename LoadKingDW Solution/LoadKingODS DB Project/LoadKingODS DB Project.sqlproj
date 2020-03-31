@@ -71,5 +71,6 @@
   <ItemGroup>
     <Build Include="Schemas\globalshoplanding.sql" />
     <Build Include="Stored Procedures\globalshoplanding.ExtractSourceTableData.sql" />
+    <Build Include="Tables\globalshoploanding.Employee.sql" />
   </ItemGroup>
 </Project>
