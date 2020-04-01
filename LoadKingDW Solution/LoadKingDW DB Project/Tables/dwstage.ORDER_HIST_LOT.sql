@@ -1,0 +1,52 @@
+﻿CREATE TABLE [dwstage].[ORDER_HIST_LOT](
+	[PK_OrderHistLot_SK] [int] IDENTITY(1,1) NOT NULL,
+	[INVOICE] [nvarchar](7) NULL,
+	[ORDER_NO] [nvarchar](7) NULL,
+	[ORDER_SUFFIX] [nvarchar](4) NULL,
+	[ORDER_LINE] [nvarchar](4) NULL,
+	[KEY_SEQ] [nvarchar](6) NULL,
+	[LOT] [nvarchar](15) NULL,
+	[BIN] [nvarchar](6) NULL,
+	[HEAT] [nvarchar](15) NULL,
+	[SERIAL] [nvarchar](30) NULL,
+	[QTY_SHIPPED] [decimal](15, 6) NULL,
+	[DATE_SHIPPED] [nvarchar](8) NULL,
+	[CREDIT_MEMO_FLAG] [nvarchar](1) NULL,
+	[COST] [decimal](16, 6) NULL,
+	[HISTORY_VER] [nvarchar](2) NULL,
+	[DATE_LAST_CHG] [nvarchar](8) NULL,
+	[TIME_LAST_CHG] [nvarchar](8) NULL,
+	[LAST_CHG_BY] [nvarchar](8) NULL,
+	[LAST_CHG_PGM] [nvarchar](8) NULL,
+	[JOB] [nvarchar](6) NULL,
+	[SUFFIX] [nvarchar](3) NULL,
+	[SPAWNED_FLAG] [nvarchar](1) NULL,
+	[ORIG_SHPMT_SEQ] [nvarchar](4) NULL,
+	[ORIG_SHPMT_BIN] [nvarchar](6) NULL,
+	[COUNTRY_OF_ORIGIN] [nvarchar](3) NULL,
+	[ALLOC_TYPE] [nvarchar](1) NULL,
+	[ALLOC_TO] [nvarchar](7) NULL,
+	[MATL_COST] [decimal](16, 6) NULL,
+	[LABOR_COST] [decimal](16, 6) NULL,
+	[OVHD_COST] [decimal](16, 6) NULL,
+	[OUTS_COST] [decimal](16, 6) NULL,
+	[FRGT_COST] [decimal](16, 6) NULL,
+	[OTH_COST] [decimal](16, 6) NULL,
+	[PART] [nvarchar](20) NULL,
+	[LOCN] [nvarchar](2) NULL,
+	[UM_LENGTH] [nvarchar](2) NULL,
+	[UM_WIDTH] [nvarchar](2) NULL,
+	[LENGTH] [decimal](12, 4) NULL,
+	[WIDTH] [decimal](12, 4) NULL,
+	[FILLER] [nvarchar](35) NULL,
+	[ETL_TblNbr] [int] NULL,
+	[ETL_Batch] [int] NULL,
+	[ETL_Completed] [datetime] NULL,
+ CONSTRAINT [PK_ORDER_HIST_LOT] PRIMARY KEY CLUSTERED 
+(
+	[PK_OrderHistLot_SK] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+

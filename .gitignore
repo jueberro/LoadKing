@@ -2,10 +2,16 @@
 *.jfm
 *.dacpac
 LoadKingDW Solution/.vs/LoadKingDW Solution/v16/.suo
-LoadKingDW Solution/.vs/snlx.sqlite
+.vs/LoadKing/v16/.suo
+LoadKingDW Solution/.vs/LoadKing/snlx.sqlite
+.vs/LoadKing/slnx.sqlite
+.vs/LoadKing/VSWorkspaceState.json
 *.pdb
 *.dll
 *.user
+*.suo
+*.sqlite
+*VSWorkspacestate.json
 LoadKingDW Solution/UpgradeLog.htm
 *.dbmdl
 LoadKingDW Solution/LoadKing Command and Control DB Project/obj/Debug/LoadKing Command and Control DB Project.sqlproj.FileListAbsolute.txt

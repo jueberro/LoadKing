@@ -1,0 +1,35 @@
+﻿CREATE TABLE [dwstage].[CUSTOMER_MASTER](
+	[CUSTOMER] [char](6) NULL,
+	[REC] [char](1) NULL,
+	[NAME_CUSTOMER] [char](30) NULL,
+	[ADDRESS1] [char](30) NULL,
+	[ADDRESS2] [char](30) NULL,
+	[CITY] [char](15) NULL,
+	[STATE] [char](3) NULL,
+	[ZIP] [char](13) NULL,
+	[COUNTRY] [char](12) NULL,
+	[COUNTY] [char](12) NULL,
+	[ATTENTION] [char](30) NULL,
+	[SALESPERSON] [char](3) NULL,
+	[INTL_ADDR] [char](1) NULL,
+	[TERRITORY] [char](2) NULL,
+	[CODE_AREA] [char](2) NULL,
+	[CREDIT] [char](2) NULL,
+	[TELEPHONE] [char](13) NULL,
+	[FILLER] [char](3) NULL,
+	[CRM_RES_LEV] [numeric](1, 0) NULL,
+	[ASSGN_USR_GRP] [char](8) NULL,
+	[NORMAL_GL_ACCOUNT] [char](15) NULL,
+	[FLAG_BALANCE_FWD] [char](1) NULL,
+	[FLAG_PRINT_STATE] [char](1) NULL,
+	[FLAG_CREDIT_HOLD] [char](1) NULL,
+	[FILLER2] [char](2) NULL,
+	[CHANGE_MODE] [char](1) NULL,
+	[INTERCOMPANY] [char](1) NULL,
+	[ETL_TblNbr] [varchar](3) NOT NULL,
+	[ETL_Batch] [varchar](1) NOT NULL,
+	[ETL_Completed] [varchar](19) NOT NULL
+) ON [PRIMARY]
+GO
+
+

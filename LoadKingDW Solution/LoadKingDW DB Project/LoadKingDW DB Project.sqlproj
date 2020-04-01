@@ -73,6 +73,27 @@
     <Build Include="Stored Procedures\dwlookup.LoadDepartment.sql" />
     <Build Include="Stored Procedures\dbo.TestStoredProcedure.sql" />
     <Build Include="Tables\dwstage.Employee.sql" />
+    <Build Include="Stored Procedures\dw.Load_DimEmployee.sql" />
+    <Build Include="Tables\dbo.Dim_Employee.sql" />
+    <Build Include="Tables\dwstage.EMPLOYEE_MSTR.sql" />
+    <Build Include="Tables\dwstage.CUSTOMER_MASTER.sql" />
+    <Build Include="Tables\dwstage.CUSTOMER_SHIPTO.sql" />
+    <Build Include="Tables\dwstage.INVENTORY_MSTR.sql" />
+    <Build Include="Tables\dwstage.INVENTORY_MST2.sql" />
+    <Build Include="Tables\dwstage.INVENTORY_MST3.sql" />
+    <Build Include="Tables\dwstage.ORDER_HIST_HEAD.sql" />
+    <Build Include="Tables\dwstage.ORDER_HIST_LINE.sql" />
+    <Build Include="Tables\dwstage.ORDER_HIST_LOT.sql" />
+    <Build Include="Views\dwstage.V_EMPLOYEE_MSTR.sql" />
+    <Build Include="Views\dwstage.V_CUSTOMER_MASTER.sql" />
+    <Build Include="Views\dwstage.V_CUSTOMER_SHIP_TO.sql" />
+    <Build Include="Functions\dwstage.udf_cv_nvarchar6_to_date.sql" />
+    <Build Include="Functions\dwstage.udf_cv_nvarchar8_to_date.sql" />
+    <Build Include="Views\dwstage.V_INVENTORY_ALL.sql" />
+    <Build Include="Views\dwstage.V_ORDER_HIST_LINE.sql" />
+    <Build Include="Views\dwstage.V_ORDER_HIST_HEAD.sql" />
+    <Build Include="Views\dwstage.V_ORDER_HIST_LOT.sql" />
+    <Build Include="Tables\dwstage.ORDER_HEADER.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
