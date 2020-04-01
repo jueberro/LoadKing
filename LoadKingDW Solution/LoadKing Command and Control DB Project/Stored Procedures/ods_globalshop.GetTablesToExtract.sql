@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [globalshoplanding].[GetTablesToExtract]
+﻿CREATE PROCEDURE [ods_globalshop].[GetTablesToExtract]
 
 AS
 
@@ -10,7 +10,7 @@ BEGIN
 	SELECT	SourceTableName
 			, TargetTableName
 			, SourceSQLString
-	FROM	globalshoplanding.ExtractConfiguration
+	FROM	ods_globalshop.ExtractConfiguration
 	WHERE	ExtractEnabledFlag = 1
 
 END

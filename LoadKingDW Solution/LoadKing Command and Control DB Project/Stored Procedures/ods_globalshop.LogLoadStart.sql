@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [globalshoplanding].[LogLoadStart]
+﻿CREATE PROCEDURE [ods_globalshop].[LogLoadStart]
 		  @ProcessPlatformName		NVARCHAR(100)	= NULL
 		, @ProcessName				NVARCHAR(100)
 		, @ProcessExecutionId		UNIQUEIDENTIFIER
@@ -40,7 +40,7 @@ BEGIN
 
 	-- Check to see if all previous records have EndDate (i.e. the process is finished)
 	SELECT	TOP 1 @PreviousLoadLogKey = LoadLogKey
-	FROM	globalshoplanding.LoadLog
+	FROM	ods_globalshop.LoadLog
 	WHERE	SourceSystemName	= @SourceSystemName
 	 AND	SourceDataSetName	= @SourceDataSetName
 	 AND	ExecutionStatusCode = 'INPG'
@@ -68,7 +68,7 @@ BEGIN
 		-- Get start time of previous successful exeuction
 		-- Return 1900-01-01 if there are no entries for a service/data set
 		SELECT	@PreviousStartDate = ISNULL(MAX(StartDate), '1900-01-01') 
-		FROM	globalshoplanding.LoadLog
+		FROM	ods_globalshop.LoadLog
 		WHERE	SourceSystemName	= @SourceSystemName
 		 AND	SourceDataSetName	= @SourceDataSetName
 		 AND	ExecutionStatusCode = 'SUCC'
@@ -76,7 +76,7 @@ BEGIN
 
 
 	-- Create a new entry for the current execution
-	INSERT INTO globalshoplanding.LoadLog (
+	INSERT INTO ods_globalshop.LoadLog (
 						  [ProcessPlatformName]
 						, [ProcessName]
 						, [ProcessExecutionId]
@@ -108,7 +108,7 @@ BEGIN
 			, @ExtractHighDate	= ISNULL(StartDate, GETUTCDATE())
 			, @JulianLowDate	= CAST((DATEPART(YY, @PreviousStartDate) - 1900) * 1000 + DATEPART(DY, @PreviousStartDate) AS NCHAR(6))
 			, @JulianHighDate	= CAST((DATEPART(YY, StartDate) - 1900) * 1000 + DATEPART(DY, StartDate) AS NCHAR(6))
-	FROM	globalshoplanding.LoadLog
+	FROM	ods_globalshop.LoadLog
 	WHERE	LoadLogKey = @LoadLogKey
 
 

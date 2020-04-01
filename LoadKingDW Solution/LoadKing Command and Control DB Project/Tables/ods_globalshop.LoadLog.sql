@@ -1,4 +1,4 @@
-﻿CREATE TABLE [globalshoplanding].[LoadLog]
+﻿CREATE TABLE [ods_globalshop].[LoadLog]
 (
     [LoadLogKey]				INT IDENTITY (1, 1) NOT NULL,
 	[ProcessPlatformName]		NVARCHAR(100)			NULL,	-- e.g. SSIS, Data Factory, Logic App, etc
@@ -27,33 +27,33 @@
 
 
 WITH	(
-			SYSTEM_VERSIONING = ON (HISTORY_TABLE = globalshoplanding.LoadLog_history) --New or existing table
+			SYSTEM_VERSIONING = ON (HISTORY_TABLE = ods_globalshop.LoadLog_history) --New or existing table
 		)
 
 GO
 
-ALTER TABLE globalshoplanding.LoadLog
-ADD CONSTRAINT [PK_netsuitelanding_LoadLog] PRIMARY KEY CLUSTERED ([LoadLogKey] ASC)
+ALTER TABLE ods_globalshop.LoadLog
+ADD CONSTRAINT [PK_ods_globalshop_LoadLog] PRIMARY KEY CLUSTERED ([LoadLogKey] ASC)
 
 GO
 
-ALTER TABLE globalshoplanding.LoadLog
-ADD CONSTRAINT [DF_netsuitelanding_LoadLog_RecordCreateDate] DEFAULT (GETUTCDATE()) FOR [RecordCreateDate]
+ALTER TABLE ods_globalshop.LoadLog
+ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordCreateDate] DEFAULT (GETUTCDATE()) FOR [RecordCreateDate]
 
 GO
 
-ALTER TABLE globalshoplanding.LoadLog
-ADD CONSTRAINT [DF_netsuitelanding_LoadLog_RecordLastUpdatedDate] DEFAULT (GETUTCDATE()) FOR [RecordLastUpdatedDate]
+ALTER TABLE ods_globalshop.LoadLog
+ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordLastUpdatedDate] DEFAULT (GETUTCDATE()) FOR [RecordLastUpdatedDate]
 
 GO
 
-ALTER TABLE globalshoplanding.LoadLog
-ADD CONSTRAINT [DF_netsuitelanding_LoadLog_RecordCreatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordCreatedByName]
+ALTER TABLE ods_globalshop.LoadLog
+ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordCreatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordCreatedByName]
 
 GO
 
-ALTER TABLE globalshoplanding.LoadLog
-ADD CONSTRAINT [DF_netsuitelanding_LoadLog_RecordLastUpdatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordLastUpdatedByName]
+ALTER TABLE ods_globalshop.LoadLog
+ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordLastUpdatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordLastUpdatedByName]
 
 GO
 

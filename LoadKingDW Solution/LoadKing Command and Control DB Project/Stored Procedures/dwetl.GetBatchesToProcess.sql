@@ -26,7 +26,7 @@ BEGIN
 
 
 	SELECT	SourceLoadLogKey	= ODS.LoadLogKey
-	FROM	landing.LoadLog		  AS ODS		--This view combines records from multiple log tables
+	FROM	ods.LoadLog		  AS ODS		--This view combines records from multiple log tables
 	WHERE	SourceSystemName	= @SourceSystemName
 		AND	SourceDataSetName	= @SourceDataSetName
 		AND	ExecutionStatusCode	= 'SUCC'

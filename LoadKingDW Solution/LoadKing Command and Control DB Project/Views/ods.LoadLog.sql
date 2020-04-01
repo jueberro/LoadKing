@@ -1,4 +1,4 @@
-﻿CREATE VIEW [landing].[LoadLog] AS 
+﻿CREATE VIEW [ods].[LoadLog] AS 
 
 	/*
 		This view combines entries from multiple log tables
@@ -6,7 +6,7 @@
 	*/
 
 	/*
-		Pull from landing.LoadLog (JDE)
+		Pull from globalshoplanding.LoadLog (Global Shop)
 	*/
 	SELECT LoadLogKey
 		 , SourceSystemName
@@ -16,7 +16,7 @@
 		 , StartDate
 		 , EndDate
 		 , LogTableName = 'globalshoplanding.LoadLog'
-	FROM globalshoplanding.LoadLog
+	FROM ods_globalshop.LoadLog
 
 
 --	UNION

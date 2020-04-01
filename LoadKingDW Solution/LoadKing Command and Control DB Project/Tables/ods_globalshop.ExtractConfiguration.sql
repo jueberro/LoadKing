@@ -1,4 +1,4 @@
-﻿CREATE TABLE [globalshoplanding].[ExtractConfiguration]
+﻿CREATE TABLE [ods_globalshop].[ExtractConfiguration]
 (
 	[SourceTableName]			NVARCHAR(100)		NOT NULL,
 	[TargetTableName]			NVARCHAR(100)		NOT NULL,
@@ -10,11 +10,11 @@
 	[SysEndTime]	DATETIME2 GENERATED ALWAYS AS ROW END	HIDDEN NOT NULL , 
 	PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime),
 	
-	CONSTRAINT [PK_globalshoplanding_ExtractConfiguration] PRIMARY KEY ([SourceTableName])
+	CONSTRAINT [PK_ods_globalshop_ExtractConfiguration] PRIMARY KEY ([SourceTableName])
 )
 
 WITH	(
-			SYSTEM_VERSIONING = ON (HISTORY_TABLE = globalshoplanding.ExtractConfiguration_history) --New or existing table
+			SYSTEM_VERSIONING = ON (HISTORY_TABLE = ods_globalshop.ExtractConfiguration_history) --New or existing table
 		)
 
 GO

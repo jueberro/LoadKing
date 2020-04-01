@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE [globalshoplanding].[LogLoadSuccess] @LoadLogKey			INT
+﻿CREATE PROCEDURE [ods_globalshop].[LogLoadSuccess] @LoadLogKey			INT
 													, @SourceRecordCount	INT = 0
 													
 AS
 
 BEGIN
 
-	UPDATE	globalshoplanding.LoadLog
+	UPDATE	ods_globalshop.LoadLog
 	SET		ExecutionStatusCode			= 'SUCC'
 			, ExecutionStatusMessage	= 'Success.'
 			, SourceRecordCount			= @SourceRecordCount

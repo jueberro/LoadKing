@@ -1,9 +1,9 @@
-﻿CREATE PROCEDURE [globalshoplanding].[LogLoadFailure] @LoadLogKey	INT
+﻿CREATE PROCEDURE [ods_globalshop].[LogLoadFailure] @LoadLogKey	INT
 													, @Message		NVARCHAR(1500)
 AS
 BEGIN
 
-	UPDATE	globalshoplanding.LoadLog
+	UPDATE	ods_globalshop.LoadLog
 	SET		ExecutionStatusCode			= 'FAIL'
 			, ExecutionStatusMessage	= REPLACE(REPLACE(@Message, '&apos;', ''''), '&#44;', ',')
 			, EndDate					= GETUTCDATE()

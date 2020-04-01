@@ -66,21 +66,21 @@
     <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Schemas\globalshoplanding.sql" />
-    <Build Include="Tables\globalshoplanding.ExtractConfiguration.sql" />
-    <Build Include="Tables\globalshoplanding.LoadLog.sql" />
-    <Build Include="Stored Procedures\globalshoplanding.LogLoadFailure.sql" />
-    <Build Include="Stored Procedures\globalshoplanding.LogLoadStart.sql" />
-    <Build Include="Stored Procedures\globalshoplanding.LogLoadSuccess.sql" />
-    <Build Include="Stored Procedures\globalshoplanding.GetTablesToExtract.sql" />
+    <Build Include="Schemas\ods_globalshop.sql" />
+    <Build Include="Tables\ods_globalshop.ExtractConfiguration.sql" />
+    <Build Include="Tables\ods_globalshop.LoadLog.sql" />
+    <Build Include="Stored Procedures\ods_globalshop.LogLoadFailure.sql" />
+    <Build Include="Stored Procedures\ods_globalshop.LogLoadStart.sql" />
+    <Build Include="Stored Procedures\ods_globalshop.LogLoadSuccess.sql" />
+    <Build Include="Stored Procedures\ods_globalshop.GetTablesToExtract.sql" />
     <Build Include="Schemas\dwetl.sql" />
     <Build Include="Tables\dwetl.LoadLog.sql" />
     <Build Include="Stored Procedures\dwetl.GetBatchesToProcess.sql" />
     <Build Include="Stored Procedures\dwetl.LogLoadFailure.sql" />
     <Build Include="Stored Procedures\dwetl.LogLoadStart.sql" />
     <Build Include="Stored Procedures\dwetl.LogLoadSuccess.sql" />
-    <Build Include="Schemas\landing.sql" />
-    <Build Include="Views\landing.LoadLog.sql" />
+    <Build Include="Schemas\ods.sql" />
+    <Build Include="Views\ods.LoadLog.sql" />
     <Build Include="Tables\dwetl.DWTableSource.sql" />
   </ItemGroup>
   <ItemGroup>
