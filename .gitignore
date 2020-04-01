@@ -5,7 +5,9 @@ LoadKingDW Solution/.vs/LoadKingDW Solution/v16/.suo
 .vs/LoadKing/v16/.suo
 LoadKingDW Solution/.vs/LoadKing/snlx.sqlite
 .vs/LoadKing/slnx.sqlite
+*slnx.sqlite
 .vs/LoadKing/VSWorkspaceState.json
+*VSWorkspaceState.json
 *.pdb
 *.dll
 *.user
@@ -28,3 +30,5 @@ LoadKingDW Solution/LoadKingDW DB Project/obj/Debug/LoadKingDW DB Project.sqlpro
 /LoadKingDW Solution/LK-GS-EDW/obj/Debug
 /LoadKingDW Solution/LK-GS-EDW/bin/Debug
 /LoadKingDW Solution/LoadKingDW DB Project/bin/Debug
+*.sqlite
+.vs/VSWorkspaceState.json
