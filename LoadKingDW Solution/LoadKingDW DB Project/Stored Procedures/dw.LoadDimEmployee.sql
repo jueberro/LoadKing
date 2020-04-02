@@ -40,18 +40,18 @@ BEGIN
 
 	INSERT INTO #DimEmployee
 	SELECT 		
-		, [EmployeeID]				= CAST(EMPLOYEE AS NCHAR(5)
-		, [EmployeeRecordType]		= CAST(RECORD_TYPE AS NCHAR(1)
-		, [EmployeeName]			= CAST([NAME] AS NVARCHAR(100)
-		, [EmployeeAddress]			= 
-		, [EmployeeCity]				
-		, [EmployeeState]				
-		, [EmployeePostalCode]		
-		, [EmployeeGender]			
-		, [EmployeeHireDate]			
-		, [EmployeeTerminationDate]	
-		, [EmployeeDepartment]		
-		, [EmployeeIsSalesperson]		
+		, [EmployeeID]				= CAST(EMPLOYEE AS NCHAR(5))
+		, [EmployeeRecordType]		= CAST(RECORD_TYPE AS NCHAR(1))
+		, [EmployeeName]			= CAST(NAME AS NVARCHAR(100))
+		, [EmployeeAddress]			= CAST(ADDRESS AS NVARCHAR(100))
+		, [EmployeeCity]			= CAST(CITY AS NVARCHAR(50))
+		, [EmployeeState]			= CAST(STATE AS NCHAR(2))	
+		, [EmployeePostalCode]		= CAST(ZIP_CODE AS NCHAR(9)
+		, [EmployeeGender]			= CAST(SEX AS NCAHR(1)
+		, [EmployeeHireDate]		= dwstage.udf_cv_nvarchar6_to_date(DATE_HIRE)
+		, [EmployeeTerminationDate]	= dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)
+		, [EmployeeDepartment]		= CAST(DEPARTMENT_EMPLOYEE AS NCHAR(4)
+		, [EmployeeIsSalesperson]	= CAST(0 AS BIT) 	
 		
 		, [Type1RecordHash]			
 		, [Type2RecordHash]			
