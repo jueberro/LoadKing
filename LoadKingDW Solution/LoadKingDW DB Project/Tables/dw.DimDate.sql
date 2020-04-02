@@ -15,6 +15,7 @@
     [Year]         CHAR (4)     NOT NULL,
     [StandardDate] VARCHAR (10) NULL,
     [HolidayText]  VARCHAR (50) NULL,
+
     CONSTRAINT [pk_DimDate] PRIMARY KEY CLUSTERED ([DimDate_Key] ASC)
 );
 

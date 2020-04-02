@@ -17,11 +17,20 @@
     [PartDescription3]   VARCHAR (100)   NULL,
     [PartVatProductType] CHAR (5)        NULL,
     [PartTaxExemptFlag]  CHAR (1)        NULL,
-    [ETL_Batch]          INT             NULL,
-    [ETL_Completed]      DATETIME        NULL,
-    [effective_date]     DATETIME        NOT NULL,
-    [End_date]           DATETIME        NULL,
-    [IsEffective]        VARCHAR (1)     NOT NULL,
+
+	/*Hashes used for identifying changes, not required for reporting*/
+	Type1RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
+	Type2RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
+
+	/*DW Metadata fields, not required for reporting*/
+	SourceSystemName			NVARCHAR(100)		NOT NULL,
+	DWEffectiveStartDate		DATETIME2(7)		NOT NULL,
+	DWEffectiveEndDate			DATETIME2(7)		NOT NULL,
+	DWIsCurrent					BIT					NOT NULL,
+
+	/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
+	LoadLogKey					INT					NOT NULL, --ID of ETL process that inserted the record    CONSTRAINT [pk_DimEmployee] PRIMARY KEY CLUSTERED ([DimEmployee_Key] ASC)
+
     CONSTRAINT [PK_DimInventory_SK] PRIMARY KEY CLUSTERED ([DimPart_Key] ASC)
 );
 
