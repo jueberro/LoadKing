@@ -7,13 +7,13 @@
   DTS:CreatorName="AzureAD\BobRubocki"
   DTS:DTSID="{E5DC2BDC-66F0-4046-B2B9-95C877432C87}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LastModifiedProductVersion="15.0.2000.71"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadDimEmployee"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{0338F890-4651-4A3A-BF7E-82E70595D69D}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{1D1B2C18-2071-4E7D-A7FB-7A99AEAE245A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -7078,7 +7078,14 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimEmployee" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimEmployee ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -7287,7 +7294,7 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="339,43"
+          Size="338.666666666667,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           TopLeft="5.50000000000003,210.833333333334" />
         <NodeLayout
@@ -7295,11 +7302,11 @@
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimEmployee"
           TopLeft="65.1666666666667,313.5" />
         <NodeLayout
-          Size="171,43"
+          Size="170.666666666667,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           TopLeft="85.8333333333333,5.50000000000004" />
         <NodeLayout
-          Size="185,43"
+          Size="185.333333333334,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           TopLeft="78.5,416.166666666667" />
         <NodeLayout
@@ -7397,12 +7404,12 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="351,514"
-          Size="351,557"
+          PanelSize="350.666666666667,514"
+          Size="350.666666666667,557.333333333334"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           TopLeft="5.50000000000009,108.166666666666" />
         <NodeLayout
-          Size="243,43"
+          Size="242.666666666667,42.6666666666667"
           Id="Package\SQL - GetExtractBatchesToProcess"
           TopLeft="65.6666667535901,5.49999999999993" />
         <EdgeLayout
@@ -7469,14 +7476,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\DST - dwstage EMPLOYEE_MSTR">
     <Properties>
       <Property>
@@ -7486,6 +7485,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
