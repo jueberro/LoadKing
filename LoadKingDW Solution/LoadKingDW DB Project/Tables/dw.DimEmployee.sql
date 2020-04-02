@@ -1,16 +1,17 @@
 ﻿CREATE TABLE [dw].[DimEmployee] (
     [DimEmployee_Key]         INT           IDENTITY (1, 1) NOT NULL,
-    [EmployeeID]              CHAR (5)      NOT NULL,
-    [EmployeeRecordType]      CHAR (1)      NULL,
-    [EmployeeName]            VARCHAR (100) NULL,
-    [EmployeeAddress]         VARCHAR (100) NULL,
-    [EmployeeCity]            VARCHAR (50)  NULL,
-    [EmployeeState]           CHAR (2)      NULL,
-    [EmployeePostalCode]      CHAR (9)      NULL,
-    [EmployeeGender]          CHAR (1)      NULL,
+    [EmployeeID]              NCHAR (5)      NOT NULL,
+    [EmployeeRecordType]      NCHAR (1)      NULL,
+    [EmployeeName]            NVARCHAR (100) NULL,
+    [EmployeeAddress]         NVARCHAR (100) NULL,
+    [EmployeeCity]            NVARCHAR (50)  NULL,
+    [EmployeeState]           NCHAR (2)      NULL,
+    [EmployeePostalCode]      NCHAR (9)      NULL,
+    [EmployeeGender]          NCHAR (1)      NULL,
     [EmployeeHireDate]        DATE          NULL,
     [EmployeeTerminationDate] DATE          NULL,
-    [EmployeeDepartment]      CHAR (4)      NULL,
+    [EmployeeDepartment]      NCHAR (4)      NULL,
+    EmployeeIsSalesperson     bit   null,
 
 	/*Hashes used for identifying changes, not required for reporting*/
 	Type1RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
