@@ -31,6 +31,7 @@ BEGIN
 		[EmployeeTerminationDate]	DATE			NULL,
 		[EmployeeDepartment]		NCHAR (4)		NULL,
 		[EmployeeIsSalesperson]		BIT				NULL,
+		[EmployeeInitials]          NVARCHAR(3)     NULL,
 
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
@@ -61,7 +62,7 @@ BEGIN
 		, [EmployeeTerminationDate]	= dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)
 		, [EmployeeDepartment]		= CAST(DEPT_EMPLOYEE		AS NCHAR(4))
 		, [EmployeeIsSalesperson]	= CAST(0					AS BIT) 	
-		
+		, [EmployeeInitials]        = CAST(''                   AS NVARCHAR(3))
 		, [Type1RecordHash]			= CAST(0 AS VARBINARY)
 		, [Type2RecordHash]			= HASHBYTES('SHA2_256', CAST(EMPLOYEE		AS NCHAR(5))
 															+ CAST(RECORD_TYPE		AS NCHAR(1))
