@@ -38,7 +38,7 @@
 	[ETL_Batch] [varchar](1) NOT NULL,
 	[ETL_Completed] [varchar](19) NOT NULL,
 	[effective_date] [datetime] NOT NULL,
-	[End_date] [datetime] NULL,
+	[End_date] [datetime] NOT NULL,
 	[IsEffective] [varchar](1) NOT NULL,
  CONSTRAINT [PK_DimEmployee_SK] PRIMARY KEY CLUSTERED 
 (

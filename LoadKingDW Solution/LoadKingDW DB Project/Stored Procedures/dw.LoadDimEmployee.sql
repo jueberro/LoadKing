@@ -6,7 +6,7 @@ BEGIN
 	SELECT @CurrentTimestamp = GETUTCDATE()
 
 	MERGE INTO dbo.Dim_Employee AS TRG
-	USING dwstage.EMPLOYEE_MSTR AS SRC
+	USING dwstage.V_EMPLOYEE_MSTR AS SRC
 	 ON	TRG.EMPLOYEE = SRC.EMPLOYEE 
 	  AND TRG.IsEffective = 'y'
 
@@ -134,7 +134,7 @@ BEGIN
 			  ,SRC.[ETL_Batch]
 			  ,SRC.[ETL_Completed]
 			  , @CurrentTimestamp
-			  ,'2100-01-01'
+			  ,convert(datetime,'2100-01-01',120)
 			  , 'y'
 			  );
 
