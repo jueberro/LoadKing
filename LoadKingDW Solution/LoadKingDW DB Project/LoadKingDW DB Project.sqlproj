@@ -64,6 +64,8 @@
     <Folder Include="Tables" />
     <Folder Include="Views" />
     <Folder Include="Stored Procedures" />
+    <Folder Include="dw\" />
+    <Folder Include="dw\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\dw.sql" />
@@ -94,6 +96,11 @@
     <Build Include="Views\dwstage.V_ORDER_HIST_HEAD.sql" />
     <Build Include="Views\dwstage.V_ORDER_HIST_LOT.sql" />
     <Build Include="Tables\dwstage.ORDER_HEADER.sql" />
+    <Build Include="dw\Tables\dw.DimPart.sql" />
+    <Build Include="dw\Tables\dw.DimEmployee.sql" />
+    <Build Include="dw\Tables\dw.DimDate.sql" />
+    <Build Include="dw\Tables\dw.DimCustomerShipTo.sql" />
+    <Build Include="dw\Tables\dw.DimCustomer.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
