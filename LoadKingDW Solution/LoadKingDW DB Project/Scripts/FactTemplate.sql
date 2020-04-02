@@ -1,7 +1,7 @@
 ﻿CREATE TABLE dw.FactSample
 (
 	/*Fact surrogate key*/
-	FactSampleKey				INT IDENTITY(1, 1)	NOT NULL,
+	FactSample_Key				INT IDENTITY(1, 1)	NOT NULL,
 
 	/*Source identifier*/
 	--WorkOrderNumber
@@ -12,8 +12,8 @@
 	SampleKey					INT					NOT NULL,	--FK to DimSample
 
 	/* Measures */
-	SalesAmount					DECIMAL(15, 2)	NOT NULL,
-	Units						DECIMAL(15, 2)	NOT NULL,
+	SampleSalesAmount					DECIMAL(15, 2)	NOT NULL,
+	SampleUnits						DECIMAL(15, 2)	NOT NULL,
 
 	/*Hash used for identifying changes, not required for reporting*/
 	RecordHash					VARCHAR(66)			NULL,
@@ -23,10 +23,10 @@
 	DWIsCurrent					BIT					NOT NULL,
 
 	/*ETL Metadata fields, not required for reporting */
-	RecordCreateDate			DATETIME2(7)		NOT NULL,
-    RecordLastUpdatedDate		DATETIME2(7)		NOT NULL,
-    RecordCreatedByName			NVARCHAR (100)		NOT NULL,
-    RecordLastUpdatedByName		NVARCHAR (100)		NOT NULL,
+	--RecordCreateDate			DATETIME2(7)		NOT NULL,
+ --   RecordLastUpdatedDate		DATETIME2(7)		NOT NULL,
+ --   RecordCreatedByName			NVARCHAR (100)		NOT NULL,
+ --   RecordLastUpdatedByName		NVARCHAR (100)		NOT NULL,
 	LoadLogKey					INT					NOT NULL	--ID of ETL process that inserted the record
 )
 

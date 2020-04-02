@@ -1,14 +1,14 @@
 ﻿CREATE TABLE [dw].[DimSample]
 (
 	/*Surrogate Key*/
-	SampleKey					INT IDENTITY(1, 1)	NOT NULL,	--
+	DimSample_Key					INT IDENTITY(1, 1)	NOT NULL,	--
 
-	/*NaturalKey(s)*/
+	/*NaturalKey(s) - use ID */
 	SampleID					NVARCHAR(100)		NOT NULL,	
 
 	/*Dimension attributes*/
-	AttributeOne				NVARCHAR(100)		NOT NULL,
-	AttibuteTwo					NVARCHAR(10)		NOT NULL,
+	SampleAttributeOne				NVARCHAR(100)		NOT NULL,
+	SampleAttibuteTwo					NVARCHAR(10)		NOT NULL,
 
 	/*Hashes used for identifying changes, not required for reporting*/
 	Type1RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
@@ -20,11 +20,12 @@
 	DWEffectiveEndDate			DATETIME2(7)		NOT NULL,
 	DWIsCurrent					BIT					NOT NULL,
 
-	/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
-	RecordCreateDate			DATETIME2(7)		NOT NULL,
-    RecordLastUpdatedDate		DATETIME2(7)		NOT NULL,
-    RecordCreatedByName			NVARCHAR (100)		NOT NULL,
-    RecordLastUpdatedByName		NVARCHAR (100)		NOT NULL,
+	/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example 
+	 Commented fields not required for this project due to use of ETL control table*/
+	--RecordCreateDate			DATETIME2(7)		NOT NULL,
+ --   RecordLastUpdatedDate		DATETIME2(7)		NOT NULL,
+ --   RecordCreatedByName			NVARCHAR (100)		NOT NULL,
+ --   RecordLastUpdatedByName		NVARCHAR (100)		NOT NULL,
 	LoadLogKey					INT					NOT NULL --ID of ETL process that inserted the record
 )
 

@@ -90,6 +90,11 @@
     <Build Include="Views\dwstage.V_ORDER_HIST_HEAD.sql" />
     <Build Include="Views\dwstage.V_ORDER_HIST_LOT.sql" />
     <Build Include="Tables\dwstage.ORDER_HEADER.sql" />
+    <Build Include="Tables\dw.DimCustomer.sql" />
+    <Build Include="Tables\dw.DimCustomerShipTo.sql" />
+    <Build Include="Tables\dw.DimDate.sql" />
+    <Build Include="Tables\dw.DimEmployee.sql" />
+    <Build Include="Tables\dw.DimPart.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
