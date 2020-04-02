@@ -12,6 +12,7 @@
     [EmployeeTerminationDate] DATE          NULL,
     [EmployeeDepartment]      NCHAR (4)      NULL,
     EmployeeIsSalesperson     bit   null,
+    EmployeeInitials          nvarchar(3) null,
 
 	/*Hashes used for identifying changes, not required for reporting*/
 	Type1RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
