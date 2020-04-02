@@ -43,7 +43,7 @@ BEGIN
 		[DWIsCurrent]				BIT					NOT NULL,
 
 		/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
-		[LoadLogKey]					INT
+		[LoadLogKey]				INT
 	)
 
 	--Load #work table with data in the format in which it will appear in the dimension
@@ -62,8 +62,8 @@ BEGIN
 		, [EmployeeDepartment]		= CAST(DEPT_EMPLOYEE		AS NCHAR(4))
 		, [EmployeeIsSalesperson]	= CAST(0					AS BIT) 	
 		
-		, [Type1RecordHash]			= CAST('0x0000' AS VARCHAR(66))
-		, [Type2RecordHash]			= CAST(HASHBYTES('SHA2_256', CAST(EMPLOYEE		AS NCHAR(5))
+		, [Type1RecordHash]			= CAST(0 AS VARBINARY)
+		, [Type2RecordHash]			= HASHBYTES('SHA2_256', CAST(EMPLOYEE		AS NCHAR(5))
 															+ CAST(RECORD_TYPE		AS NCHAR(1))
 															+ CAST([NAME]			AS NVARCHAR(100))
 															+ CAST([ADDRESS]		AS NVARCHAR(100))
@@ -71,10 +71,10 @@ BEGIN
 															+ CAST([STATE]			AS NCHAR(2))	
 															+ CAST(ZIP_CODE			AS NCHAR(9))
 															+ CAST(SEX				AS NCHAR(1))
-															+ dwstage.udf_cv_nvarchar6_to_date(DATE_HIRE)
-															+ dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)
+															+ CAST(dwstage.udf_cv_nvarchar6_to_date(DATE_HIRE)  AS NVARCHAR(12))
+															+ CAST(dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)  AS NVARCHAR(12))
 															+ CAST(DEPT_EMPLOYEE	AS NCHAR(4))
-															+ CAST(0				AS BIT)) AS VARCHAR(66))
+															+ CAST(0				AS NCHAR(1)))
 		
 		, [SourceSystemName]		= CAST('Global Shop' AS		NVARCHAR(100))
 		, [DWEffectiveStartDate]	= @CurrentTimestamp
@@ -87,7 +87,7 @@ BEGIN
 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
 	CREATE TABLE #Dim_Employee_current (EmployeeID NCHAR(5)
-										, Type2RecordHash VARBINARY(62)
+										, Type2RecordHash VARBINARY(64)
 										)
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
