@@ -70,7 +70,6 @@
     <Build Include="Schemas\dwstage.sql" />
     <Build Include="Schemas\dwlookup.sql" />
     <Build Include="Stored Procedures\dw.LoadDimEmployee.sql" />
-    <Build Include="Tables\dbo.Dim_Employee.sql" />
     <Build Include="Tables\dwstage.EMPLOYEE_MSTR.sql" />
     <Build Include="Tables\dwstage.CUSTOMER_MASTER.sql" />
     <Build Include="Tables\dwstage.CUSTOMER_SHIPTO.sql" />
