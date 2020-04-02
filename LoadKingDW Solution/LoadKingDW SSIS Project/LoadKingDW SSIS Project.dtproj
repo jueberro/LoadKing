@@ -35,7 +35,6 @@
           <SSIS:Package SSIS:Name="DWFactMaster.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="GlobalShopExtractMaster.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimCustomer.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="DWLookupLoadDepartment.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimEmployee.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
@@ -587,23 +586,6 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="DWLookupLoadDepartment.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{D4F18E0D-4757-496B-BA64-89331B77269B}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DWLookupLoadDepartment</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{7B21A5DB-7D48-4858-85B8-4DD1862C584F}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
             </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="DWLoadDimEmployee.dtsx">
               <SSIS:Properties>
