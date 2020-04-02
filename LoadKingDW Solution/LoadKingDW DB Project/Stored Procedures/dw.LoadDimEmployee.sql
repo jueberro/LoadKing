@@ -11,12 +11,11 @@ BEGIN
 
 	*/
 
-
-
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
-	BEGIN TRY DROP TABLE #DimEmployee_work END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimEmployee_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #Dim_Employee_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimEmployee_work (
@@ -47,8 +46,7 @@ BEGIN
 		[LoadLogKey]					INT
 	)
 
-
-
+	--Load #work table with data in the format in which it will appear in the dimension
 	INSERT INTO #DimEmployee_work
 	SELECT 		
 		  [EmployeeID]				= CAST(EMPLOYEE				AS NCHAR(5))
@@ -87,6 +85,21 @@ BEGIN
 	FROM  dwstage.EMPLOYEE_MSTR
 
 
+	--CREATE TEMP table to be used below for identifying records with Type 2 changes
+	CREATE TABLE #Dim_Employee_current (EmployeeID NCHAR(5)
+										, Type2RecordHash VARBINARY(62)
+										)
+
+	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
+	INSERT INTO #Dim_Employee_current
+	SELECT	EmployeeID
+			, Type2RecordHash
+	FROM	dw.DimEmployee
+	WHERE	DWIsCurrent = 1
+
+
+
+
 
 
 	--INSERT NEW Dimension Items
@@ -113,15 +126,14 @@ BEGIN
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimEmployee
 	SELECT	Work.*
-	FROM	dw.DimEmployee		AS DIM
+	FROM	#Dim_Employee_current AS DIM
 	 JOIN   #DimEmployee_work	AS Work
 	  ON	Dim.EmployeeID = Work.EmployeeID
-	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
-	--DROP temp table
-
-	BEGIN TRY DROP TABLE #DimEmployee_work END TRY BEGIN CATCH END CATCH
+	--DROP temp tables
+	BEGIN TRY DROP TABLE #DimEmployee_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #Dim_Employee_current	END TRY BEGIN CATCH END CATCH
 	 
 
 END
