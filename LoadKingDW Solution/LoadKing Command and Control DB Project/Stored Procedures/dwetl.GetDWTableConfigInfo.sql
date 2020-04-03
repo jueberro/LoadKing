@@ -20,6 +20,7 @@ BEGIN
 	SELECT  DWTableName
 		  , SourceSystemName
 		  , SourceDataSetName
+		  , StoredProcedureName
 	FROM	dwetl.DWTableSource
 	WHERE	DWTableType = @DWTableType
 	 AND	LoadDWTableFlag = 1			-- Used primarily during testing to enable/disable loads

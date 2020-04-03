@@ -27,4 +27,4 @@ ADD CONSTRAINT [PK_dwetl_DWTableSource] PRIMARY KEY ([DWTableName], [SourceSyste
 GO
 
 ALTER TABLE dwetl.DWTableSource
-ADD CONSTRAINT [DF_dwetl_DWTableSource_LoadDWTableFlag] DEFAULT (0) FOR LoadDWTableFlag
+ADD CONSTRAINT [DF_dwetl_DWTableSource_LoadDWTableFlag] DEFAULT (1) FOR LoadDWTableFlag
