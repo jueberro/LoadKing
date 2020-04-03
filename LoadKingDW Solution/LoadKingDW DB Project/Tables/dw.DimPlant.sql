@@ -1,24 +1,8 @@
-﻿CREATE TABLE [dw].[DimSalesOrder]
+﻿CREATE TABLE [dw].[DimPlant]
 (
-	DimSalesOrder_Key int identity(1,1) not null
-	, DimCustomer_Key int not null
-	, DimEmployee_Key int not null
-	, OrderNumber nvarchar(10) not null
-	, InvoiceNumber nvarchar(10) not null
-	, OrderDate date null
-	, DueDate date null
-	, OrderType nvarchar(1) null
-	, OrderSuffix nvarchar(4) null
-	, CustomerPO nvarchar(20) null
-	, FillCustomerPO nvarchar(20) null
-	, MarkInfo nvarchar(30) null
-	, CodeFOB nvarchar(14) null
-	, Terms nvarchar(10) null
-	, WayBill nvarchar(19) null
+	DimPlant_Key INT identity(1,1) NOT NULL
 	
-
-
-	/*Hashes used for identifying changes, not required for reporting*/
+/*Hashes used for identifying changes, not required for reporting*/
 	, Type1RecordHash				VARCHAR(66)				NULL	--66 allows for "0x" + 64 characater hash
 	, Type2RecordHash				VARCHAR(66)				NULL	--66 allows for "0x" + 64 characater hash
 
@@ -35,5 +19,5 @@
  --   RecordCreatedByName			NVARCHAR (100)		NOT NULL,
  --   RecordLastUpdatedByName		NVARCHAR (100)		NOT NULL,
 	, LoadLogKey					INT					NOT NULL --ID of ETL process that inserted the record
-	, constraint pk_DimSalesOrder primary key clustered (DimSalesOrder_Key)
+	, constraint pk_DimPlant primary key clustered (DimPlant_Key)
 )

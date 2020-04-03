@@ -96,9 +96,11 @@
     <Build Include="Tables\dw.DimEmployee.sql" />
     <Build Include="Tables\dw.DimPart.sql" />
     <Build Include="Tables\dw.DimTime.sql" />
-    <Build Include="Tables\dw.FactSalesOrderHeader.sql" />
     <Build Include="Tables\dw.DimOrderType.sql" />
     <Build Include="Tables\dw.DimSalesOrder.sql" />
+    <Build Include="Tables\dw.FactSalesOrderLine.sql" />
+    <Build Include="Tables\dw.DimProduct.sql" />
+    <Build Include="Tables\dw.DimPlant.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
