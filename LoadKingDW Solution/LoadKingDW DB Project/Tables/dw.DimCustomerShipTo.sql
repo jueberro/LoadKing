@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dw].[DimCustomerShipTo] (
     [DimCustomerShipTo_Key]           INT           IDENTITY (1, 1) NOT NULL,
-    [DimCustomerKey]                  INT           NULL,
+    [DimCustomerKey]                  INT            NULL,
     [CustomerID]                      NCHAR (6)      NOT NULL,
     [CustomerShipToID]                NCHAR (6)      NOT NULL,
     [CustomerShipToName]              NVARCHAR (50)  NOT NULL,
@@ -11,12 +11,12 @@
     [CustomerShipToPostalCode]        NVARCHAR (50)  NULL,
     [CustomerShipToCountry]           NVARCHAR (50)  NULL,
     [CustomerShipToCounty]            NVARCHAR (50)  NULL,
-    [CustomerShipToInternationalFlag] BIT           NULL,
+    [CustomerShipToInternationalFlag] BIT            NULL,
     [CustomerShipToTerritory]         NCHAR (2)      NULL,
 
    	/*Hashes used for identifying changes, not required for reporting*/
-	Type1RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
-	Type2RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
+	Type1RecordHash				VARBINARY(64)		NULL,	
+	Type2RecordHash				VARBINARY(64)		NULL,	
 
 	/*DW Metadata fields, not required for reporting*/
 	SourceSystemName			NVARCHAR(100)		NOT NULL,

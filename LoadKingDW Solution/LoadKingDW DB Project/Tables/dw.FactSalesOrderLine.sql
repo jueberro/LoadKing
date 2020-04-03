@@ -37,7 +37,7 @@
 	, OrderPricePerPound decimal(16,6)
 
 	/*Hash used for identifying changes, not required for reporting*/
-	,RecordHash					VARCHAR(66)			NULL
+	,RecordHash					VARBINARY(64)			NULL
 
 	/*DW Metadata fields, not required for reporting*/
 	,SourceSystemName			NVARCHAR(100)		NOT NULL
