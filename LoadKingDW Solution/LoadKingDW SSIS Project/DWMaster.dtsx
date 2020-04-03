@@ -9,63 +9,103 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.71"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="DWMaster"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{8BFA9DC6-DE33-4C4F-8A35-4F3DD3990617}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{4D04648E-5083-46BC-B940-B1100C1BD878}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8433923A-2188-4501-B3D5-38643A4A646E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DWTableType_Dimension">
+      <DTS:VariableValue
+        DTS:DataType="8">Dimension</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C0C9EE84-87AC-4910-8CCC-F4B3769F11E4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DWTableType_Fact">
+      <DTS:VariableValue
+        DTS:DataType="8">Fact</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6333E3A3-5EB4-4859-B1B6-5F07C1F76855}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DWTableType_Lookup">
+      <DTS:VariableValue
+        DTS:DataType="8">Lookup</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\EPT - DWFactMaster"
+      DTS:refId="Package\EPT - DWTableLoop - Fact"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{CF783072-4BB3-402F-8E43-1BCBF21B5835}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="EPT - DWFactMaster"
+      DTS:ObjectName="EPT - DWTableLoop - Fact"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>DWFactMaster.dtsx</PackageName>
+          <PackageName>DWTableLoop.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>DWTableType</ParameterName>
+            <BindedVariableOrParameterName>User::DWTableType_Fact</BindedVariableOrParameterName>
+          </ParameterAssignment>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\EPT - DWLookupMaster"
+      DTS:refId="Package\EPT - DWTableLoop - Lookup"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{EBC5F871-FB91-4BAF-9F39-E2CBFF97B930}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="EPT - DWLookupMaster"
+      DTS:ObjectName="EPT - DWTableLoop - Lookup"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>DWLookupMaster.dtsx</PackageName>
+          <PackageName>DWTableLoop.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>DWTableType</ParameterName>
+            <BindedVariableOrParameterName>User::DWTableType_Lookup</BindedVariableOrParameterName>
+          </ParameterAssignment>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\ETP - DWDimensionMaster"
+      DTS:refId="Package\ETP - DWTableLoop - Dimension"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{440056A1-C66D-497E-B4EB-FE918235C255}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="ETP - DWDimensionMaster"
+      DTS:ObjectName="ETP - DWTableLoop - Dimension"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>DWDimensionMaster.dtsx</PackageName>
+          <PackageName>DWTableLoop.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>DWTableType</ParameterName>
+            <BindedVariableOrParameterName>User::DWTableType_Dimension</BindedVariableOrParameterName>
+          </ParameterAssignment>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -75,18 +115,18 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{9C67955A-28F4-45A3-B0D8-CAF5DFD26294}"
-      DTS:From="Package\EPT - DWLookupMaster"
+      DTS:From="Package\EPT - DWTableLoop - Lookup"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\ETP - DWDimensionMaster" />
+      DTS:To="Package\ETP - DWTableLoop - Dimension" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{FFB11CAB-5E9E-4868-8664-0C29168FFACD}"
-      DTS:From="Package\ETP - DWDimensionMaster"
+      DTS:From="Package\ETP - DWTableLoop - Dimension"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\EPT - DWFactMaster" />
+      DTS:To="Package\EPT - DWTableLoop - Fact" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -101,20 +141,20 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="205.333333333334,42.6666666666667"
-          Id="Package\EPT - DWFactMaster"
+          Size="233.333333333334,42.6666666666667"
+          Id="Package\EPT - DWTableLoop - Fact"
           TopLeft="5.50000000000003,210.833333333334" />
         <NodeLayout
-          Size="205.333333333334,42.6666666666667"
-          Id="Package\EPT - DWLookupMaster"
+          Size="233.333333333334,42.6666666666667"
+          Id="Package\EPT - DWTableLoop - Lookup"
           TopLeft="5.50000000000001,5.50000000000004" />
         <NodeLayout
-          Size="205.333333333334,42.6666666666667"
-          Id="Package\ETP - DWDimensionMaster"
+          Size="233.333333333334,42.6666666666667"
+          Id="Package\ETP - DWTableLoop - Dimension"
           TopLeft="5.50000000000003,108.166666666667" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="108.166666666667,48.1666666666667">
+          TopLeft="122.166666666667,48.1666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -136,7 +176,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="108.166666666667,150.833333333333">
+          TopLeft="122.166666666667,150.833333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

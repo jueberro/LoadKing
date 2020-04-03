@@ -75,13 +75,14 @@
     <Build Include="Stored Procedures\ods_globalshop.GetTablesToExtract.sql" />
     <Build Include="Schemas\dwetl.sql" />
     <Build Include="Tables\dwetl.LoadLog.sql" />
-    <Build Include="Stored Procedures\dwetl.GetBatchesToProcess.sql" />
+    <Build Include="Stored Procedures\dwetl.GetODSBatchesToProcess.sql" />
     <Build Include="Stored Procedures\dwetl.LogLoadFailure.sql" />
     <Build Include="Stored Procedures\dwetl.LogLoadStart.sql" />
     <Build Include="Stored Procedures\dwetl.LogLoadSuccess.sql" />
     <Build Include="Schemas\ods.sql" />
     <Build Include="Views\ods.LoadLog.sql" />
     <Build Include="Tables\dwetl.DWTableSource.sql" />
+    <Build Include="Stored Procedures\dwetl.GetDWTableConfigInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\LK_CNC.dev.publish.xml" />

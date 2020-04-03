@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dwetl].[GetBatchesToProcess]
+﻿CREATE PROCEDURE [dwetl].[GetODSBatchesToProcess]
 	@DWTableName			NVARCHAR(100),
 	@SourceSystemName		NVARCHAR(100),
 	@SourceDataSetName		NVARCHAR(100)

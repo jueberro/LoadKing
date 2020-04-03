@@ -1,11 +1,11 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/7/2020 11:57:12 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-10LHH5T"
   DTS:CreatorName="AzureAD\BobRubocki"
-  DTS:DTSID="{E5DC2BDC-66F0-4046-B2B9-95C877432C87}"
+  DTS:DTSID="{070E870E-BC1C-464D-B2BC-4198623C41B4}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.71"
   DTS:LocaleID="1033"
@@ -13,14 +13,14 @@
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
   DTS:VersionBuild="16"
-  DTS:VersionGUID="{395151D5-B8B8-4BCE-8EB3-957E8034A3D7}">
+  DTS:VersionGUID="{6F02C435-D987-427C-8C67-8B98FCA1B2F1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{DA7E0366-BA9D-4612-99E6-F8EFF60C9CBD}"
+      DTS:DTSID="{2991C7CB-9809-4F53-B805-B4DCA19CF4B4}"
       DTS:ObjectName="DWTableName">
       <DTS:Property
         DTS:DataType="8"
@@ -29,7 +29,7 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{A204BE64-365A-4548-BB8E-14D11FE6E113}"
+      DTS:DTSID="{E5C8C667-795B-4BDE-AC97-39A892580C75}"
       DTS:ObjectName="SourceDataSetName">
       <DTS:Property
         DTS:DataType="8"
@@ -38,7 +38,7 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{2680868C-C9DA-4C19-AEDD-BE307169878F}"
+      DTS:DTSID="{1E78AE9F-D37B-4977-A888-C786E975008C}"
       DTS:ObjectName="SourceSystemName">
       <DTS:Property
         DTS:DataType="8"
@@ -47,7 +47,7 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{0FE8B132-C2A8-41E0-82DF-4313C2EEEEDE}"
+      DTS:DTSID="{8FD67D1D-6D06-4B21-9FCF-61C85E6E968F}"
       DTS:ObjectName="StoredProcedureName">
       <DTS:Property
         DTS:DataType="8"
@@ -57,7 +57,7 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{4FE66406-4512-4421-AF4C-449B4473D1F2}"
+      DTS:DTSID="{991C2E46-7DDC-4BC7-ACFD-94F21E2A1E1C}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="BatchesToProcessList">
@@ -75,7 +75,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{FE7F227E-ACE1-4236-880E-9380D2643A55}"
+      DTS:DTSID="{19192E56-2F12-494F-9222-7FDCAC7A5A83}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;EXEC &quot; +  @[$Package::StoredProcedureName] + &quot; @LoadLogKey = &quot; + (DT_STR, 10, 1252) @[User::LoadLogKey]"
       DTS:IncludeInDebugDump="2345"
@@ -86,7 +86,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{36629547-7F62-46DE-9835-F6C909C48504}"
+      DTS:DTSID="{D6AECEC5-4B91-4D3B-90C1-048A68235F37}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="LoadLogKey">
@@ -95,7 +95,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{8E929615-F93D-402E-85B4-BD2489734189}"
+      DTS:DTSID="{EB49DCD4-2A8D-4C66-9329-BC3A77DF3CF6}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;SELECT * FROM dbo.EMPLOYEE_MSTR WHERE ETL_Batch = &quot; + (DT_STR, 5, 1252)@[User::SourceLoadLogKey]"
       DTS:IncludeInDebugDump="2345"
@@ -106,7 +106,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{583DE810-BACC-4C41-B1B5-8D638DF5AE43}"
+      DTS:DTSID="{07B24577-08F0-4308-B5CE-D1AE186B8378}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="SourceLoadLogKey">
@@ -119,14 +119,14 @@
       DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{ECDAB5C5-F373-474C-B372-46F80838B988}"
+      DTS:DTSID="{5AFC1793-6D7D-4A34-A2ED-91287ECD8B73}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="FEL - Extract Batches Not Yet Processed in DW Table">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachADOEnumerator"
-        DTS:DTSID="{BFCCC8B6-845B-4DCE-9CFF-08CE49B1E231}"
-        DTS:ObjectName="{BFCCC8B6-845B-4DCE-9CFF-08CE49B1E231}">
+        DTS:DTSID="{758AA1C2-D525-482C-AA60-A2C8B4385A28}"
+        DTS:ObjectName="{758AA1C2-D525-482C-AA60-A2C8B4385A28}">
         <DTS:ObjectData>
           <FEEADO
             EnumType="EnumerateRowsInFirstTable"
@@ -139,7 +139,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks"
           DTS:CreationName="STOCK:SEQUENCE"
           DTS:Description="Sequence Container"
-          DTS:DTSID="{D297CB2A-B05F-4DF2-AD61-930A00F2641F}"
+          DTS:DTSID="{C3ED9BED-D394-4DA0-BB0C-49BF624F6745}"
           DTS:ExecutableType="STOCK:SEQUENCE"
           DTS:LocaleID="-1"
           DTS:ObjectName="SEQ - Run ONE of the following Data Flow Tasks">
@@ -149,7 +149,7 @@
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{c0906060-9407-4d59-96c0-8d7dae85bbbf}"
+              DTS:DTSID="{1ECB7078-FC5A-4E78-81A6-3E2361543C5A}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="DFT - CUSTOMER"
@@ -7089,7 +7089,7 @@
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{D1432D9A-6F85-4A10-9483-61DFBEB3658B}"
+              DTS:DTSID="{5A42ADCF-C1E1-4B8C-99CB-E946AA60E4D1}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="DFT - EMPLOYEE"
@@ -14029,7 +14029,7 @@
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PLANT"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{11e47230-58fa-4af4-861b-d72b0cfca3f2}"
+              DTS:DTSID="{F2FC5A0B-FE57-4AFF-BF7E-BE71A851D62F}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="DFT - PLANT"
@@ -20969,7 +20969,7 @@
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PRODUCT"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{e2a8d95d-70c1-4900-9a82-edc3a2621f8d}"
+              DTS:DTSID="{5DFA3385-8450-4873-942E-258FA6B5B744}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="DFT - PRODUCT"
@@ -27909,7 +27909,7 @@
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
               DTS:CreationName="Microsoft.ExpressionTask"
               DTS:Description="Expression Task"
-              DTS:DTSID="{452566B5-85A5-4454-9463-86F3F643DA06}"
+              DTS:DTSID="{DBEDA7CE-BF0D-4D54-AC49-F865C5356C59}"
               DTS:ExecutableType="Microsoft.ExpressionTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="EXP - Conditional Expression Anchor"
@@ -27925,7 +27925,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint]"
               DTS:CreationName=""
-              DTS:DTSID="{9A862FE5-F4B1-4268-AC91-5F84C08B4530}"
+              DTS:DTSID="{86A42B1B-D901-48C5-9967-8387F7F4AD2A}"
               DTS:EvalOp="1"
               DTS:Expression="@[$Package::SourceSystemName] == &quot;Global Shop&quot; &amp;&amp;  @[$Package::SourceDataSetName] == &quot;Employee&quot;"
               DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
@@ -27935,7 +27935,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 1]"
               DTS:CreationName=""
-              DTS:DTSID="{1BD72E2B-2AC0-4F44-81EC-811E6094AC54}"
+              DTS:DTSID="{219E890B-03CE-4EC1-9AD7-6F613F7C1F96}"
               DTS:EvalOp="1"
               DTS:Expression="@[$Package::SourceSystemName] == &quot;Global Shop&quot; &amp;&amp;  @[$Package::SourceDataSetName] == &quot;Customer&quot;"
               DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
@@ -27945,7 +27945,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 2]"
               DTS:CreationName=""
-              DTS:DTSID="{F7A01186-2FBE-4F42-BC10-488CA51AC86D}"
+              DTS:DTSID="{6C9E9623-AA42-4DA3-93CF-2ECCAB8AE8D3}"
               DTS:EvalOp="1"
               DTS:Expression="@[$Package::SourceSystemName] == &quot;Global Shop&quot; &amp;&amp;  @[$Package::SourceDataSetName] == &quot;Plant&quot;"
               DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
@@ -27955,7 +27955,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 3]"
               DTS:CreationName=""
-              DTS:DTSID="{EFDC729E-B2DA-4EE4-9CC1-06DAAD5AD7EC}"
+              DTS:DTSID="{B2B84E93-709C-4AD8-A9EA-A9EEE3571588}"
               DTS:EvalOp="1"
               DTS:Expression="@[$Package::SourceSystemName] == &quot;Global Shop&quot; &amp;&amp;  @[$Package::SourceDataSetName] == &quot;Product&quot;"
               DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
@@ -27968,7 +27968,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - Exec DW Table Load Procedure"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{A350531E-CE9D-4294-A486-6D939BB2C1D4}"
+          DTS:DTSID="{AF502294-79CB-49FC-AD0F-335441AEBC19}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Exec DW Table Load Procedure"
@@ -27993,7 +27993,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{A6BD5076-CEF9-4DD3-B39B-951F595D2CE6}"
+          DTS:DTSID="{490B3A46-522A-42EA-8D56-163F9601A8F1}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - LogLoadStart"
@@ -28051,7 +28051,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{62EC6879-5D4E-452A-8AF8-BFFBFDE0FE86}"
+          DTS:DTSID="{DD77247B-A309-403A-8FDD-5C6750D2A4B9}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - LogLoadSuccess"
@@ -28075,7 +28075,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{25FF6CAE-99CE-4FBC-8CBF-53B0FAE6DD83}"
+          DTS:DTSID="{CBEB7A60-5186-4540-9496-8346C56C1678}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - TRUNCATE Stage Tables"
@@ -28092,7 +28092,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{66615EC2-EC41-4C86-B489-326FEDB73DBF}"
+          DTS:DTSID="{88EBD1AF-1007-41F4-9B55-0A0EDB56989E}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -28100,7 +28100,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{1A265DD6-306E-4475-B9AD-D4728316CA69}"
+          DTS:DTSID="{E65A8DB3-7676-4E8A-8820-071AC914B8EB}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
@@ -28108,7 +28108,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
-          DTS:DTSID="{BD0FE84C-3210-40D9-880F-12822FD53E76}"
+          DTS:DTSID="{92D3F332-37B2-4234-9CFE-2C8238D77A47}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
@@ -28116,7 +28116,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
-          DTS:DTSID="{C47CC515-FC92-421A-AAF1-130FA543FFB0}"
+          DTS:DTSID="{730C9A69-DA57-48DB-ABE6-8C7E62E28B8A}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - Exec DW Table Load Procedure"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
@@ -28125,8 +28125,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{9D3909EE-5FBA-4952-92CC-B9AACB69DBC1}"
-          DTS:ObjectName="{9D3909EE-5FBA-4952-92CC-B9AACB69DBC1}"
+          DTS:DTSID="{ABC06CCF-420C-4A4A-B288-55E85CA253A9}"
+          DTS:ObjectName="{ABC06CCF-420C-4A4A-B288-55E85CA253A9}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::SourceLoadLogKey" />
       </DTS:ForEachVariableMappings>
@@ -28135,7 +28135,7 @@
       DTS:refId="Package\SQL - GetExtractBatchesToProcess"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{1B6E7877-FDC3-4E26-B194-7AFD5A3F3E36}"
+      DTS:DTSID="{A48C0CA2-DB08-458D-BCB8-90B21F38073E}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL - GetExtractBatchesToProcess"
@@ -28176,7 +28176,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{7442235F-D983-4A7D-8BF0-ADA8ACEE6BBC}"
+      DTS:DTSID="{715F9A0D-32A7-4F47-BBF1-A6054AEFDDD5}"
       DTS:From="Package\SQL - GetExtractBatchesToProcess"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
