@@ -1,13 +1,10 @@
-﻿CREATE TABLE [dw].[DimOrderType]
+﻿CREATE TABLE [dw].[DimPlant]
 (
+	DimPlant_Key INT identity(1,1) NOT NULL
 	
-	DimOrderType_Key int identity(1,1) not null
-	, OrderTypeID nvarchar(1) not null
-	, OrderTypeName nvarchar(50) null
-
-	/*Hashes used for identifying changes, not required for reporting*/
-	, Type1RecordHash				VARBINARY(64)				NULL	
-	, Type2RecordHash				VARBINARY(64)				NULL	
+/*Hashes used for identifying changes, not required for reporting*/
+	, Type1RecordHash				VARBINARY(64)				NULL
+	, Type2RecordHash				VARBINARY(64)				NULL
 
 	/*DW Metadata fields, not required for reporting*/
 	, SourceSystemName			NVARCHAR(100)		NOT NULL
@@ -22,6 +19,5 @@
  --   RecordCreatedByName			NVARCHAR (100)		NOT NULL,
  --   RecordLastUpdatedByName		NVARCHAR (100)		NOT NULL,
 	, LoadLogKey					INT					NOT NULL --ID of ETL process that inserted the record
-	, constraint pk_DimOrderType primary key clustered (DimOrderType_Key)
-
+	, constraint pk_DimPlant primary key clustered (DimPlant_Key)
 )

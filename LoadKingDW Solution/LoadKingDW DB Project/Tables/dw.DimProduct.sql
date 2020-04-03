@@ -1,11 +1,10 @@
-﻿CREATE TABLE [dw].[DimOrderType]
-(
-	
-	DimOrderType_Key int identity(1,1) not null
-	, OrderTypeID nvarchar(1) not null
-	, OrderTypeName nvarchar(50) null
+﻿/* Not sure how this is different from the part dimension */
 
-	/*Hashes used for identifying changes, not required for reporting*/
+CREATE TABLE [dw].[DimProduct]
+(
+	DimProduct_Key INT NOT NULL 
+
+/*Hashes used for identifying changes, not required for reporting*/
 	, Type1RecordHash				VARBINARY(64)				NULL	
 	, Type2RecordHash				VARBINARY(64)				NULL	
 
@@ -22,6 +21,5 @@
  --   RecordCreatedByName			NVARCHAR (100)		NOT NULL,
  --   RecordLastUpdatedByName		NVARCHAR (100)		NOT NULL,
 	, LoadLogKey					INT					NOT NULL --ID of ETL process that inserted the record
-	, constraint pk_DimOrderType primary key clustered (DimOrderType_Key)
-
+	, constraint pk_DimProduct primary key clustered (DimProduct_Key)
 )
