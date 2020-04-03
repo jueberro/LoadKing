@@ -11,12 +11,11 @@ BEGIN
 
 	*/
 
-
-
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
-	BEGIN TRY DROP TABLE #DimEmployee_work END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimEmployee_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #Dim_Employee_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimEmployee_work (
@@ -32,6 +31,7 @@ BEGIN
 		[EmployeeTerminationDate]	DATE			NULL,
 		[EmployeeDepartment]		NCHAR (4)		NULL,
 		[EmployeeIsSalesperson]		BIT				NULL,
+		[EmployeeInitials]          NVARCHAR(3)     NULL,
 
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
@@ -44,11 +44,10 @@ BEGIN
 		[DWIsCurrent]				BIT					NOT NULL,
 
 		/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
-		[LoadLogKey]					INT
+		[LoadLogKey]				INT
 	)
 
-
-
+	--Load #work table with data in the format in which it will appear in the dimension
 	INSERT INTO #DimEmployee_work
 	SELECT 		
 		  [EmployeeID]				= CAST(EMPLOYEE				AS NCHAR(5))
@@ -63,9 +62,9 @@ BEGIN
 		, [EmployeeTerminationDate]	= dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)
 		, [EmployeeDepartment]		= CAST(DEPT_EMPLOYEE		AS NCHAR(4))
 		, [EmployeeIsSalesperson]	= CAST(0					AS BIT) 	
-		
-		, [Type1RecordHash]			= CAST('0x0000' AS VARCHAR(66))
-		, [Type2RecordHash]			= CAST(HASHBYTES('SHA2_256', CAST(EMPLOYEE		AS NCHAR(5))
+		, [EmployeeInitials]        = CAST(''                   AS NVARCHAR(3))
+		, [Type1RecordHash]			= CAST(0 AS VARBINARY)
+		, [Type2RecordHash]			= HASHBYTES('SHA2_256', CAST(EMPLOYEE		AS NCHAR(5))
 															+ CAST(RECORD_TYPE		AS NCHAR(1))
 															+ CAST([NAME]			AS NVARCHAR(100))
 															+ CAST([ADDRESS]		AS NVARCHAR(100))
@@ -73,10 +72,10 @@ BEGIN
 															+ CAST([STATE]			AS NCHAR(2))	
 															+ CAST(ZIP_CODE			AS NCHAR(9))
 															+ CAST(SEX				AS NCHAR(1))
-															+ dwstage.udf_cv_nvarchar6_to_date(DATE_HIRE)
-															+ dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)
+															+ CAST(dwstage.udf_cv_nvarchar6_to_date(DATE_HIRE)  AS NVARCHAR(12))
+															+ CAST(dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)  AS NVARCHAR(12))
 															+ CAST(DEPT_EMPLOYEE	AS NCHAR(4))
-															+ CAST(0				AS BIT)) AS VARCHAR(66))
+															+ CAST(0				AS NCHAR(1)))
 		
 		, [SourceSystemName]		= CAST('Global Shop' AS		NVARCHAR(100))
 		, [DWEffectiveStartDate]	= @CurrentTimestamp
@@ -85,6 +84,21 @@ BEGIN
 		
 		, [LoadLogKey]				= @LoadLogKey
 	FROM  dwstage.EMPLOYEE_MSTR
+
+
+	--CREATE TEMP table to be used below for identifying records with Type 2 changes
+	CREATE TABLE #Dim_Employee_current (EmployeeID NCHAR(5)
+										, Type2RecordHash VARBINARY(64)
+										)
+
+	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
+	INSERT INTO #Dim_Employee_current
+	SELECT	EmployeeID
+			, Type2RecordHash
+	FROM	dw.DimEmployee
+	WHERE	DWIsCurrent = 1
+
+
 
 
 
@@ -113,15 +127,14 @@ BEGIN
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimEmployee
 	SELECT	Work.*
-	FROM	dw.DimEmployee		AS DIM
+	FROM	#Dim_Employee_current AS DIM
 	 JOIN   #DimEmployee_work	AS Work
 	  ON	Dim.EmployeeID = Work.EmployeeID
-	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
-	--DROP temp table
-
-	BEGIN TRY DROP TABLE #DimEmployee_work END TRY BEGIN CATCH END CATCH
+	--DROP temp tables
+	BEGIN TRY DROP TABLE #DimEmployee_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #Dim_Employee_current	END TRY BEGIN CATCH END CATCH
 	 
 
 END

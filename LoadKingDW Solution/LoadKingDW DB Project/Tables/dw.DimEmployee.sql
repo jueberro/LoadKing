@@ -15,8 +15,8 @@
     EmployeeInitials          nvarchar(3) null,
 
 	/*Hashes used for identifying changes, not required for reporting*/
-	Type1RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
-	Type2RecordHash				VARCHAR(66)				NULL,	--66 allows for "0x" + 64 characater hash
+	Type1RecordHash				VARBINARY(64)				NULL,	--66 allows for "0x" + 64 characater hash
+	Type2RecordHash				VARBINARY(64)				NULL,	--66 allows for "0x" + 64 characater hash
 
 	/*DW Metadata fields, not required for reporting*/
 	SourceSystemName			NVARCHAR(100)		NOT NULL,

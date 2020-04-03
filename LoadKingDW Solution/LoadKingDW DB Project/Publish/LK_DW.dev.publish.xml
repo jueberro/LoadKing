@@ -2,8 +2,11 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
-    <TargetDatabaseName>LK_DW</TargetDatabaseName>
+    <TargetDatabaseName>LK-GS-EDW</TargetDatabaseName>
     <DeployScriptFileName>LoadKingDW DB Project.sql</DeployScriptFileName>
     <ProfileVersionNumber>1</ProfileVersionNumber>
+    <BlockOnPossibleDataLoss>True</BlockOnPossibleDataLoss>
+    <ScriptDatabaseOptions>False</ScriptDatabaseOptions>
+    <TargetConnectionString>Data Source=LK-DW-TEST\LK_DW;Persist Security Info=True;User ID=jueberroth;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False</TargetConnectionString>
   </PropertyGroup>
 </Project>
