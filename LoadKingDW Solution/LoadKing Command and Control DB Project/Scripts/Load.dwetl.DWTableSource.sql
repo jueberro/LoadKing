@@ -5,8 +5,8 @@
 			)
 
 BEGIN
-	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, StoredProcedureName)
-	VALUES ('dw.DimEmployee', 'Dimension', 'Global Shop', 'Employee', 'dw.LoadDimEmployee')
+	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, StageTableName, StoredProcedureName)
+	VALUES ('dw.DimEmployee', 'Dimension', 'Global Shop', 'Employee', 'dwstage.EMPLOYEE_MSTR', 'dw.LoadDimEmployee')
 
 END
 
@@ -17,7 +17,7 @@ IF NOT EXISTS(SELECT 1 FROM dwetl.DWTableSource
 			)
 
 BEGIN
-	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, StoredProcedureName)
-	VALUES ('dw.DimCustomer', 'Dimension', 'Global Shop', 'Customer', 'dw.LoadDimCustomer')
+	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, StageTableName, StoredProcedureName)
+	VALUES ('dw.DimCustomer', 'Dimension', 'Global Shop', 'Customer', 'TBD', 'dw.LoadDimCustomer')
 
 END

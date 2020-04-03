@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/7/2020 11:57:12 AM"
@@ -9,11 +9,11 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.71"
   DTS:LocaleID="1033"
-  DTS:ObjectName="DWLoadDimEmployee"
+  DTS:ObjectName="DWLoadSingleDWTable"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{6F02C435-D987-427C-8C67-8B98FCA1B2F1}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{44E346E7-D4D3-4CB6-B7C2-844E509E35D1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -43,6 +43,15 @@
       <DTS:Property
         DTS:DataType="8"
         DTS:Name="ParameterValue">Global Shop</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{FB3618C1-8CDA-4DBB-A346-7FB96C24BCE9}"
+      DTS:ObjectName="StageTableName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">dwstage.EMPLOYEE_MSTR</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -112,6 +121,17 @@
       DTS:ObjectName="SourceLoadLogKey">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E4B505A-D69B-4428-8E24-1EE08940F904}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;TRUNCATE TABLE &quot; +  @[$Package::StageTableName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TruncateTableSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">TRUNCATE TABLE dwstage.EMPLOYEE_MSTR</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -28084,7 +28104,8 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="TRUNCATE TABLE dwstage.EMPLOYEE_MSTR" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::TruncateTableSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -28195,51 +28216,21 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="242.666666666667,42.6666666666667"
-          Id="Package\SQL - GetExtractBatchesToProcess"
-          TopLeft="295.5,5.49999999999993" />
-        <NodeLayout
-          Size="257.333333333334,42.6666666666667"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - Exec DW Table Load Procedure"
-          TopLeft="282.833333333333,518.833333333333" />
-        <NodeLayout
-          Size="170.666666666667,42.6666666666667"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
-          TopLeft="326.166666666667,5.49999999999993" />
-        <NodeLayout
-          Size="185.333333333334,42.6666666666667"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
-          TopLeft="318.833333333333,621.5" />
-        <NodeLayout
-          Size="238,42"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
-          TopLeft="292.5,108.166666666667" />
-        <EdgeLayout
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
-          TopLeft="411.5,48.1666666666666">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER"
+          TopLeft="226.166666666667,108.166666666667" />
         <NodeLayout
           Size="160,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE"
           TopLeft="5.5,108.166666666667" />
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PLANT"
+          TopLeft="449.5,108.166666666667" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PRODUCT"
+          TopLeft="650.5,108.166666666667" />
         <NodeLayout
           Size="250.666666666667,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
@@ -28280,10 +28271,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="162.666666666667,42.6666666666667"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER"
-          TopLeft="226.166666666667,108.166666666667" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 1]"
           TopLeft="495.233333333333,48.1666666666666">
@@ -28320,14 +28307,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="140,42.6666666666667"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PLANT"
-          TopLeft="449.5,108.166666666667" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PRODUCT"
-          TopLeft="650.5,108.166666666667" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 2]"
           TopLeft="543.766666666667,48.1666666666666">
@@ -28407,20 +28386,36 @@
           Size="812,248.666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks"
           TopLeft="5.50000000000006,210.166666666667" />
+        <NodeLayout
+          Size="257.333333333334,42.6666666666667"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - Exec DW Table Load Procedure"
+          TopLeft="282.833333333333,518.833333333333" />
+        <NodeLayout
+          Size="170.666666666667,42.6666666666667"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
+          TopLeft="326.166666666667,5.49999999999993" />
+        <NodeLayout
+          Size="185.333333333334,42.6666666666667"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
+          TopLeft="318.833333333333,621.5" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
+          TopLeft="292.5,108.166666666667" />
         <EdgeLayout
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
-          TopLeft="411.5,150.166666666667">
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
+          TopLeft="411.5,48.1666666666666">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="0,52.5000000000001">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5000000000001" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -28443,6 +28438,28 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
+          TopLeft="411.5,150.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -28480,6 +28497,10 @@
           Size="822.666666666667,762"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           TopLeft="5.50000000000011,108.166666666667" />
+        <NodeLayout
+          Size="242.666666666667,42.6666666666667"
+          Id="Package\SQL - GetExtractBatchesToProcess"
+          TopLeft="295.5,5.49999999999993" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="416.833333333333,48.1666666666666">
@@ -28505,46 +28526,6 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
-  <TaskHost
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="298,42"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE\DST - dwstage EMPLOYEE_MSTR"
-          TopLeft="5.50000000000003,107.5" />
-        <NodeLayout
-          Size="298,42"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE\SRC - ODS EMPLOYEE_MSTR - One Batch"
-          TopLeft="5.5,5.5" />
-        <EdgeLayout
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE.Paths[OLE DB Source Output]"
-          TopLeft="154.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <TaskHost
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER">
     <LayoutInfo>
@@ -28580,6 +28561,44 @@
             <mssgm:EdgeLabel
               BoundingBox="0,0,0,0"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="298,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE\SRC - ODS EMPLOYEE_MSTR - One Batch"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="298,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE\DST - dwstage EMPLOYEE_MSTR"
+          TopLeft="5.50000000000003,107.5" />
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE.Paths[OLE DB Source Output]"
+          TopLeft="154.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
