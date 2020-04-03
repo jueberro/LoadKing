@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadSingleDWTable"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{44E346E7-D4D3-4CB6-B7C2-844E509E35D1}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{4DE83759-8676-48E0-ABCF-28D7EC46A010}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -27928,7 +27928,7 @@
             <DTS:Executable
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
               DTS:CreationName="Microsoft.ExpressionTask"
-              DTS:Description="Expression Task"
+              DTS:Description="This task is here so we can create precedence constraints between the next steps"
               DTS:DTSID="{DBEDA7CE-BF0D-4D54-AC49-F865C5356C59}"
               DTS:ExecutableType="Microsoft.ExpressionTask"
               DTS:LocaleID="-1"
@@ -27987,7 +27987,7 @@
         <DTS:Executable
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - Exec DW Table Load Procedure"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="Execute stored procedure to process data from stage table into DW lookup, dimension, or fact table.  Dimension procedures include all Type 2 Slowly Changing Dimension logic"
           DTS:DTSID="{AF502294-79CB-49FC-AD0F-335441AEBC19}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -28012,7 +28012,7 @@
         <DTS:Executable
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="Create entry in DW log table (dwetl.LoadLog) indicating start time"
           DTS:DTSID="{490B3A46-522A-42EA-8D56-163F9601A8F1}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -28070,7 +28070,7 @@
         <DTS:Executable
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="Update DW log entry (dwetl.LoadLog) to indicate success"
           DTS:DTSID="{DD77247B-A309-403A-8FDD-5C6750D2A4B9}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -28094,7 +28094,7 @@
         <DTS:Executable
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="TRUNCATE stage table(s) to be loaded with one batch of ODS data"
           DTS:DTSID="{CBEB7A60-5186-4540-9496-8346C56C1678}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -28153,20 +28153,20 @@
       </DTS:ForEachVariableMappings>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL - GetExtractBatchesToProcess"
+      DTS:refId="Package\SQL - GetODSBatchesToProcess"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
+      DTS:Description="Retrieve of LoadLogKeys(Batches) from ODS control table that have NOT been processed for a given DW table"
       DTS:DTSID="{A48C0CA2-DB08-458D-BCB8-90B21F38073E}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL - GetExtractBatchesToProcess"
+      DTS:ObjectName="SQL - GetODSBatchesToProcess"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
-          SQLTask:SqlStatementSource="EXEC dwetl.GetBatchesToProcess @DWTableName = ?&#xA;&#x9;&#x9;&#x9;, @SourceSystemName = ?&#xA;&#x9;&#x9;&#x9;, @SourceDataSetName = ?"
+          SQLTask:SqlStatementSource="EXEC dwetl.GetODSBatchesToProcess @DWTableName = ?&#xA;&#x9;&#x9;&#x9;, @SourceSystemName = ?&#xA;&#x9;&#x9;&#x9;, @SourceDataSetName = ?"
           SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
@@ -28198,7 +28198,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{715F9A0D-32A7-4F47-BBF1-A6054AEFDDD5}"
-      DTS:From="Package\SQL - GetExtractBatchesToProcess"
+      DTS:From="Package\SQL - GetODSBatchesToProcess"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table" />
@@ -28499,7 +28499,7 @@
           TopLeft="5.50000000000011,108.166666666667" />
         <NodeLayout
           Size="242.666666666667,42.6666666666667"
-          Id="Package\SQL - GetExtractBatchesToProcess"
+          Id="Package\SQL - GetODSBatchesToProcess"
           TopLeft="295.5,5.49999999999993" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
