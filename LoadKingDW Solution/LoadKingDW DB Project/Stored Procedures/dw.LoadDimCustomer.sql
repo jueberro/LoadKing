@@ -2,6 +2,7 @@
 
 BEGIN
 
+
 	/*
 
 	- This procedure is called from an SSIS package
@@ -85,7 +86,7 @@ BEGIN
 			, DWIsCurrent = 0
 	FROM	dw.DimCustomer		AS DIM
 	 JOIN   #DimCustomer_work	AS Work
-	  ON	Dim.CustomerD = Work.CustomerID
+	  ON	Dim.CustomerID = Work.CustomerID
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
