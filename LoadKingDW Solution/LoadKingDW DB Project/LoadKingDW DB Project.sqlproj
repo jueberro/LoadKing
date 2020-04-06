@@ -69,7 +69,6 @@
     <Build Include="Schemas\dw.sql" />
     <Build Include="Schemas\dwstage.sql" />
     <Build Include="Schemas\dwlookup.sql" />
-    <Build Include="Stored Procedures\dw.LoadDimEmployee_bak.sql" />
     <Build Include="Tables\dwstage.EMPLOYEE_MSTR.sql" />
     <Build Include="Tables\dwstage.CUSTOMER_MASTER.sql" />
     <Build Include="Tables\dwstage.CUSTOMER_SHIPTO.sql" />
@@ -95,6 +94,8 @@
     <Build Include="Tables\dw.DimPlant.sql" />
     <Build Include="Stored Procedures\dw.LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimEmployee.sql" />
+    <Build Include="Views\dwstage.V_LoadDimCustomer.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimCustomer.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
