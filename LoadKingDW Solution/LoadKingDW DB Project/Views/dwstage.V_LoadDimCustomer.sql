@@ -28,13 +28,10 @@ SELECT
 															+ CAST([ZIP] 			        AS NVARCHAR(50))
 															+ CAST([COUNTRY]		        AS NVARCHAR(50))
 															+ CAST([COUNTY]			        AS NVARCHAR(50))
-															+ CAST((CASE   
-															       WHEN [INTL_ADDR] IS NOT NULL THEN 1
-															         ELSE 0
-															       END) AS BIT)
-															+ CAST([TERRITORY]           AS NCHAR(2)) 
-															+ CAST([CODE_AREA]           AS NCHAR(2))
-															+ CAST([CREDIT]              AS NCHAR(2)) )
+															+ CAST([INTL_ADDR]              AS NCHAR(1))
+															+ CAST([TERRITORY]              AS NCHAR(2)) 
+															+ CAST([CODE_AREA]              AS NCHAR(2))
+															+ CAST([CREDIT]                 AS NCHAR(2)) )
 	
 	
 	
