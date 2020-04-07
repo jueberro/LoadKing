@@ -7,13 +7,13 @@
   DTS:CreatorName="AzureAD\BobRubocki"
   DTS:DTSID="{070E870E-BC1C-464D-B2BC-4198623C41B4}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LastModifiedProductVersion="15.0.2000.71"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadSingleDWTable"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{648DC8F7-36BA-4B0B-8596-F8425659C6B2}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{D97B7D9C-8D2C-49DE-9095-39318259DCE0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -177,6 +177,7 @@
             <DTS:Executable
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER"
               DTS:CreationName="Microsoft.Pipeline"
+              DTS:DelayValidation="True"
               DTS:Description="Data Flow Task"
               DTS:DTSID="{1ECB7078-FC5A-4E78-81A6-3E2361543C5A}"
               DTS:ExecutableType="Microsoft.Pipeline"
@@ -1528,6 +1529,7 @@
             <DTS:Executable
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE"
               DTS:CreationName="Microsoft.Pipeline"
+              DTS:DelayValidation="True"
               DTS:Description="Data Flow Task"
               DTS:DTSID="{5A42ADCF-C1E1-4B8C-99CB-E946AA60E4D1}"
               DTS:ExecutableType="Microsoft.Pipeline"
@@ -8468,6 +8470,7 @@
             <DTS:Executable
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PLANT"
               DTS:CreationName="Microsoft.Pipeline"
+              DTS:DelayValidation="True"
               DTS:Description="Data Flow Task"
               DTS:DTSID="{F2FC5A0B-FE57-4AFF-BF7E-BE71A851D62F}"
               DTS:ExecutableType="Microsoft.Pipeline"
@@ -15408,6 +15411,7 @@
             <DTS:Executable
               DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PRODUCT"
               DTS:CreationName="Microsoft.Pipeline"
+              DTS:DelayValidation="True"
               DTS:Description="Data Flow Task"
               DTS:DTSID="{5DFA3385-8450-4873-942E-258FA6B5B744}"
               DTS:ExecutableType="Microsoft.Pipeline"
@@ -22636,195 +22640,202 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="163,43"
+          Size="162.666666666667,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER"
-          TopLeft="226.166666666667,108.166666666667" />
+          TopLeft="226.166666666667,116.833333333333" />
         <NodeLayout
-          Size="160,43"
+          Size="160,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE"
-          TopLeft="5.5,108.166666666667" />
+          TopLeft="5.5,116.833333333333" />
         <NodeLayout
-          Size="140,43"
+          Size="140,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PLANT"
-          TopLeft="449.5,108.166666666667" />
+          TopLeft="449.5,116.833333333333" />
         <NodeLayout
-          Size="156,43"
+          Size="156,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PRODUCT"
-          TopLeft="650.5,108.166666666667" />
+          TopLeft="650.5,116.833333333333" />
         <NodeLayout
-          Size="251,43"
+          Size="250.666666666667,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
-          TopLeft="394.166666666667,5.49999999999993" />
+          TopLeft="394.166666666667,5.50000000000004" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint]"
-          TopLeft="446.7,48.1666666666666">
+          TopLeft="446.7,48.1666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-361.2,60.0000000000002"
+              EndConnector="-361.2,68.6666666666667"
               Start="0,0"
-              End="-361.2,52.5000000000002">
+              End="-361.2,61.1666666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7211394302849" />
+                    End="0,16.2808595702149" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7211394302849"
-                    Point2="0,17.7211394302849"
-                    Point3="-4,17.7211394302849" />
+                    Point1="0,16.2808595702149"
+                    Point2="0,20.2808595702149"
+                    Point3="-4,20.2808595702149" />
                   <mssgle:LineSegment
-                    End="-357.2,17.7211394302849" />
+                    End="-357.2,20.2808595702149" />
                   <mssgle:CubicBezierSegment
-                    Point1="-357.2,17.7211394302849"
-                    Point2="-361.2,17.7211394302849"
-                    Point3="-361.2,21.7211394302849" />
+                    Point1="-357.2,20.2808595702149"
+                    Point2="-361.2,20.2808595702149"
+                    Point3="-361.2,24.2808595702149" />
                   <mssgle:LineSegment
-                    End="-361.2,52.5000000000002" />
+                    End="-361.2,61.1666666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-188.6,22.7211394302849,16,16"
+              BoundingBox="-188.6,25.2808595702149,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 1]"
-          TopLeft="495.233333333333,48.1666666666666">
+          TopLeft="495.233333333333,48.1666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-187.733333333333,60.0000000000001"
+              EndConnector="-187.733333333333,68.6666666666667"
               Start="0,0"
-              End="-187.733333333333,52.5000000000001">
+              End="-187.733333333333,61.1666666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.7844522968198" />
+                    End="0,26.6533176285827" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22.7844522968198"
-                    Point2="0,26.7844522968198"
-                    Point3="-4,26.7844522968198" />
+                    Point1="0,26.6533176285827"
+                    Point2="0,30.6533176285827"
+                    Point3="-4,30.6533176285827" />
                   <mssgle:LineSegment
-                    End="-183.733333333333,26.7844522968198" />
+                    End="-183.733333333333,30.6533176285827" />
                   <mssgle:CubicBezierSegment
-                    Point1="-183.733333333333,26.7844522968198"
-                    Point2="-187.733333333333,26.7844522968198"
-                    Point3="-187.733333333333,30.7844522968198" />
+                    Point1="-183.733333333333,30.6533176285827"
+                    Point2="-187.733333333333,30.6533176285827"
+                    Point3="-187.733333333333,34.6533176285827" />
                   <mssgle:LineSegment
-                    End="-187.733333333333,52.5000000000001" />
+                    End="-187.733333333333,61.1666666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-101.866666666667,31.7844522968198,16,16"
+              BoundingBox="-101.866666666667,35.6533176285827,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 2]"
-          TopLeft="543.766666666667,48.1666666666666">
+          TopLeft="543.766666666667,48.1666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-24.2666666666667,60.0000000000001"
+              EndConnector="-24.2666666666667,68.6666666666667"
               Start="0,0"
-              End="-24.2666666666667,52.5000000000001">
+              End="-24.2666666666667,61.1666666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.7844522968198" />
+                    End="0,26.6533176285827" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22.7844522968198"
-                    Point2="0,26.7844522968198"
-                    Point3="-4,26.7844522968198" />
+                    Point1="0,26.6533176285827"
+                    Point2="0,30.6533176285827"
+                    Point3="-4,30.6533176285827" />
                   <mssgle:LineSegment
-                    End="-20.2666666666667,26.7844522968198" />
+                    End="-20.2666666666667,30.6533176285827" />
                   <mssgle:CubicBezierSegment
-                    Point1="-20.2666666666667,26.7844522968198"
-                    Point2="-24.2666666666667,26.7844522968198"
-                    Point3="-24.2666666666667,30.7844522968198" />
+                    Point1="-20.2666666666667,30.6533176285827"
+                    Point2="-24.2666666666667,30.6533176285827"
+                    Point3="-24.2666666666667,34.6533176285827" />
                   <mssgle:LineSegment
-                    End="-24.2666666666667,52.5000000000001" />
+                    End="-24.2666666666667,61.1666666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-20.1333333333333,31.7844522968198,16,16"
+              BoundingBox="-20.1333333333333,35.6533176285827,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks.PrecedenceConstraints[Constraint 3]"
-          TopLeft="592.3,48.1666666666666">
+          TopLeft="592.3,48.1666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="136.2,60.0000000000001"
+              EndConnector="136.2,68.6666666666666"
               Start="0,0"
-              End="136.2,52.5000000000001">
+              End="136.2,61.1666666666666">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7211394302849" />
+                    End="0,16.2808595702149" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7211394302849"
-                    Point2="0,17.7211394302849"
-                    Point3="4,17.7211394302849" />
+                    Point1="0,16.2808595702149"
+                    Point2="0,20.2808595702149"
+                    Point3="4,20.2808595702149" />
                   <mssgle:LineSegment
-                    End="132.2,17.7211394302849" />
+                    End="132.2,20.2808595702149" />
                   <mssgle:CubicBezierSegment
-                    Point1="132.2,17.7211394302849"
-                    Point2="136.2,17.7211394302849"
-                    Point3="136.2,21.7211394302849" />
+                    Point1="132.2,20.2808595702149"
+                    Point2="136.2,20.2808595702149"
+                    Point3="136.2,24.2808595702149" />
                   <mssgle:LineSegment
-                    End="136.2,52.5000000000001" />
+                    End="136.2,61.1666666666666" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="60.1,22.7211394302849,16,16"
+              BoundingBox="60.1,25.2808595702149,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="DelayValidation set to TRUE for each Data Flow Task"
+          ParentId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks"
+          FontInfo="{assembly:Null}"
+          Size="302.666666666667,60"
+          Id="5e019161-771d-469f-a8d2-163366bac0c9"
+          TopLeft="867.166666666667,108.166666666667" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="812,206"
-          Size="812,249"
+          PanelSize="1175.33333333334,223.333333333334"
+          Size="1175.33333333334,266"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks"
-          TopLeft="5.50000000000006,210.166666666667" />
+          TopLeft="5.5,210.166666666667" />
         <NodeLayout
-          Size="257,43"
+          Size="257.333333333334,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - Exec DW Table Load Procedure"
-          TopLeft="282.833333333333,518.833333333333" />
+          TopLeft="464.5,536.166666666667" />
         <NodeLayout
-          Size="171,43"
+          Size="170.666666666667,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
-          TopLeft="326.166666666667,5.49999999999993" />
+          TopLeft="507.833333333333,5.49999999999993" />
         <NodeLayout
-          Size="185,43"
+          Size="185.333333333334,42.6666666666667"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
-          TopLeft="318.833333333333,621.5" />
+          TopLeft="500.5,638.833333333333" />
         <NodeLayout
           Size="238,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
-          TopLeft="292.5,108.166666666667" />
+          TopLeft="474.166666666667,108.166666666667" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
-          TopLeft="411.5,48.1666666666666">
+          TopLeft="593.166666666667,48.1666666666666">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -22846,18 +22857,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
-          TopLeft="411.5,458.833333333333">
+          TopLeft="593.166666666667,476.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,60.0000000000001"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -22868,7 +22879,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
-          TopLeft="411.5,150.166666666667">
+          TopLeft="593.166666666667,150.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -22890,7 +22901,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
-          TopLeft="411.5,561.5">
+          TopLeft="593.166666666667,578.833333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -22913,17 +22924,17 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="823,719"
-          Size="823,762"
+          PanelSize="1186.66666666667,736.666666666667"
+          Size="1186.66666666667,780"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           TopLeft="5.50000000000011,108.166666666667" />
         <NodeLayout
-          Size="243,43"
+          Size="242.666666666667,42.6666666666667"
           Id="Package\SQL - GetODSBatchesToProcess"
-          TopLeft="295.5,5.49999999999993" />
+          TopLeft="477.5,5.49999999999993" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="416.833333333333,48.1666666666666">
+          TopLeft="598.833333333333,48.1666666666666">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -22984,6 +22995,32 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER\DST - ODS Dest">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER\SRC - ODS Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE">
     <LayoutInfo>
@@ -23102,31 +23139,5 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER\SRC - ODS Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER\DST - ODS Dest">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

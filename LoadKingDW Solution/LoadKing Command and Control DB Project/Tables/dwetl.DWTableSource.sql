@@ -4,8 +4,8 @@
 	[DWTableType]				NVARCHAR(100)		NOT NULL,
 	[SourceSystemName]			NVARCHAR(100)		NOT NULL,
 	[SourceDataSetName]			NVARCHAR(100)		NOT NULL,
-	[SourceSQLString]			NVARCHAR(4000)			NULL,
-	[StageTableName]			NVARCHAR(400)			NULL,
+	[ODSTableName]				NVARCHAR(100)			NULL,
+	[StageTableName]			NVARCHAR(100)			NULL,
 	[SSISPackageName]			NVARCHAR(100)			NULL,
 	[StoredProcedureName]		NVARCHAR(100)			NULL,
 	[LoadDWTableFlag]			BIT						NULL, -- A switch to enable/diable a table load

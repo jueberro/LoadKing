@@ -20,6 +20,7 @@ BEGIN
 	SELECT  DWTableName
 		  , SourceSystemName
 		  , SourceDataSetName
+		  , ODSTableName
 		  , StageTableName
 		  , StoredProcedureName
 	FROM	dwetl.DWTableSource

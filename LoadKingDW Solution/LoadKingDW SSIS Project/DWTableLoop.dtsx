@@ -9,11 +9,11 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.71"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="DWTableLoop"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{ECAFD7FB-FBD9-4A88-AD59-999979C12F61}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{F6EB1A3B-8C23-4308-83D5-1F3376CA869E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -59,6 +59,16 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{07171C48-BB48-4DC2-99A0-24CDC2C5263C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ODSTableName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{1154D9D1-9894-4046-B9D9-85D8F5DE4E6D}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -73,6 +83,16 @@
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SourceSystemName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{383B79C0-828A-49A8-99FE-15240EBD5511}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StageTableName">
       <DTS:VariableValue
         DTS:DataType="8"
         xml:space="preserve"></DTS:VariableValue>
@@ -97,6 +117,16 @@
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="FEL - Process DW Table Loads">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{7A2E0EA7-6949-44A4-B62C-DE60A2C57D14}"
+        DTS:ObjectName="{7A2E0EA7-6949-44A4-B62C-DE60A2C57D14}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::DWTableConfigInfoList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
@@ -129,10 +159,52 @@
                 <ParameterName>StoredProcedureName</ParameterName>
                 <BindedVariableOrParameterName>User::StoredProcedureName</BindedVariableOrParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>ODSTableName</ParameterName>
+                <BindedVariableOrParameterName>$Package::DWTableType</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E6877D71-AB18-4B78-9069-F26CB4FF1898}"
+          DTS:ObjectName="{E6877D71-AB18-4B78-9069-F26CB4FF1898}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::DWTableName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{70F386B0-05D6-473E-9D5F-D05F2EBC3C6B}"
+          DTS:ObjectName="{70F386B0-05D6-473E-9D5F-D05F2EBC3C6B}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::SourceSystemName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{AC71EDB3-C08F-4F4E-82D7-C2C9C7753103}"
+          DTS:ObjectName="{AC71EDB3-C08F-4F4E-82D7-C2C9C7753103}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::SourceDataSetName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{7C902E12-1190-4818-AB32-45BB2C506517}"
+          DTS:ObjectName="{7C902E12-1190-4818-AB32-45BB2C506517}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::ODSTableName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{7192F276-2694-486D-ACDF-9B9DFFEA32D6}"
+          DTS:ObjectName="{7192F276-2694-486D-ACDF-9B9DFFEA32D6}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::StageTableName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{76A80EC2-6225-4601-B5BB-068E8AC49956}"
+          DTS:ObjectName="{76A80EC2-6225-4601-B5BB-068E8AC49956}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::StoredProcedureName" />
+      </DTS:ForEachVariableMappings>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\SQL - GetDWTableConfigInfo"
@@ -185,10 +257,6 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="217.333333333334,42.6666666666667"
-          Id="Package\SQL - GetDWTableConfigInfo"
-          TopLeft="33.5,5.50000000000004" />
-        <NodeLayout
           Size="262.666666666667,42.6666666666667"
           Id="Package\FEL - Process DW Table Loads\EPT - Execute DW Table Load Package"
           TopLeft="5.5,5.50000000000004" />
@@ -199,6 +267,10 @@
           Size="273.333333333334,146"
           Id="Package\FEL - Process DW Table Loads"
           TopLeft="5.50000000000003,108.166666666667" />
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\SQL - GetDWTableConfigInfo"
+          TopLeft="33.5,5.50000000000004" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="142.166666666667,48.1666666666667">
