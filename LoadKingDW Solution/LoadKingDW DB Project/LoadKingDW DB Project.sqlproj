@@ -96,6 +96,7 @@
     <Build Include="Views\dwstage.V_LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimCustomer.sql" />
     <Build Include="Stored Procedures\dw.LoadDimCustomer.sql" />
+    <Build Include="Views\dwstage.V_FactSalesOrderLine.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
