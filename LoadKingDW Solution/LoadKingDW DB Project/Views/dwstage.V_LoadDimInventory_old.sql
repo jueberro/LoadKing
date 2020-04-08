@@ -27,8 +27,8 @@
 																		 +  [PartProductLine]
 																		 +  [PartBin]
 																		 +  [PartDescription]
-																		 +  CAST([PartPrice] AS nvarchar(18))
-																		 +  CASE WHEN [PartObsoleteFlag] = 1 Then 'Y' ELSE 'N' END
+																		 +  [PartPrice]
+																		 +  [PartObsoleteFlag]
 																		 +  [PartCodeBOM]
 																		 +  [PartCodeDiscount]
 																		 +  [PartCodeTotal]
@@ -50,4 +50,3 @@
 		        ,   [LoadLogKey]				  = CAST(0                    AS INT)
 FROM            dwstage._SV_InventoryAll
 GO
-

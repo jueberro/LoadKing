@@ -16,8 +16,8 @@ BEGIN
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
-	BEGIN TRY DROP TABLE #DimInventory_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimInventory_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimCustomerShipTo_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimCustomerShipTo_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimInventory_work (
@@ -77,13 +77,13 @@ BEGIN
 
 
 	--INSERT NEW Dimension Items
-	INSERT INTO dw.DimInventory 
+	INSERT INTO dw.DimCustomerShipTo 
 	SELECT	*
-	FROM	#DimInventory_work AS Work
+	FROM	#DimCustomerShipTo_work AS Work
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.DimInventory AS DIM
-						WHERE	DIM.PartID = Work.PartID 
-						 
+						FROM	dw.DimCustomerShipTo AS DIM
+						WHERE	DIM.PrimaryCustomerID = Work.PrimaryCustomerID 
+						    and DIM.ShipToSeq         = Work.ShipToSeq
 						)
 
 
@@ -91,25 +91,26 @@ BEGIN
 	UPDATE	DIM
 	SET		DWEffectiveEndDate = @CurrentTimestamp
 			, DWIsCurrent = 0
-	FROM	dw.DimInventory		AS DIM
-	 JOIN   #DimInventory_work	AS Work
-	  ON	Dim.PartID = Work.PartID
+	FROM	dw.DimCustomerShipTo		AS DIM
+	 JOIN   #DimCustomerShipTo_work	AS Work
+	  ON	Dim.PrimaryCustomerID = Work.PrimaryCustomerID
+	   AND  Dim.ShipToSeq         = Work.ShipToSeq
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
 
 	--INSERT New versions of expired records that have Type 2 changes
-	INSERT INTO dw.DimInventory
+	INSERT INTO dw.DimCustomerShipTo
 	SELECT	Work.*
-	FROM	#DimInventory_current AS DIM
-	 JOIN   #DimInventory_work    AS Work
-	  ON	Dim.PartID = Work.PartID
-	 
+	FROM	#DimCustomerShipTo_current AS DIM
+	 JOIN   #DimCustomerShipTo_work    AS Work
+	  ON	Dim.PrimaryCustomerID = Work.PrimaryCustomerID
+	   AND  Dim.ShipToSeq         = Work.ShipToSeq
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
 	--DROP temp tables
-	BEGIN TRY DROP TABLE #DimInventory_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimInventory_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimCustomerShipTo_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimCustomerShipTo_current	END TRY BEGIN CATCH END CATCH
 	 
 
 END

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dw].[DimInventory] (
+﻿CREATE TABLE [dw].[DimPart_Steves] (
     [DimPart_Key]        INT             IDENTITY (1, 1) NOT NULL,
     [PartID]             NCHAR (20)       NULL,
     [PartLocation]       NCHAR (2)        NULL,
@@ -31,6 +31,6 @@
 	/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
 	LoadLogKey					INT					NOT NULL, --ID of ETL process that inserted the record    CONSTRAINT [pk_DimEmployee] PRIMARY KEY CLUSTERED ([DimEmployee_Key] ASC)
 
-    CONSTRAINT [PK_DimInventory_SK] PRIMARY KEY CLUSTERED ([DimPart_Key] ASC)
+    CONSTRAINT [PK_DimInventory_Steves_SK] PRIMARY KEY CLUSTERED ([DimPart_Key] ASC)
 );
 
