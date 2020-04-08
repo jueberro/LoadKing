@@ -31,7 +31,7 @@
 	, ProductLineDiscount decimal(5,4)
 	, OrderDiscountAmount decimal(16,4)
 	, ProductClassDiscountAmount decimal(16,4)
-	, ProductLineDiscoutnAmount decimal(16,4)
+	, ProductLineDiscountAmount decimal(16,4)
 	, OrderPrice decimal(16,4)
 	, OrderDiscountPrice decimal(16,4)
 	, OrderPricePerPound decimal(16,4)
