@@ -102,6 +102,7 @@
     <Build Include="Tables\dwstage._SV_InventoryAll.sql" />
     <Build Include="Stored Procedures\dw.LoadDimInventory.sql" />
     <Build Include="Tables\dw.DimInventory.sql" />
+    <Build Include="Views\dwstage.V_FactSalesOrderLine.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
