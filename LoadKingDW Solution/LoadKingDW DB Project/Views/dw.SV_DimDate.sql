@@ -1,0 +1,21 @@
+﻿Create View
+[dw].[SV_DimDate]
+As
+SELECT [DimDate_Key]
+      ,[Date]
+      ,[Day]
+      ,[DaySuffix]
+      ,[DayOfWeek]
+      ,[DOWInMonth]
+      ,[DayOfYear]
+      ,[WeekOfYear]
+      ,[WeekOfMonth]
+      ,[Month]
+      ,[MonthName]
+      ,[Quarter]
+      ,[QuarterName]
+      ,[Year]
+      ,[StandardDate]
+      ,[HolidayText]
+  FROM [dw].[DimDate]
+GO

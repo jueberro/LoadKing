@@ -1,0 +1,23 @@
+﻿Create View
+[dw].[SV_DimInventory]
+as
+SELECT [DimPart_Key]
+      ,[PartID]
+      ,[PartLocation]
+      ,[PartCodeAbc]
+      ,[PartProductLine]
+      ,[PartBin]
+      ,[PartDescription]
+      ,[PartPrice]
+      ,[PartObsoleteFlag]
+      ,[PartCodeBom]
+      ,[PartCodeDiscount]
+      ,[PartCodeTotal]
+      ,[PartCodeSort]
+      ,[PartVendorName]
+      ,[PartDescription2]
+      ,[PartDescription3]
+      ,[PartVatProductType]
+      ,[PartTaxExemptFlag]
+FROM [dw].[DimInventory]
+GO

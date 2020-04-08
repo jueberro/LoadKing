@@ -1,0 +1,22 @@
+﻿CREATE View
+[dw].[SV_DimCustomer]
+as
+SELECT [DimCustomer_Key]
+      ,[CustomerID]
+      ,[CustomerName]
+      ,[CustomerAddress1]
+      ,[CustomerAddress2]
+      ,[CustomerCity]
+      ,[CustomerStateOrProvince]
+      ,[CustomerPostalCode]
+      ,[CustomerCountry]
+      ,[CustomerCounty]
+      ,[CustomerInternationalFlag]
+      ,[CustomerTerritory]
+      ,[CustomerCodeArea]
+      ,[CustomerCredit]
+      ,[DWEffectiveStartDate]
+      ,[DWEffectiveEndDate]
+      ,[DWIsCurrent]
+  FROM [dw].[DimCustomer]
+GO
