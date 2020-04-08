@@ -1,7 +1,7 @@
 ﻿CREATE VIEW [dwstage].[V_LoadDimCustomerShipTo]
 	AS
-    SELECT          dc.DimCustomer_Key
-                ,   PrimaryCustomerID       = CAST(cs.CUSTOMER           AS NCHAR(6)    )   
+    SELECT   
+                    PrimaryCustomerID       = CAST(cs.CUSTOMER           AS NCHAR(6)    )   
                 ,   ShipToSeq               = CAST(cs.SHIP_SEQ           AS NCHAR(6)    )
                 ,   ShipToCustomername      = CAST(cs.CUSTOMER_NAME      AS NVARCHAR(30))
                 ,   ShipToAddress1          = CAST(cs.SHIP_ADDRESS1      AS NVARCHAR(30))
@@ -50,4 +50,3 @@
 		        ,   [DWIsCurrent]				  = CAST(1					  AS BIT)
 		        ,   [LoadLogKey]				  = CAST(0                    AS INT)
 FROM            dwstage.OE_MULTI_SHIP cs
-INNER JOIN      dw.DimCustomer dc ON CAST(cs.CUSTOMER           AS NCHAR(6)    )  = dc.CustomerID

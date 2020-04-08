@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dw].[DimCustomerShipTo] (
-   	DimCustomer_Key             INT                      NOT NULL,
+  
+    DimCustomerShipTo_Key       INT        IDENTITY(1,1)      NOT NULL,
 	PrimaryCustomerID			NCHAR(6)                 NOT NULL, 
 	ShipToSeq					NCHAR(6)                 NOT NULL, 
 	ShipToCustomername			NVARCHAR(30)             NOT NULL,  
@@ -45,8 +46,11 @@
 
     CONSTRAINT [pk_DimCustomerShipTo] PRIMARY KEY CLUSTERED 
 (
-	[PrimaryCustomerID] ASC,
-	[ShipToSeq] ASC)
+	[DimCustomerShipTo_Key])
 
-);
-
+)
+GO
+ALTER TABLE dw.DimCustomerShipTo
+  ADD CONSTRAINT [UK_dw_DimCustomerShipDate] UNIQUE (PrimaryCustomerID,ShipToSeq, DWEffectiveStartDate)
+ 
+  

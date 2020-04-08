@@ -21,10 +21,9 @@ BEGIN
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimCustomerShipTo_work (
-	DimCustomer_Key             INT                      NOT NULL,
-	PrimaryCustomerID			NCHAR(6)                 NOT NULL, 
-	ShipToSeq					NCHAR(6)                 NOT NULL, 
-	ShipToCustomername			NVARCHAR(30)             NOT NULL,  
+   	PrimaryCustomerID			NCHAR(6)                      NOT NULL, 
+	ShipToSeq					NCHAR(6)                      NOT NULL, 
+	ShipToCustomername			NVARCHAR(30)                  NOT NULL,  
 	ShipToAddress1				NVARCHAR(30)             NULL, 
 	ShipToAddress2				NVARCHAR(30)             NULL,
 	ShipToAddress3    			NVARCHAR(30)             NULL,
