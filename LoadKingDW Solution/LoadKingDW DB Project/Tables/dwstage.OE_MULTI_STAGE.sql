@@ -1,4 +1,0 @@
-﻿CREATE TABLE [dwstage].[OE_MULTI_STAGE]
-(
-	[Id] INT NOT NULL PRIMARY KEY
-)

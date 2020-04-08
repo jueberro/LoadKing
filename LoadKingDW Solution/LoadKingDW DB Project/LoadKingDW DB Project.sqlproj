@@ -85,7 +85,7 @@
     <Build Include="Tables\dw.DimCustomerShipTo.sql" />
     <Build Include="Tables\dw.DimDate.sql" />
     <Build Include="Tables\dw.DimEmployee.sql" />
-    <Build Include="Tables\dw.DimPart.sql" />
+    <Build Include="Tables\dw.DimPart_orig_bak.sql" />
     <Build Include="Tables\dw.DimTime.sql" />
     <Build Include="Tables\dw.DimOrderType.sql" />
     <Build Include="Tables\dw.DimSalesOrder.sql" />
@@ -96,11 +96,11 @@
     <Build Include="Views\dwstage.V_LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimCustomer.sql" />
     <Build Include="Stored Procedures\dw.LoadDimCustomer.sql" />
-    <Build Include="Views\dwstage.V_LoadFactCustomerShipTo.sql" />
+    <Build Include="Views\dwstage.V_LoadDimCustomerShipTo.sql" />
     <Build Include="Tables\dw.DimCustomerShipTo_orig_bak.sql" />
     <Build Include="Functions\dwstage.udf_cv_char6_date_char8_time_to_datetime.sql" />
-    <Build Include="Tables\dwstage_OE_MULTI_SHIP.sql" />
-    <Build Include="Tables\dwstage.OE_MULTI_STAGE.sql" />
+    <Build Include="Tables\dwstage.OE_MULTI_SHIP.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimCustomerShipTo.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

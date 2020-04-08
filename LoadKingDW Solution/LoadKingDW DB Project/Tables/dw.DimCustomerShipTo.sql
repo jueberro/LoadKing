@@ -1,6 +1,5 @@
 ﻿CREATE TABLE [dw].[DimCustomerShipTo] (
-	DimCustomerShipTo_Key		INT      IDENTITY (1, 1) NOT NULL,
-	DimCustomer_Key             INT                      NOT NULL,
+   	DimCustomer_Key             INT                      NOT NULL,
 	PrimaryCustomerID			NCHAR(6)                 NOT NULL, 
 	ShipToSeq					NCHAR(6)                 NOT NULL, 
 	ShipToCustomername			NVARCHAR(30)             NOT NULL,  
@@ -44,6 +43,10 @@
 	/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
 	LoadLogKey					INT					NOT NULL, --ID of ETL process that inserted the record    CONSTRAINT [pk_DimEmployee] PRIMARY KEY CLUSTERED ([DimEmployee_Key] ASC)
 
-    CONSTRAINT [pk_DimCustomerShipTo] PRIMARY KEY CLUSTERED ([DimCustomerShipTo_Key] ASC)
+    CONSTRAINT [pk_DimCustomerShipTo] PRIMARY KEY CLUSTERED 
+(
+	[PrimaryCustomerID] ASC,
+	[ShipToSeq] ASC)
+
 );
 

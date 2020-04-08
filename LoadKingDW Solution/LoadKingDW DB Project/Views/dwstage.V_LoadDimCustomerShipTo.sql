@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dwstage].[V_LoadFactCustomerShipTo]
+﻿CREATE VIEW [dwstage].[V_LoadDimCustomerShipTo]
 	AS
     SELECT          dc.DimCustomer_Key
                 ,   PrimaryCustomerID       = CAST(cs.CUSTOMER           AS NCHAR(6)    )   
@@ -33,5 +33,21 @@
                                               )
                 ,   ShipToPrimaryGroup      = CAST(cs.PRIMARY_GRP        AS NCHAR(2)    )
                 ,   ShipToCarrierCD         = CAST(cs.CARRIER_CD         AS NCHAR(6)    )
+                ,   [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
+		        ,   [Type2RecordHash]			  = HASHBYTES('SHA2_256',        
+		        	    												+ CAST([CUSTOMER]				AS NCHAR(6))
+		        	    												+ CAST([SHIP_SEQ]	            AS NCHAR(6))
+		        	    												+ CAST(dwstage.udf_cv_char6_date_char8_time_to_datetime(
+                                                                                        cs.DATE_LAST_CHG      
+                                                                                       ,cs.TIME_LAST_CHG      
+                                                                              ) 
+                                                                              AS NVARCHAR(24)))
+	
+	
+	            ,   [SourceSystemName]		  = CAST('Global Shop'        AS NVARCHAR(100))
+		        ,   [DWEffectiveStartDate]	  = CAST(Getdate()            AS DATETIME2(7))
+		        ,   [DWEffectiveEndDate]		  = '2100-01-01'
+		        ,   [DWIsCurrent]				  = CAST(1					  AS BIT)
+		        ,   [LoadLogKey]				  = CAST(0                    AS INT)
 FROM            dwstage.OE_MULTI_SHIP cs
 INNER JOIN      dw.DimCustomer dc ON CAST(cs.CUSTOMER           AS NCHAR(6)    )  = dc.CustomerID
