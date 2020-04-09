@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimInventory"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{905AA692-4799-47DC-A788-52ED81BC6BFE}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{08A25252-EECC-42E7-B47D-B1A43FADAB61}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -958,20 +958,20 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimCustomerShipTo"
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimInventory"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{FA8AA716-603A-457F-90F3-E9AD62278573}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - LoadDWDimCustomerShipTo"
+          DTS:ObjectName="SQL - LoadDWDimInventory"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimCustomerShipTo ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimInventory ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::LoadLogKey"
@@ -1093,7 +1093,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
           DTS:DTSID="{9B771651-8BF3-4F54-BF5C-7ABCCFE128D8}"
-          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimCustomerShipTo"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimInventory"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
           DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess" />
@@ -1112,7 +1112,7 @@
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
-          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimCustomerShipTo" />
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimInventory" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
@@ -1244,7 +1244,7 @@
           TopLeft="5.50000000000003,210.833333333334" />
         <NodeLayout
           Size="222,42"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimCustomerShipTo"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimInventory"
           TopLeft="65.1666666666667,313.5" />
         <NodeLayout
           Size="171,43"
@@ -1445,19 +1445,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Source - SV_InventoryAll">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">View</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination">
     <Properties>
       <Property>
@@ -1467,6 +1454,19 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Source - SV_InventoryAll">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
