@@ -108,6 +108,7 @@
     <Build Include="Views\dw.SV_DimCustomer.sql" />
     <Build Include="Views\dw.SV_DimInventory.sql" />
     <Build Include="Views\dw.SV_DimTime.sql" />
+    <Build Include="Stored Procedures\dwstage.V_FactSalesOrderLine.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
