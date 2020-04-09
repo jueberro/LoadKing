@@ -102,7 +102,12 @@
     <Build Include="Tables\dwstage._SV_InventoryAll.sql" />
     <Build Include="Stored Procedures\dw.LoadDimInventory.sql" />
     <Build Include="Tables\dw.DimInventory.sql" />
-    <Build Include="Views\dwstage.V_FactSalesOrderLine.sql" />
+    <Build Include="Views\dw.SV_DimCustShipTo.sql" />
+    <Build Include="Views\dw.SV_DimDate.sql" />
+    <Build Include="Views\dw.SV_DimEmployee.sql" />
+    <Build Include="Views\dw.SV_DimCustomer.sql" />
+    <Build Include="Views\dw.SV_DimInventory.sql" />
+    <Build Include="Views\dw.SV_DimTime.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
