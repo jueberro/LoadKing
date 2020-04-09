@@ -64,5 +64,5 @@ FROM	dwstage.ORDER_HIST_LINE AS Stage
    AND	DE.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
-  ON	CAST(stage.CUSTOMER_SHIP AS NCHAR(6)) = DCST.CustomerShipToID
+  ON	CAST(stage.CUSTOMER_SHIP AS NCHAR(6)) = DCST.ShipToSeq
    AND	DCST.DWIsCurrent = 1
