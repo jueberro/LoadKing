@@ -5,22 +5,27 @@
 	-- dimensions
 	, DimSalesOrder_Key int not null
 	, DimCustomer_Key int not null
-	, OrderDimDate_Key int not null
-	, DueDimDate_Key int not null
-	, DimProduct_Key int not null
-	, DimPart_Key int not null
-	, DimEmployee_Key int not null
+	, OrderDateDimDate_Key int not null
+	, ShipDateDimDate_Key int not null
 	, DimCustomerShipTo_Key int not null
-	, DimOrderType_Key int not null
-	
+	, DimPart_Key int not null
+	--, DimEmployee_Key int not null -- In Header
+	--, DimOrderType_Key int not null
+	--, DimProduct_Key int not null
+
+	-- Key Attributes 
+
+	, OrderNumber               nchar(7)
+	, OrderLine                 nchar(4)
+	, ShipToId                  nchar(6)
+	, OrderDate                 datetime
+	, Shipdate                  datetime
+	, Customer                  nchar(6)
+	, Part                      nchar(20)
+
 	-- measures
 	, QuantityOrdered decimal (13,4) -- should quantity be decimal??
 	, Cost decimal (16,4) 
-	, MaterialCost decimal (16,4)
-	, LaborCost decimal (16,4)
-	, OutsideCost decimal (16,4)
-	, OverheadCost decimal (16,4)
-	, OtherCost decimal(16,4)
 	, Margin decimal(16,4)
 	, Price decimal(16,4)
 	, PriceDiscount decimal(16,4)
@@ -41,6 +46,9 @@
 
 	/*DW Metadata fields, not required for reporting*/
 	,SourceSystemName			NVARCHAR(100)		NOT NULL
+    ,DWEffectiveStartDate		DATETIME2(7)		NOT NULL
+	,DWEffectiveEndDate			DATETIME2(7)		NOT NULL
+	,DWIsCurrent					BIT				NOT NULL
 
 	/*ETL Metadata fields, not required for reporting */
 	,LoadLogKey					INT					NOT NULL	--ID of ETL process that inserted the record

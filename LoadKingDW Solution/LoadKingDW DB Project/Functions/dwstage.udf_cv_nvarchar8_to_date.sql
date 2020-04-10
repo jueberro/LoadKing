@@ -4,7 +4,7 @@
 -- Created By Pragmaticworks - Joe Ueberroth - 3/24/2020
 --
 -- Use:  nvarchar 8 value date fields to datetimevalue
---       assumes mmddyy nvarchar string being passed
+--       assumes yyyymmdd nvarchar string being passed
 --
 --======================================================================================
 

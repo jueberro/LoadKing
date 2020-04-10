@@ -108,7 +108,13 @@
     <Build Include="Views\dw.SV_DimCustomer.sql" />
     <Build Include="Views\dw.SV_DimInventory.sql" />
     <Build Include="Views\dw.SV_DimTime.sql" />
-    <Build Include="Views\dwstage.V_LoadFactSalesOrderLine.sql" />
+    <Build Include="Views\dwstage.V_LoadFactSalesOrderLines.sql" />
+    <Build Include="Views\dwstage.V_LoadFactRMAHistLines.sql" />
+    <Build Include="Tables\dwstage.RMA_HIST_LINE.sql" />
+    <Build Include="Tables\dwstage.RMA_LINES.sql" />
+    <Build Include="Tables\dwstage.RMA_HEADER.sql" />
+    <Build Include="Tables\dwstage.ORDER_LINES.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactSalesOrderLine.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

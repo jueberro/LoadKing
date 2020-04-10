@@ -190,6 +190,4 @@
 	[ETL_TblNbr] [int] NULL,
 	[ETL_Batch] [int] NULL,
 	[ETL_Completed] [datetime] NULL
-) ON [PRIMARY]
-GO
-
+) 

@@ -3,7 +3,7 @@
 	DimSalesOrder_Key int identity(1,1) not null
 	, DimCustomer_Key int not null
 	, DimEmployee_Key int not null
-	, OrderNumber nvarchar(10) not null
+	, OrderNumber NCHAR(7) not null
 	, InvoiceNumber nvarchar(10) not null
 	, OrderDate date null
 	, DueDate date null
