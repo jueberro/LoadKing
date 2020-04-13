@@ -1,7 +1,7 @@
 ﻿Create View
 [dw].[SV_DimInventory]
 as
-SELECT [DimPart_Key]
+SELECT [DimInventory_Key]
       ,[PartID]
       ,[PartLocation]
       ,[PartCodeAbc]

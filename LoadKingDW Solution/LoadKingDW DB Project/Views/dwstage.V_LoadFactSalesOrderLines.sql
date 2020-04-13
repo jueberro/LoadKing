@@ -5,20 +5,12 @@ SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key, -1)
 		, OrderDateDimDate_Key 		= ISNULL(OrderDate.DimDate_Key, -1)
 		, ShipDateDimDate_Key 		= ISNULL(ShipDate.DimDate_Key, -1)
 		, DimCustomerShipTo_Key 	= ISNULL(DCST.DimCustomerShipTo_Key, -1)
-		, DimPart_Key 				= ISNULL(DI.DimPart_Key, -1)
+		, DimInventory_Key 			= ISNULL(DI.DimInventory_Key, -1)
 
-		--, DimProduct_Key 			    = -1	--ISNULL(DPR.DimProduct_Key, -1) /*JOIN needs more info*/
-		--, DimEmployee_Key 			= ISNULL(DE.DimEmployee_Key, -1) In ORDER_HEADER
-		--, DimOrderType_Key 			= -1
-		
 		--Key Attributes
 		, OrderNumber               = CAST(Stage.ORDER_NO				AS nchar(7))
 		, OrderLine                 = CAST(Stage.RECORD_NO              AS nchar(4))
-		, ShipToId                  = CAST(Stage.SHIP_ID                AS nchar(6))
-		, OrderDate                 = CAST(Stage.DATE_ORDER             AS datetime)  --dwstage.udf_cv_nvarchar8_to_date(Stage.DATE_ORDER)
-		, Shipdate                  = CAST(Stage.DATE_SHIP              AS datetime)  --dwstage.udf_cv_nvarchar6_to_date(Stage.DATE_SHIP)
-		, Customer                  = CAST(Stage.CUSTOMER               AS nchar(6))
-		, Part                      = CAST(Stage.PART                   AS nchar(20))
+		
 
 		-- measures					
 		, QuantityOrdered			= CAST(Stage.QTY_ORDERED			AS DECIMAL(16, 4))
@@ -76,12 +68,3 @@ FROM	dwstage.ORDER_LINES AS Stage
 
       Where Stage.RECORD_TYPE = 'L'
 
-
-    --LEFT OUTER JOIN dw.DimProduct AS DPR
- -- ON	< TBD >
-
- /*--- In Header
- LEFT OUTER JOIN dw.DimEmployee AS DE
-  ON	CAST(Stage.SALESPERSON AS NCHAR(5)) = DE.EmployeeID
-   AND	DE.DWIsCurrent = 1
-*/

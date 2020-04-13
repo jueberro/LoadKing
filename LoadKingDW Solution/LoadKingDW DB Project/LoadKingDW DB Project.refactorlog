@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="5690707d-744f-4363-8ebb-6f50a9b0bd33" ChangeDateTime="04/13/2020 17:15:02">
+    <Property Name="ElementName" Value="[dw].[FactSalesOrderLine].[DimPart_Key]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[FactSalesOrderLine]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Inventory_Key" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e6fd1981-9d9b-497a-9236-0cc4f07c6acc" ChangeDateTime="04/13/2020 17:15:18">
+    <Property Name="ElementName" Value="[dw].[FactSalesOrderLine].[Inventory_Key]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[FactSalesOrderLine]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FactInventory_Key" />
+  </Operation>
+</Operations>

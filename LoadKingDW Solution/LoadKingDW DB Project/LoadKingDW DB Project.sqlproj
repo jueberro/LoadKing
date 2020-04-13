@@ -122,4 +122,7 @@
     <None Include="Publish\LK_DW.prod.publish.xml" />
     <None Include="Publish\LK_DW.dev.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="LoadKingDW DB Project.refactorlog" />
+  </ItemGroup>
 </Project>

@@ -29,21 +29,13 @@ SELECT		@CurrentTimestamp = GETUTCDATE()
 	, OrderDateDimDate_Key int not null
 	, ShipDateDimDate_Key int not null
 	, DimCustomerShipTo_Key int not null
-	, DimPart_Key int not null
-	--, DimEmployee_Key int not null -- In Header
-	--, DimOrderType_Key int not null
-	--, DimProduct_Key int not null
-
+	, DimInventory_Key int not null
+	
 	-- Key Attributes 
 
 	, OrderNumber               nchar(7)
 	, OrderLine                 nchar(4)
-	, ShipToId                  nchar(6)
-	, OrderDate                 datetime
-	, Shipdate                  datetime
-	, Customer                  nchar(6)
-	, Part                      nchar(20)
-
+	
 	-- measures
 	, QuantityOrdered decimal (13,4) -- should quantity be decimal??
 	, Cost decimal (16,4) 
