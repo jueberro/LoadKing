@@ -14,7 +14,9 @@ BEGIN
 
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 
-	SELECT		@CurrentTimestamp = GETUTCDATE()
+SELECT		@CurrentTimestamp = GETUTCDATE()
+	
+	--Set @LoadLogKey = 21
 
 	BEGIN TRY DROP TABLE #FactSalesOrderLine_work		END TRY BEGIN CATCH END CATCH
 	BEGIN TRY DROP TABLE #FactSalesOrderLine_current	END TRY BEGIN CATCH END CATCH
@@ -120,7 +122,7 @@ BEGIN
 	FROM	dw.FactSalesOrderLine		AS Fact
 	 JOIN   #FactSalesOrderLine_work	AS Work
 	  ON	fact.OrderLine = Work.OrderLine
-	      AND fact.OrderNumber = WorkOrderNumber
+	      AND fact.OrderNumber = Work.OrderNumber
 	        AND	fact.DWIsCurrent = 1
 	WHERE	Fact.RecordHash <> Work.RecordHash
 
@@ -141,3 +143,4 @@ BEGIN
 	 
 
 END
+

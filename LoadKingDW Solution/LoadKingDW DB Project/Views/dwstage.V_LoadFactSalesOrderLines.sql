@@ -15,28 +15,29 @@ SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key, -1)
 		, OrderNumber               = CAST(Stage.ORDER_NO				AS nchar(7))
 		, OrderLine                 = CAST(Stage.RECORD_NO              AS nchar(4))
 		, ShipToId                  = CAST(Stage.SHIP_ID                AS nchar(6))
-		, OrderDate                 = dwstage.udf_cv_nvarchar8_to_date(Stage.DATE_ORDER)
-		, Shipdate                  = dwstage.udf_cv_nvarchar6_to_date(Stage.DATE_SHIP)
+		, OrderDate                 = CAST(Stage.DATE_ORDER             AS datetime)  --dwstage.udf_cv_nvarchar8_to_date(Stage.DATE_ORDER)
+		, Shipdate                  = CAST(Stage.DATE_SHIP              AS datetime)  --dwstage.udf_cv_nvarchar6_to_date(Stage.DATE_SHIP)
 		, Customer                  = CAST(Stage.CUSTOMER               AS nchar(6))
 		, Part                      = CAST(Stage.PART                   AS nchar(20))
 
 		-- measures					
-		, QuantityOrdered			= CAST(Stage.QTY_ORDERED			AS DECIMAL(13, 4))
+		, QuantityOrdered			= CAST(Stage.QTY_ORDERED			AS DECIMAL(16, 4))
 		, Cost  					= CAST(Stage.COST					AS DECIMAL(16, 4))
-	   	, Margin 					= CAST(Stage.MARGIN					AS DECIMAL(16, 4))
-		, Price 					= CAST(Stage.PRICE					AS DECIMAL(16, 4))
-		, PriceDiscount 			= CAST(Stage.DISCOUNT_PRICE			AS DECIMAL(16, 4))
-		, PricePerPound 			= CAST(Stage.PRICE_LB				AS DECIMAL(16, 4))			
-		, DiscountAmount 			= CAST(Stage.AMT_DISCOUNT			AS DECIMAL(16, 4))
-		, OrderDiscount 			= CAST(Stage.ORDER_DISC_AMT		    AS DECIMAL(16, 4))	/*CHECK THIS FIELD*/
-		, PriceClassDiscount 		= CAST(Stage.PRICE_CLASS_DISC		AS DECIMAL(16, 4))
-		, ProductLineDiscount 		= CAST(Stage.PROD_LINE_DISC			AS DECIMAL(16, 4))
-		, OrderDiscountAmount 		= CAST(Stage.AMT_DISC_ORDER			AS DECIMAL(16, 4))		/*CHECK THIS FIELD*/
+	    , Margin 					= CAST(Stage.MARGIN					AS DECIMAL(16, 4))
+	    , Price 					= CAST(Stage.PRICE					AS DECIMAL(16, 4))
+	    , PriceDiscount 			= CASE WHEN Isnumeric(Stage.DISCOUNT_PRICE) = 1 then CAST(Stage.DISCOUNT_PRICE	        AS NUMERIC(16,4))  ELSE NULL  END
+	    , PricePerPound 			= CASE WHEN Isnumeric(Stage.PRICE_LB) = 1    then CAST(Stage.PRICE_LB				    AS DECIMAL(16, 4)) ELSE NULL END		
+		, DiscountAmount 			= CASE WHEN Isnumeric(Stage.AMT_DISCOUNT) = 1 then CAST(Stage.AMT_DISCOUNT				AS DECIMAL(16, 4)) ELSE NULL END		
+	    , OrderDiscount 			= CASE WHEN Isnumeric(Stage.ORDER_DISC_AMT) = 1 then CAST(Stage.ORDER_DISC_AMT		    AS DECIMAL(16, 4))	ELSE NULL END	 
+		, PriceClassDiscount 		= CASE WHEN Isnumeric(Stage.PRICE_CLASS_DISC) = 1 then CAST(Stage.PRICE_CLASS_DISC		AS DECIMAL(16, 4))	ELSE NULL END
+        , ProductLineDiscount 		= CASE WHEN Isnumeric(Stage.PROD_LINE_DISC) = 1 then  CAST(Stage.PROD_LINE_DISC			AS DECIMAL(16, 4)) ELSE NULL END
+		, OrderDiscountAmount 		= CAST(Stage.AMT_DISC_ORDER			AS DECIMAL(16, 4))		
 		, ProductClassDiscountAmount= CAST(Stage.AMT_DISC_PR_CL_ORD		AS DECIMAL(16, 4))
-		, ProductLineDiscountAmount = CAST(Stage.PROD_LINE_DISC			AS DECIMAL(16, 4))
-		, OrderPrice 				= CAST(Stage.PRICE_ORDER			AS DECIMAL(16, 4))
+		, ProductLineDiscountAmount = CAST(Stage.PRDLN_DISC_AMT			AS DECIMAL(16, 4))
+		, OrderPrice 				= CASE WHEN Isnumeric(Stage.PRICE_ORDER) = 1 then   CAST(Stage.PRICE_ORDER		     	AS DECIMAL(16, 4)) ELSE NULL END
 		, OrderDiscountPrice 		= CAST(Stage.PRICE_DISC_ORD	        AS DECIMAL(16, 4))
-		, OrderPricePerPound 		= CAST(Stage.PRICE_LB_ORDER			AS DECIMAL(16, 4))
+    	, OrderPricePerPound 		= CAST(Stage.PRICE_LB_ORDER			AS DECIMAL(16, 4))
+
 
 		/*Hash used for identifying changes, not required for reporting*/
 		, RecordHash				= CAST(0 AS VARBINARY(64)) 
@@ -49,8 +50,7 @@ SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key, -1)
 		, [LoadLogKey]				  = CAST(0                    AS INT)
 
 FROM	dwstage.ORDER_LINES AS Stage
-   --      Where Stage.RECORD_TYPE = 'L'
-
+   
  LEFT OUTER JOIN dw.DimSalesOrder AS DSO
   ON	CAST(Stage.ORDER_NO AS NCHAR(7)) = DSO.OrderNumber
    AND	DSO.DWIsCurrent = 1 
@@ -60,18 +60,22 @@ FROM	dwstage.ORDER_LINES AS Stage
    AND  DC.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimInventory AS DI
-  ON    CAST(Stage.PART	AS NCHAR(20)) = DC.CustomerID
+  ON    CAST(Stage.PART	AS NCHAR(20)) = DI.PartID
    AND  DI.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimDate AS OrderDate
-  ON	dwstage.udf_cv_nvarchar8_to_date(Stage.DATE_ORDER) = OrderDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
+  ON	CAST(Stage.DATE_ORDER as datetime) = OrderDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
 
  LEFT OUTER JOIN dw.DimDate AS ShipDate
-  ON	dwstage.udf_cv_nvarchar6_to_date(Stage.DATE_SHIP) = ShipDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
+  ON	CAST(Stage.DATE_SHIP as Datetime) = ShipDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
 
  LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
   ON	CAST(stage.SHIP_ID AS NCHAR(6)) = DCST.ShipToSeq
-   AND	DCST.DWIsCurrent = 1
+   AND     CAST(Stage.CUSTOMER AS nchar(6)) = DCST.PrimaryCustomerID
+      AND	DCST.DWIsCurrent = 1
+
+      Where Stage.RECORD_TYPE = 'L'
+
 
     --LEFT OUTER JOIN dw.DimProduct AS DPR
  -- ON	< TBD >
