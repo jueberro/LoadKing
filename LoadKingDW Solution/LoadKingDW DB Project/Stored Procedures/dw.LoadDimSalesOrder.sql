@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimSalesOrders] @LoadLogKey INT  AS
+﻿CREATE PROCEDURE [dw].[sp_LoadDimSalesOrder] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -21,28 +21,10 @@ BEGIN
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimSalesOrders_work (
-   	[DimCustomer_Key] [int] NOT NULL,
-	[DimCustomerShipTo_Key] [int] NOT NULL,
-	[OrderDateDimDate_Key] [int] NULL,
-	[DueDateDimDate_Key] [int] NULL,
-	[QuoteCreateDimDate_Key] [int] NULL,
-	[QuoteWonLostDimDate] [int] NULL,
-	[SONumber] [nchar](7) NOT NULL,
-	[CustomerID] [nchar](6) NOT NULL,
-	[CustomerName] [nvarchar](50) NULL,
-	[ShipToID] [nchar](6) NOT NULL,
+  
+	[SalesOrderNumber] [nchar](7) NOT NULL,
 	[SOCreationDate] [date] NULL,
 	[SODueDate] [date] NULL,
-	[OrderSort] [nvarchar](20) NULL,
-	[ProjectType] [nvarchar](30) NULL,
-	[SalesPerson] [nvarchar](50) NULL,
-	[Branch] [nvarchar](2) NULL,
-	[ShipVia] [nvarchar](20) NULL,
-	[QuoteNumber] [nchar](7) NULL,
-	[QuoteCreationDate] [date] NULL,
-	[QuoteWonLostDate] [date] NULL,
-	[PrimaryGroup] [nchar](2) NULL,
-	[ShippingZone] [nchar](6) NULL,
 	[SODatelastChanged] DATE NULL,
 	[SOLastChangeBy] [nvarchar](8) NULL,
 	
@@ -65,7 +47,7 @@ BEGIN
 	--Load #work table with data in the format in which it will appear in the dimension
 	INSERT INTO #DimSalesOrders_work
 			SELECT 		
-				 * from dwstage.V_LoadDimSalesOrders
+				 * from dwstage.V_LoadDimSalesOrder
     
     Update #DimSalesOrders_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
 
@@ -77,18 +59,18 @@ BEGIN
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
 	INSERT INTO #DimSalesOrders_current
-	SELECT		SONumber, Type2RecordHash
+	SELECT		SalesOrderNumber, Type2RecordHash
 
-	FROM	dw.DimSalesOrders
+	FROM	dw.DimSalesOrder
 	WHERE	DWIsCurrent = 1
 
 
 	--INSERT NEW Dimension Items
-	INSERT INTO dw.DimSalesOrders 
+	INSERT INTO dw.DimSalesOrder
 	SELECT	*
 	FROM	#DimSalesOrders_work AS Work
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.DimSalesOrders AS DIM
+						FROM	dw.DimSalesOrder AS DIM
 						WHERE	DIM.SONumber = Work.SONumber 
 						   
 						)
@@ -98,7 +80,7 @@ BEGIN
 	UPDATE	DIM
 	SET		DWEffectiveEndDate = @CurrentTimestamp
 			, DWIsCurrent = 0
-	FROM	dw.DimSalesOrders		AS DIM
+	FROM	dw.DimSalesOrder		AS DIM
 	 JOIN   #DimSalesOrders_work	AS Work
 	  ON	Dim.SONumber = Work.SONumber
 	     AND	Dim.DWIsCurrent = 1
@@ -106,7 +88,7 @@ BEGIN
 
 
 	--INSERT New versions of expired records that have Type 2 changes
-	INSERT INTO dw.DimSalesOrders
+	INSERT INTO dw.DimSalesOrder
 	SELECT	Work.*
 	FROM	#DimSalesOrders_current AS DIM
 	 JOIN   #DimSalesOrders_work    AS Work

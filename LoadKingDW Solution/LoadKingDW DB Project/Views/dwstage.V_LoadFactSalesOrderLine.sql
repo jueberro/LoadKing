@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dwstage].[V_LoadFactSalesOrderLines_orig] AS
+﻿CREATE VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
 
 SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key, -1)
 	    , DimCustomer_Key			= ISNULL(DC.DimCustomer_Key, -1)
@@ -43,8 +43,8 @@ SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key, -1)
 
 FROM	dwstage.ORDER_LINES AS Stage
    
- LEFT OUTER JOIN dw.DimSalesOrders AS DSO
-  ON	CAST(Stage.ORDER_NO AS NCHAR(7)) = DSO.SONumber   AND	DSO.DWIsCurrent = 1 
+ LEFT OUTER JOIN dw.DimSalesOrder AS DSO
+  ON	CAST(Stage.ORDER_NO AS NCHAR(7)) = DSO.SalesOrderNumber   AND	DSO.DWIsCurrent = 1 
 
  LEFT OUTER JOIN dw.DimCustomer AS DC
   ON    CAST(Stage.CUSTOMER	AS NCHAR(6)) = DC.CustomerID
