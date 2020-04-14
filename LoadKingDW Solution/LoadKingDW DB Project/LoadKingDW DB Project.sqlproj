@@ -83,9 +83,7 @@
     <Build Include="Tables\dwstage.ORDER_HEADER.sql" />
     <Build Include="Tables\dw.DimCustomer.sql" />
     <Build Include="Tables\dw.DimCustomerShipTo.sql" />
-    <Build Include="Tables\dw.DimDate.sql" />
     <Build Include="Tables\dw.DimEmployee.sql" />
-    <Build Include="Tables\dw.DimTime.sql" />
     <Build Include="Tables\dw.DimSalesOrder.sql" />
     <Build Include="Stored Procedures\dw.LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimEmployee.sql" />
@@ -100,11 +98,9 @@
     <Build Include="Stored Procedures\dw.LoadDimInventory.sql" />
     <Build Include="Tables\dw.DimInventory.sql" />
     <Build Include="Views\dw.SV_DimCustShipTo.sql" />
-    <Build Include="Views\dw.SV_DimDate.sql" />
     <Build Include="Views\dw.SV_DimEmployee.sql" />
     <Build Include="Views\dw.SV_DimCustomer.sql" />
     <Build Include="Views\dw.SV_DimInventory.sql" />
-    <Build Include="Views\dw.SV_DimTime.sql" />
     <Build Include="Views\dwstage.V_LoadFactSalesOrderLine.sql" />
     <Build Include="Views\dwstage.V_LoadFactRMAHistLines.sql" />
     <Build Include="Tables\dwstage.RMA_HIST_LINE.sql" />
@@ -117,6 +113,8 @@
     <Build Include="Stored Procedures\dw.LoadDimSalesOrder.sql" />
     <Build Include="Tables\dw.FactSalesOrderLine.sql" />
     <Build Include="Tables\dw.DimSalesOrderAttribute.sql" />
+    <Build Include="Tables\dw.DimDate.sql" />
+    <Build Include="Tables\dw.DimTime.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

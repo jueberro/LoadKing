@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-10LHH5T"
   DTS:CreatorName="AzureAD\BobRubocki"
-  DTS:DTSID="{349E65EF-D524-4BE8-9512-68119F4BBB4A}"
+  DTS:DTSID="{C0EAA2C8-85CB-44AD-B85E-B6981A0CBF4F}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
-  DTS:ObjectName="DWLoadFactSalesOrderLines"
+  DTS:ObjectName="DWLoadFactSalesOrderLine"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="38"
-  DTS:VersionGUID="{41906915-D823-4E8F-B6DA-003780A8D453}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{7B858F63-DCBC-47B0-AA19-8AD6C1EF9C0C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>

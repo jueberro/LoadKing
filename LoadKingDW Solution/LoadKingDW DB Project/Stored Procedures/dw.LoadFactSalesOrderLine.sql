@@ -70,7 +70,7 @@ SELECT		@CurrentTimestamp = GETUTCDATE()
 	--Load #work table with data in the format in which it will appear in the dimension
 	INSERT INTO #FactSalesOrderLine_work
 			SELECT 		
-				 * from dwstage.V_LoadFactSalesOrderLines 
+				 * from dwstage.V_LoadFactSalesOrderLine 
 				     
     
     Update #FactSalesOrderLine_work 

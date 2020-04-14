@@ -1,21 +1,26 @@
-﻿CREATE TABLE [dw].[DimDate] (
-    [DimDate_Key]  INT          NOT NULL,
-    [Date]         DATETIME     NOT NULL,
-    [Day]          TINYINT      NOT NULL,
-    [DaySuffix]    NVARCHAR (4)  NOT NULL,
-    [DayOfWeek]    NVARCHAR (9)  NOT NULL,
-    [DOWInMonth]   TINYINT      NOT NULL,
-    [DayOfYear]    INT          NOT NULL,
-    [WeekOfYear]   TINYINT      NOT NULL,
-    [WeekOfMonth]  TINYINT      NOT NULL,
-    [Month]        TINYINT      NOT NULL,
-    [MonthName]    NVARCHAR (9)  NOT NULL,
-    [Quarter]      TINYINT      NOT NULL,
-    [QuarterName]  NVARCHAR (6)  NOT NULL,
-    [Year]         CHAR (4)     NOT NULL,
-    [StandardDate] NVARCHAR (10) NULL,
-    [HolidayText]  NVARCHAR (50) NULL,
-
-    CONSTRAINT [pk_DimDate] PRIMARY KEY CLUSTERED ([DimDate_Key] ASC)
-);
-
+﻿CREATE TABLE [dw].[DimDate](
+	[DimDate_Key] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Day] [tinyint] NOT NULL,
+	[DaySuffix] [varchar](4) NOT NULL,
+	[DayOfWeek] [varchar](9) NOT NULL,
+	[DOWInMonth] [tinyint] NOT NULL,
+	[DayOfYear] [int] NOT NULL,
+	[WeekOfYear] [tinyint] NOT NULL,
+	[WeekOfMonth] [tinyint] NOT NULL,
+	[Month] [tinyint] NOT NULL,
+	[MonthName] [varchar](9) NOT NULL,
+	[Quarter] [tinyint] NOT NULL,
+	[QuarterName] [varchar](6) NOT NULL,
+	[Year] [char](4) NOT NULL,
+	[StandardDate] [varchar](10) NULL,
+	[HolidayText] [varchar](50) NULL,
+	[FiscalMonth] [int] NULL,
+	[FiscalQuarter] [int] NULL,
+	[FiscalQuarterName] [varchar](6) NULL,
+	[FiscalYear] [char](10) NULL,
+ CONSTRAINT [PK_DimDate] PRIMARY KEY CLUSTERED 
+(
+	[DimDate_Key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+) ON [PRIMARY]

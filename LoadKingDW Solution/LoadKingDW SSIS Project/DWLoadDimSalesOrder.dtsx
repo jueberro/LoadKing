@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimSalesOrders"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{0830B7C9-8EC1-444C-8F6E-5A4B1DD51DB2}">
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{377226E4-33C4-4C91-AEB8-85306E78D174}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -7023,20 +7023,20 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSaklesOrders"
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSalesOrders"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{1FA74DF7-31DD-4F18-A051-B3E92425F4A5}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - LoadDWDimSaklesOrders"
+          DTS:ObjectName="SQL - LoadDWDimSalesOrders"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimSalesOrders ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimSalesOrder ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::LoadLogKey"
@@ -7158,7 +7158,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
           DTS:DTSID="{D87F13B0-C6F5-4CEB-BA5C-12096690825A}"
-          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSaklesOrders"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSalesOrders"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
           DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess" />
@@ -7177,7 +7177,7 @@
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
-          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSaklesOrders" />
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSalesOrders" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
@@ -7309,7 +7309,7 @@
           TopLeft="5.50000000000003,210.833333333334" />
         <NodeLayout
           Size="222,42"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSaklesOrders"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimSalesOrders"
           TopLeft="65.1666666666667,313.5" />
         <NodeLayout
           Size="171,43"

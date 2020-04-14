@@ -37,8 +37,8 @@
           <SSIS:Package SSIS:Name="DWLoadDimCustomer.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimCustomer ShipTo.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimInventory.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="DWLoadFactSalesOrderLines.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="DWLoadDimSalesOrders.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadFactSalesOrderLine.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadDimSalesOrder.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LK_CNC.conmgr" />
@@ -894,16 +894,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="DWLoadFactSalesOrderLines.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DWLoadFactSalesOrderLine.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{349E65EF-D524-4BE8-9512-68119F4BBB4A}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DWLoadFactSalesOrderLines</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{C0EAA2C8-85CB-44AD-B85E-B6981A0CBF4F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadFactSalesOrderLine</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">37</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">39</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4553D6B3-5AFC-4DC6-9008-C72CBA59FBB8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7B858F63-DCBC-47B0-AA19-8AD6C1EF9C0C}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -968,16 +968,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="DWLoadDimSalesOrders.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DWLoadDimSalesOrder.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{368D15CC-F88C-479D-AFE8-310FCF7F1CD6}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">DWLoadDimSalesOrders</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">32</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D913DC46-DB38-46AF-90C2-19F27DF0EC68}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{377226E4-33C4-4C91-AEB8-85306E78D174}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

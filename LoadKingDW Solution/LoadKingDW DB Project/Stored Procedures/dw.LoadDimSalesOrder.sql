@@ -53,7 +53,7 @@ BEGIN
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimSalesOrders_current ( SONumber NCHAR(7)
+	CREATE TABLE #DimSalesOrders_current ( SalesOrderNumber NCHAR(7)
 	                                          	, Type2RecordHash   VARBINARY(64)
 										)
 
@@ -71,7 +71,7 @@ BEGIN
 	FROM	#DimSalesOrders_work AS Work
 	WHERE	NOT EXISTS(	SELECT  1
 						FROM	dw.DimSalesOrder AS DIM
-						WHERE	DIM.SONumber = Work.SONumber 
+						WHERE	DIM.SalesOrderNumber = Work.SalesOrderNumber 
 						   
 						)
 
@@ -82,7 +82,7 @@ BEGIN
 			, DWIsCurrent = 0
 	FROM	dw.DimSalesOrder		AS DIM
 	 JOIN   #DimSalesOrders_work	AS Work
-	  ON	Dim.SONumber = Work.SONumber
+	  ON	Dim.SalesOrderNumber = Work.SalesOrderNumber
 	     AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
@@ -92,7 +92,7 @@ BEGIN
 	SELECT	Work.*
 	FROM	#DimSalesOrders_current AS DIM
 	 JOIN   #DimSalesOrders_work    AS Work
-	  ON	Dim.SONumber = Work.SONumber
+	  ON	Dim.SalesOrderNumber = Work.SalesOrderNumber
 	  
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
