@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dw].[FactSalesOrderLine]
+﻿CREATE TABLE [dw].[FactSalesOrderLine_orig]
 (
 	
-	FactSalesOrderLine_Key int identity(1,1) not null
+	FactSalesOrderLineorig_Key int identity(1,1) not null
 	-- dimensions
 	, DimSalesOrder_Key int not null
 	, DimCustomer_Key int not null
@@ -10,20 +10,10 @@
 	, DimCustomerShipTo_Key int not null
 	, FactInventory_Key int not null
 	
-	--New
-
-
 	-- Key Attributes 
 
 	, OrderNumber               nchar(7)
 	, OrderLine                 nchar(4)
-
-	--NewKeyAttributes
-
-	
-
-
-
 	, QuantityOrdered decimal (13,4) -- should quantity be decimal??
 	, Cost decimal (16,4) 
 	, Margin decimal(16,4)
@@ -52,5 +42,5 @@
 
 	/*ETL Metadata fields, not required for reporting */
 	,LoadLogKey					INT					NOT NULL	--ID of ETL process that inserted the record
-	, constraint pk_FactSalesOrderLine primary key nonclustered (FactSalesOrderLine_Key)
+	, constraint pk_FactSalesOrderLine_orig primary key nonclustered (FactSalesOrderLineorig_Key)
 )

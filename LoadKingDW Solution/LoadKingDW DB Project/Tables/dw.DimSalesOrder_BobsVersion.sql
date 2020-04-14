@@ -1,5 +1,5 @@
-﻿CREATE TABLE [dw].[DimSalesOrder](
-	[DimSalesOrder_Key] [int] IDENTITY(1,1) NOT NULL,
+﻿CREATE TABLE [dw].[DimSalesOrder_BobsVersion](
+	[DimSalesOrderBobs_Key] [int] IDENTITY(1,1) NOT NULL,
 	[DimCustomer_Key] [int] NOT NULL,
 	[DimEmployee_Key] [int] NOT NULL,
 	[OrderNumber] [nchar](7) NOT NULL,
@@ -21,9 +21,8 @@
 	[DWEffectiveEndDate] [datetime2](7) NOT NULL,
 	[DWIsCurrent] [bit] NOT NULL,
 	[LoadLogKey] [int] NOT NULL,
- CONSTRAINT [pk_DimSalesOrderstmp
- ] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [pk_DimSalesOrderBobs] PRIMARY KEY CLUSTERED 
 (
-	[DimSalesOrder_Key] ASC
+	[DimSalesOrderBobs_Key] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]

@@ -1,30 +1,23 @@
-﻿CREATE TABLE [dw].[FactSalesOrderLine]
+﻿CREATE TABLE [dw].[FactSalesOrderLine_old]
 (
 	
-	FactSalesOrderLine_Key int identity(1,1) not null
+	FactSalesOrderLine_old_Key int identity(1,1) not null
 	-- dimensions
 	, DimSalesOrder_Key int not null
 	, DimCustomer_Key int not null
 	, OrderDateDimDate_Key int not null
 	, ShipDateDimDate_Key int not null
 	, DimCustomerShipTo_Key int not null
-	, FactInventory_Key int not null
-	
-	--New
-
+	, [FactInventory_Key] int not null
+	--, DimEmployee_Key int not null -- In Header
+	--, DimOrderType_Key int not null
+	--, DimProduct_Key int not null
 
 	-- Key Attributes 
 
 	, OrderNumber               nchar(7)
 	, OrderLine                 nchar(4)
-
-	--NewKeyAttributes
-
-	
-
-
-
-	, QuantityOrdered decimal (13,4) -- should quantity be decimal??
+	,QuantityOrdered decimal (13,4) -- should quantity be decimal??
 	, Cost decimal (16,4) 
 	, Margin decimal(16,4)
 	, Price decimal(16,4)
@@ -52,5 +45,5 @@
 
 	/*ETL Metadata fields, not required for reporting */
 	,LoadLogKey					INT					NOT NULL	--ID of ETL process that inserted the record
-	, constraint pk_FactSalesOrderLine primary key nonclustered (FactSalesOrderLine_Key)
+	, constraint pk_FactSalesOrderLine_old primary key nonclustered (FactSalesOrderLine_old_Key)
 )

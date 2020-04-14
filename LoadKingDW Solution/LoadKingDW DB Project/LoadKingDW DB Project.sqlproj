@@ -87,8 +87,8 @@
     <Build Include="Tables\dw.DimEmployee.sql" />
     <Build Include="Tables\dw.DimPart_Steves.sql" />
     <Build Include="Tables\dw.DimTime.sql" />
-    <Build Include="Tables\dw.DimSalesOrder.sql" />
-    <Build Include="Tables\dw.FactSalesOrderLine.sql" />
+    <Build Include="Tables\dw.DimSalesOrders.sql" />
+    <Build Include="Tables\dw.FactSalesOrderLine_old.sql" />
     <Build Include="Stored Procedures\dw.LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimCustomer.sql" />
@@ -115,6 +115,13 @@
     <Build Include="Tables\dwstage.RMA_HEADER.sql" />
     <Build Include="Tables\dwstage.ORDER_LINES.sql" />
     <Build Include="Stored Procedures\dw.LoadFactSalesOrderLine.sql" />
+    <Build Include="Views\dwstage.V_LoadDimSalesOrders.sql" />
+    <Build Include="Tables\dwstage.SALESPERSONS.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimSalesOrders.sql" />
+    <Build Include="Tables\dw.FactSalesOrderLine_orig.sql" />
+    <Build Include="Tables\dw.DimSalesOrder_BobsVersion.sql" />
+    <Build Include="Tables\dw.DimSalesOrder.sql" />
+    <Build Include="Tables\dw.FactSalesOrderLine.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
