@@ -14,4 +14,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FactInventory_Key" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="64c33232-9e39-41f8-bf38-0e61cb592003" ChangeDateTime="04/14/2020 19:53:11" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dw].[Dim_SalesPerson].[col1]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[Dim_SalesPerson]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DimSalesperson" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="45b8d432-e237-457e-9b0c-c0aaca767d2c" ChangeDateTime="04/14/2020 19:53:30" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dw].[Dim_SalesPerson].[DimSalesperson]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[Dim_SalesPerson]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DimSalesperson_Key" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="da21ed5c-cee3-451b-ac11-1012ed611f04" ChangeDateTime="04/15/2020 13:33:03" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[DimSalesOrderAttribute].[Dummy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DimSalesOrderAttribute]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DimSalesOrderAttribute_Key" />
+  </Operation>
 </Operations>

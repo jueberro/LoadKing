@@ -35,4 +35,74 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DimSalesOrderAttribute_Key" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="662db587-46b9-4d9b-9f4d-81c80cb13a0b" ChangeDateTime="04/15/2020 14:22:09">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[GL_ACCOUNT]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GLAccount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="07b6c602-2199-4a97-a146-3d3b963ad32e" ChangeDateTime="04/15/2020 14:22:15">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[DESCR]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Descr" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4e06427d-1fd2-423e-b28c-ddefb6648d70" ChangeDateTime="04/15/2020 14:22:20">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[DEPT]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Dept" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1294f075-c17b-4fc5-925e-7aef8e72ea51" ChangeDateTime="04/15/2020 14:22:30">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[RETAINED_ACCT]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RetainedAcct" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b2c7523d-a22d-48d8-aebf-6685580e6130" ChangeDateTime="04/15/2020 14:22:46">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[ZERO_AT_YR_END]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ZeroAtYrEnd" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ff012088-9dc0-4257-afef-39c3acd45469" ChangeDateTime="04/15/2020 14:22:51">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[USER_1]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="User1" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9e2bd9a7-c955-4205-8551-009e13f59188" ChangeDateTime="04/15/2020 14:22:57">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[USER_2]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="User2" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d144238a-beab-491b-8de7-abf935d84a7a" ChangeDateTime="04/15/2020 14:23:03">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[USER_3]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="User3" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="da2007eb-02bb-4c94-a5fc-3ae293732f54" ChangeDateTime="04/15/2020 14:23:08">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[USER_4]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="User4" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9afbb125-2c9b-41ec-a2c6-2126568f0839" ChangeDateTime="04/15/2020 14:23:13">
+    <Property Name="ElementName" Value="[dw].[DimGLMaster].[USER_5]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLMaster]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="User5" />
+  </Operation>
 </Operations>
