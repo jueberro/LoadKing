@@ -30,13 +30,25 @@ SELECT		@CurrentTimestamp = GETUTCDATE()
 	, ShipDateDimDate_Key int not null
 	, DimCustomerShipTo_Key int not null
 	, DimInventory_Key int not null
+	, DimGLMaster_Key int not null
+	, DimSalesperson_Key int not null
+	, DimSalesOrderAttribute_Key int not null
+	, DimQuote_Key int not null
 	
 	-- Key Attributes 
 
 	, OrderNumber               nchar(7)
 	, OrderLine                 nchar(4)
-	
+	, OLDateOrder               datetime 
+	, OLDateShipped             datetime
+	, User1                     varchar(30)
+	, User2                     varchar(30)
+	, TrackingNotes             varchar(30)
+	, User4                     varchar(30)
+	, LineShipVia               varchar(30)
+
 	-- measures
+
 	, QuantityOrdered decimal (13,4) -- should quantity be decimal??
 	, Cost decimal (16,4) 
 	, Margin decimal(16,4)
@@ -53,15 +65,16 @@ SELECT		@CurrentTimestamp = GETUTCDATE()
 	, OrderPrice decimal(16,4)
 	, OrderDiscountPrice decimal(16,4)
 	, OrderPricePerPound decimal(16,4)
+
 	/*Hash used for identifying changes, not required for reporting*/
-		/*Hash used for identifying changes, not required for reporting*/
+	/*Hash used for identifying changes, not required for reporting*/
 	,RecordHash					VARBINARY(64)			NULL
 
 	/*DW Metadata fields, not required for reporting*/
 	,SourceSystemName			NVARCHAR(100)		NOT NULL
     ,DWEffectiveStartDate		DATETIME2(7)		NOT NULL
 	,DWEffectiveEndDate			DATETIME2(7)		NOT NULL
-	,DWIsCurrent					BIT				NOT NULL
+	,DWIsCurrent				BIT				NOT NULL
 
 	/*ETL Metadata fields, not required for reporting */
 	,LoadLogKey					INT					NOT NULL	--ID of ETL process that inserted the record

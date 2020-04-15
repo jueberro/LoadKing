@@ -35,4 +35,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DimSalesOrderAttribute_Key" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="cff0cdab-ecf0-4905-a85b-bb134b4ce5e1" ChangeDateTime="04/15/2020 16:47:37">
+    <Property Name="ElementName" Value="[dw].[DimSalesPerson].[Initials]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimSalesPerson]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
 </Operations>

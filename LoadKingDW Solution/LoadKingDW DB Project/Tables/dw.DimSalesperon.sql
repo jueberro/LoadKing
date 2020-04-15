@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dw].[DimSalesPerson](
 	[DimSalesperson_Key] [int] IDENTITY(1,1) NOT NULL,
-	[Initials] [nvarchar](3) NOT NULL,
+	[ID] [nvarchar](3) NOT NULL,
 	[Name] [nvarchar](100) NOT NULL,
 	[Email] [nvarchar](100) NOT NULL,
 	[Type1RecordHash] [varbinary](64) NOT NULL,

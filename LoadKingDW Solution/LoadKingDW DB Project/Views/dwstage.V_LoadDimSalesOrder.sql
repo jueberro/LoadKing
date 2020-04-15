@@ -3,23 +3,16 @@
 SELECT   
 	
 	
-	  SalesOrderNumber                  = CAST(stage.ORDER_NO      AS nchar(7))     --ORDER_NO      
-	 ,SOCreationDate                    = stage.DATE_ORDER                          --DATE_ORDER     
-	 ,SODueDate                         = stage.DATE_DUE                            --DATE_DUE      
-     ,SODateLastChanged                 = stage.DATE_LAST_CHG
-											                                        --DATE_LAST_CHANGE, TIME_LAST_CHANGE (use Full date conversion udf)
-	, [LastChangeBy]                    = CAST(stage.LAST_CHG_BY AS nvarchar(8))    --LAST_CHG_BY
+	      [SalesOrderNumber]          = CAST(stage.ORDER_NO      AS nchar(7))     --ORDER_NO      
+	    , [SOCreationDate]            = stage.DATE_ORDER                          --DATE_ORDER     
+	    , [SODueDate]                 = stage.DATE_DUE                            --DATE_DUE      
+        , [SODateLastChanged]         = stage.DATE_LAST_CHG                       --DATE_LAST_CHANGE, TIME_LAST_CHANGE (use Full date conversion udf)
+	  									                                      
+	    , [LastChangeBy]              = CAST(stage.LAST_CHG_BY AS nvarchar(8))    --LAST_CHG_BY
 
-
-
-
-	,   [Type1RecordHash]		       = CAST(0 AS VARBINARY(64))
-	,   [Type2RecordHash]			   = HASHBYTES('SHA2_256',             CAST(stage.ORDER_NO			AS    NCHAR(7))
+	    , [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
+	    , [Type2RecordHash]		      = HASHBYTES('SHA2_256',             CAST(stage.ORDER_NO			AS    NCHAR(7))
           	    					 						            + CAST([DATE_LAST_CHG]          AS VARCHAR(10))  )  
-                                                                                      
-                                                                            
-	
-	
 
 		/*DW Metadata fields, not required for reporting*/
 	    , [SourceSystemName]		  = CAST('Global Shop'        AS NVARCHAR(100))

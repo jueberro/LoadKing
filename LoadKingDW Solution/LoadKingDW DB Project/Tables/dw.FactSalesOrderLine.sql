@@ -12,6 +12,7 @@
 	, DimGLMaster_Key int not null
 	, DimSalesperson_Key int not null
 	, DimSalesOrderAttribute_Key int not null
+	, DimQuote_Key int not null
 	--New
 
 
@@ -19,12 +20,17 @@
 
 	, OrderNumber               nchar(7)
 	, OrderLine                 nchar(4)
+	, OLDateOrder               datetime 
+	, OLDateShipped             datetime
 
 	--NewKeyAttributes
-
+	, User1                     varchar(30) --[USER_1] [char](30) NULL,	User1
+    , User2                     varchar(30) --[USER_2] [char](30) NULL,	User2
+    , TrackingNotes             varchar(30) --[USER_3] [char](30) NULL,	TrackingNotes
+    , User4                     varchar(30) --[USER_4] [char](30) NULL,	User3
+    , LineShipVia               varchar(30) --[USER_5] [char](30) NULL,	LineShipVia
 	
-
-
+	--Measure Sources
 
 	, QuantityOrdered decimal (13,4) -- should quantity be decimal??
 	, Cost decimal (16,4) 

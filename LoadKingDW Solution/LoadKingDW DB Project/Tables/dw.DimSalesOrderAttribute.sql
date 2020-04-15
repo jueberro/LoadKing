@@ -1,26 +1,16 @@
 ﻿CREATE TABLE [dbo].[DimSalesOrderAttribute]
-(
+( [DimSalesOrderAttribute_Key] Int IDENTITY(1,1) NOT NULL,
 -- Order_Header
---[OrderSort] [nvarchar](20) NULL,
---[ProjectType] [nvarchar](30) NULL,
---[SalesPerson] [nvarchar](50) NULL,
---[Branch] [nvarchar](2) NULL,
---[ShipVia] [nvarchar](20) NULL,
---[QuoteNumber] [nchar](7) NULL,
---[QuoteCreationDate] [date] NULL,
---[QuoteWonLostDate] [date] NULL,
+[OrderSort] [nvarchar](20) NULL,
+[ProjectType] [nvarchar](30) NULL,
+[Branch] [nvarchar](2) NULL,
+[ShipVia] [nvarchar](20) NULL,
+
 
 	---FactSalesOrdeLine
 
---[LINE_TYPE] [char](1) NULL,	LineType
---[FLAG_SO_TO_WO] [char](1) NULL,	FlagSOtoWO
---[DESCRIPTION] [char](30) NULL,	NOT REQ-InDimInventory
---[USER_1] [char](30) NULL,	User1
---[USER_2] [char](30) NULL,	User2
---[USER_3] [char](30) NULL,	TrackingNotes
---[USER_4] [char](30) NULL,	User3
---[USER_5] [char](30) NULL,	LineShipVia
---[GL_ACCOUNT] [char](15) NULL,	GLAccount-Makeit a Key
+--[LineType] [char](1) NULL,	      
+--[FlagSOtoWO] [char](1) NULL,	
 --[CUSTOMER_PART] [char](20) NULL,	CustomerPart
 --[INFO_1] [char](20) NULL,	PriceGroupID
 --[INFO_2] [char](20) NULL,	SOGroupID
@@ -42,5 +32,21 @@
 --[DATE_LAST_CHG] date NULL,	DateLastChanged
 --[TIME_LAST_CHG] [varchar](50) NULL,	*Just Use Date
 --[LAST_CHG_BY] [char](8) NULL,	LastChangedBy
-	[DimSalesOrderAttribute_Key] Int
+
+
+	/*Hashes used for identifying changes, not required for reporting*/
+	Type1RecordHash				VARBINARY(64)				NULL,
+	Type2RecordHash				VARBINARY(64)				NULL,
+
+	/*DW Metadata fields, not required for reporting*/
+	SourceSystemName			NVARCHAR(100)		NOT NULL,
+	DWEffectiveStartDate		DATETIME2(7)		NOT NULL,
+	DWEffectiveEndDate			DATETIME2(7)		NOT NULL,
+	DWIsCurrent					BIT					NOT NULL,
+
+	/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
+	LoadLogKey					INT					NOT NULL, --ID of ETL process that inserted the record    CONSTRAINT [pk_DimEmployee] PRIMARY KEY CLUSTERED ([DimEmployee_Key] ASC)
+
+    CONSTRAINT [pk_DimSalesOrderAttribute] PRIMARY KEY CLUSTERED ([DimSalesOrderAttribute_Key] ASC)
+
 )

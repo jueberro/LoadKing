@@ -1,32 +1,38 @@
 ﻿CREATE VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
 
-SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key, -1)
-	    , DimCustomer_Key			= ISNULL(DC.DimCustomer_Key, -1)
-		, OrderDateDimDate_Key 		= ISNULL(OrderDate.DimDate_Key, -1)
-		, ShipDateDimDate_Key 		= ISNULL(ShipDate.DimDate_Key, -1)
+SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key,      -1)
+	    , DimCustomer_Key			= ISNULL(DC.DimCustomer_Key,         -1)
+		, OrderDateDimDate_Key 		= ISNULL(OrderDate.DimDate_Key,      -1)
+		, ShipDateDimDate_Key 		= ISNULL(ShipDate.DimDate_Key,       -1)
 		, DimCustomerShipTo_Key 	= ISNULL(DCST.DimCustomerShipTo_Key, -1)
-		, DimInventory_Key 			= ISNULL(DI.DimInventory_Key, -1)
+		, DimInventory_Key 			= ISNULL(DI.DimInventory_Key,        -1)
 
 		--Key Attributes
 		, OrderNumber               = CAST(Stage.ORDER_NO				AS nchar(7))
 		, OrderLine                 = CAST(Stage.RECORD_NO              AS nchar(4))
-		
+		, OLDateOrder               = CAST(Stage.DATE_ORDER             AS datetime)
+		, OLDateShipped             = CAST(Stage.DATE_SHIP              AS datetime)
+		, User1                     = CAST(Stage.USER_1                 AS varchar(30))
+		, User2                     = CAST(Stage.USER_2                 AS varchar(30))
+		, TrackingNotes             = CAST(Stage.USER_3                 AS varchar(30))
+		, User4                     = CAST(Stage.USER_4                 AS varchar(30))
+		, LineShipVia               = CAST(Stage.USER_5                 AS varchar(30))
 
 		-- measures					
 		, QuantityOrdered			= CAST(Stage.QTY_ORDERED			AS DECIMAL(16, 4))
 		, Cost  					= CAST(Stage.COST					AS DECIMAL(16, 4))
 	    , Margin 					= CAST(Stage.MARGIN					AS DECIMAL(16, 4))
 	    , Price 					= CAST(Stage.PRICE					AS DECIMAL(16, 4))
-	    , PriceDiscount 			= CASE WHEN Isnumeric(Stage.DISCOUNT_PRICE) = 1 then CAST(Stage.DISCOUNT_PRICE	        AS NUMERIC(16,4))  ELSE NULL  END
-	    , PricePerPound 			= CASE WHEN Isnumeric(Stage.PRICE_LB) = 1    then CAST(Stage.PRICE_LB				    AS DECIMAL(16, 4)) ELSE NULL END		
-		, DiscountAmount 			= CASE WHEN Isnumeric(Stage.AMT_DISCOUNT) = 1 then CAST(Stage.AMT_DISCOUNT				AS DECIMAL(16, 4)) ELSE NULL END		
-	    , OrderDiscount 			= CASE WHEN Isnumeric(Stage.ORDER_DISC_AMT) = 1 then CAST(Stage.ORDER_DISC_AMT		    AS DECIMAL(16, 4))	ELSE NULL END	 
-		, PriceClassDiscount 		= CASE WHEN Isnumeric(Stage.PRICE_CLASS_DISC) = 1 then CAST(Stage.PRICE_CLASS_DISC		AS DECIMAL(16, 4))	ELSE NULL END
-        , ProductLineDiscount 		= CASE WHEN Isnumeric(Stage.PROD_LINE_DISC) = 1 then  CAST(Stage.PROD_LINE_DISC			AS DECIMAL(16, 4)) ELSE NULL END
+	    , PriceDiscount 			= CASE WHEN Isnumeric(Stage.DISCOUNT_PRICE)     = 1    then  CAST(Stage.DISCOUNT_PRICE	        AS NUMERIC(16,4))  ELSE NULL  END
+	    , PricePerPound 			= CASE WHEN Isnumeric(Stage.PRICE_LB)           = 1    then  CAST(Stage.PRICE_LB				AS DECIMAL(16, 4)) ELSE NULL  END		
+		, DiscountAmount 			= CASE WHEN Isnumeric(Stage.AMT_DISCOUNT)       = 1    then  CAST(Stage.AMT_DISCOUNT			AS DECIMAL(16, 4)) ELSE NULL  END		
+	    , OrderDiscount 			= CASE WHEN Isnumeric(Stage.ORDER_DISC_AMT)     = 1    then  CAST(Stage.ORDER_DISC_AMT		    AS DECIMAL(16, 4)) ELSE NULL  END	 
+		, PriceClassDiscount 		= CASE WHEN Isnumeric(Stage.PRICE_CLASS_DISC)   = 1    then  CAST(Stage.PRICE_CLASS_DISC		AS DECIMAL(16, 4)) ELSE NULL  END
+        , ProductLineDiscount 		= CASE WHEN Isnumeric(Stage.PROD_LINE_DISC)     = 1    then  CAST(Stage.PROD_LINE_DISC			AS DECIMAL(16, 4)) ELSE NULL  END
 		, OrderDiscountAmount 		= CAST(Stage.AMT_DISC_ORDER			AS DECIMAL(16, 4))		
 		, ProductClassDiscountAmount= CAST(Stage.AMT_DISC_PR_CL_ORD		AS DECIMAL(16, 4))
 		, ProductLineDiscountAmount = CAST(Stage.PRDLN_DISC_AMT			AS DECIMAL(16, 4))
-		, OrderPrice 				= CASE WHEN Isnumeric(Stage.PRICE_ORDER) = 1 then   CAST(Stage.PRICE_ORDER		     	AS DECIMAL(16, 4)) ELSE NULL END
+		, OrderPrice 				= CASE WHEN Isnumeric(Stage.PRICE_ORDER) = 1           then  CAST(Stage.PRICE_ORDER		     	AS DECIMAL(16, 4)) ELSE NULL END
 		, OrderDiscountPrice 		= CAST(Stage.PRICE_DISC_ORD	        AS DECIMAL(16, 4))
     	, OrderPricePerPound 		= CAST(Stage.PRICE_LB_ORDER			AS DECIMAL(16, 4))
 
