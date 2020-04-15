@@ -42,5 +42,5 @@
 --[DATE_LAST_CHG] date NULL,	DateLastChanged
 --[TIME_LAST_CHG] [varchar](50) NULL,	*Just Use Date
 --[LAST_CHG_BY] [char](8) NULL,	LastChangedBy
-	Dummy Int
+	[DimSalesOrderAttribute_Key] Int
 )

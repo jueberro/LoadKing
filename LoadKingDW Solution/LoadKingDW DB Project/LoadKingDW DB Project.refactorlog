@@ -28,4 +28,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DimSalesperson_Key" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="da21ed5c-cee3-451b-ac11-1012ed611f04" ChangeDateTime="04/15/2020 13:33:03">
+    <Property Name="ElementName" Value="[dbo].[DimSalesOrderAttribute].[Dummy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DimSalesOrderAttribute]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DimSalesOrderAttribute_Key" />
+  </Operation>
 </Operations>

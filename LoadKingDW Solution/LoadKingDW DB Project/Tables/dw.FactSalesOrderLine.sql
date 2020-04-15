@@ -9,7 +9,9 @@
 	, ShipDateDimDate_Key int not null
 	, DimCustomerShipTo_Key int not null
 	, FactInventory_Key int not null
-	
+	, DimGLMaster_Key int not null
+	, DimSalesperson_Key int not null
+	, DimSalesOrderAttribute_Key int not null
 	--New
 
 
@@ -52,5 +54,6 @@
 
 	/*ETL Metadata fields, not required for reporting */
 	,LoadLogKey					INT					NOT NULL	--ID of ETL process that inserted the record
-	, constraint pk_FactSalesOrderLine primary key nonclustered (FactSalesOrderLine_Key)
+	,
+    constraint pk_FactSalesOrderLine primary key nonclustered (FactSalesOrderLine_Key)
 )
