@@ -1,11 +1,15 @@
 ﻿CREATE VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
 
-SELECT    DimSalesOrder_Key			= ISNULL(DSO.DimSalesOrder_Key,      -1)
-	    , DimCustomer_Key			= ISNULL(DC.DimCustomer_Key,         -1)
-		, OrderDateDimDate_Key 		= ISNULL(OrderDate.DimDate_Key,      -1)
-		, ShipDateDimDate_Key 		= ISNULL(ShipDate.DimDate_Key,       -1)
-		, DimCustomerShipTo_Key 	= ISNULL(DCST.DimCustomerShipTo_Key, -1)
-		, DimInventory_Key 			= ISNULL(DI.DimInventory_Key,        -1)
+SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
+	    , DimCustomer_Key			 = ISNULL(DC.DimCustomer_Key,         -1)
+		, OrderDateDimDate_Key 		 = ISNULL(OrderDate.DimDate_Key,      -1)
+		, ShipDateDimDate_Key 		 = ISNULL(ShipDate.DimDate_Key,       -1)
+		, DimCustomerShipTo_Key 	 = ISNULL(DCST.DimCustomerShipTo_Key, -1)
+		, DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)
+		, DimGLMaster_Key            =  -1
+		, DimSalesperson_Key         =  -1
+	    , DimSalesOrderAttribute_Key =  -1
+	    , DimQuote_Key               =  -1
 
 		--Key Attributes
 		, OrderNumber               = CAST(Stage.ORDER_NO				AS nchar(7))
