@@ -122,7 +122,7 @@
     <Build Include="Stored Procedures\dw.LoadDimSalesOrderAttribute.sql" />
     <Build Include="Views\dwstage.V_LoadDimSalesperson.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesperson.sql" />
-    <Build Include="Tables\dwstage.Quote.sql" />
+    <Build Include="Tables\dwstage.Quote_Header.sql" />
     <Build Include="Views\dwstage.V_LoadDimQuote.sql" />
     <Build Include="Stored Procedures\dw.LoadDimQuote.sql" />
   </ItemGroup>
