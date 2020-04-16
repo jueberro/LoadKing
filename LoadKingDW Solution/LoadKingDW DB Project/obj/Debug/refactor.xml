@@ -119,4 +119,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="SalespersonID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="7c9195c7-3c08-48f7-98eb-26d7dd093886" ChangeDateTime="04/16/2020 17:20:16" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dwstage].[DimQuote].[QuoteID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dwstage].[DimQuote]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="QuoteNo" />
+  </Operation>
 </Operations>
