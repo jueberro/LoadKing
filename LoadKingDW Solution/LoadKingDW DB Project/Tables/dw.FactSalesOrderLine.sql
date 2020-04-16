@@ -29,6 +29,12 @@
     , TrackingNotes             varchar(30) --[USER_3] [char](30) NULL,	TrackingNotes
     , User4                     varchar(30) --[USER_4] [char](30) NULL,	User3
     , LineShipVia               varchar(30) --[USER_5] [char](30) NULL,	LineShipVia
+
+	--[CUSTOMER_PART] [char](20) NULL,	CustomerPart
+	
+    --[INFO_1] [char](20) NULL,	PriceGroupID
+    --[INFO_2] [char](20) NULL,	SOGroupID
+	--[OrderSort] [nvarchar](20) NULL,
 	
 	--Measure Sources
 
@@ -48,6 +54,15 @@
 	, OrderPrice decimal(16,4)
 	, OrderDiscountPrice decimal(16,4)
 	, OrderPricePerPound decimal(16,4)
+
+--[ITEM_PROMISE_DT] date NULL,	PromiseDateDimDate
+--[ADD_BY_DATE] date NULL,	DateAddedDateDimDate
+--[MUST_DLVR_BY_DATE] date NULL,	DeliverByDateDimDate
+--[QTY_ORIGINAL] [numeric](13,4) NULL,	QtyOriginal
+--[QTY_ALLOC] [numeric](13,4) NULL,	QtyAllocated
+--[QTY_SHIPPED] [numeric](13,4) NULL,	QtyShipped
+--[QTY_BO] [numeric](13,4) NULL,	QtyBackOrdered
+--[EXTENSION] Numeric(16,2) NULL,	ExtendedPrice
 
 	/*Hash used for identifying changes, not required for reporting*/
 	,RecordHash					VARBINARY(64)			NULL
