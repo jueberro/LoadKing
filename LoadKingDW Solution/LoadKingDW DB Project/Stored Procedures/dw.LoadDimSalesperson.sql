@@ -45,11 +45,11 @@ BEGIN
 			SELECT 		
 				 * from dwstage.V_LoadDimSalesperson
     
-    Update ##DimSalesperson_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
+    Update #DimSalesperson_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimSalesperson_current (SalespersonID NVARCHAR(5)
+	CREATE TABLE #DimSalesperson_current (ID NVARCHAR(6)
 										, Type2RecordHash VARBINARY(64)
 										)
 

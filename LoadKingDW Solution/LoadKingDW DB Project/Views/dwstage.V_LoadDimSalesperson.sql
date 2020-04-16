@@ -22,7 +22,7 @@ SELECT
 
 
 
-		FROM     dwstage.SALESPERSONS
+		FROM     dwstage.SALESPERSON
 		
 GO
 
