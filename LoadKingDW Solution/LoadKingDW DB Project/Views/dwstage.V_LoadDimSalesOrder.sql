@@ -32,7 +32,7 @@ FROM	dwstage.ORDER_HEADER AS Stage
    AND  DC.DWIsCurrent = 1
 
  LEFT OUTER JOIN dwstage.SALESPERSONS AS SP
-  ON    CAST(Stage.SALESPERSON AS NCHAR(3)) = SP.ID
+  ON    CAST(Stage.SALESPERSON AS NCHAR(3)) = SP.SalespersonID
  
 
  LEFT OUTER JOIN dw.DimDate AS OrderDate

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dwstage].[SALESPERSONS](
-	[ID] [char](3) NULL,
+	[SalespersonID] [char](3) NULL,
 	[NAME] [char](50) NULL,
 	[EMAIL] [char](80) NULL,
 	[FILLER] [char](20) NULL,

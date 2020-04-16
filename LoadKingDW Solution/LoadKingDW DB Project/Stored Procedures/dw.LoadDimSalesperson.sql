@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimCustomer] @LoadLogKey INT  AS
+﻿CREATE PROCEDURE [dw].[sp_LoadSalesperson] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -16,24 +16,15 @@ BEGIN
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
-	BEGIN TRY DROP TABLE #DimCustomer_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimCustomer_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimSalesperson_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimSalesperson_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
-	CREATE TABLE #DimCustomer_work (
-		[CustomerID]				[nchar](6) NOT NULL,
-		[CustomerName]				[nvarchar](50) NOT NULL,
-		[CustomerAddress1]          [nvarchar](100) NULL,
-		[CustomerAddress2]          [nvarchar](100) NULL,
-		[CustomerCity]              [nvarchar](100) NULL,
-		[CustomerStateOrProvince]   [nvarchar](10) NULL,
-		[CustomerPostalCode]        [nvarchar](50) NULL,
-		[CustomerCountry]           [nvarchar](50) NULL,
-		[CustomerCounty]            [nvarchar](50) NULL,
-		[CustomerInternationalFlag] [bit] NULL,
-		[CustomerTerritory]         [nchar](2) NULL,
-		[CustomerCodeArea]          [nchar](2) NULL,
-		[CustomerCredit]            [nchar](2) NULL,
+	CREATE TABLE #DimSalesperson_work (
+		[SalespersonID]				[nvarchar](6) NOT NULL,
+		[Name]						[nvarchar](100) NOT NULL,
+		[Email]						[nvarchar](100) NULL,
+
 
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
@@ -50,33 +41,33 @@ BEGIN
 	)
 
 	--Load #work table with data in the format in which it will appear in the dimension
-	INSERT INTO #DimCustomer_work
+	INSERT INTO #DimSalesperson_work
 			SELECT 		
-				 * from dwstage.V_LoadDimCustomer
+				 * from dwstage.V_LoadDimSalesperson
     
-    Update #DimCustomer_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
+    Update ##DimSalesperson_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimCustomer_current (CustomerID NCHAR(5)
+	CREATE TABLE #DimSalesperson_current (SalespersonID NVARCHAR(5)
 										, Type2RecordHash VARBINARY(64)
 										)
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
-	INSERT INTO #DimCustomer_current
-	SELECT	CustomerID
+	INSERT INTO #DimSalesperson_current
+	SELECT	SalespersonID
 			, Type2RecordHash
-	FROM	dw.DimCustomer
+	FROM	dw.DimSalesPerson
 	WHERE	DWIsCurrent = 1
 
 
 	--INSERT NEW Dimension Items
-	INSERT INTO dw.DimCustomer 
+	INSERT INTO dw.DimSalesperson 
 	SELECT	*
-	FROM	#DimCustomer_work AS Work
+	FROM	#DimSalesperson_work AS Work
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.DimCustomer AS DIM
-						WHERE	DIM.CustomerID = Work.CustomerID 
+						FROM	dw.DimSalesPerson AS DIM
+						WHERE	DIM.SalespersonID = Work.SalespersonID 
 						)
 
 
@@ -84,24 +75,24 @@ BEGIN
 	UPDATE	DIM
 	SET		DWEffectiveEndDate = @CurrentTimestamp
 			, DWIsCurrent = 0
-	FROM	dw.DimCustomer		AS DIM
-	 JOIN   #DimCustomer_work	AS Work
-	  ON	Dim.CustomerID = Work.CustomerID
+	FROM	dw.DimSalesPerson		AS DIM
+	 JOIN   #DimSalesperson_work	AS Work
+	  ON	Dim.SalespersonID = Work.SalespersonID
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
 
 	--INSERT New versions of expired records that have Type 2 changes
-	INSERT INTO dw.DimCustomer
+	INSERT INTO dw.DimSalesPerson
 	SELECT	Work.*
-	FROM	#DimCustomer_current AS DIM
-	 JOIN   #DimCustomer_work    AS Work
-	  ON	Dim.CustomerID = Work.CustomerID
+	FROM	#DimSalesperson_current AS DIM
+	 JOIN   #DimSalesperson_work    AS Work
+	  ON	Dim.SalespersonID = Work.SalespersonID
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
 	--DROP temp tables
-	BEGIN TRY DROP TABLE #DimCustomer_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimCustomer_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimSalesperson_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimSalesperson_current	END TRY BEGIN CATCH END CATCH
 	 
 
 END

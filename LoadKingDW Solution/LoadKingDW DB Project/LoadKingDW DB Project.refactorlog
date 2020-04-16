@@ -112,4 +112,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="SalespersonID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="cf9dc8da-9945-4ab8-a7e8-88a0b0df4089" ChangeDateTime="04/16/2020 14:39:29">
+    <Property Name="ElementName" Value="[dwstage].[SALESPERSONS].[ID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dwstage].[SALESPERSONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SalespersonID" />
+  </Operation>
 </Operations>
