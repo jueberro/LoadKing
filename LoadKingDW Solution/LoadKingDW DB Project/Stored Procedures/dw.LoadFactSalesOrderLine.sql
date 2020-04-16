@@ -14,7 +14,7 @@ BEGIN
 
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 
-SELECT		@CurrentTimestamp = GETUTCDATE()
+    SELECT		@CurrentTimestamp = GETUTCDATE()
 	
 	--Set @LoadLogKey = 21
 
@@ -23,13 +23,16 @@ SELECT		@CurrentTimestamp = GETUTCDATE()
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #FactSalesOrderLine_work (
-  
-      FactSalesOrder_Key int not null
+    FactSalesOrderLine_Key int identity(1,1) not null
+	
+          -- Dimension Keys
+
+	, DimSalesOrder_Key int not null
 	, DimCustomer_Key int not null
 	, OrderDateDimDate_Key int not null
 	, ShipDateDimDate_Key int not null
 	, DimCustomerShipTo_Key int not null
-	, DimInventory_Key int not null
+	, FactInventory_Key int not null
 	, DimGLMaster_Key int not null
 	, DimSalesperson_Key int not null
 	, DimSalesOrderAttribute_Key int not null
@@ -41,16 +44,26 @@ SELECT		@CurrentTimestamp = GETUTCDATE()
 	, OrderLine                 nchar(4)
 	, OLDateOrder               datetime 
 	, OLDateShipped             datetime
-	, User1                     varchar(30)
-	, User2                     varchar(30)
-	, TrackingNotes             varchar(30)
-	, User4                     varchar(30)
-	, LineShipVia               varchar(30)
 
-	-- measures
+	
+	, User1                     varchar(30) --[USER_1] [char](30) NULL,	User1
+    , User2                     varchar(30) --[USER_2] [char](30) NULL,	User2
+    , TrackingNotes             varchar(30) --[USER_3] [char](30) NULL,	TrackingNotes
+    , User4                     varchar(30) --[USER_4] [char](30) NULL,	User3
+    , LineShipVia               varchar(30) --[USER_5] [char](30) NULL,	LineShipVia
+    
+	   --New Key Attributes
 
-	, QuantityOrdered decimal (13,4) -- should quantity be decimal??
-	, Cost decimal (16,4) 
+	    --[CUSTOMER_PART] [char](20) NULL,	CustomerPart
+	
+        --[INFO_1] [char](20) NULL,	PriceGroupID
+        --[INFO_2] [char](20) NULL,	SOGroupID
+	    --[OrderSort] [nvarchar](20) NULL,
+	
+	    --Measure Sources
+
+	, QuantityOrdered decimal (13,4) 
+    , Cost decimal (16,4) 
 	, Margin decimal(16,4)
 	, Price decimal(16,4)
 	, PriceDiscount decimal(16,4)
@@ -65,6 +78,17 @@ SELECT		@CurrentTimestamp = GETUTCDATE()
 	, OrderPrice decimal(16,4)
 	, OrderDiscountPrice decimal(16,4)
 	, OrderPricePerPound decimal(16,4)
+
+        --NewMeasure Sources
+
+        --[ITEM_PROMISE_DT] date NULL,	PromiseDateDimDate
+        --[ADD_BY_DATE] date NULL,	DateAddedDateDimDate
+        --[MUST_DLVR_BY_DATE] date NULL,	DeliverByDateDimDate
+        --[QTY_ORIGINAL] [numeric](13,4) NULL,	QtyOriginal
+        --[QTY_ALLOC] [numeric](13,4) NULL,	QtyAllocated
+        --[QTY_SHIPPED] [numeric](13,4) NULL,	QtyShipped
+        --[QTY_BO] [numeric](13,4) NULL,	QtyBackOrdered
+        --[EXTENSION] Numeric(16,2) NULL,	ExtendedPrice
 
 	/*Hash used for identifying changes, not required for reporting*/
 	/*Hash used for identifying changes, not required for reporting*/
