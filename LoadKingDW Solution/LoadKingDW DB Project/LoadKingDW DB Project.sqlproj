@@ -120,6 +120,8 @@
     <Build Include="Tables\dw.DimQuote.sql" />
     <Build Include="Scripts\Build_DimDate_DimTime.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesOrderAttribute.sql" />
+    <Build Include="Views\dwstage.V_LoadDimSalesperson.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimSalesperson.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
