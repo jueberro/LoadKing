@@ -22,26 +22,40 @@ BEGIN
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimSalesOrders_work (
   
-	[SalesOrderNumber] [nchar](7) NOT NULL,
-	[SOCreationDate] [date] NULL,
-	[SODueDate] [date] NULL,
-	[SODatelastChanged] DATE NULL,
-	[SOLastChangeBy] [nvarchar](8) NULL,
+	 [SalesOrderNumber]            [nchar](7)          NOT NULL
+	,[SOCreationDate]              [date] NULL
+	,[SODueDate]                   [date] NULL
+	,[SODatelastChanged]           [date] NULL
+
+	,[OLDateOrder]               datetime    --[DATE_ORDER] nvarchar(6) - Use nvarchar6 udf
+	,[OLDateShipped]             datetime    --[DATE_SHIP]  nvarchar(6) - Use nvrachar6 udf
+
+	   --NewKeyAttributes
+
+	,[User1]                     varchar(30) --[USER_1] [char](30) NULL,	User1
+    ,[User2]                     varchar(30) --[USER_2] [char](30) NULL,	User2
+    ,[TrackingNotes]             varchar(30) --[USER_3] [char](30) NULL,	TrackingNotes
+    ,[User4]                     varchar(30) --[USER_4] [char](30) NULL,	User3
+    ,[LineShipVia]               varchar(30) --[USER_5] [char](30) NULL,	LineShipVia
+	,[SOLastChangeBy]            [nvarchar](8) NULL
+
+	,[PromiseDimDate]            datetime    --[ITEM_PROMISE_DT] date NULL,	PromiseDateDimDate
+    ,[DateAddedDimDate]          datetime    --[ADD_BY_DATE] date NULL,	DateAddedDateDimDate
+    ,[DeliverByDateDimDate]      datetime    --[MUST_DLVR_BY_DATE] date NULL,	DeliverByDateDimDate
+
 	
+	,[CustomerPart]              varchar(20) --[CUSTOMER_PART] [char](20) NULL,	CustomerPart
+    ,[PriceGrpID]                varchar(20) --[INFO_1] [char](20) NULL,	PriceGroupID
+	,[SOGroupID]                 varchar(20) --[INFO_2] [char](20) NULL,	SOGroupID
+	,[OrderSort]                 varchar(20) --[CODE_SORT] [nvarchar](20) NULL,
 	
-
-		/*Hashes used for identifying changes, not required for reporting*/
-		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
-		[Type2RecordHash]			VARBINARY(64)	NULL,	--66 allows for "0x" + 64 characater hash
-
-		/*DW Metadata fields, not required for reporting*/
-		[SourceSystemName]			NVARCHAR(100)		NOT NULL,
-		[DWEffectiveStartDate]		DATETIME2(7)		NOT NULL,
-		[DWEffectiveEndDate]		DATETIME2(7)		NOT NULL,
-		[DWIsCurrent]				BIT					NOT NULL,
-
-		/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
-		[LoadLogKey]				INT
+	,[Type1RecordHash] [varbinary](64) NULL
+	,[Type2RecordHash] [varbinary](64) NULL
+	,[SourceSystemName] [nvarchar](100) NOT NULL
+	,[DWEffectiveStartDate] [datetime2](7) NOT NULL
+	,[DWEffectiveEndDate] [datetime2](7) NOT NULL
+	,[DWIsCurrent] [bit] NOT NULL
+	,[LoadLogKey] [int] NOT NULL 
 	)
 
 	--Load #work table with data in the format in which it will appear in the dimension
