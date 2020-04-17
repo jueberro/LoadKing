@@ -55,17 +55,19 @@ BEGIN
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimGLAccount_current (QuoteNumber NVARCHAR(6)
+	CREATE TABLE #DimGLAccount_current (GLAccount CHAR(15)
 										, Type2RecordHash VARBINARY(64)
 										)
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
 	INSERT INTO #DimGLAccount_current
-	SELECT	QuoteNumber
-			, Type2RecordHash
-	FROM	dw.DimQuote
+	SELECT	GLAccount
+			,Type2RecordHash
+	FROM	dw.DimGLAccount
 	WHERE	DWIsCurrent = 1
 
+
+	--select * from #DimGLAccount_current
 
 	--INSERT NEW Dimension Items
 	INSERT INTO dw.DimGLAccount 
@@ -99,6 +101,5 @@ BEGIN
 	--DROP temp tables
 	BEGIN TRY DROP TABLE #DIMGLAccount_work		END TRY BEGIN CATCH END CATCH
 	BEGIN TRY DROP TABLE #DIMGLAccount_current	END TRY BEGIN CATCH END CATCH
-	 
 
-END
+End
