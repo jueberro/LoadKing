@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [globalshoplanding].[ExtractSourceTableData]
+﻿CREATE PROCEDURE [dbo].[ExtractGlobalShopSourceTableData]
 			  @LoadLogKey		INT
 			, @SourceTableName	NVARCHAR(100)
 			, @TargetTableName	NVARCHAR(100)

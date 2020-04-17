@@ -125,6 +125,7 @@
     <Build Include="Tables\dwstage.Quote_Header.sql" />
     <Build Include="Views\dwstage.V_LoadDimQuote.sql" />
     <Build Include="Stored Procedures\dw.LoadDimQuote.sql" />
+    <Build Include="Tables\dwstage.ORDER.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
