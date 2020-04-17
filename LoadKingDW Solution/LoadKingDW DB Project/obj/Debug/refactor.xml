@@ -126,4 +126,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="QuoteNo" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="f65a7d82-997b-4f9f-8caa-f2d518500a8b" ChangeDateTime="04/17/2020 12:18:37" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Table1]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[dw.DimGLAccount]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ae559ef7-2852-4621-b7cb-5d8cbb80d2e8" ChangeDateTime="04/17/2020 13:19:51" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dw].[DimGLAccount].[DESCR]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLAccount]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Descr" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="14f7a730-ae82-4ca9-a4bb-4716010968a1" ChangeDateTime="04/17/2020 13:19:57" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dw].[DimGLAccount].[DEPT]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimGLAccount]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Dept" />
+  </Operation>
 </Operations>

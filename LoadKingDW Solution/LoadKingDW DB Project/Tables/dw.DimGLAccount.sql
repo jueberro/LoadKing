@@ -1,5 +1,5 @@
-﻿CREATE TABLE [dw].[DimGLMaster](
-	[DimGLMaster_Key] [int] IDENTITY(1,1) NOT NULL,
+﻿CREATE TABLE [dw].[DimGLAccount](
+	[DimGLAccount_Key] [int] IDENTITY(1,1) NOT NULL,
 	[GLAccount] [char](15) NOT NULL,
 	[Descr] [char](30) NOT NULL,
 	[Dept] [char](4) NOT NULL,
@@ -17,8 +17,9 @@
 	[DWEffectiveEndDate] [datetime2](7) NOT NULL,
 	[DWIsCurrent] [bit] NOT NULL,
 	[LoadLogKey] [int] NOT NULL,
- CONSTRAINT [PK_DimGLMaster] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_DimGLAccount] PRIMARY KEY CLUSTERED 
 (
-	[DimGLMaster_Key] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[DimGLAccount_Key] ASC
+)
 ) ON [PRIMARY]
+GO

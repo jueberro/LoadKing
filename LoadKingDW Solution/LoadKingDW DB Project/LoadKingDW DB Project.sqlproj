@@ -116,7 +116,6 @@
     <Build Include="Tables\dw.DimDate.sql" />
     <Build Include="Tables\dw.DimTime.sql" />
     <Build Include="Tables\dw.DimSalesperon.sql" />
-    <Build Include="Tables\dw.DimGLMaster.sql" />
     <Build Include="Tables\dw.DimQuote.sql" />
     <Build Include="Scripts\Build_DimDate_DimTime.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesOrderAttribute.sql" />
@@ -125,6 +124,10 @@
     <Build Include="Tables\dwstage.Quote_Header.sql" />
     <Build Include="Views\dwstage.V_LoadDimQuote.sql" />
     <Build Include="Stored Procedures\dw.LoadDimQuote.sql" />
+    <Build Include="Tables\dwstage.GL_Master.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimGLAccount.sql" />
+    <Build Include="Tables\dw.DimGLAccount.sql" />
+    <Build Include="Views\dwstage.V_LoadDIMGLAccount.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
