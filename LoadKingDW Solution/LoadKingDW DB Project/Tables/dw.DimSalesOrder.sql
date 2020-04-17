@@ -16,7 +16,7 @@
 
 	--KeyAttributes
      
-	,[SLLastChangeBy]              [nvarchar](8)           NULL
+	,[LastChangeBy]                varchar(8)              NULL     --[LAST_CHG_BY]       [nvarchar](8)     NULL, --LastChangeBy                     -- ORDER_LINE
 	,[User1]                       varchar(30)             NULL     --[USER_1]            [char](30)        NULL, --User1                            -- ORDER_LINE
     ,[User2]                       varchar(30)             NULL     --[USER_2]            [char](30)        NULL, --User2                            -- ORDER_LINE
     ,[TrackingNotes]               varchar(30)             NULL     --[USER_3]            [char](30)        NULL, --TrackingNotes                    -- ORDER_LINE
