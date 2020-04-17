@@ -1,6 +1,7 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimCustomer] @LoadLogKey INT  AS
+﻿CREATE PROCEDURE [dw].[sp_LoadDimQuote] @LoadLogKey INT  AS
 
 BEGIN
+
 
 	/*
 
@@ -15,24 +16,15 @@ BEGIN
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
-	BEGIN TRY DROP TABLE #DimCustomer_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimCustomer_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimQuote_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimQuote_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
-	CREATE TABLE #DimCustomer_work (
-		[CustomerID]				[nchar](6) NOT NULL,
-		[CustomerName]				[nvarchar](50) NOT NULL,
-		[CustomerAddress1]          [nvarchar](100) NULL,
-		[CustomerAddress2]          [nvarchar](100) NULL,
-		[CustomerCity]              [nvarchar](100) NULL,
-		[CustomerStateOrProvince]   [nvarchar](10) NULL,
-		[CustomerPostalCode]        [nvarchar](50) NULL,
-		[CustomerCountry]           [nvarchar](50) NULL,
-		[CustomerCounty]            [nvarchar](50) NULL,
-		[CustomerInternationalFlag] [bit] NULL,
-		[CustomerTerritory]         [nchar](2) NULL,
-		[CustomerCodeArea]          [nchar](2) NULL,
-		[CustomerCredit]            [nchar](2) NULL,
+	CREATE TABLE #DimQuote_work (
+		[QuoteNumber]				[nchar](7) NOT NULL,
+		[QuoteCreationDate]			[nchar](7) NULL,
+		[QuoteWonLossDate]			[nchar](6) NULL,
+
 
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
@@ -49,33 +41,33 @@ BEGIN
 	)
 
 	--Load #work table with data in the format in which it will appear in the dimension
-	INSERT INTO #DimCustomer_work
+	INSERT INTO #DimQuote_work
 			SELECT 		
-				 * from dwstage.V_LoadDimCustomer
+				 * from dwstage.V_LoadDimQuote
     
-    Update #DimCustomer_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
+    Update #DimQuote_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimCustomer_current (CustomerID NCHAR(5)
+	CREATE TABLE #DimQuote_current (QuoteNumber NVARCHAR(6)
 										, Type2RecordHash VARBINARY(64)
 										)
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
-	INSERT INTO #DimCustomer_current
-	SELECT	CustomerID
+	INSERT INTO #DimQuote_current
+	SELECT	QuoteNumber
 			, Type2RecordHash
-	FROM	dw.DimCustomer
+	FROM	dw.DimQuote
 	WHERE	DWIsCurrent = 1
 
 
 	--INSERT NEW Dimension Items
-	INSERT INTO dw.DimCustomer 
+	INSERT INTO dw.DimQuote 
 	SELECT	*
-	FROM	#DimCustomer_work AS Work
+	FROM	#DimQuote_work AS Work
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.DimCustomer AS DIM
-						WHERE	DIM.CustomerID = Work.CustomerID 
+						FROM	dw.DimQuote AS DIM
+						WHERE	DIM.QuoteNumber = Work.QuoteNumber 
 						)
 
 
@@ -83,24 +75,24 @@ BEGIN
 	UPDATE	DIM
 	SET		DWEffectiveEndDate = @CurrentTimestamp
 			, DWIsCurrent = 0
-	FROM	dw.DimCustomer		AS DIM
-	 JOIN   #DimCustomer_work	AS Work
-	  ON	Dim.CustomerD = Work.CustomerID
+	FROM	dw.DimQuote		AS DIM
+	 JOIN   #DimQuote_work	AS Work
+	  ON	Dim.QuoteNumber  = Work.QuoteNumber 
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
 
 	--INSERT New versions of expired records that have Type 2 changes
-	INSERT INTO dw.DimCustomer
+	INSERT INTO dw.DimSalesPerson
 	SELECT	Work.*
-	FROM	#DimCustomer_current AS DIM
-	 JOIN   #DimCustomer_work    AS Work
-	  ON	Dim.CustomerID = Work.CustomerID
+	FROM	#DimQuote_current AS DIM
+	 JOIN   #DimQuote_work    AS Work
+	  ON	Dim.QuoteNumber = Work.QuoteNumber
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
 	--DROP temp tables
-	BEGIN TRY DROP TABLE #DimCustomer_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimCustomer_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimQuote_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimQuote_current	END TRY BEGIN CATCH END CATCH
 	 
 
 END

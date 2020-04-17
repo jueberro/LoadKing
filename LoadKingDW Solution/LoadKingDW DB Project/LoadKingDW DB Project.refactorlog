@@ -105,4 +105,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="User5" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="20bd6160-f37e-4d91-9866-391636b010ed" ChangeDateTime="04/16/2020 13:57:27">
+    <Property Name="ElementName" Value="[dw].[DimSalesPerson].[ID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dw].[DimSalesPerson]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SalespersonID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cf9dc8da-9945-4ab8-a7e8-88a0b0df4089" ChangeDateTime="04/16/2020 14:39:29">
+    <Property Name="ElementName" Value="[dwstage].[SALESPERSONS].[ID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dwstage].[SALESPERSONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SalespersonID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7c9195c7-3c08-48f7-98eb-26d7dd093886" ChangeDateTime="04/16/2020 17:20:16">
+    <Property Name="ElementName" Value="[dwstage].[DimQuote].[QuoteID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dwstage].[DimQuote]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="QuoteNo" />
+  </Operation>
 </Operations>

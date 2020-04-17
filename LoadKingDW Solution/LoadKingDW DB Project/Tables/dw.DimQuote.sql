@@ -2,8 +2,8 @@
 (
 	[DimQuote_Key] int IDENTITY(1,1),
 	[QuoteNumber] [nchar](7) NULL,
-	[QuoteCreationDate] [date] NULL,
-	[QuoteWonLostDate] [date] NULL,
+	[QuoteCreationDate] CHAR(6) NULL,
+	[QuoteWonLostDate] CHAR(8) NULL,
 
 	/*Hashes used for identifying changes, not required for reporting*/
 	Type1RecordHash				VARBINARY(64)				NULL,

@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dwstage].[V_LoadDimCustomer]
+﻿CREATE VIEW [dwstage].[V_LoadCustomer]
 AS
 SELECT 		                                 
 		  [CustomerID]				  = CAST([CUSTOMER]				AS NCHAR(6))
