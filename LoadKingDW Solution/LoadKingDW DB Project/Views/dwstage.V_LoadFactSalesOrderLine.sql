@@ -14,14 +14,7 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 		--Key Attributes
 		, OrderNumber               = CAST(Stage.ORDER_NO				AS nchar(7))
 		, OrderLine                 = CAST(Stage.RECORD_NO              AS nchar(4))
-		, OLDateOrder               = CAST(Stage.DATE_ORDER             AS datetime)
-		, OLDateShipped             = CAST(Stage.DATE_SHIP              AS datetime)
-		, User1                     = CAST(Stage.USER_1                 AS varchar(30))
-		, User2                     = CAST(Stage.USER_2                 AS varchar(30))
-		, TrackingNotes             = CAST(Stage.USER_3                 AS varchar(30))
-		, User4                     = CAST(Stage.USER_4                 AS varchar(30))
-		, LineShipVia               = CAST(Stage.USER_5                 AS varchar(30))
-
+	
 		-- measures					
 		, QuantityOrdered			= CAST(Stage.QTY_ORDERED			AS DECIMAL(16, 4))
 		, Cost  					= CAST(Stage.COST					AS DECIMAL(16, 4))
@@ -39,6 +32,11 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 		, OrderPrice 				= CASE WHEN Isnumeric(Stage.PRICE_ORDER) = 1           then  CAST(Stage.PRICE_ORDER		     	AS DECIMAL(16, 4)) ELSE NULL END
 		, OrderDiscountPrice 		= CAST(Stage.PRICE_DISC_ORD	        AS DECIMAL(16, 4))
     	, OrderPricePerPound 		= CAST(Stage.PRICE_LB_ORDER			AS DECIMAL(16, 4))
+        , QtyOriginal               = CAST(Stage.QTY_ORIGINAL           AS Decimal(13,4)) --[QTY_ORIGINAL] [numeric](13,4) NULL,	QtyOriginal
+        , QtyAllocated              = CAST(Stage.QTY_ALLOC              AS Decimal(13,4)) --[QTY_ALLOC] [numeric](13,4) NULL,	QtyAllocated
+        , QtyShipped                = CAST(Stage.QTY_SHIPPED            AS Decimal(13,4)) --[QTY_SHIPPED] [numeric](13,4) NULL,	QtyShipped
+        , QtyBackOrdered            = CAST(Stage.QTY_BO                 AS Decimal(13,4)) --[QTY_BO] [numeric](13,4) NULL,	QtyBackOrdered
+        , ExtendedPrice             = CAST(Stage.EXTENSION              AS Decimal(16,2)) --[EXTENSION] Numeric(16,2) NULL,	ExtendedPrice
 
 
 		/*Hash used for identifying changes, not required for reporting*/

@@ -13,28 +13,11 @@
 	, DimSalesperson_Key int not null
 	, DimSalesOrderAttribute_Key int not null
 	, DimQuote_Key int not null
-	--New
-
-
+	
 	-- Key Attributes 
 
 	, OrderNumber               nchar(7)
 	, OrderLine                 nchar(4)
-	, OLDateOrder               datetime 
-	, OLDateShipped             datetime
-
-	--NewKeyAttributes
-	, User1                     varchar(30) --[USER_1] [char](30) NULL,	User1
-    , User2                     varchar(30) --[USER_2] [char](30) NULL,	User2
-    , TrackingNotes             varchar(30) --[USER_3] [char](30) NULL,	TrackingNotes
-    , User4                     varchar(30) --[USER_4] [char](30) NULL,	User3
-    , LineShipVia               varchar(30) --[USER_5] [char](30) NULL,	LineShipVia
-
-	--[CUSTOMER_PART] [char](20) NULL,	CustomerPart
-	
-    --[INFO_1] [char](20) NULL,	PriceGroupID
-    --[INFO_2] [char](20) NULL,	SOGroupID
-	--[OrderSort] [nvarchar](20) NULL,
 	
 	--Measure Sources
 
@@ -54,15 +37,11 @@
 	, OrderPrice decimal(16,4)
 	, OrderDiscountPrice decimal(16,4)
 	, OrderPricePerPound decimal(16,4)
-
---[ITEM_PROMISE_DT] date NULL,	PromiseDateDimDate
---[ADD_BY_DATE] date NULL,	DateAddedDateDimDate
---[MUST_DLVR_BY_DATE] date NULL,	DeliverByDateDimDate
---[QTY_ORIGINAL] [numeric](13,4) NULL,	QtyOriginal
---[QTY_ALLOC] [numeric](13,4) NULL,	QtyAllocated
---[QTY_SHIPPED] [numeric](13,4) NULL,	QtyShipped
---[QTY_BO] [numeric](13,4) NULL,	QtyBackOrdered
---[EXTENSION] Numeric(16,2) NULL,	ExtendedPrice
+    , QtyOriginal     decimal(13,4) --[QTY_ORIGINAL] [numeric](13,4) NULL,	QtyOriginal
+    , QtyAllocated    decimal(13,4) --[QTY_ALLOC] [numeric](13,4) NULL,	QtyAllocated
+    , QtyShipped      decimal(13,4) --[QTY_SHIPPED] [numeric](13,4) NULL,	QtyShipped
+    , QtyBackOrdered  decimal(13,4) --[QTY_BO] [numeric](13,4) NULL,	QtyBackOrdered
+    , ExtendedPrice   decimal(16,2) --[EXTENSION] Numeric(16,2) NULL,	ExtendedPrice
 
 	/*Hash used for identifying changes, not required for reporting*/
 	,RecordHash					VARBINARY(64)			NULL

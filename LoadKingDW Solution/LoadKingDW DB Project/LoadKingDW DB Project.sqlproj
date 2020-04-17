@@ -119,7 +119,6 @@
     <Build Include="Tables\dw.DimGLMaster.sql" />
     <Build Include="Tables\dw.DimQuote.sql" />
     <Build Include="Scripts\Build_DimDate_DimTime.sql" />
-    <Build Include="Stored Procedures\dw.LoadDimSalesOrderAttribute.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
