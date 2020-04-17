@@ -1,4 +1,6 @@
-﻿CREATE VIEW [dwstage].[V_LoadDimSalesOrder] AS
+﻿
+/*      ***** 4/17/2020 ELD code commented out for the short-term as this is in an incomplete state at the moment and causing build errors *****
+CREATE VIEW [dwstage].[V_LoadDimSalesOrder] AS
 
 SELECT   
 	
@@ -75,3 +77,4 @@ FROM	SELECT dwstage.ORDER_HEADER AS Stage
       Where Stage.RECORD_TYPE = 'A'
 
 GO
+*/
