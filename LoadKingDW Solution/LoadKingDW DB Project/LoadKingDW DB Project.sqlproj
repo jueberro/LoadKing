@@ -114,7 +114,6 @@
     <Build Include="Tables\dw.FactSalesOrderLine.sql" />
     <Build Include="Tables\dw.DimSalesOrderAttribute.sql" />
     <Build Include="Tables\dw.DimDate.sql" />
-    <Build Include="Tables\dw.DimTime.sql" />
     <Build Include="Tables\dw.DimSalesperon.sql" />
     <Build Include="Tables\dw.DimQuote.sql" />
     <Build Include="Scripts\Build_DimDate_DimTime.sql" />
