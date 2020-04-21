@@ -5,8 +5,8 @@
 			)
 
 BEGIN
-	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, ODSTableName, StageTableName, StoredProcedureName)
-	VALUES ('dw.DimEmployee', 'Dimension', 'Global Shop', 'Employee', 'dbo.EMPLOYEE_MSTR', 'dwstage.EMPLOYEE_MSTR', 'dw.LoadDimEmployee')
+	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, ODSTableName, StageTableName, StoredProcedureName, SSISPackageName)
+	VALUES ('dw.DimEmployee', 'Dimension', 'Global Shop', 'Employee', 'dbo.EMPLOYEE_MSTR', 'dwstage.EMPLOYEE_MSTR', 'dw.LoadDimEmployee', 'DWLoadDimEmployee.dtsx')
 
 END
 
@@ -17,7 +17,7 @@ IF NOT EXISTS(SELECT 1 FROM dwetl.DWTableSource
 			)
 
 BEGIN
-	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, ODSTableName, StageTableName, StoredProcedureName)
-	VALUES ('dw.DimCustomer', 'Dimension', 'Global Shop', 'Customer', 'dbo.CUSTOMER_MASTER', 'dwstage.CUSTOMER_MASTER', 'dw.LoadDimCustomer')
+	INSERT INTO dwetl.DWTableSource (DWTableName, DWTableType, SourceSystemName, SourceDataSetName, ODSTableName, StageTableName, StoredProcedureName, SSISPackageName)
+	VALUES ('dw.DimCustomer', 'Dimension', 'Global Shop', 'Customer', 'dbo.CUSTOMER_MASTER', 'dwstage.CUSTOMER_MASTER', 'dw.LoadDimCustomer', 'DWLoadDimCustomer.dtsx')
 
 END

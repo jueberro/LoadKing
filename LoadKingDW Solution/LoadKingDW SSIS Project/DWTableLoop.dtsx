@@ -12,15 +12,15 @@
   DTS:ObjectName="DWTableLoop"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{F6EB1A3B-8C23-4308-83D5-1F3376CA869E}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{F418BDF8-37C1-4B5A-AD00-22C0A0CF498F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:Description="Lookup, Dimension, Fact"
+      DTS:Description="Lookup, Dimension, Fact.  Value passed by &quot;Master&quot; package."
       DTS:DTSID="{27BEE9CB-FA8F-4E32-87DA-EBF9B692C06C}"
       DTS:ObjectName="DWTableType">
       <DTS:Property
@@ -31,6 +31,7 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:Description="List of tables to process"
       DTS:DTSID="{D0563867-1895-4C66-9BD0-5CF29D526C69}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
@@ -89,6 +90,17 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:Description="Included in DWTableConfigInfoList - name of child SSIS package to execute"
+      DTS:DTSID="{770DC866-6ACA-41FA-95C1-F14A354645C7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SSISPackageName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{383B79C0-828A-49A8-99FE-15240EBD5511}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -132,6 +144,7 @@
         <DTS:Executable
           DTS:refId="Package\FEL - Process DW Table Loads\EPT - Execute DW Table Load Package"
           DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:DelayValidation="True"
           DTS:Description="Execute Package Task"
           DTS:DTSID="{D2170920-8EE0-4AEF-B313-32307F88BED5}"
           DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -139,10 +152,11 @@
           DTS:ObjectName="EPT - Execute DW Table Load Package"
           DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="PackageName">@[User::SSISPackageName]</DTS:PropertyExpression>
           <DTS:ObjectData>
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
-              <PackageName>DWLoadSingleDWTable.dtsx</PackageName>
               <ParameterAssignment>
                 <ParameterName>DWTableName</ParameterName>
                 <BindedVariableOrParameterName>User::DWTableName</BindedVariableOrParameterName>
@@ -170,40 +184,28 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{E6877D71-AB18-4B78-9069-F26CB4FF1898}"
-          DTS:ObjectName="{E6877D71-AB18-4B78-9069-F26CB4FF1898}"
+          DTS:DTSID="{626E5DC7-42FB-445B-81D7-9A22AA92E70D}"
+          DTS:ObjectName="{626E5DC7-42FB-445B-81D7-9A22AA92E70D}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::DWTableName" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{70F386B0-05D6-473E-9D5F-D05F2EBC3C6B}"
-          DTS:ObjectName="{70F386B0-05D6-473E-9D5F-D05F2EBC3C6B}"
+          DTS:DTSID="{2858B99E-CAC4-4B96-A3D4-CBCA31FFDF0A}"
+          DTS:ObjectName="{2858B99E-CAC4-4B96-A3D4-CBCA31FFDF0A}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::SourceSystemName" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{AC71EDB3-C08F-4F4E-82D7-C2C9C7753103}"
-          DTS:ObjectName="{AC71EDB3-C08F-4F4E-82D7-C2C9C7753103}"
+          DTS:DTSID="{51B28E23-DF8F-4A70-972C-3A075DE2AC71}"
+          DTS:ObjectName="{51B28E23-DF8F-4A70-972C-3A075DE2AC71}"
           DTS:ValueIndex="2"
           DTS:VariableName="User::SourceDataSetName" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{7C902E12-1190-4818-AB32-45BB2C506517}"
-          DTS:ObjectName="{7C902E12-1190-4818-AB32-45BB2C506517}"
+          DTS:DTSID="{1B2D4614-A213-4FA4-B09F-CEFFB293971F}"
+          DTS:ObjectName="{1B2D4614-A213-4FA4-B09F-CEFFB293971F}"
           DTS:ValueIndex="3"
-          DTS:VariableName="User::ODSTableName" />
-        <DTS:ForEachVariableMapping
-          DTS:CreationName=""
-          DTS:DTSID="{7192F276-2694-486D-ACDF-9B9DFFEA32D6}"
-          DTS:ObjectName="{7192F276-2694-486D-ACDF-9B9DFFEA32D6}"
-          DTS:ValueIndex="4"
-          DTS:VariableName="User::StageTableName" />
-        <DTS:ForEachVariableMapping
-          DTS:CreationName=""
-          DTS:DTSID="{76A80EC2-6225-4601-B5BB-068E8AC49956}"
-          DTS:ObjectName="{76A80EC2-6225-4601-B5BB-068E8AC49956}"
-          DTS:ValueIndex="5"
-          DTS:VariableName="User::StoredProcedureName" />
+          DTS:VariableName="User::SSISPackageName" />
       </DTS:ForEachVariableMappings>
     </DTS:Executable>
     <DTS:Executable
@@ -263,8 +265,8 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="273.333333333334,103.333333333334"
-          Size="273.333333333334,146"
+          PanelSize="273.333333333334,104"
+          Size="273.333333333334,146.666666666667"
           Id="Package\FEL - Process DW Table Loads"
           TopLeft="5.50000000000003,108.166666666667" />
         <NodeLayout
