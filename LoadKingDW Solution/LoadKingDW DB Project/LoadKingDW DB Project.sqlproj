@@ -126,6 +126,7 @@
     <Build Include="Stored Procedures\dw.LoadDimGLAccount.sql" />
     <Build Include="Tables\dw.DimGLAccount.sql" />
     <Build Include="Views\dwstage.V_LoadDIMGLAccount.sql" />
+    <Build Include="Tables\dwstage._V_SalesOrder.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
