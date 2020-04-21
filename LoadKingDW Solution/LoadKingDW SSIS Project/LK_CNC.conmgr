@@ -5,10 +5,13 @@
   DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=LK-DW-TEST\LK_DW;User ID=edavis;Password=Tembila0!;Initial Catalog=LK-GS-CNC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      DTS:ConnectionString="Data Source=LK-DW-TEST\LK_DW;User ID=edavis;Initial Catalog=LK-GS-CNC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1"></DTS:Password>
+        Sensitive="1"
+        p4:Salt="0webnXvP+Gg="
+        p4:IV="xk+wYcWdfqma7hB1KJGALg=="
+        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">VYaGDZFdC+lM7WtRTLq2oh1K3unT27ebMSArhDCEgt1e8QrddkHjRWexrmrH1Y0f2b4kWMZs9DXOvs8OQAERgEviOZlyCU3+LDWfwffpTR6mFjba5dNeJJ/nIp/70/ANOWmxvZdyGSiaCql+25BcJE7xaWPqAHh6KRzMDemqmko=</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

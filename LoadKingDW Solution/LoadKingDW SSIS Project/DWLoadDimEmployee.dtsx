@@ -11,9 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadDimEmployee"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{EA9A8008-E060-478B-B624-4D27D116207D}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{21FDA113-551F-40AD-908B-860BFA2A9DB5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>

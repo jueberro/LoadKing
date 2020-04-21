@@ -11,9 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadDimInventory"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="38"
-  DTS:VersionGUID="{08A25252-EECC-42E7-B47D-B1A43FADAB61}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{CCDD8D4A-81C5-414F-BA07-F577119DB4BB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>

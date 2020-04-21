@@ -7,13 +7,13 @@
   DTS:CreatorName="AzureAD\BobRubocki"
   DTS:DTSID="{E1827117-F171-4651-B18E-545728BCF9C5}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWTableLoop"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{F418BDF8-37C1-4B5A-AD00-22C0A0CF498F}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{DFE33BA3-B7F8-4303-976E-90F000FBEE4B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -259,18 +259,18 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="262.666666666667,42.6666666666667"
+          Size="263,43"
           Id="Package\FEL - Process DW Table Loads\EPT - Execute DW Table Load Package"
           TopLeft="5.5,5.50000000000004" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="273.333333333334,104"
-          Size="273.333333333334,146.666666666667"
+          PanelSize="273,104"
+          Size="273,147"
           Id="Package\FEL - Process DW Table Loads"
           TopLeft="5.50000000000003,108.166666666667" />
         <NodeLayout
-          Size="217.333333333334,42.6666666666667"
+          Size="217,43"
           Id="Package\SQL - GetDWTableConfigInfo"
           TopLeft="33.5,5.50000000000004" />
         <EdgeLayout

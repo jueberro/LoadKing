@@ -11,9 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{0372F5B2-D5FD-4F01-8326-F6CFEF984E27}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{EF2E65B3-AEB1-4C23-9D36-3D3A49A432E1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
