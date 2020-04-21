@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[_V_Order_Lines](
+﻿CREATE TABLE [dwstage].[_V_SalesOrder](
 	[SalesOrderNumber] [nchar](7) NULL,
 	[SalesOrderLine] [nchar](4) NULL,
 	[OHCreationDate] [date] NULL,

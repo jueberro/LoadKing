@@ -15,7 +15,7 @@ SELECT
 	,   [OHDateLastChanged]                      --[datetime] NULL,				
 	,   [OHLastChangedBy]                        --[nvarchar](8) NULL,				
 	,   [OLDateLastChanged]                      --[datetime] NULL,				
-	,   [OLastChangedBy]                         --[nvarchar](8) NULL,				
+	,   [OLLastChangedBy]                         --[nvarchar](8) NULL,				
 	,   [OLDateOrder]                            --[datetime] NULL,						
 	,   [OLDateShipped]                          --[datetime] NULL,					
 	,   [OLItemPromiseDate]                      --[datetime] NULL,				

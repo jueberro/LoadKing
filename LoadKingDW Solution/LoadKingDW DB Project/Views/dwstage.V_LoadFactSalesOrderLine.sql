@@ -64,14 +64,14 @@ FROM	dwstage._V_SalesOrder as Stage
    AND  DI.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimDate AS OrderDate
-  ON	CAST(Stage.DATE_ORDER as datetime) = OrderDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
+  ON	Stage.OLDateOrder = OrderDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
 
  LEFT OUTER JOIN dw.DimDate AS ShipDate
-  ON	CAST(Stage.DATE_SHIP as Datetime) = ShipDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
+  ON	Stage.OLDateShipped = ShipDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
 
  LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
-  ON	CAST(stage.SHIP_ID AS NCHAR(6)) = DCST.ShipToSeq
-   AND     CAST(Stage.CUSTOMER AS nchar(6)) = DCST.PrimaryCustomerID
+  ON	stage.OHShipToSeq = DCST.ShipToSeq
+   AND     Stage.OHCustomerID  = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
 
    --   Where Stage.RECORD_TYPE = 'L'  --Proc That builds ODS - dbo_V_SalesOrder already contains this!

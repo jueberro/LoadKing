@@ -34,3 +34,4 @@ LoadKingDW Solution/LoadKingDW DB Project/obj/Debug/LoadKingDW DB Project.sqlpro
 /LoadKingDW Solution/LoadKingDW DB Project/bin/Debug
 *.sqlite
 .vs/VSWorkspaceState.json
+/LoadKingDW Solution/LoadKingDW DB Project/obj/Debug/refactor.xml
