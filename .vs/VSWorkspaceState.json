@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\LoadKingDW Solution"
+    "\\LoadKingDW Solution",
+    "\\LoadKingDW Solution\\LoadKingDW SSIS Project"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\LoadKingDW Solution\\LoadKingDW SSIS Project\\GlobalShopExtractMaster.dtsx",
   "PreviewInSolutionExplorer": false
 }

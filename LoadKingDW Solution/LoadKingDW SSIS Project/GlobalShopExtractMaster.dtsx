@@ -7,13 +7,13 @@
   DTS:CreatorName="AzureAD\BobRubocki"
   DTS:DTSID="{4835FEE3-C533-47CD-869A-11E351A7E517}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{5FE59E29-C332-449B-8B04-B697973DC84F}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{0372F5B2-D5FD-4F01-8326-F6CFEF984E27}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -175,34 +175,16 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}"
-              SQLTask:SqlStatementSource="EXEC globalshoplanding.ExtractSourceTableData @LoadLogKey = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @SourceTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @TargetTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @ExtractLowDate = ?"
+              SQLTask:SqlStatementSource="EXEC dbo.getCUSTOMER_MASTER @SourceTableName = ?&#xA;&#xA;/*EXEC globalshoplanding.ExtractSourceTableData @LoadLogKey = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @SourceTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @TargetTableName = ?&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;, @ExtractLowDate = ?&#xA;*/"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="SourceRecordCount"
                 SQLTask:DtsVariableName="User::SourceRecordCount" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="1"
+                SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::SourceTableName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
-                SQLTask:ParameterSize="-1" />
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="2"
-                SQLTask:DtsVariableName="User::TargetTableName"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="131"
-                SQLTask:ParameterSize="-1" />
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="3"
-                SQLTask:DtsVariableName="User::ExtractLowDate"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="135"
-                SQLTask:ParameterSize="-1" />
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="0"
-                SQLTask:DtsVariableName="User::LoadLogKey"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="3"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
@@ -221,7 +203,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
-              SQLTask:SqlStatementSource="EXEC globalshoplanding.LogLoadStart @ProcessPlatformName = 'SSIS'&#xA;&#x9;&#x9;&#x9;&#x9;, @ProcessName = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @ProcessExecutionId = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @SourceSystemName = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @SourceDataSetName = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @FullExtractFlag = ?"
+              SQLTask:SqlStatementSource="EXEC ods_globalshop.LogLoadStart @ProcessPlatformName = 'SSIS'&#xA;&#x9;&#x9;&#x9;&#x9;, @ProcessName = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @ProcessExecutionId = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @SourceSystemName = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @SourceDataSetName = ?&#xA;&#x9;&#x9;&#x9;&#x9;, @FullExtractFlag = ?"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="ExtractLowDate"
@@ -285,7 +267,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
-              SQLTask:SqlStatementSource="EXEC globalshoplanding.LogLoadSuccess @LoadLogKey = ?, @SourceRecordCount = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC ods_globalshop.LogLoadSuccess @LoadLogKey = ?, @SourceRecordCount = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::LoadLogKey"
@@ -355,7 +337,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
-          SQLTask:SqlStatementSource="EXEC globalshoplanding.GetTablesToExtract"
+          SQLTask:SqlStatementSource="EXEC ods_globalshop.GetTablesToExtract"
           SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
@@ -438,19 +420,19 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="202.666666666667,42.6666666666667"
+          Size="203,43"
           Id="Package\FEL - Loop through source tables\SQL - Extract Source Data"
           TopLeft="5.50000000000003,108.166666666667" />
         <NodeLayout
-          Size="170.666666666667,42.6666666666667"
+          Size="171,43"
           Id="Package\FEL - Loop through source tables\SQL - LogLoadStart"
           TopLeft="21.5,5.50000000000004" />
         <NodeLayout
-          Size="185.333333333334,42.6666666666667"
+          Size="185,43"
           Id="Package\FEL - Loop through source tables\SQL - LogLoadSuccess"
-          TopLeft="14.1666666666667,210.833333333334" />
+          TopLeft="14.1666666666667,209.833333333334" />
         <EdgeLayout
           Id="Package\FEL - Loop through source tables.PrecedenceConstraints[Constraint]"
           TopLeft="106.833333333333,48.1666666666667">
@@ -475,18 +457,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Loop through source tables.PrecedenceConstraints[Constraint 1]"
-          TopLeft="106.833333333333,150.833333333333">
+          TopLeft="106.833333333333,151.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
+              EndConnector="0,58.666666666667"
               Start="0,0"
-              End="0,52.5000000000001">
+              End="0,51.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5000000000001" />
+                    End="0,51.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -498,28 +480,28 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="213.333333333334,308.666666666667"
-          Size="213.333333333334,351.333333333334"
+          PanelSize="213,309"
+          Size="213,352"
           Id="Package\FEL - Loop through source tables"
           TopLeft="5.50000000000006,108.166666666667" />
         <NodeLayout
-          Size="210.666666666667,42.6666666666667"
+          Size="211,43"
           Id="Package\SQL - Get Tables To Extract"
           TopLeft="6.83333333333337,5.50000000000004" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="112.166666666667,48.1666666666667">
+          TopLeft="112.166666666667,48.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59.6666666666669"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.1666666666669">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.1666666666669" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -528,6 +510,13 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="ELD 4/21/2020 All Stored Procs now reference schema ods_globalshop"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="402,40"
+          Id="b66eb448-c7d7-486b-878e-f64ddc5b4f07"
+          TopLeft="554,219" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

@@ -13,7 +13,7 @@ END
 IF NOT EXISTS(SELECT 1 FROM dwetl.DWTableSource 
 			WHERE	DWTableName			= 'dw.DimCustomer'
 			 AND	SourceSystemName	= 'Global Shop'
-			 AND	SourceDataSetName	= 'Customer'
+			 AND	SourceDataSetName	= 'Customer' --
 			)
 
 BEGIN
