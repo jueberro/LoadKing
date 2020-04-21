@@ -1,4 +1,5 @@
-﻿CREATE VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
+﻿
+Create VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
 
 SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 	    , DimCustomer_Key			 = ISNULL(DC.DimCustomer_Key,         -1)
@@ -8,36 +9,36 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 		, DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)
 		, DimGLMaster_Key            =  -1
 		, DimSalesperson_Key         =  -1
-	    , DimSalesOrderAttribute_Key =  -1
 	    , DimQuote_Key               =  -1
 
-		--Key Attributes
-		, OrderNumber               = CAST(Stage.ORDER_NO				AS nchar(7))
-		, OrderLine                 = CAST(Stage.RECORD_NO              AS nchar(4))
-	
-		-- measures					
-		, QuantityOrdered			= CAST(Stage.QTY_ORDERED			AS DECIMAL(16, 4))
-		, Cost  					= CAST(Stage.COST					AS DECIMAL(16, 4))
-	    , Margin 					= CAST(Stage.MARGIN					AS DECIMAL(16, 4))
-	    , Price 					= CAST(Stage.PRICE					AS DECIMAL(16, 4))
-	    , PriceDiscount 			= CASE WHEN Isnumeric(Stage.DISCOUNT_PRICE)     = 1    then  CAST(Stage.DISCOUNT_PRICE	        AS NUMERIC(16,4))  ELSE NULL  END
-	    , PricePerPound 			= CASE WHEN Isnumeric(Stage.PRICE_LB)           = 1    then  CAST(Stage.PRICE_LB				AS DECIMAL(16, 4)) ELSE NULL  END		
-		, DiscountAmount 			= CASE WHEN Isnumeric(Stage.AMT_DISCOUNT)       = 1    then  CAST(Stage.AMT_DISCOUNT			AS DECIMAL(16, 4)) ELSE NULL  END		
-	    , OrderDiscount 			= CASE WHEN Isnumeric(Stage.ORDER_DISC_AMT)     = 1    then  CAST(Stage.ORDER_DISC_AMT		    AS DECIMAL(16, 4)) ELSE NULL  END	 
-		, PriceClassDiscount 		= CASE WHEN Isnumeric(Stage.PRICE_CLASS_DISC)   = 1    then  CAST(Stage.PRICE_CLASS_DISC		AS DECIMAL(16, 4)) ELSE NULL  END
-        , ProductLineDiscount 		= CASE WHEN Isnumeric(Stage.PROD_LINE_DISC)     = 1    then  CAST(Stage.PROD_LINE_DISC			AS DECIMAL(16, 4)) ELSE NULL  END
-		, OrderDiscountAmount 		= CAST(Stage.AMT_DISC_ORDER			AS DECIMAL(16, 4))		
-		, ProductClassDiscountAmount= CAST(Stage.AMT_DISC_PR_CL_ORD		AS DECIMAL(16, 4))
-		, ProductLineDiscountAmount = CAST(Stage.PRDLN_DISC_AMT			AS DECIMAL(16, 4))
-		, OrderPrice 				= CASE WHEN Isnumeric(Stage.PRICE_ORDER) = 1           then  CAST(Stage.PRICE_ORDER		     	AS DECIMAL(16, 4)) ELSE NULL END
-		, OrderDiscountPrice 		= CAST(Stage.PRICE_DISC_ORD	        AS DECIMAL(16, 4))
-    	, OrderPricePerPound 		= CAST(Stage.PRICE_LB_ORDER			AS DECIMAL(16, 4))
-        , QtyOriginal               = CAST(Stage.QTY_ORIGINAL           AS Decimal(13,4)) --[QTY_ORIGINAL] [numeric](13,4) NULL,	QtyOriginal
-        , QtyAllocated              = CAST(Stage.QTY_ALLOC              AS Decimal(13,4)) --[QTY_ALLOC] [numeric](13,4) NULL,	QtyAllocated
-        , QtyShipped                = CAST(Stage.QTY_SHIPPED            AS Decimal(13,4)) --[QTY_SHIPPED] [numeric](13,4) NULL,	QtyShipped
-        , QtyBackOrdered            = CAST(Stage.QTY_BO                 AS Decimal(13,4)) --[QTY_BO] [numeric](13,4) NULL,	QtyBackOrdered
-        , ExtendedPrice             = CAST(Stage.EXTENSION              AS Decimal(16,2)) --[EXTENSION] Numeric(16,2) NULL,	ExtendedPrice
-
+            --Attributes
+		, Stage.SalesOrderNumber
+		, Stage.SalesOrderLine  
+		
+	      	--Measures
+	 
+	    , Stage.Price 					   
+		, Stage.Cost  					   
+		, Stage.ExtenedPrice                
+		, Stage.Margin 					   
+		, Stage.QtyOriginal                 
+		, Stage.QtyAllocated                
+		, Stage.QuantityOrdered			   
+		, Stage.Qty_Shipped                 
+		, Stage.QtyBackOrdered              
+		, Stage.PriceDiscount 			   
+		, Stage.PricePerPound 	     	   
+		, Stage.DiscountAmount 			   
+		, Stage.OrderDiscount 			   
+		, Stage.ProductClassDiscountAmount  
+		, Stage.ProductLineDiscount 		   
+		, Stage.OrderDiscountAmount 		   
+		, Stage.PriceClassDiscount 		   
+		, Stage.ProductLineDiscountAmount   
+		, Stage.OrderPrice 				   
+		, Stage.OrderDiscountPrice 		   
+		, Stage.OrderPricePerPound          
+		
 
 		/*Hash used for identifying changes, not required for reporting*/
 		, RecordHash				= CAST(0 AS VARBINARY(64)) 
@@ -49,17 +50,17 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 		, [DWIsCurrent]				  = CAST(1					  AS BIT)
 		, [LoadLogKey]				  = CAST(0                    AS INT)
 
-FROM	dwstage.ORDER_LINES AS Stage
+FROM	dwstage._V_SalesOrder as Stage
    
  LEFT OUTER JOIN dw.DimSalesOrder AS DSO
-  ON	CAST(Stage.ORDER_NO AS NCHAR(7)) = DSO.SalesOrderNumber   AND	DSO.DWIsCurrent = 1 
+  ON	Stage.SalesOrderNumber = DSO.SalesOrderNumber   AND	DSO.DWIsCurrent = 1 
 
  LEFT OUTER JOIN dw.DimCustomer AS DC
-  ON    CAST(Stage.CUSTOMER	AS NCHAR(6)) = DC.CustomerID
+  ON    Stage.OHCustomerID = DC.CustomerID
    AND  DC.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimInventory AS DI
-  ON    CAST(Stage.PART	AS NCHAR(20)) = DI.PartID
+  ON    Stage.OLPartID = DI.PartID
    AND  DI.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimDate AS OrderDate
@@ -73,5 +74,5 @@ FROM	dwstage.ORDER_LINES AS Stage
    AND     CAST(Stage.CUSTOMER AS nchar(6)) = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
 
-      Where Stage.RECORD_TYPE = 'L'
+   --   Where Stage.RECORD_TYPE = 'L'  --Proc That builds ODS - dbo_V_SalesOrder already contains this!
 

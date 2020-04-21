@@ -1,5 +1,4 @@
-﻿CREATE TABLE [dwstage].[_V_SalesOrder]
-(
+﻿CREATE TABLE [dbo].[_V_Order_Lines](
 	[SalesOrderNumber] [nchar](7) NULL,
 	[SalesOrderLine] [nchar](4) NULL,
 	[SOCreationDate] [date] NULL,
@@ -12,13 +11,22 @@
 	[SOShippingZone] [nchar](6) NULL,
 	[SODateLastChanged] [date] NULL,
 	[SOLastChangedBy] [nvarchar](8) NULL,
+	[OLDateLastChanged] [date] NULL,
+	[OLLastChangedBy] [nvarchar](8) NULL,
 	[OLDateOrder] [date] NULL,
 	[OLDateShipped] [date] NULL,
 	[OLItemPromiseDate] [date] NULL,
 	[OLDateItemProm] [date] NULL,
 	[OLDateAddedDate] [date] NULL,
 	[OLDeliverByDate] [date] NULL,
-	[OLLastChangedBy] [nvarchar](8) NULL,
+	[OHCustomerID] [nchar](6) NULL,
+	[OLCustomerID] [nchar](6) NULL,
+	[OHShipToSeq] [nchar](6) NULL,
+	[OLShipToSeq] [nchar](6) NULL,
+	[OHSalespersonID] [nvarchar](3) NULL,
+	[OHQuoteNumber] [nchar](7) NULL,
+	[OHGLAccount] [nchar](15) NULL,
+	[OLPartID] [nchar](20) NULL,
 	[OLCustomerPart] [nvarchar](20) NULL,
 	[OLPriceGroupID] [nvarchar](20) NULL,
 	[OLSOGroupID] [nvarchar](20) NULL,
@@ -57,4 +65,3 @@
 	[ETL_Completed] [datetime] NULL
 ) ON [PRIMARY]
 GO
-
