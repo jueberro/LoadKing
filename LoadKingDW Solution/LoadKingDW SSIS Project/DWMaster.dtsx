@@ -7,13 +7,13 @@
   DTS:CreatorName="AzureAD\BobRubocki"
   DTS:DTSID="{62CB21EA-0B23-4904-913D-60C721A4727F}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWMaster"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{4D04648E-5083-46BC-B940-B1100C1BD878}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{A7BBBCAE-172A-427D-9C21-4A77DABF7031}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -141,15 +141,15 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="233.333333333334,42.6666666666667"
+          Size="233,43"
           Id="Package\EPT - DWTableLoop - Fact"
           TopLeft="5.50000000000003,210.833333333334" />
         <NodeLayout
-          Size="233.333333333334,42.6666666666667"
+          Size="233,43"
           Id="Package\EPT - DWTableLoop - Lookup"
           TopLeft="5.50000000000001,5.50000000000004" />
         <NodeLayout
-          Size="233.333333333334,42.6666666666667"
+          Size="233,43"
           Id="Package\ETP - DWTableLoop - Dimension"
           TopLeft="5.50000000000003,108.166666666667" />
         <EdgeLayout

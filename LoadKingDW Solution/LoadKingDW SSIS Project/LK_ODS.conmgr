@@ -8,7 +8,10 @@
       DTS:ConnectionString="Data Source=LK-DW-TEST\LK_DW;User ID=edavis;Initial Catalog=LK-GS-ODS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1"></DTS:Password>
+        Sensitive="1"
+        p4:Salt="1HzHkj0fT+U="
+        p4:IV="glGfB+OMZPUcaw1uI21JKQ=="
+        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">ZJHGTOoenPtnmYP7pje3rUntWKRDCEZBjmjiEuQgbn+TZ1tG/v9hGJ62HGOibTG4mLqVtIPO/X5fPlHtrkadzCpmfOsg9FyVr5RzsrypISU75g7TzfKURVAsGFX6d2F0ptXKNSRWCXJwhgPKGHvx1meLt1I1GuXQQ4nRVOPZKJA=</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

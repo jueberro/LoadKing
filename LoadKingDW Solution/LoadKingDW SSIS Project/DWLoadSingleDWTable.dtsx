@@ -7,13 +7,13 @@
   DTS:CreatorName="AzureAD\BobRubocki"
   DTS:DTSID="{070E870E-BC1C-464D-B2BC-4198623C41B4}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadSingleDWTable"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{4DE83759-8676-48E0-ABCF-28D7EC46A010}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{BC21C894-95FF-4628-80B3-58816E9E03C7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -28216,23 +28216,23 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="162.666666666667,42.6666666666667"
+          Size="163,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - CUSTOMER"
           TopLeft="226.166666666667,108.166666666667" />
         <NodeLayout
-          Size="160,42.6666666666667"
+          Size="160,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - EMPLOYEE"
           TopLeft="5.5,108.166666666667" />
         <NodeLayout
-          Size="140,42.6666666666667"
+          Size="140,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PLANT"
           TopLeft="449.5,108.166666666667" />
         <NodeLayout
-          Size="156,42.6666666666667"
+          Size="156,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\DFT - PRODUCT"
           TopLeft="650.5,108.166666666667" />
         <NodeLayout
-          Size="250.666666666667,42.6666666666667"
+          Size="251,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks\EXP - Conditional Expression Anchor"
           TopLeft="394.166666666667,5.49999999999993" />
         <EdgeLayout
@@ -28383,19 +28383,19 @@
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="812,206"
-          Size="812,248.666666666667"
+          Size="812,249"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SEQ - Run ONE of the following Data Flow Tasks"
           TopLeft="5.50000000000006,210.166666666667" />
         <NodeLayout
-          Size="257.333333333334,42.6666666666667"
+          Size="257,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - Exec DW Table Load Procedure"
           TopLeft="282.833333333333,518.833333333333" />
         <NodeLayout
-          Size="170.666666666667,42.6666666666667"
+          Size="171,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           TopLeft="326.166666666667,5.49999999999993" />
         <NodeLayout
-          Size="185.333333333334,42.6666666666667"
+          Size="185,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           TopLeft="318.833333333333,621.5" />
         <NodeLayout
@@ -28493,12 +28493,12 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="822.666666666667,719.333333333334"
-          Size="822.666666666667,762"
+          PanelSize="823,719"
+          Size="823,762"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           TopLeft="5.50000000000011,108.166666666667" />
         <NodeLayout
-          Size="242.666666666667,42.6666666666667"
+          Size="243,43"
           Id="Package\SQL - GetODSBatchesToProcess"
           TopLeft="295.5,5.49999999999993" />
         <EdgeLayout

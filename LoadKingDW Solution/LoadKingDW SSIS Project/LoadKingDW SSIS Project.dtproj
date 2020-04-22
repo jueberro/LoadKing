@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DeploymentModel>Project</DeploymentModel>
-  <ProductVersion>15.0.2000.71</ProductVersion>
+  <ProductVersion>15.0.2000.93</ProductVersion>
   <SchemaVersion>9.0.1.0</SchemaVersion>
   <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkZGwzMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAiIHhtbG5zOmRkbDMwMF8zMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAvMzAwIiB4bWxuczpkZGw0MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAiIHhtbG5zOmRkbDQwMF80MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAvNDAwIiB4bWxuczpkZGw1MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAiIHhtbG5zOmRkbDUwMF81MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAvNTAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD5mYWxzZTwvRW5hYmxlZD4NCiAgPFByb2plY3ROYW1lPjwvUHJvamVjdE5hbWU+DQogIDxBdXhQYXRoPjwvQXV4UGF0aD4NCiAgPExvY2FsUGF0aD48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPjwvUHJvdmlkZXI+DQo8L1NvdXJjZUNvbnRyb2xJbmZvPg==</State>
   <Database>
@@ -12,7 +12,7 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="DontSaveSensitive" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithPassword" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{7209cea2-6c7c-4d36-9319-b81a9dc25dd6}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">LoadKingDW SSIS Project</SSIS:Property>
@@ -26,6 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="6Wv6ydjk/zE=" SSIS:IV="C0vtVI9vE2uwUbz87rInyw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">MdkkuJzgUbeZ6XIzMiOhcDD7co3yaaWJ5prnJGJTfQrdTS0Whhmt/34IQ4IkSPELLhdLnezQFE2XOJM05LziyoxtylvaBElBz2FKn1XDfYTHQbtJeuLJ4aZ1DrNYXlgGeCRFWNZzkBMY8D2ZcV8uoTox2V1r9pPlijDj/0tyciC+TR3WCxAXhtdErUJSARL/</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -415,14 +416,14 @@
                 <SSIS:Property SSIS:Name="Name">DWMaster</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4D04648E-5083-46BC-B940-B1100C1BD878}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A7BBBCAE-172A-427D-9C21-4A77DABF7031}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
@@ -432,14 +433,14 @@
                 <SSIS:Property SSIS:Name="Name">GlobalShopExtractMaster</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">21</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">29</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{5FE59E29-C332-449B-8B04-B697973DC84F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EF2E65B3-AEB1-4C23-9D36-3D3A49A432E1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="FullExtractFlag">
@@ -477,14 +478,14 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimEmployee</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">17</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{EA9A8008-E060-478B-B624-4D27D116207D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{21FDA113-551F-40AD-908B-860BFA2A9DB5}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
@@ -551,14 +552,14 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadSingleDWTable</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">22</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">23</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4DE83759-8676-48E0-ABCF-28D7EC46A010}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{BC21C894-95FF-4628-80B3-58816E9E03C7}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
@@ -639,14 +640,14 @@
                 <SSIS:Property SSIS:Name="Name">DWTableLoop</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F6EB1A3B-8C23-4308-83D5-1F3376CA869E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DFE33BA3-B7F8-4303-976E-90F000FBEE4B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableType">
@@ -654,7 +655,7 @@
                     <SSIS:Property SSIS:Name="ID">{27BEE9CB-FA8F-4E32-87DA-EBF9B692C06C}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">Lookup, Dimension, Fact</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">Lookup, Dimension, Fact.  Value passed by "Master" package.</SSIS:Property>
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
@@ -670,14 +671,14 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimCustomer</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">23</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">24</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{10D3FF1B-4F2F-4A74-9817-511DC97CE0BE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{32CAFBDB-F28B-405A-8BCC-CBFF7BF193F8}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
@@ -744,14 +745,14 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimEmployee</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">23</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">24</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A7569603-5AAB-46BD-9356-2C3BA0FF49C4}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{65655653-17E2-4C7A-8D82-2AD34D8AEA2B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
@@ -818,14 +819,14 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimQuote</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">32</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{78560795-A8C6-4E24-92D7-D42E6381401B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2BE66CC5-42D6-4A5D-A83C-CA2D34F54038}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
@@ -892,14 +893,14 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimGLAccount</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">28</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">29</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A9AA3166-71E8-4039-94B6-D50D3A05E65E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B7BFB6BD-7BEB-4E38-885D-EBB7570A68CD}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
@@ -966,14 +967,14 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimCustomerShipTo</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">32</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{35A3AA50-57DB-498C-9890-BDBCC1D8DF9B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{964BFAF4-4AD4-4729-BF97-70F841CDD7A6}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
@@ -1036,23 +1037,23 @@
             </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="DWLoadDimInventory.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{325CB570-22E2-4551-A869-B3916D15883B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{3F78C9DB-5009-4D62-9774-AEF7C66242A0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">DWLoadDimInventory</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">39</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CFB9C03A-5AEA-4DF5-B432-1CCEB5AE1232}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{CCDD8D4A-81C5-414F-BA07-F577119DB4BB}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{E73B9ED9-A35D-4816-B19C-B3A73BEB2AA3}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{14E6342F-E854-43D6-B197-47BF9F20B4AE}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1066,7 +1067,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceDataSetName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{247FE2CD-C032-4E78-9C55-70A28A116AD4}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{538BF003-A1E7-4240-AF59-8DDEF0E00E92}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1080,7 +1081,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceSystemName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{16843805-2A40-4F11-88A0-190574A9C551}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{91206D51-23F3-4E2D-8D76-FC2881205AB7}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1094,7 +1095,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="StoredProcedureName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{D160CDAF-D804-4899-A948-7BF9BE79E793}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{389B3E99-4F09-41F3-A0A2-A7AE3426B31E}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1110,23 +1111,23 @@
             </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="DWLoadDimSalesOrder.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{50D24B2C-5E1F-4CD0-B5FD-81CDFEA68055}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DWLoadDimSalesOrder</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{368D15CC-F88C-479D-AFE8-310FCF7F1CD6}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadDimSalesOrders</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{9E8794B6-422B-4F1F-9B2E-0ED7ACA1C984}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{70DD5B69-BFA2-4982-ADAC-878218492232}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{F0FBA11F-BD03-45C6-965D-CCA457C09F21}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{5BD4639B-8661-4287-B2BE-3C2E1838267E}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1140,7 +1141,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceDataSetName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{2D000643-6D8C-4FD9-89D9-9F06D5EEB564}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{A5390D5A-99CC-45E3-8E6C-8A3F47D70CB4}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1154,7 +1155,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceSystemName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{29842654-1227-4DA0-AFAE-276FC3476D5E}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{E9E02677-F2E7-4695-9E7A-EDCB2B0D45F8}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1168,7 +1169,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="StoredProcedureName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{3974F054-5B6D-4C5B-95B1-BF273B3A5FB3}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{0EF14E75-9235-496B-BC90-982DD05BF5A8}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1184,23 +1185,23 @@
             </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="DWLoadFactSalesOrderLine.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{FB34DDA8-F6FD-45F9-88CA-5349E62C8079}</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{C0EAA2C8-85CB-44AD-B85E-B6981A0CBF4F}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">DWLoadFactSalesOrderLine</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">40</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{6F3157A3-F2A5-4923-B590-7C599053FA94}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5D4BB4D8-AF2A-4A2F-A3B2-176073BDB078}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{5CE053F6-8919-4A63-98E3-CC0B44B61C27}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{26F3A196-5813-47C7-BCB7-8AF6C6029565}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1214,7 +1215,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceDataSetName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{D57C1928-5E2C-43A2-BD2A-08FF0C618058}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{ADB2C31A-0CAB-467F-8DE6-C3F4315F6088}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1228,7 +1229,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceSystemName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{F4F7B810-1705-4B70-A76F-9279415E94D6}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{DC2B272E-A2E3-4C37-9468-6F350AFD28CB}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1242,7 +1243,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="StoredProcedureName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{70F4EBC1-702B-4583-A930-C00AD0133E05}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{181870AB-CA55-4638-B8FB-D811C78FBB41}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">

@@ -7,13 +7,13 @@
   DTS:CreatorName="AzureAD\BobRubocki"
   DTS:DTSID="{6752DA37-3ADC-484C-9AC1-93C092FD0E39}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadDimCustomerShipTo"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{35A3AA50-57DB-498C-9890-BDBCC1D8DF9B}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{964BFAF4-4AD4-4729-BF97-70F841CDD7A6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -3962,7 +3962,7 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="338.666666666667,42.6666666666667"
+          Size="339,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           TopLeft="5.50000000000003,210.833333333334" />
         <NodeLayout
@@ -3970,11 +3970,11 @@
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimCustomerShipTo"
           TopLeft="65.1666666666667,313.5" />
         <NodeLayout
-          Size="170.666666666667,42.6666666666667"
+          Size="171,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           TopLeft="85.8333333333333,5.50000000000004" />
         <NodeLayout
-          Size="185.333333333334,42.6666666666667"
+          Size="185,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           TopLeft="78.5,416.166666666667" />
         <NodeLayout
@@ -4073,11 +4073,11 @@
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="366,514"
-          Size="366,557.333333333334"
+          Size="366,557"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           TopLeft="5.50000000000009,108.166666666666" />
         <NodeLayout
-          Size="254.666666666667,42"
+          Size="255,42"
           Id="Package\SQL - GetExtractBatchesToProcess"
           TopLeft="65.6666667535901,5.49999999999993" />
         <EdgeLayout
