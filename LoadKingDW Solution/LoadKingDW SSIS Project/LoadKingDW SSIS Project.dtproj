@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="6Wv6ydjk/zE=" SSIS:IV="C0vtVI9vE2uwUbz87rInyw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">MdkkuJzgUbeZ6XIzMiOhcDD7co3yaaWJ5prnJGJTfQrdTS0Whhmt/34IQ4IkSPELLhdLnezQFE2XOJM05LziyoxtylvaBElBz2FKn1XDfYTHQbtJeuLJ4aZ1DrNYXlgGeCRFWNZzkBMY8D2ZcV8uoTox2V1r9pPlijDj/0tyciC+TR3WCxAXhtdErUJSARL/</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="NB8X3rwXoq0=" SSIS:IV="opP38wSt5AVeYxReGzQ1nA==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">2Cj5lEiPpYbucbD2oW5awWaa87XM+C10of8Wm+fRSMxDqM9pWnEEeJM1D2JPIlpeGmbTHenXDAK1X8mnndaI9H+sb94GKZy1wovTPuOLnNdlov6TDLv53RPTuqjAKDdCbRIt8yvn67eAJvQMmnYbFPlevAraZahwRnd9mKWsyBE63Bl6vN/5uHKTm3EsPxVr</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -77,7 +77,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=LK-DW-TEST\LK_DW;User ID=edavis;Initial Catalog=LK-GS-CNC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=LK-DW-TEST\LK_DW;User ID=LoadKingDW;Initial Catalog=LK-GS-CNC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -166,7 +166,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">edavis</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">LoadKingDW</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -196,7 +196,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=LK-DW-TEST\LK_DW;User ID=edavis;Initial Catalog=LK-GS-ODS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=LK-DW-TEST\LK_DW;User ID=LoadKingDW;Initial Catalog=LK-GS-ODS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -285,7 +285,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">edavis</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">LoadKingDW</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -315,7 +315,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=LK-DW-TEST\LK_DW;User ID=edavis;Initial Catalog=LK-GS-EDW;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=LK-DW-TEST\LK_DW;User ID=LoadKingDW;Initial Catalog=LK-GS-EDW;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -404,7 +404,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">edavis</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">LoadKingDW</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
