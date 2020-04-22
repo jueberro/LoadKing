@@ -34,13 +34,12 @@ BEGIN
 	FactInventory_Key int not null,
 	DimGLMaster_Key int not null,
 	DimSalesperson_Key int not null,
-	DimSalesOrderAttribute_Key int not null,
 	DimQuote_Key int not null,
 	
 	-- Key Attributes 
 
 	[OrderNumber] [nchar](7) NOT NULL,
-	[OrderLine] [nchar](4) NOT NULL,
+	[OrderLine] [nchar](4) NULL,
 	[OLDateOrder] [datetime] NULL,
 	[OLDateShipped] [datetime] NULL,
 

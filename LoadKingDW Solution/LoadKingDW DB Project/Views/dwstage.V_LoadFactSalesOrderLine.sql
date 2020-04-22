@@ -14,9 +14,12 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
             --Attributes
 		, Stage.SalesOrderNumber
 		, Stage.SalesOrderLine  
+		, Stage.OLDateOrder
+	    , Stage.OLDateShipped
 		
 	      	--Measures
 	 
+
 	    , Stage.Price 					   
 		, Stage.Cost  					   
 		, Stage.ExtenedPrice                

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dw].[DimSalesOrder](
 	[DimSalesOrder_Key] [int] IDENTITY(1,1) NOT NULL,
-	[SalesOrderNumber] [nchar](7) NULL,
+	[SalesOrderNumber] [nchar](7) NOT NULL,
 	[SalesOrderLine] [nchar](4) NULL,
 	[OHCreationDate] [datetime] NULL,
 	[OHDueDate] [datetime] NULL,
