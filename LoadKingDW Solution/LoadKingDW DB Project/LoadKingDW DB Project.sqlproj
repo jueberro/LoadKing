@@ -111,7 +111,6 @@
     <Build Include="Views\dwstage.V_LoadDimSalesOrder.sql" />
     <Build Include="Tables\dwstage.SALESPERSONS.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesOrder.sql" />
-    <Build Include="Tables\dw.DimSalesOrderAttribute.sql" />
     <Build Include="Tables\dw.DimDate.sql" />
     <Build Include="Tables\dw.DimSalesperon.sql" />
     <Build Include="Tables\dw.DimQuote.sql" />
