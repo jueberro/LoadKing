@@ -1,13 +1,13 @@
 ﻿CREATE VIEW [dwstage].[V_LoadDimSalesperson]
 AS
 SELECT 		                                 
-		  [SalespersonID]	  = CAST([SalespersonID]	AS NVARCHAR(3))
+		  [SalespersonID]	  = CAST([ID]	AS NVARCHAR(3))
 		, [Name]			  = CAST([NAME]				AS NVARCHAR(100))
 		, [EMAIL]			  = CAST([EMAIL]			AS NVARCHAR(100))
 
 		, [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
 		, [Type2RecordHash]			  = HASHBYTES('SHA2_256',        
-															+ CAST([SalespersonID]				AS NVARCHAR(3))
+															+ CAST([ID]				AS NVARCHAR(3))
 															+ CAST([NAME]	        AS NVARCHAR(100))
 															+ CAST([EMAIL]			AS NVARCHAR(100))
  )
@@ -22,7 +22,7 @@ SELECT
 
 
 
-		FROM     dwstage.SALESPERSON
+		FROM     dwstage.SALESPERSONS
 		
 GO
 

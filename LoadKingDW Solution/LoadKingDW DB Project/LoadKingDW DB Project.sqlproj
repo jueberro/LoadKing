@@ -97,19 +97,13 @@
     <Build Include="Tables\dwstage._SV_InventoryAll.sql" />
     <Build Include="Stored Procedures\dw.LoadDimInventory.sql" />
     <Build Include="Tables\dw.DimInventory.sql" />
-    <Build Include="Views\dw.SV_DimCustShipTo.sql" />
-    <Build Include="Views\dw.SV_DimEmployee.sql" />
-    <Build Include="Views\dw.SV_DimCustomer.sql" />
-    <Build Include="Views\dw.SV_DimInventory.sql" />
     <Build Include="Views\dwstage.V_LoadFactSalesOrderLine.sql" />
-    <Build Include="Views\dwstage.V_LoadFactRMAHistLines.sql" />
     <Build Include="Tables\dwstage.RMA_HIST_LINE.sql" />
     <Build Include="Tables\dwstage.RMA_LINES.sql" />
     <Build Include="Tables\dwstage.RMA_HEADER.sql" />
     <Build Include="Tables\dwstage.ORDER_LINES.sql" />
     <Build Include="Stored Procedures\dw.LoadFactSalesOrderLine.sql" />
     <Build Include="Views\dwstage.V_LoadDimSalesOrder.sql" />
-    <Build Include="Tables\dwstage.SALESPERSONS.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesOrder.sql" />
     <Build Include="Tables\dw.DimDate.sql" />
     <Build Include="Tables\dw.DimSalesperon.sql" />
@@ -126,6 +120,7 @@
     <Build Include="Views\dwstage.V_LoadDIMGLAccount.sql" />
     <Build Include="Tables\dwstage._V_SalesOrder.sql" />
     <Build Include="Tables\dw.FactSalesOrderLine.sql" />
+    <Build Include="Tables\dwstage.SALESPERSONS.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
