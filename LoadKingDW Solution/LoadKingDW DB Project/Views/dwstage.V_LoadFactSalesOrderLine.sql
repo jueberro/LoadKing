@@ -7,16 +7,19 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 		, ShipDateDimDate_Key 		 = ISNULL(ShipDate.DimDate_Key,       -1)
 		, DimCustomerShipTo_Key 	 = ISNULL(DCST.DimCustomerShipTo_Key, -1)
 		, DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)
-		, DimGLMaster_Key            =  -1
-		, DimSalesperson_Key         =  -1
-	    , DimQuote_Key               =  -1
+		, DimGLMaster_Key            = ISNULL(GLAcct.DimGLAccount_Key,    -1)
+		, DimSalesperson_Key         = ISNULL(SalesP.DimSalesperson_Key,  -1)
+	    , DimQuote_Key               = ISNULL(Quote.DimQuote_Key,         -1)
 
             --Attributes
 		, Stage.SalesOrderNumber
 		, Stage.SalesOrderLine  
+		, Stage.OLDateOrder
+	    , Stage.OLDateShipped
 		
 	      	--Measures
 	 
+
 	    , Stage.Price 					   
 		, Stage.Cost  					   
 		, Stage.ExtenedPrice                
@@ -64,15 +67,27 @@ FROM	dwstage._V_SalesOrder as Stage
    AND  DI.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimDate AS OrderDate
-  ON	Stage.OLDateOrder = OrderDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
+  ON	Stage.OLDateOrder = OrderDate.[Date]			
 
  LEFT OUTER JOIN dw.DimDate AS ShipDate
-  ON	Stage.OLDateShipped = ShipDate.[Date]			/*CHANGE DATE FORMAT IN JOIN CONDITION*/
+  ON	Stage.OLDateShipped = ShipDate.[Date]			
+
+  LEFT OUTER JOIN dw.DimGLAccount AS GLAcct
+  ON	Stage.OHGLAccount = GLAcct.GLAccount		
+   AND  DI.DWIsCurrent = 1
+
+  LEFT OUTER JOIN dw.DimSalesPerson AS SalesP
+  ON	Stage.OHSalespersonID = SalesP.SalespersonID	
+   AND  DI.DWIsCurrent = 1
+
+LEFT OUTER JOIN dw.DimQuote AS Quote
+  ON	Stage.OHQuoteNumber = Quote.QuoteNumber
+   AND  DI.DWIsCurrent = 1
 
  LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
   ON	stage.OHShipToSeq = DCST.ShipToSeq
    AND     Stage.OHCustomerID  = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
 
-   --   Where Stage.RECORD_TYPE = 'L'  --Proc That builds ODS - dbo_V_SalesOrder already contains this!
+  
 
