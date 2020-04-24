@@ -12,8 +12,8 @@
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="47"
-  DTS:VersionGUID="{0AA214C4-1515-44CA-A107-3D1B69B175A6}">
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{644C6BC2-6F22-4333-A87E-B5F6E48B1EE6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -189,11 +189,11 @@
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName] + "  , @StartDate = "  +  "'" + (DT_STR,30,1252)@[User::ExtractLowDate] +  "'" +  "  , @EndDate = "  +  "'" +  (DT_STR,30,1252)@[User::ExtractHighDate] +  "'"</DTS:PropertyExpression>
+            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName]+ " , @LoadLogKey = "  +  (DT_STR,9,1252)@[User::LoadLogKey]  + "  , @StartDate = "  +  "'" + (DT_STR,30,1252)@[User::ExtractLowDate] +  "'" +  "  , @EndDate = "  +  "'" +  (DT_STR,30,1252)@[User::ExtractHighDate] +  "'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}"
-              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER  , @StartDate = '1/1/1900'  , @EndDate = '1/1/2100'"
+              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER , @LoadLogKey = 0  , @StartDate = '1/1/1900'  , @EndDate = '1/1/2100'"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="SourceRecordCount"

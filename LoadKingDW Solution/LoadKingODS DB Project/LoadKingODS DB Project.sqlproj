@@ -83,5 +83,6 @@
     <Build Include="Stored Procedures\getGL_MASTER.sql" />
     <Build Include="Stored Procedures\getCUSTOMER_MASTER.sql" />
     <Build Include="Stored Procedures\getEMPLOYEE_MSTR.sql" />
+    <Build Include="Stored Procedures\getSalesOrder.sql" />
   </ItemGroup>
 </Project>
