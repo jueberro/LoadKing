@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadSalesperson] @LoadLogKey INT  AS
+﻿CREATE PROCEDURE [dw].[sp_LoadDimSalesperson] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -49,7 +49,7 @@ BEGIN
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimSalesperson_current (ID NVARCHAR(6)
+	CREATE TABLE #DimSalesperson_current (SalespersonID NVARCHAR(6)
 										, Type2RecordHash VARBINARY(64)
 										)
 

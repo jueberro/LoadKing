@@ -1,5 +1,6 @@
-﻿CREATE TABLE [dwstage].[SALESPERSON](
-	[SalespersonID] [char](3) NULL,
+﻿
+CREATE TABLE [dwstage].[SALESPERSONS](
+	[ID] [char](3) NULL,
 	[NAME] [char](50) NULL,
 	[EMAIL] [char](80) NULL,
 	[FILLER] [char](20) NULL,
@@ -10,4 +11,5 @@
 	[ETL_TblNbr] [int] NULL,
 	[ETL_Batch] [int] NULL,
 	[ETL_Completed] [datetime] NULL
-)
+) ON [PRIMARY]
+GO

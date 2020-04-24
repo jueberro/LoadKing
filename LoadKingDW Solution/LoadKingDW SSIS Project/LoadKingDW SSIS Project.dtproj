@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="YMbujWFLr+E=" SSIS:IV="h1Pa29vW9iDBH/L7OMCfFw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">HHssZzJV4J4QQLtLCh6qMOjNJAzp/2djuC78ViFaEcQJKbly4jwsFBE5PzL+uyq6iNhggWbWuLLaZTQFSa58vCqS2I53VBy+Xr5nE2wEX7y4Xn0hRNtULH/KqGaE9Kt2cFi7H1I/TEQ2vi5Yz2RmIw5X3kk46STtCt9+r0WQg8GmrsDHlAQpfDnPFBMDcOS8</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="gqQDrVHpsPU=" SSIS:IV="Xt1cvUlVWYLhGDi2PLyJcw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">2DNWKsGV5F6KRUEvf5iVT+LGnSRHbGskpD60tup9nz4a1yoTbtqtGTLTq80BAmSmISG2QJrHS4Q790L0W5pzPVXxtebwjNPoJ6t2cNr0cAS5LgBhrYsOOfHON+cd6wmAcPmpivGTkteylH+3ddlDn3CdFMmiWF3L3k3lrUs2TkKd4dKA1kpecUeeTkbIeBhc</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -671,10 +671,10 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimCustomer</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">24</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">25</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{32CAFBDB-F28B-405A-8BCC-CBFF7BF193F8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A4BD8956-6B31-44E1-9E35-FAFFC6C76C04}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -745,10 +745,10 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimEmployee</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">24</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{65655653-17E2-4C7A-8D82-2AD34D8AEA2B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1ACECC9D-0FB1-49CE-9FF2-6C393EE94A60}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -779,7 +779,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">DimSalesperson</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">SalesPerson</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -819,10 +819,10 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimQuote</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">40</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{2BE66CC5-42D6-4A5D-A83C-CA2D34F54038}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4B37BEDC-13A8-4BBF-834C-45AE3600B8C2}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -853,7 +853,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">DimQuote</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Quote</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1041,10 +1041,10 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimInventory</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">39</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">40</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CCDD8D4A-81C5-414F-BA07-F577119DB4BB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6E9E4437-1FC7-4E14-AF64-C793A02F655D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1115,10 +1115,10 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadDimSalesOrders</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">39</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">40</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E99EA751-0C71-4E3D-B643-4C1341CB6888}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{90F0FEBF-E3EE-4A04-B373-ECB3B079388F}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1189,10 +1189,10 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadFactSalesOrderLine</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">42</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">48</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F1327D17-0344-469E-8949-8CBE0D11CFE1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E5FE29E8-5029-46AC-BF71-805BB24C46C1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
