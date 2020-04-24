@@ -12,8 +12,8 @@
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{095318F6-3E7B-4C7D-AECD-5C6421BD68DD}">
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{0AA214C4-1515-44CA-A107-3D1B69B175A6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -189,11 +189,11 @@
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName]</DTS:PropertyExpression>
+            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName] + "  , @StartDate = "  +  "'" + (DT_STR,30,1252)@[User::ExtractLowDate] +  "'" +  "  , @EndDate = "  +  "'" +  (DT_STR,30,1252)@[User::ExtractHighDate] +  "'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}"
-              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER"
+              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER  , @StartDate = '1/1/1900'  , @EndDate = '1/1/2100'"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="SourceRecordCount"
@@ -535,7 +535,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="ELD 4/21/2020 All Stored Procs now reference schema ods_globalshop&#xD;&#xA;ELD 4/22/2020 Extract Source now gets its source proc via passed in&#xD;&#xA;&quot;Get Tables to Extract.&quot;"
+          Text="ELD 4/21/2020 All Stored Procs now reference schema ods_globalshop&#xA;ELD 4/22/2020 Extract Source now gets its source proc via passed in&#xA;&quot;Get Tables to Extract.&quot;"
           ParentId="Package"
           FontInfo="{assembly:Null}"
           Size="402,72"
