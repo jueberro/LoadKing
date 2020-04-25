@@ -4,6 +4,7 @@
 
 CREATE PROCEDURE dbo.getINVENTORY_MST2
 @SourceTableName varchar(255)
+,@LoadLogKey int
 ,@StartDate datetime
 ,@EndDate datetime
 
@@ -85,7 +86,7 @@ BEGIN TRY
 	  
  -- Increment the last Batch ID
 
-	Set @Batch = @LastBatch +1
+	Set @Batch = @LoadLogKey --@LastBatch +1
 
  -- Insert the  the Start Time of the ETL into the table record
   

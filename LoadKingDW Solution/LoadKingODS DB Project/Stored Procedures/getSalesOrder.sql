@@ -373,7 +373,9 @@ END TRY
 
  END CATCH    
  
- 
+ -- Return one row result set to use in SSIS package
+SELECT SourceRecordCount = @Reccnt
+
 
 
 END
