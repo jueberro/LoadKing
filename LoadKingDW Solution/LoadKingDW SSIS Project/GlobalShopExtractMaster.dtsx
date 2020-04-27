@@ -12,8 +12,8 @@
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{644C6BC2-6F22-4333-A87E-B5F6E48B1EE6}">
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{6806EAF4-27E5-4E22-ADBD-351ACCEFFD38}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -541,6 +541,13 @@
           Size="402,72"
           Id="b66eb448-c7d7-486b-878e-f64ddc5b4f07"
           TopLeft="242,252" />
+        <AnnotationLayout
+          Text="&#xD;&#xA;"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="29,60"
+          Id="e4df3afd-5a34-485c-9d09-d3a965a5fefb"
+          TopLeft="401,127" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

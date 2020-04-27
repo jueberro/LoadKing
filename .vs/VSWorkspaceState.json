@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\LoadKingDW Solution"
+    "\\LoadKingDW Solution",
+    "\\LoadKingDW Solution\\LoadKingDW SSIS Project"
   ],
-  "SelectedNode": "\\LoadKingDW Solution\\LoadKingDW SSIS Project",
+  "SelectedNode": "\\LoadKingDW Solution\\LoadKingDW Solution.sln",
   "PreviewInSolutionExplorer": false
 }
