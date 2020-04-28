@@ -12,8 +12,8 @@
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="47"
-  DTS:VersionGUID="{0AA214C4-1515-44CA-A107-3D1B69B175A6}">
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{6806EAF4-27E5-4E22-ADBD-351ACCEFFD38}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -189,11 +189,11 @@
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName] + "  , @StartDate = "  +  "'" + (DT_STR,30,1252)@[User::ExtractLowDate] +  "'" +  "  , @EndDate = "  +  "'" +  (DT_STR,30,1252)@[User::ExtractHighDate] +  "'"</DTS:PropertyExpression>
+            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName]+ " , @LoadLogKey = "  +  (DT_STR,9,1252)@[User::LoadLogKey]  + "  , @StartDate = "  +  "'" + (DT_STR,30,1252)@[User::ExtractLowDate] +  "'" +  "  , @EndDate = "  +  "'" +  (DT_STR,30,1252)@[User::ExtractHighDate] +  "'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}"
-              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER  , @StartDate = '1/1/1900'  , @EndDate = '1/1/2100'"
+              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER , @LoadLogKey = 0  , @StartDate = '1/1/1900'  , @EndDate = '1/1/2100'"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="SourceRecordCount"
@@ -541,6 +541,13 @@
           Size="402,72"
           Id="b66eb448-c7d7-486b-878e-f64ddc5b4f07"
           TopLeft="242,252" />
+        <AnnotationLayout
+          Text="&#xD;&#xA;"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="29,60"
+          Id="e4df3afd-5a34-485c-9d09-d3a965a5fefb"
+          TopLeft="401,127" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
