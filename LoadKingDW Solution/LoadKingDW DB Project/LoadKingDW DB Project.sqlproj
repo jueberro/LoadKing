@@ -94,7 +94,6 @@
     <Build Include="Tables\dwstage.OE_MULTI_SHIP.sql" />
     <Build Include="Stored Procedures\dw.LoadDimCustomerShipTo.sql" />
     <Build Include="Views\dwstage.V_LoadDimInventory.sql" />
-    <Build Include="Tables\dwstage._SV_InventoryAll.sql" />
     <Build Include="Stored Procedures\dw.LoadDimInventory.sql" />
     <Build Include="Tables\dw.DimInventory.sql" />
     <Build Include="Views\dwstage.V_LoadFactSalesOrderLine.sql" />
@@ -121,6 +120,8 @@
     <Build Include="Tables\dwstage._V_SalesOrder.sql" />
     <Build Include="Tables\dw.FactSalesOrderLine.sql" />
     <Build Include="Tables\dwstage.SALESPERSONS.sql" />
+    <Build Include="Tables\dwstage._V_Inventory.sql" />
+    <Build Include="Tables\dw.FactInventory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
