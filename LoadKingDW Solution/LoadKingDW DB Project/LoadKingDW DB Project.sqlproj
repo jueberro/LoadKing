@@ -122,6 +122,8 @@
     <Build Include="Tables\dwstage.SALESPERSONS.sql" />
     <Build Include="Stored Procedures\sp_LoadDimUnknownSeed.sql" />
     <Build Include="Tables\dwstage._V_Inventory.sql" />
+    <Build Include="Tables\dw.FactInventory.sql" />
+    <Build Include="Views\dwstage.V_LoadFactInventory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
