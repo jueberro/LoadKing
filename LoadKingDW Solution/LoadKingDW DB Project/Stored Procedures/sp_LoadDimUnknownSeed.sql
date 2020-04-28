@@ -181,7 +181,7 @@ IF NOT Exists (Select * from dw.DimInventory where DimInventory_Key = -1)
 		   values
 		   (
 		   -1
-		   , 'Unknown', 'Un'
+		   , 'Unknown'
 		   , 'Global Shop'
 		   , getutcdate(), '2100-01-01'
 		   , 1
