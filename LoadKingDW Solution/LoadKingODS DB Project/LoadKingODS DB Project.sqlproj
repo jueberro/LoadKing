@@ -71,15 +71,16 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Stored Procedures\dbo.ExtractGlobalShopSourceTableData.sql" />
+    <Build Include="Tables\dbo.ORDER.sql" />
     <Build Include="Stored Procedures\dbo.ExtractGlobalShopOrderData.sql" />
-    <Build Include="Stored Procedures\getINVENTORY_MST3.sql" />
-    <Build Include="Stored Procedures\getINVENTORY_MST2.sql" />
-    <Build Include="Stored Procedures\getINVENTORY_MSTR.sql" />
+    <Build Include="Views\dbo.SV_InventoryALL.sql" />
     <Build Include="Stored Procedures\getQUOTE_HEADER.sql" />
     <Build Include="Stored Procedures\getSALESPERSONS.sql" />
     <Build Include="Stored Procedures\getOE_MULTI_SHIP.sql" />
     <Build Include="Stored Procedures\getGL_MASTER.sql" />
     <Build Include="Stored Procedures\getCUSTOMER_MASTER.sql" />
     <Build Include="Stored Procedures\getEMPLOYEE_MSTR.sql" />
+    <Build Include="Stored Procedures\getSalesOrder.sql" />
+    <Build Include="Stored Procedures\getInventory.sql" />
   </ItemGroup>
 </Project>
