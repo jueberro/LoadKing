@@ -1,38 +1,42 @@
 ﻿
 Create VIEW [dwstage].[V_LoadFactInventory] AS
 
-SELECT    DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
+SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
 	   
-          ,DateLastUsage	      
-		  ,DateLastAudit		  
-		  ,DateCycle		      
-		  ,CodeBOM	         	  
-		  ,CodeDiscount		  
-		  ,CodeTotal	          
-		  ,PriorUsage		 	  
-		  ,AltCostAmt		      
-		  ,MinMultiple		      
-		  ,FloorStockingLevel	  
-		  ,QtyOnHand		      
-		  ,QtyReorder		      
-		  ,QtyOnOrderPO          
-		  ,QtyOnOrderWO          
-		  ,QtyRequired		      
-		  ,AmtCost  		      
-		  ,UsageJanuary		  
-		  ,UsageFebruary		  
-		  ,UsageMarch		      
-		  ,UsageApril		      
-		  ,UsageMay		      
-		  ,UsageJune		      
-		  ,UsageJuly		      
-		  ,UsageAugust		      
-		  ,UsageSeptember		  
-		  ,UsageOctober		  
-		  ,UsageNovember		  
-		  ,UsageDecember          
-		
-
+          ,Stage.PartID
+		  ,Stage.DateLastUsage	      
+		  ,Stage.DateLastAudit	
+		  ,Stage.Location				
+		  ,Stage.DateLastChg					      
+		  ,Stage.WhoChgLast				     	  
+		  ,Stage.BIN	
+		  ,Stage.DateCycle	
+		  ,Stage.CodeBOM	    
+		  ,Stage.CodeDiscount
+		  ,Stage.CodeTotal	          
+		  ,Stage.PriorUsage		 	  
+		  ,Stage.AltCostAmt		      
+		  ,Stage.MinMultiple		      
+		  ,Stage.FloorStockingLevel	  
+		  ,Stage.QtyOnHand		      
+		  ,Stage.QtyReorder		      
+		  ,Stage.QtyOnOrderPO          
+		  ,Stage.QtyOnOrderWO          
+		  ,Stage.QtyRequired		      
+		  ,Stage.AmtCost  		      
+		  ,Stage.UsageJanuary		  
+		  ,Stage.UsageFebruary		  
+		  ,Stage.UsageMarch		      
+		  ,Stage.UsageApril		      
+		  ,Stage.UsageMay		      
+		  ,Stage.UsageJune		      
+		  ,Stage.UsageJuly		      
+		  ,Stage.UsageAugust		      
+		  ,Stage.UsageSeptember		  
+		  ,Stage.UsageOctober		  
+		  ,Stage.UsageNovember		  
+		  ,Stage.UsageDecember          
+		--just a change to force a refresh
 		/*Hash used for identifying changes, not required for reporting*/
 		, RecordHash				  = CAST(0 AS VARBINARY(64)) 
 
