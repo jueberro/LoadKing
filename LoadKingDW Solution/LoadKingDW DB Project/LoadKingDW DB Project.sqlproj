@@ -72,15 +72,8 @@
     <Build Include="Tables\dwstage.EMPLOYEE_MSTR.sql" />
     <Build Include="Tables\dwstage.CUSTOMER_MASTER.sql" />
     <Build Include="Tables\dwstage.CUSTOMER_SHIPTO.sql" />
-    <Build Include="Tables\dwstage.INVENTORY_MSTR.sql" />
-    <Build Include="Tables\dwstage.INVENTORY_MST2.sql" />
-    <Build Include="Tables\dwstage.INVENTORY_MST3.sql" />
-    <Build Include="Tables\dwstage.ORDER_HIST_HEAD.sql" />
-    <Build Include="Tables\dwstage.ORDER_HIST_LINE.sql" />
-    <Build Include="Tables\dwstage.ORDER_HIST_LOT.sql" />
     <Build Include="Functions\dwstage.udf_cv_nvarchar6_to_date.sql" />
     <Build Include="Functions\dwstage.udf_cv_nvarchar8_to_date.sql" />
-    <Build Include="Tables\dwstage.ORDER_HEADER.sql" />
     <Build Include="Tables\dw.DimCustomer.sql" />
     <Build Include="Tables\dw.DimCustomerShipTo.sql" />
     <Build Include="Tables\dw.DimEmployee.sql" />
@@ -100,7 +93,6 @@
     <Build Include="Tables\dwstage.RMA_HIST_LINE.sql" />
     <Build Include="Tables\dwstage.RMA_LINES.sql" />
     <Build Include="Tables\dwstage.RMA_HEADER.sql" />
-    <Build Include="Tables\dwstage.ORDER_LINES.sql" />
     <Build Include="Stored Procedures\dw.LoadFactSalesOrderLine.sql" />
     <Build Include="Views\dwstage.V_LoadDimSalesOrder.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesOrder.sql" />
@@ -120,10 +112,11 @@
     <Build Include="Tables\dwstage._V_SalesOrder.sql" />
     <Build Include="Tables\dw.FactSalesOrderLine.sql" />
     <Build Include="Tables\dwstage.SALESPERSONS.sql" />
-    <Build Include="Stored Procedures\sp_LoadDimUnknownSeed.sql" />
+    <Build Include="Stored Procedures\dw.sp_LoadDimUnknownSeed.sql" />
     <Build Include="Tables\dwstage._V_Inventory.sql" />
     <Build Include="Tables\dw.FactInventory.sql" />
     <Build Include="Views\dwstage.V_LoadFactInventory.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactInventory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
