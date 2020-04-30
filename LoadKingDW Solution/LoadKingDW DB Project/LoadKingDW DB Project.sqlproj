@@ -122,6 +122,14 @@
     <Build Include="Tables\dw.FactSalesOrderLine.sql" />
     <Build Include="Tables\dwstage.SALESPERSONS.sql" />
     <Build Include="Stored Procedures\sp_LoadDimUnknownSeed.sql" />
+    <Build Include="Tables\dw.FactJOB_HEADER.sql" />
+    <Build Include="Tables\dwstage.JOB_OPERATIONS.sql" />
+    <Build Include="Tables\dwstage.JOB_DETAIL.sql" />
+    <Build Include="Tables\dwstage.V_ProductLine.sql" />
+    <Build Include="Tables\dwstage.JOB_HEADER.sql" />
+    <Build Include="Tables\dwstage.PRODUCT_LINE.sql" />
+    <Build Include="Tables\dw.DimProductLine.sql" />
+    <Build Include="Tables\dw.LoadDimProductLine.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
