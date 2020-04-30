@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadFactInventory"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{50571AA6-2DC9-4F87-AF6B-70E177B75A11}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{8D43976A-1155-4186-A293-C429C19E9EEE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -947,7 +947,7 @@
                       dataType="System.Int32"
                       description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="AccessMode">3</property>
+                      typeConverter="AccessMode">0</property>
                     <property
                       dataType="System.String"
                       description="The mappings between the parameters in the SQL command and variables."

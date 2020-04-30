@@ -2,7 +2,7 @@
     [DimInventory_Key]     INT              IDENTITY (1, 1) NOT NULL,
     PartID                 nchar(20)        NULL,
     DateLastChg		 	   datetime         NULL,
-    WhoChgLast		 	   datetime         NULL,
+    WhoChgLast		 	   nchar(6)         NULL,
     Price	               decimal(13, 5)   NULL,
     CodeABC	         	   nchar(1)	        NULL,
     ProductLine	     	   nchar(2)         NULL,

@@ -71,9 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Stored Procedures\dbo.ExtractGlobalShopSourceTableData.sql" />
-    <Build Include="Tables\dbo.ORDER.sql" />
-    <Build Include="Stored Procedures\dbo.ExtractGlobalShopOrderData.sql" />
-    <Build Include="Views\dbo.SV_InventoryALL.sql" />
     <Build Include="Stored Procedures\getQUOTE_HEADER.sql" />
     <Build Include="Stored Procedures\getSALESPERSONS.sql" />
     <Build Include="Stored Procedures\getOE_MULTI_SHIP.sql" />
