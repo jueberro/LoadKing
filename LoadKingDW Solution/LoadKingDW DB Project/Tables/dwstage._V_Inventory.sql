@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dwstage].[_V_Inventory](
 	[PartID]                               [nchar](20) NULL,
-	[DateLastChg]                          [date] NULL,
-	[WhoChgLast]                           [date] NULL,
+	[DateLastChg]                          DATETIME NULL,
+	[WhoChgLast]                           NCHAR(6) NULL,
 	[Price]                                [decimal](13, 5) NULL,
 	[CodeABC]                              [nchar](1) NULL,
 	[ProductLine]                          [nchar](2) NULL,

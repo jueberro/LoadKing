@@ -34,7 +34,7 @@ BEGIN
 	DateLastAudit			datetime			NOT NULL, 		  
 	Location				nchar(2)				NULL,
 	DateLastChg				datetime				NULL,
-	WhoChgLast				datetime				NULL,
+	WhoChgLast				nchar(6)				NULL,
 	BIN						nchar(6)			    NULL, 
 	DateCycle				nchar(1)                NULL,
 	CodeBOM					nchar(1)        	  	NULL,
