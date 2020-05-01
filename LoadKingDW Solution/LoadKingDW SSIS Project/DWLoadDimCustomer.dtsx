@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimCustomer"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{A4BD8956-6B31-44E1-9E35-FAFFC6C76C04}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{D17BD4B1-3251-49DC-A565-BFC50DCD9490}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -450,109 +450,109 @@
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[CUSTOMER]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="6"
                           name="CUSTOMER" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[REC]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="1"
                           name="REC" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[NAME_CUSTOMER]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="30"
                           name="NAME_CUSTOMER" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS1]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="30"
                           name="ADDRESS1" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS2]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="30"
                           name="ADDRESS2" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[CITY]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="15"
                           name="CITY" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[STATE]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="3"
                           name="STATE" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ZIP]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="13"
                           name="ZIP" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="12"
                           name="COUNTRY" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[COUNTY]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="12"
                           name="COUNTY" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ATTENTION]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="30"
                           name="ATTENTION" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[SALESPERSON]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="3"
                           name="SALESPERSON" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[INTL_ADDR]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="1"
                           name="INTL_ADDR" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[TERRITORY]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="2"
                           name="TERRITORY" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[CODE_AREA]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="2"
                           name="CODE_AREA" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[CREDIT]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="2"
                           name="CREDIT" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[TELEPHONE]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="13"
                           name="TELEPHONE" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[FILLER]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="3"
                           name="FILLER" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[CRM_RES_LEV]"
@@ -563,61 +563,67 @@
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ASSGN_USR_GRP]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="8"
                           name="ASSGN_USR_GRP" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[NORMAL_GL_ACCOUNT]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="15"
                           name="NORMAL_GL_ACCOUNT" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[FLAG_BALANCE_FWD]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="1"
                           name="FLAG_BALANCE_FWD" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[FLAG_PRINT_STATE]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="1"
                           name="FLAG_PRINT_STATE" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[FLAG_CREDIT_HOLD]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="1"
                           name="FLAG_CREDIT_HOLD" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[FILLER2]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="2"
                           name="FILLER2" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[CHANGE_MODE]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="1"
                           name="CHANGE_MODE" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[INTERCOMPANY]"
                           codePage="1252"
                           dataType="str"
-                          length="255"
+                          length="1"
                           name="INTERCOMPANY" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ETL_TblNbr]"
-                          dataType="i4"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
                           name="ETL_TblNbr" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ETL_Batch]"
-                          dataType="i4"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
                           name="ETL_Batch" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER.Inputs[OLE DB Destination Input].ExternalColumns[ETL_Completed]"
-                          dataType="dbTimeStamp"
+                          codePage="1252"
+                          dataType="str"
+                          length="19"
                           name="ETL_Completed" />
                       </externalMetadataColumns>
                     </input>
@@ -676,7 +682,7 @@
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
-                      name="SqlCommandVariable"></property>
+                      name="SqlCommandVariable">User::ODSExtractSQL</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -689,7 +695,7 @@
                       dataType="System.Int32"
                       description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="AccessMode">0</property>
+                      typeConverter="AccessMode">3</property>
                     <property
                       dataType="System.String"
                       description="The mappings between the parameters in the SQL command and variables."
@@ -1729,7 +1735,7 @@
         <NodeLayout
           Size="339,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
-          TopLeft="5.50000000000003,210.833333333334" />
+          TopLeft="5.5,207.833333333334" />
         <NodeLayout
           Size="222,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimEmployee"
@@ -1796,14 +1802,14 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.666666666667"
+              EndConnector="0,57.666666666667"
               Start="0,0"
-              End="0,53.166666666667">
+              End="0,50.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.166666666667" />
+                    End="0,50.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1814,18 +1820,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
-          TopLeft="175.583333333333,253.833333333334">
+          TopLeft="175.583333333333,250.833333333334">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.666666666666"
+              EndConnector="0,62.666666666666"
               Start="0,0"
-              End="0,52.166666666666">
+              End="0,55.166666666666">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.166666666666" />
+                    End="0,55.166666666666" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1837,23 +1843,23 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="351,514"
-          Size="351,557"
+          PanelSize="1596,514"
+          Size="1596,557"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
-          TopLeft="5.50000000000009,108.166666666666" />
+          TopLeft="114.5,108.166666666666" />
         <NodeLayout
           Size="255,42"
           Id="Package\SQL - GetExtractBatchesToProcess"
-          TopLeft="65.6666667535901,5.49999999999993" />
+          TopLeft="745.66666675359,5.49999999999993" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="193.16666675359,47.4999999999999">
+          TopLeft="873.16666675359,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-12.16666675359,60.6666666666661"
+              EndConnector="39.33333324641,60.6666666666661"
               Start="0,0"
-              End="-12.16666675359,53.1666666666661">
+              End="39.33333324641,53.1666666666661">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1862,15 +1868,15 @@
                   <mssgle:CubicBezierSegment
                     Point1="0,26.333333333333"
                     Point2="0,30.333333333333"
-                    Point3="-4,30.333333333333" />
+                    Point3="4,30.333333333333" />
                   <mssgle:LineSegment
-                    End="-8.16666675359002,30.333333333333" />
+                    End="35.33333324641,30.333333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="-8.16666675359002,30.333333333333"
-                    Point2="-12.16666675359,30.333333333333"
-                    Point3="-12.16666675359,34.333333333333" />
+                    Point1="35.33333324641,30.333333333333"
+                    Point2="39.33333324641,30.333333333333"
+                    Point3="39.33333324641,34.333333333333" />
                   <mssgle:LineSegment
-                    End="-12.16666675359,53.1666666666661" />
+                    End="39.33333324641,53.1666666666661" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1898,7 +1904,7 @@
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="265,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Source - CUSTOMER_MASTER"
@@ -1938,14 +1944,16 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Source - CUSTOMER_MASTER">
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1958,7 +1966,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - CUSTOMER_MASTER">
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Source - CUSTOMER_MASTER">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

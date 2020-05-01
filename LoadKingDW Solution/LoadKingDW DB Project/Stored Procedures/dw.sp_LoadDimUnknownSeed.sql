@@ -1,8 +1,4 @@
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 -- =============================================
 -- Author:           Edwin Davis
 -- Create date: 4/27/2020
@@ -15,7 +11,6 @@ CREATE PROCEDURE dw.[sp_LoadDimUnknownSeed]
 
 AS
 BEGIN
-
 
 
 
@@ -177,7 +172,7 @@ IF NOT Exists (Select * from dw.DimInventory where DimInventory_Key = -1)
 		   insert into dw.DimInventory
 		   (
 		   DimInventory_Key 
-		   , PartID, PartLocation
+		   , PartID
 		   , SourceSystemName 
 		   , DWEffectiveStartDate, DWEffectiveEndDate
 		   , DWIsCurrent
@@ -186,7 +181,7 @@ IF NOT Exists (Select * from dw.DimInventory where DimInventory_Key = -1)
 		   values
 		   (
 		   -1
-		   , 'Unknown', 'Un'
+		   , 'Unknown'
 		   , 'Global Shop'
 		   , getutcdate(), '2100-01-01'
 		   , 1
