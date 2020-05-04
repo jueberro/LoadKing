@@ -2,7 +2,7 @@ USE [LK-GS-EDW]
 GO
 
 
-CREATE TABLE dw.FactJOB_HEADER
+CREATE TABLE dw.FactJobHeader
 (
 DimSalesOrder_Key int NOT NULL,
 DimWorkOrderType_Key int NOT NULL,
