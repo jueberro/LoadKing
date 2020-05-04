@@ -75,7 +75,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 , OUTS
 
 --, [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
-, [Type2RecordHash]			  = HASHBYTES('SHA2_256',
+, [Type1RecordHash]			  = HASHBYTES('SHA2_256',
 																	
 + JOB
 + SUFFIX
