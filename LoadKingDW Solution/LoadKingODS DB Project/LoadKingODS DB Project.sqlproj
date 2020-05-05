@@ -80,5 +80,6 @@
     <Build Include="Stored Procedures\getSalesOrder.sql" />
     <Build Include="Stored Procedures\getInventory.sql" />
     <Build Include="Stored Procedures\getJOB_HEADER.sql" />
+    <Build Include="Stored Procedures\getInvoice.sql" />
   </ItemGroup>
 </Project>
