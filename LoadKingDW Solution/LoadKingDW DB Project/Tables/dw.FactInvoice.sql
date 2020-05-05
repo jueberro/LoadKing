@@ -30,7 +30,8 @@
     TaxApply1  nchar(1)   NULL,				
     TaxApply2  nchar(1)   NULL,				
     TaxAmt1  [decimal](11, 2)   NULL,				
-    TaxAmt2  [decimal](11, 2)   NULL,				
+    TaxAmt2  [decimal](11, 2)   NULL,	
+    Type1RecordHash varbinary(64)
 
 ) ON [PRIMARY]
 GO
