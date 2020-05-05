@@ -131,6 +131,8 @@
     <Build Include="Tables\dw.FactInvoice.sql" />
     <Build Include="Views\dwstage.V_LoadDimInvoice.sql" />
     <Build Include="Tables\dwstage._V_Invoice.sql" />
+    <Build Include="Tables\dw.DimWorkOrderType.sql" />
+    <Build Include="Views\dwstage.V_LoadDimWorkOrderType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
