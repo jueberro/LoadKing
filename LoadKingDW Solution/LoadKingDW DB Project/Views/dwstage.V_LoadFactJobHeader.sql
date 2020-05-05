@@ -4,22 +4,22 @@
 
 CREATE VIEW dwstage.V_LoadFactJobHeader
 AS
-SELECT
+SELECT 
 ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
-, -1 as DimWorkOrderType_Key
+,ISNULL(wo.DimWorkOrderType_Key, -1) as DimWorkOrderType_Key
 ,ISNULL(i.DimInventory_Key, -1) as DimInventory_Key
 ,ISNULL(c.DimCustomer_Key, -1) as DimCustomer_Key
 ,ISNULL(sp.DimSalesperson_Key, -1) as DimSalesPerson_Key
 ,ISNULL(pl.DimProductLine_Key, -1) as DimProductLine_Key
 ,ISNULL(do.DimDate_Key, -1) as DimDate_Key
 
-, JOB
+, stage.JOB
 , SUFFIX
-, PART
+, stage.PART
 , PRODUCT_LINE
 , ROUTER
-, [PRIORITY]
-, [DESCRIPTION]
+, stage.[PRIORITY]
+, stage.[DESCRIPTION]
 , CUSTOMER
 , CUSTOMER_PO
 , COMMENTS_1
@@ -75,15 +75,15 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 , OUTS
 
 --, [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
-, [Type2RecordHash]			  = HASHBYTES('SHA2_256',
+, [Type1RecordHash]			  = HASHBYTES('SHA2_256',
 																	
-+ JOB
++ stage.JOB
 + SUFFIX
-+ PART
++ stage.PART
 + PRODUCT_LINE
 + ROUTER
-+ [PRIORITY]
-+ [DESCRIPTION]
++ stage.[PRIORITY]
++ stage.[DESCRIPTION]
 + CUSTOMER
 + CUSTOMER_PO
 + COMMENTS_1
@@ -147,18 +147,23 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 		--, [DWEffectiveEndDate]		  = '2100-01-01'
 		--, [DWIsCurrent]				  = CAST(1					  AS BIT)
 		--, [LoadLogKey]				  = CAST(0                    AS INT)
-
+-- SELECT COUNT(*)
 FROM 
 	dwstage.JOB_HEADER Stage
 
-LEFT OUTER JOIN dw.DimSalesOrder AS so
+LEFT OUTER JOIN (select SalesOrderNumber, min(DimSalesOrder_Key) DimSalesOrder_Key, min(SalesOrderLine) SalesOrderLine, 1 as DWIsCurrent from dw.DimSalesOrder group by SalesOrderNumber)  AS so
 ON	Stage.SALES_ORDER = so.SalesOrderNumber AND	so.DWIsCurrent = 1 
+
+-- select top 1000 * from [LK-GS-ODS].dbo.ORDER_HEADER order by Order_No, order_suffix
+
 
 LEFT OUTER JOIN dw.DimInventory AS i
 ON    Stage.PART = i.PartID
 AND  i.DWIsCurrent = 1
 
-LEFT OUTER JOIN dw.DimCustomer AS c
+-- ******* REMOVE THIS subquery once DimCustomer is reloaded *******************************
+
+LEFT OUTER JOIN (select min(CustomerID) CustomerID, min(DimCustomer_Key) DimCustomer_Key, 1 as DWIsCurrent from dw.DimCustomer group by CustomerID)  AS c
 ON    Stage.CUSTOMER = c.CustomerID
 AND  c.DWIsCurrent = 1
 
@@ -169,6 +174,19 @@ AND  sp.DWIsCurrent = 1
 LEFT OUTER JOIN dw.DimProductLine AS pl
 ON	Stage.PRODUCT_LINE = pl.ProductLine		
 AND  pl.DWIsCurrent = 1
+
+LEFT JOIN [LK-GS-ODS].[dbo].APSV3_JBMASTER m
+ON stage.JOB = m.JOB
+and m.BOMPARENT = 1
+
+LEFT OUTER JOIN dw.DimWorkOrderType AS wo
+ON	
+(CASE WHEN substring(so.SalesOrderNumber, 4,4) = substring(stage.job, 1, 4) THEN 'Sales Order'
+WHEN m.BOMPARENT = 1 THEN 'BOM'
+ELSE 'Other'
+END) = wo.WorkOrderType		
+AND  wo.DWIsCurrent = 1
+AND	so.DWIsCurrent = 1 
 
 LEFT OUTER JOIN dw.DimDate AS do
 ON	dwstage.udf_cv_nvarchar6_to_date(Stage.DATE_OPENED)  = do.[Date]			

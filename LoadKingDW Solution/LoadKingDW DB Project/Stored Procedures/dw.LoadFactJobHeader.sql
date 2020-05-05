@@ -105,8 +105,7 @@ DimDate_Key int NOT NULL,
 	[OUTS] [numeric](12, 4) NULL,
 
 		/*Hashes used for identifying changes, not required for reporting*/
---		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
-		[Type2RecordHash]			VARBINARY(64)	NULL	--66 allows for "0x" + 64 characater hash
+		[Type1RecordHash]			VARBINARY(64)	NULL	--66 allows for "0x" + 64 characater hash
 
 		/*DW Metadata fields, not required for reporting*/
 		--[SourceSystemName]			NVARCHAR(100)		NOT NULL,
@@ -122,14 +121,6 @@ DimDate_Key int NOT NULL,
 	INSERT INTO ##FactJobHeader_SOURCE
 			SELECT * from dwstage.V_LoadFactJobHeader
 
-/*
-INSERT INTO dwstage.JOB_HEADER
-SELECT * FROM [LK-GS-ODS].dbo.JOB_HEADER
-
-INSERT INTO dwstage.PRODUCT_LINE
-SELECT * FROM [LK-GS-ODS].dbo.PRODUCT_LINE
-*/
-
 --CREATE TEMP table to be used below for identifying records with CHANGES 
 
 	CREATE TABLE ##FactJobHeader_TARGET 
@@ -138,17 +129,17 @@ SELECT * FROM [LK-GS-ODS].dbo.PRODUCT_LINE
 					,SUFFIX CHAR(3)
 					,PART CHAR(20)
 					,CUSTOMER CHAR(6)
-					, Type2RecordHash VARBINARY(64)
+					, Type1RecordHash VARBINARY(64)
 					)
 
-	--Load temp table with NK and Type2RecordHash for CURRENT records
+	--Load temp table with NK and Type1RecordHash for CURRENT records
 	INSERT INTO ##FactJobHeader_TARGET
 	SELECT	
 			JOB
 			,SUFFIX
 			,PART
 			,CUSTOMER
-			, Type2RecordHash
+			, Type1RecordHash
 	FROM	dw.FactJobHeader
 
 	--INSERT NEW TARGET Items
@@ -249,7 +240,7 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 			and TGT.PART = SRC.PART
 			and TGT.CUSTOMER = SRC.CUSTOMER					
 	   --AND	Dim.DWIsCurrent = 1
-	WHERE	TGT.Type2RecordHash <> SRC.Type2RecordHash
+	WHERE	TGT.Type1RecordHash <> SRC.Type1RecordHash
 	
 	--DROP temp tables
 

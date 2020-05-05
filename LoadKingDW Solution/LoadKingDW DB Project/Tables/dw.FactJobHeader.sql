@@ -104,7 +104,9 @@ DimDate_Key int NOT NULL,
 	[PARTIAL_LABOR] [numeric](12, 4) NULL,
 	[PARTIAL_OVERHEAD] [numeric](12, 4) NULL,
 	[PARTIAL_OUTSIDE] [numeric](12, 4) NULL,
-	[OUTS] [numeric](12, 4) NULL
+	[OUTS] [numeric](12, 4) NULL,
+	[Type1RecordHash] [varbinary](64) NULL
+
 --MOSTLY BLANK ---------------------------------------------------
 	--[HOUR_START] [numeric](5, 3) NULL,
 	--[SYSTEM_PRIORITY] [numeric](3, 0) NULL,
