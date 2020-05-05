@@ -127,6 +127,10 @@
     <Build Include="Views\dwstage.V_LoadFactJobHeader.sql" />
     <Build Include="Stored Procedures\dw.LoadFactJobHeader.sql" />
     <Build Include="Tables\dw.FactJobHeader.sql" />
+    <Build Include="Tables\dw.DimInvoice.sql" />
+    <Build Include="Tables\dw.FactInvoice.sql" />
+    <Build Include="Views\dwstage.V_LoadDimInvoice.sql" />
+    <Build Include="Tables\dwstage._V_Invoice.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
