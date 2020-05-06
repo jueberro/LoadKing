@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimSalesOrder] @LoadLogKey INT  AS
+﻿CREATE PROCEDURE [dw].[sp_LoadDimInvoice] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -20,50 +20,49 @@ BEGIN
 	BEGIN TRY DROP TABLE #DimSalesOrders_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
-	CREATE TABLE #DimSalesOrders_work (
-  
-		
-	[SalesOrderNumber] [nchar](7) NULL,
-	[SalesOrderLine] [nchar](4) NULL,
-	[OHCreationDate] [datetime] NULL,
-	[OHDueDate] [datetime] NULL,
-	[OHOrderSort] [nvarchar](20) NULL,
-	[OHProjectType] [nvarchar](30) NULL,
-	[OHBranch] [nchar](2) NULL,
-	[OHShipVia] [nvarchar](20) NULL,
-	[OHPrimaryGroup] [nchar](2) NULL,
-	[OHShippingZone] [nchar](6) NULL,
-	[OHDateLastChanged] [datetime] NULL,
-	[OHLastChangedBy] [nvarchar](8) NULL,
-	[OLDateLastChanged] [datetime] NULL,
-	[OLastChangedBy] [nvarchar](8) NULL,
-	[OLDateOrder] [datetime] NULL,
-	[OLDateShipped] [datetime] NULL,
-	[OLItemPromiseDate] [datetime] NULL,
-	[OLDateItemProm] [datetime] NULL,
-	[OLDateAddedDate] [datetime] NULL,
-	[OLDeliverByDate] [datetime] NULL,
-	[OHCustomerID] [nchar](6) NULL,
-	[OLCustomerID] [nchar](6) NULL,
-	[OHShipToSeq] [nchar](6) NULL,
-	[OLShipToSeq] [nchar](6) NULL,
-	[OHSalespersonID] [nvarchar](3) NULL,
-	[OHQuoteNumber] [nchar](7) NULL,
-	[OHGLAccount] [nchar](15) NULL,
-	[OLPartID] [nchar](20) NULL,
-	[OLCustomerPart] [nvarchar](20) NULL,
-	[OLPriceGroupID] [nvarchar](20) NULL,
-	[OLSOGroupID] [nvarchar](20) NULL,
-	[OLUser1] [nvarchar](30) NULL,
-	[OLUser2] [nvarchar](30) NULL,
-	[OLTrackingNotes] [nvarchar](30) NULL,
-	[OLUser4] [nvarchar](30) NULL,
-	[OLLineShipVia] [nvarchar](30) NULL,
-	[OLLineType] [nchar](1) NULL,
-	[OLFlagSOtoWO] [nchar](1) NULL,
-	[OLFlagPurchased] [nchar](1) NULL,
-	[OLInactive] [bit] NULL,
-
+	CREATE TABLE #DimSalesOrders_work (                              
+                                                          
+	[SalesOrderNumber] [nchar](7) NULL,                   
+	[SalesOrderLine] [nchar](4) NULL,	                  
+	[OHOrderSuffix] [nchar](4) NULL,		              
+	[OHInvoiceNumber] [nchar](7) NULL, 		              
+	[OHCreationDate] [date] NULL,		                  
+	[OHDateOrderDue] [date] NULL,		                  
+	[OLDateOrderDue] [date] NULL,			              
+	[OLDateDue] [date] NULL,                              
+	[OHOrderSort] [nvarchar](20) NULL,				   	  
+	[OHProjectType] [nvarchar](30) NULL,				  
+	[OHBranch] [nchar](2) NULL,						   	  
+	[OHShipVia] [nvarchar](20) NULL,					  
+	[OHPrimaryGroup] [nchar](2) NULL,		   			  
+	[OHShippingZone] [nchar](6) NULL,				   	  
+	[OLDateOrder] [date] NULL,						   	  
+	[OLCustDueDate] [date] NULL,				   		  
+	[OLBranch] [nchar](2) NULL,				   			  
+	[OLShipVia] [nvarchar](20) NULL,				   	  
+	[OLCustomerPart] [nvarchar](20) NULL,				  
+	[OLInternationalFlag] [nchar](1) NULL,				  
+	[OLBOMExplodeFlag] [nchar](1) NULL,				 	  
+	[OLFlagTaxStatus] [nchar](1) NULL,				 	  
+	[OLCreditMemoFlag] [nchar](1) NULL,				 	  
+    [OLFlagRMA] [nchar](1) NULL,				          
+	[OLBOMCompleteFlag] [nchar](1) NULL,			
+    [OLBOMParentLineNumber] [nchar](4) NULL,		
+    [OLSerializedFlag] [nchar](1) NULL,				 
+    [OLUMInventory] [nchar](2) NULL,	
+    [OLProductLine] [nchar](2) NULL,				 
+    [OLPriceGroupID] [nvarchar](20) NULL,			
+    [OLSOGroupID] [nvarchar](20) NULL,				 
+    [OLUser1] [nvarchar](30) NULL,				   	
+	[OLUser2] [nvarchar](30) NULL,				   
+	[OLTrackingNotes] [nvarchar](30) NULL,			
+	[OLUser3] [nvarchar](30) NULL,				   
+	[OLUser5_ShipVia] [nvarchar](30) NULL,			
+	[OLShippingZone] [nchar](6) NULL,				 
+	[OLPhase] [nchar](4) NULL,				   
+	[OLPriceDescription] [nvarchar](30) NULL,		
+	[OLLineType] [nchar](1) NULL,			
+	
 	[Type1RecordHash] [varbinary](64) NULL,
 	[Type2RecordHash] [varbinary](64) NULL,
 	[SourceSystemName] [nvarchar](100) NOT NULL,
@@ -83,7 +82,10 @@ BEGIN
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
 	CREATE TABLE #DimSalesOrders_current ( SalesOrderNumber NCHAR(7),
-                                           SalesOrderLine   nchar(4) NULL,
+                                           SalesOrderLine   nchar(4) ,
+										   OHOrderSuffix    nchar(4) ,
+										   OHInvoiceNumber  nchar(7) ,
+
 	                                       Type2RecordHash   VARBINARY(64)
 										)
 
@@ -103,6 +105,8 @@ BEGIN
 						FROM	dw.DimSalesOrder AS DIM
 						WHERE	DIM.SalesOrderNumber = Work.SalesOrderNumber 
 						  AND   DIM.SalesOrderline   = Work.SalesOrderline
+						  AND   DIM.OHOrderSuffix    = Work.OHOrderSuffix
+						  AND   DIM.OHInvoiceNumber  = Work.OHInvoiceNumber
 						   
 						)
 
@@ -113,9 +117,11 @@ BEGIN
 			, DWIsCurrent = 0
 	FROM	dw.DimSalesOrder		AS DIM
 	 JOIN   #DimSalesOrders_work	AS Work
-	  ON	    Dim.SalesOrderNumber = Work.SalesOrderNumber
-	     AND    Dim.SalesOrderline   = Work.Salesorderline
-	     AND	Dim.DWIsCurrent = 1
+	  ON	    DIM.SalesOrderNumber = Work.SalesOrderNumber 
+						  AND   DIM.SalesOrderline   = Work.SalesOrderline
+						  AND   DIM.OHOrderSuffix    = Work.OHOrderSuffix
+						  AND   DIM.OHInvoiceNumber  = Work.OHInvoiceNumber
+	                      AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
 
@@ -124,8 +130,10 @@ BEGIN
 	SELECT	Work.*
 	FROM	#DimSalesOrders_current AS DIM
 	 JOIN   #DimSalesOrders_work    AS Work
-	  ON	  Dim.SalesOrderNumber = Work.SalesOrderNumber
-	   AND    Dim.SalesOrderline   = Work.Salesorderline
+	  ON	  DIM.SalesOrderNumber = Work.SalesOrderNumber 
+		AND   DIM.SalesOrderline   = Work.SalesOrderline
+		AND   DIM.OHOrderSuffix    = Work.OHOrderSuffix
+		AND   DIM.OHInvoiceNumber  = Work.OHInvoiceNumber
 	  
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
