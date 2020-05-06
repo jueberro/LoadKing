@@ -1,5 +1,5 @@
---USE [LK-GS-EDW]
---GO
+USE [LK-GS-EDW]
+GO
 
 
 CREATE TABLE dw.FactJobDetail
@@ -11,12 +11,12 @@ DimCustomer_Key int NOT NULL,
 DimSalesPerson_Key int NOT NULL,
 DimProductLine_Key int NOT NULL,
 DimDate_Key int NOT NULL,
-DimEmployee int NOT NULL,
-DimDepartmentWorkCenter int NOT NULL,
-DimReference int NOT NULL,
-DimShiftShift int NOT NULL,
-DimShiftDepartment int NOT NULL,
-DimShiftGroup int NOT NULL,
+DimEmployee_Key int NOT NULL,
+DimDepartmentWorkCenter_Key int NOT NULL,
+DimReference_Key int NOT NULL,
+DimShiftShift_Key int NOT NULL,
+DimShiftDepartment_Key int NOT NULL,
+DimShiftGroup_Key int NOT NULL,
 
 -- DEGENERATE HEADER ATTRIBUTES ----------------------------------------------
 	[HEADER_JOB] [char](6) NULL,
@@ -36,8 +36,8 @@ DimShiftGroup int NOT NULL,
 	--[FLAG_HOLD] [char](1) NULL,--OK
 	--[PARENT_WO] [char](6) NULL,--OK
 	--[PARENT_SUFFIX_PARENT] [char](3) NULL,--OK
-	--[SALES_ORDER] [char](7) NULL,--OK
-	--[SALES_ORDER_LINE] [char](3) NULL,--OK
+	[HEADER_SALES_ORDER] [char](7) NULL,--OK
+	[HEADER_SALES_ORDER_LINE] [char](3) NULL,--OK
 	--[FLAG_SERIALIZE] [char](1) NULL,--OK
 	--[JOB_LOCKED] [char](1) NULL, --OK
 

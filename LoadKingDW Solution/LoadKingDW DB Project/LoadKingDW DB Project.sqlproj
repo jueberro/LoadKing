@@ -134,6 +134,10 @@
     <Build Include="Tables\dw.DimWorkOrderType.sql" />
     <Build Include="Views\dwstage.V_LoadDimWorkOrderType.sql" />
     <Build Include="Tables\dw.FactJobDetail.sql" />
+    <Build Include="Tables\dwstage._V_JOB.sql" />
+    <Build Include="Tables\dwstage.APSV3_JBMASTER.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactJobDetail.sql" />
+    <Build Include="Views\dwstage.V_LoadFactJobDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
