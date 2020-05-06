@@ -133,6 +133,7 @@
     <Build Include="Tables\dwstage._V_Invoice.sql" />
     <Build Include="Tables\dw.DimWorkOrderType.sql" />
     <Build Include="Views\dwstage.V_LoadDimWorkOrderType.sql" />
+    <Build Include="Tables\dw.FactJobDetail.sql" />
     <Build Include="Stored Procedures\dw.LoadDimInvoice.sql" />
   </ItemGroup>
   <ItemGroup>
