@@ -1,9 +1,3 @@
-USE [LK-GS-ODS]
-GO
-
-
---USE [LK-GS-ODS]
---GO
 
 
 

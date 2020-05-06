@@ -1,6 +1,3 @@
-USE [LK-GS-EDW]
-GO
-
 
 CREATE TABLE dwstage.JOB_HEADER
 (
