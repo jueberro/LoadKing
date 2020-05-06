@@ -1,5 +1,5 @@
-USE [LK-GS-EDW]
-GO
+--USE [LK-GS-EDW]
+--GO
 
 
 CREATE TABLE dw.FactJobDetail
