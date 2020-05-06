@@ -1,19 +1,15 @@
-USE [LK-GS-ODS]
-GO
-
-
 --USE [LK-GS-ODS]
 --GO
 
 
 
 --==============================================
---Procedure Name: [LK-GS-ODS].dbo.getInvoice
+--Procedure Name: [LK-GS-ODS].dbo.getJob
 --       Created: Pragmatic Works, Edwin Davis 5/5/2020
---       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Invoice 
+--       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Job
 --==============================================
 
-CREATE PROCEDURE dbo.getInvoice
+CREATE PROCEDURE dbo.getJob
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -30,7 +26,7 @@ DECLARE
 ,@EndDate datetime	
 
 SELECT 
-@SourceTableName = '_V_Invoice'
+@SourceTableName = '_V_job'
 ,@LoadLogKey = 0
 ,@StartDate = '1/1/1900'
 ,@EndDate = getdate() 	
@@ -116,14 +112,14 @@ Set @Batch = @LoadLogKey --@LastBatch +1
 
 -- ***** BEGIN MULTI SOURCE TABLE LOAD LOGIC *********************************************
 
-IF object_id('##tmp_Order_Hist_Head', 'U') is not null -- if table exists
+IF object_id('##tmp_JOB_HEADER', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_Order_Hist_Head
+		Drop table ##tmp_JOB_HEADER
 	END
 
-IF object_id('##tmp_Order_Hist_Line', 'U') is not null -- if table exists
+IF object_id('##tmp_JOB_DETAIL', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_Order_Hist_Line
+		Drop table ##tmp_JOB_DETAIL
 	END
 
 
@@ -132,125 +128,98 @@ Declare @Sql          as varchar(1000)
 
   -- create the select from source table Openquery using a wildcard
 Set @BaseSql = ' Openquery([LK_GS],'
-Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_HIST_HEAD '   --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + 'Select * from  JOB_HEADER '   --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ')' 
 	  
  
 
-Set @Sql = 'Select * INTO ##tmp_Order_Hist_Head From ' +  @BaseSql 
+Set @Sql = 'Select * INTO ##tmp_JOB_HEADER From ' +  @BaseSql 
 
 EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard
 Set @BaseSql = ' Openquery([LK_GS],'
-Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_HIST_LINE '  --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + 'Select * from  JOB_DETAIL '  --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
-Set @Sql = 'Select * INTO ##tmp_Order_Hist_Line From ' +  @BaseSql 
+Set @Sql = 'Select * INTO ##tmp_JOB_DETAIL From ' +  @BaseSql 
 
 EXEC(@Sql)
 
 
-INSERT INTO dbo._V_Invoice
+INSERT INTO dbo._V_Job
 
 SELECT   SO.*
-	--INTO [LK-GS-ODS].dbo._V_Invoice
+	--INTO [LK-GS-ODS].dbo._V_Job
 	From
 
 	(Select
-			 CAST(ol.ORDER_NO             AS    nchar(7))           AS            SalesOrderNumber
-			,CAST(ol.ORDER_LINE           AS    nchar(4))           AS            SalesOrderLine
-			,CAST(ol.ORDER_SUFFIX         AS    nchar(4))           AS            OLOrderSuffix
-			,CAST(oh.ORDER_SUFFIX         AS    nchar(4))           AS            OHOrderSuffix
-			,CAST(ol.INVOICE              AS    nchar(7))           AS            OLInvoiceNumber
-			,CAST(oh.DATE_ORDER           AS    date)               AS            OHCreationdate
-			,CAST(oh.DATE_ORDER_DUE       AS    date)               AS            OHDateOrderDue
-			,CAST(ol.DATE_ORDER_DUE       AS    date)               AS            OLDateOrderDue
-			,CAST(oh.INVOICE              AS    nchar(7))           AS            OHInvoiceNumber
-			,CAST(ol.DATE_DUE             AS    date)               AS            OLDateDue
-			,CAST(oh.CODE_SORT            AS    [nvarchar](20))     AS            OHOrderSort
-			,CAST(oh.USER_2               AS    [nvarchar](30))     AS            OHProjectType
-			,CAST(oh.BRANCH               AS    nchar(2))           AS            OHBranch
-			,CAST(oh.SHIP_VIA             AS    [nvarchar](20))     AS            OHShipVia
-			,CAST(oh.PRIMARY_GRP          AS    nchar(2))           AS            OHPrimaryGroup
-			,CAST(oh.CARRIER_CD           AS    nchar(6))           AS            OHShippingZone
-			,CAST(ol.DATE_ORDER           AS    date)               AS            OLDateOrder
-			,CAST(ol.DATE_SHIPPED         AS    date)               AS            OLDateShipped
-			,CAST(ol.DATE_INVOICE         AS    date)               AS            OLDateLineInvoiced
-			,CAST(ol.MUST_DLVR_DATE       AS    date)               AS            OLCustDueDate
-			,CAST(ol.BRANCH               AS    nchar(2))           AS            OLBranch
-			,CAST(ol.SHIP_VIA             AS    [nvarchar](20))     AS            OLShipVia
-			,CAST(ol.CUSTOMER_PART        AS    [nvarchar](20))     AS            OLCustomerPart
-			,CAST(oh.FLAG_INTL            AS    nchar(1))           AS            OLInternationalFlag
-			,CAST(ol.FLAG_BOM             AS    nchar(1))           AS            OLBOMExplodeFlag
-			,CAST(ol.FLAG_TAX_STATUS      AS    nchar(1))           AS            OLFlagTaxStatus
-			,CAST(ol.CREDIT_MEMO_FLAG     AS    nchar(1))           AS            OLCreditMemoFlag
-			,CAST(ol.FLAG_RMA             AS    nchar(1))           AS            OLFlagRMA
-			,CAST(ol.PRICE_BOM_COMP_FLAG  AS    nchar(1))           AS            OLBOMCompleteFlag
-			,CAST(ol.BOM_PARENT           AS    nchar(4))           AS            OLBOMParentLineNumber
-			,CAST(ol.FLAG_SERIALIZE       AS    nchar(1))           AS            OLSerializedFlag
-			,CAST(ol.UM_INVENTORY         AS    nchar(2))           AS            OLUMInventory
-			,CAST(ol.PRODUCT_LINE         AS    nchar(2))           AS            OLProductLine
-			,CAST(ol.INFO_1               AS    [nvarchar](20))     AS            OLPriceGroupID
-			,CAST(ol.INFO_2               AS    [nvarchar](20))     AS            OLSOGroupID
-			,CAST(ol.USER_1               AS    [nvarchar](30))     AS            OLUser1
-			,CAST(ol.USER_2               AS    [nvarchar](30))     AS            OLUser2
-			,CAST(ol.USER_3               AS    [nvarchar](30))     AS            OLTrackingNotes
-			,CAST(ol.USER_4               AS    [nvarchar](30))     AS            OLUser4
-			,CAST(ol.USER_5               AS    [nvarchar](30))     AS            OLUser5ShipVia
-			,CAST(ol.CARRIER_CD           AS    nchar(6))           AS            OLShippingZone
-			,CAST(ol.PHASE                AS    nchar(4))           AS            OLPhase
-			,CAST(ol.PRICE_DESCRIPTION    AS    [nvarchar](30))     AS            OLPriceDescription
-			,CAST(ol.LINE_TYPE            AS    nchar(1))           AS            OLLineType
-			,CAST(ol.CUSTOMER             AS    nchar(6))           AS            Customer
-			,CAST(ol.CUSTOMER_SHIP        AS    nchar(6))           AS            OrderLineCustShipTo
-			,CAST(oh.CUSTOMER_SHIP        AS    nchar(6))           AS            OrderCustShipTo
-			,CAST(ol.PART                 AS    nvarchar(20))       AS            Part
-			,CAST(ol.SALESPERSON          AS    nchar(3))           AS            SalesPerson
-			,CAST(ol.GL_ACCOUNT           AS    nchar(14))          AS            GLAccount
-			,CAST(ol.JOB                  AS    nchar(6))           AS            Job
-			,CAST(ol.QTY_ORDERED          AS    [decimal](13, 4))   AS            QtyOrdered
-			,CAST(ol.QTY_SHIPPED          AS    [decimal](13, 4))   AS            QtyShipped        
-			,CAST(ol.QTY_BO               AS    [decimal](13, 4))   AS            QtyBO        
-			,CAST(ol.QTY_ORIGINAL         AS    [decimal](13, 4))   AS            QtyOriginal        
-			,CAST(ol.COST                 AS    [decimal](16, 6))   AS            Cost        
-			,CAST(ol.COST_MATERIAL        AS    [decimal](11, 2))   AS            CostMaterial        
-			,CAST(ol.COST_LABOR           AS    [decimal](11, 2))   AS            CostLabor        
-			,CAST(ol.COST_OUTSIDE         AS    [decimal](11, 2))   AS            CostOutside        
-			,CAST(ol.COST_OVERHEAD        AS    [decimal](11, 2))   AS            CostOverhead        
-			,CAST(ol.COST_OTHER           AS    [decimal](11, 2))   AS            CostOther        
-			,CAST(ol.MARGIN               AS    [decimal](7, 4))    AS            Margin
-			,CAST(ol.PRICE                AS    [decimal](16, 6))   AS            Price
-			,CAST(ol.EXTENSION            AS    [decimal](16, 2))   AS            ExtendedPrice
-			,CAST(ol.TAX_APPLY_1          AS    nchar(1))           AS            TaxApply1
-			,CAST(ol.TAX_APPLY_2          AS    nchar(1))           AS            TaxApply2
-			,CAST(ol.TAX_AMT_1_ORDER      AS    [decimal](11, 2))   AS            TaxAmt1
-			,CAST(ol.TAX_AMT_2            AS    [decimal](11, 2))   AS            TaxAmt2
+	   h.JOB as [HEADER_JOB]
+      , h.SUFFIX as [HEADER_SUFFIX]
+      , h.PART as [HEADER_PART]
+      , h.PRODUCT_LINE as [HEADER_PRODUCT_LINE]
+      , h.SALESPERSON as [HEADER_SALESPERSON]
+      , h.CUSTOMER as [HEADER_CUSTOMER]
+      ,d.[JOB]
+      ,d.[SUFFIX]
+      ,d.[SEQ]
+      ,d.[SEQUENCE_KEY]
+      ,d.[EMPLOYEE]
+      ,d.[DESCRIPTION]
+      ,d.[DEPT_WORKCENTER]
+      ,d.[RATE_WORKCENTER]
+      ,d.[DEPT_EMP]
+      ,d.[MACHINE]
+      ,d.[PART]
+      ,d.[REFERENCE]
+      ,d.[LMO]
+      ,d.[RATE_TYPE]
+      ,d.[LOCATION]
+      ,d.[SHIFT_SHIFT]
+      ,d.[SHIFT_DEPT]
+      ,d.[SHIFT_GROUP]
+      , h.DATE_OPENED as [HEADER_DATE_OPENED]
+      , h.DATE_DUE as [HEADER_DATE_DUE]
+      , h.DATE_CLOSED as [HEADER_DATE_CLOSED]
+      , h.DATE_START as [HEADER_DATE_START]
+      ,d.[DATE_SEQUENCE]
+      ,d.[CHARGE_DATE]
+      ,d.[DATE_OUT]
+      ,d.[DATE_LAST_CHG]
+      ,d.[RATE_EMPLOYEE]
+      ,d.[HOURS_WORKED]
+      ,d.[PIECES_SCRAP]
+      ,d.[PIECES_COMPLTD]
+      ,d.[AMOUNT_LABOR]
+      ,d.[AMT_OVERHEAD]
+      ,d.[AMT_STANDARD]
+      ,d.[AMT_SCRAP]
+      ,d.[MACHINE_HRS]
+      ,d.[MULTIPLE_FRACTION]
+      ,d.[START_TIME]
+      ,d.[END_TIME]
 	 
-			 , 1 as ETL_TablNbr
-			 , 1 as ETL_Batch
+			 , @TblNbr as ETL_TablNbr
+			 , @Batch as ETL_Batch
 			 , getdate() as ETL_Completed -- select count(*)
 		FROM
-		##tmp_Order_Hist_Head oh
+		##tmp_JOB_HEADER h
 		LEFT JOIN 
-		##tmp_Order_Hist_Line ol 
-		ON oh.ORDER_NO = ol.ORDER_NO
-		AND oh.ORDER_SUFFIX = ol.ORDER_SUFFIX
-		AND oh.INVOICE = ol.INVOICE
+		##tmp_JOB_DETAIL d 
+		ON h.JOB = d.JOB
+		AND h.SUFFIX = d.SUFFIX
 
-		--- truncate table dbo._v_Invoice -- select * from dbo._v_Invoice
-
-		--WHERE -- PULL ALL DELTAS
-		--	(
-		--		oh.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
-		--		OR
-		--		ol.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
-		--	)
+		WHERE -- PULL ALL DELTAS
+			(
+				d.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
+			)
 
 	) AS SO
 	
-	Drop table ##tmp_Order_Hist_Head -- select count(*) from ##tmp_Order_Hist_Head
-	Drop table ##tmp_Order_Hist_Line -- select count(*) from ##tmp_Order_Hist_Line
+
+	Drop table ##tmp_JOB_HEADER -- select count(*) from ##tmp_JOB_HEADER
+	Drop table ##tmp_JOB_DETAIL -- select count(*) from ##tmp_JOB_DETAIL
+
 
 
 -- ***** END MULTI SOURCE TABLE LOAD LOGIC ***********************************************
