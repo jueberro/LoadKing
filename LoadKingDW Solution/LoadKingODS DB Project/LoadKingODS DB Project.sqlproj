@@ -82,5 +82,6 @@
     <Build Include="Stored Procedures\getJOB_HEADER.sql" />
     <Build Include="Stored Procedures\getInvoice.sql" />
     <Build Include="Stored Procedures\getJob.sql" />
+    <Build Include="Stored Procedures\getAPSV3_JBMASTER.sql" />
   </ItemGroup>
 </Project>

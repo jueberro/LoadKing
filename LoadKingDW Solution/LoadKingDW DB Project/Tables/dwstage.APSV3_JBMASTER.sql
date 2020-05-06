@@ -1,4 +1,9 @@
-﻿CREATE TABLE [dwstage].[APSV3_JBMASTER](
+--USE [LK-GS-EDW]
+--GO
+
+
+CREATE TABLE dwstage.APSV3_JBMASTER
+(
 	[JS] [char](9) NOT NULL,
 	[SCENARIO] [int] NOT NULL,
 	[JOB] [char](6) NULL,
