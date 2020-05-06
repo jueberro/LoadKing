@@ -175,7 +175,7 @@ LEFT OUTER JOIN dw.DimProductLine AS pl
 ON	Stage.PRODUCT_LINE = pl.ProductLine		
 AND  pl.DWIsCurrent = 1
 
-LEFT JOIN [LK-GS-ODS].[dbo].APSV3_JBMASTER m
+LEFT JOIN dwstage.APSV3_JBMASTER m
 ON stage.JOB = m.JOB
 and m.BOMPARENT = 1
 

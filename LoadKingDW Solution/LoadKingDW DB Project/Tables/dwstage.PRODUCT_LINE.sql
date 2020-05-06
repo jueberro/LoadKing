@@ -1,5 +1,4 @@
-USE [LK-GS-EDW]
-GO
+
 
 
 CREATE TABLE dwstage.PRODUCT_LINE
