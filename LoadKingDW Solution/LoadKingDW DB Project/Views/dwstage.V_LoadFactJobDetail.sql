@@ -1,7 +1,6 @@
 --USE [LK-GS-EDW]
 --GO
 
-
 CREATE VIEW dwstage.V_LoadFactJobDetail
 AS
 SELECT 
@@ -12,13 +11,10 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,ISNULL(sp.DimSalesperson_Key, -1) as DimSalesPerson_Key
 ,ISNULL(pl.DimProductLine_Key, -1) as DimProductLine_Key
 ,ISNULL(do.DimDate_Key, -1) as DimDate_Key
-
-,-1 as DimEmployee_Key -- ISNULL(e.DimEmployee_Key, -1) as DimEmployee_Key
-,-1 as DimDepartmentWorkCenter_Key --ISNULL(do.DimDepartmentWorkCenter_Key, -1) as DimDepartmentWorkCenter_Key
-,-1 as DimReference_Key --ISNULL(do.DimReference_Key, -1) as DimReference_Key
-,-1 as DimShiftShift_Key --ISNULL(do.DimShiftShift_Key, -1) as DimShiftShift_Key
-,-1 as DimShiftDepartment_Key --ISNULL(do.DimShiftDepartment_Key, -1) as DimShiftDepartment_Key
-,-1 as DimShiftGroup_Key --ISNULL(do.DimShiftGroup_Key, -1) as DimShiftGroup_Key
+,ISNULL(e.DimEmployee_Key, -1) as DimEmployee_Key
+,ISNULL(dwc.DimDepartment_Key, -1) as DimDepartmentWorkCenter_Key
+,ISNULL(ds.DimDepartment_Key, -1) as DimDepartmentShift_Key
+,ISNULL(de.DimDepartment_Key, -1) as DimDepartmentEmployee_Key
 
 ,[HEADER_JOB]
 ,[HEADER_SUFFIX]
@@ -33,11 +29,10 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,[SUFFIX]
 ,[SEQ] 
 ,[SEQUENCE_KEY]
+
 ,[EMPLOYEE] 
 ,stage.[DESCRIPTION]
-,[DEPT_WORKCENTER]
 ,[RATE_WORKCENTER]--
-,[DEPT_EMP]
 ,[MACHINE]
 ,stage.[PART] 
 ,[REFERENCE]
@@ -45,7 +40,6 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,[RATE_TYPE]
 ,[LOCATION]
 ,[SHIFT_SHIFT] 
-,[SHIFT_DEPT]
 ,[SHIFT_GROUP]
 
 ----------------------------------
@@ -89,9 +83,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 + [SEQUENCE_KEY]
 + [EMPLOYEE] 
 + stage.[DESCRIPTION]
-+ [DEPT_WORKCENTER]
 + CAST([RATE_WORKCENTER] AS NVARCHAR(12))
-+ [DEPT_EMP]
 + [MACHINE]
 + stage.[PART] 
 + [REFERENCE]
@@ -99,7 +91,6 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 + [RATE_TYPE]
 + [LOCATION]
 + [SHIFT_SHIFT] 
-+ [SHIFT_DEPT]
 + [SHIFT_GROUP]
 
 + CAST([HEADER_DATE_OPENED] AS NVARCHAR(20))
@@ -132,9 +123,6 @@ FROM
 LEFT OUTER JOIN (select SalesOrderNumber, min(DimSalesOrder_Key) DimSalesOrder_Key, min(SalesOrderLine) SalesOrderLine, 1 as DWIsCurrent from dw.DimSalesOrder group by SalesOrderNumber)  AS so
 ON	Stage.HEADER_SALES_ORDER = so.SalesOrderNumber AND	so.DWIsCurrent = 1 
 
--- select top 1000 * from [LK-GS-ODS].dbo.ORDER_HEADER order by Order_No, order_suffix
-
-
 LEFT OUTER JOIN dw.DimInventory AS i
 ON    Stage.PART = i.PartID
 AND  i.DWIsCurrent = 1
@@ -153,7 +141,6 @@ LEFT OUTER JOIN dw.DimProductLine AS pl
 ON	Stage.HEADER_PRODUCT_LINE = pl.ProductLine		
 AND  pl.DWIsCurrent = 1
 
--- Insert into dwstage.APSV3_JBMASTER select * from [lk-gs-ods].dbo.APSV3_JBMASTER
 LEFT JOIN dwstage.APSV3_JBMASTER m
 ON stage.JOB = m.JOB
 and m.BOMPARENT = 1
@@ -171,8 +158,20 @@ LEFT OUTER JOIN dw.DimDate AS do
 ON	dwstage.udf_cv_nvarchar6_to_date(Stage.HEADER_DATE_OPENED)  = do.[Date]			
 
 LEFT OUTER JOIN dw.DimEmployee AS e
-ON	Stage.EMPLOYEE = e.EmployeeID	
+ON	Stage.EMPLOYEE = e.EmployeeName	
 AND  sp.DWIsCurrent = 1
+
+LEFT JOIN dw.DimDepartment dwc
+ON stage.DEPT_WORKCENTER = dwc.DepartmentID
+AND dwc.DWIsCurrent = 1
+
+LEFT JOIN dw.DimDepartment ds
+ON stage.SHIFT_DEPT = ds.DepartmentID
+AND ds.DWIsCurrent = 1
+
+LEFT JOIN dw.DimDepartment de
+ON stage.DEPT_EMP = de.DepartmentID
+AND de.DWIsCurrent = 1
 
 		
 GO

@@ -1,4 +1,4 @@
-CREATE VIEW dwstage.V_ProductLine
+CREATE VIEW dwstage.V_LoadDimProductLine
 AS
 SELECT 		                                 
 		  [ProductLine]				  = CAST([PRODUCT_LINE]				AS NCHAR(6))
@@ -12,8 +12,6 @@ SELECT
 		, [DWEffectiveEndDate]		  = '2100-01-01'
 		, [DWIsCurrent]				  = CAST(1					  AS BIT)
 		, [LoadLogKey]				  = CAST(0                    AS INT)
-
-
 FROM 
 	dwstage.[PRODUCT_LINE]
 WHERE 
@@ -23,21 +21,6 @@ WHERE
 GROUP BY 
 	PRODUCT_LINE, PRODUCT_LINE_NAME
 
-/*
-SELECT 
-	PRODUCT_LINE as ProductLine
-	, PRODUCT_LINE_NAME as ProductLineName
-FROM 
-	[LK-GS-ODS].[dbo].[PRODUCT_LINE]
-WHERE 
-	NESTING_INTERFACE = 'N' 
-	AND PRODUCT_LINE <> '  '
-	AND PRODUCT_LINE IN (select distinct product_line from [LK-GS-ODS].dbo.JOB_HEADER)
-GROUP BY 
-	PRODUCT_LINE, PRODUCT_LINE_NAME
-*/
-
 
 		
 GO
-
