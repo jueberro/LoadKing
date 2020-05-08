@@ -141,6 +141,7 @@
     <Build Include="Tables\dwstage.APSV3_JBMASTER.sql" />
     <Build Include="Stored Procedures\dw.LoadFactJobDetail.sql" />
     <Build Include="Views\dwstage.V_LoadFactJobDetail.sql" />
+    <Build Include="Functions\dwstage.udf_TestDatevalue.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
