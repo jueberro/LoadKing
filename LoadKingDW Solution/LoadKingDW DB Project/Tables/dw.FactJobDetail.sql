@@ -13,10 +13,8 @@ DimProductLine_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 DimEmployee_Key int NOT NULL,
 DimDepartmentWorkCenter_Key int NOT NULL,
-DimReference_Key int NOT NULL,
-DimShiftShift_Key int NOT NULL,
-DimShiftDepartment_Key int NOT NULL,
-DimShiftGroup_Key int NOT NULL,
+DimDepartmentShift_Key int NOT NULL,
+DimDepartmentEmployee_Key int NOT NULL,
 
 -- DEGENERATE HEADER ATTRIBUTES ----------------------------------------------
 	[HEADER_JOB] [char](6) NULL,
@@ -49,9 +47,7 @@ DimShiftGroup_Key int NOT NULL,
 	[SEQUENCE_KEY] [char](4) NULL,--ok
 	[EMPLOYEE] [char](30) NULL,--ok
 	[DESCRIPTION] [char](30) NULL,--ok
-	[DEPT_WORKCENTER] [char](4) NULL,--ok
 	[RATE_WORKCENTER] [numeric](10, 4) NULL,--ok
-	[DEPT_EMP] [char](4) NULL,--ok
 	[MACHINE] [char](4) NULL,--ok
 	[PART] [char](20) NULL,--ok
 	[REFERENCE] [char](15) NULL,--ok
@@ -59,7 +55,6 @@ DimShiftGroup_Key int NOT NULL,
 	[RATE_TYPE] [char](1) NULL,--ok
 	[LOCATION] [char](2) NULL,--ok
 	[SHIFT_SHIFT] [char](1) NULL,--ok
-	[SHIFT_DEPT] [char](4) NULL,--ok
 	[SHIFT_GROUP] [char](8) NULL,--ok
 
 -- LIKELY HEADER NOT CRITICAL --------------------------------------------------

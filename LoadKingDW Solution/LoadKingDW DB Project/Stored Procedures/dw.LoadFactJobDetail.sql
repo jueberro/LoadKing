@@ -41,10 +41,8 @@ DimProductLine_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 DimEmployee_Key int NOT NULL,
 DimDepartmentWorkCenter_Key int NOT NULL,
-DimReference_Key int NOT NULL,
-DimShiftShift_Key int NOT NULL,
-DimShiftDepartment_Key int NOT NULL,
-DimShiftGroup_Key int NOT NULL,
+DimDepartmentShift_Key int NOT NULL,
+DimDepartmentEmployee_Key int NOT NULL,
 
 -- DEGENERATE HEADER ATTRIBUTES ----------------------------------------------
 [HEADER_JOB] [char](6) NULL,
@@ -64,9 +62,7 @@ HEADER_SALESPERSON char(3) NULL,
 [SEQUENCE_KEY] [char](4) NULL,
 [EMPLOYEE] [char](30) NULL,
 [DESCRIPTION] [char](30) NULL,
-[DEPT_WORKCENTER] [char](4) NULL,
 [RATE_WORKCENTER] [numeric](10, 4) NULL,
-[DEPT_EMP] [char](4) NULL,
 [MACHINE] [char](4) NULL,
 [PART] [char](20) NULL,
 [REFERENCE] [char](15) NULL,
@@ -74,7 +70,6 @@ HEADER_SALESPERSON char(3) NULL,
 [RATE_TYPE] [char](1) NULL,
 [LOCATION] [char](2) NULL,
 [SHIFT_SHIFT] [char](1) NULL,
-[SHIFT_DEPT] [char](4) NULL,
 [SHIFT_GROUP] [char](8) NULL,
 
 --HEADER DATES --------------------------------------------
@@ -165,10 +160,8 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 ,TGT.DimDate_Key = SRC.DimDate_Key
 ,TGT.DimEmployee_Key = SRC.DimEmployee_Key
 ,TGT.DimDepartmentWorkCenter_Key = SRC.DimDepartmentWorkCenter_Key
-,TGT.DimReference_Key = SRC.DimReference_Key
-,TGT.DimShiftShift_Key = SRC.DimShiftShift_Key
-,TGT.DimShiftDepartment_Key = SRC.DimShiftDepartment_Key
-,TGT.DimShiftGroup_Key = SRC.DimShiftGroup_Key
+,TGT.DimDepartmentShift_Key = SRC.DimDepartmentShift_Key
+,TGT.DimDepartmentEmployee_Key = SRC.DimDepartmentEmployee_Key
 
 -----------------------------------
 
@@ -179,18 +172,16 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 , TGT.HEADER_SALESPERSON = SRC.HEADER_SALESPERSON
 , TGT.[HEADER_SALES_ORDER] = SRC.[HEADER_SALES_ORDER]
 , TGT.[HEADER_SALES_ORDER_LINE] = SRC.[HEADER_SALES_ORDER_LINE]
+
 , TGT.[EMPLOYEE] = SRC.[EMPLOYEE]
 , TGT.[DESCRIPTION] = SRC.[DESCRIPTION]
-, TGT.[DEPT_WORKCENTER] = SRC.[DEPT_WORKCENTER]
 , TGT.[RATE_WORKCENTER] = SRC.[RATE_WORKCENTER]
-, TGT.[DEPT_EMP] = SRC.[DEPT_EMP]
 , TGT.[MACHINE] = SRC.[MACHINE]
 , TGT.[REFERENCE] = SRC.[REFERENCE]
 , TGT.[LMO] = SRC.[LMO]
 , TGT.[RATE_TYPE] = SRC.[RATE_TYPE]
 , TGT.[LOCATION] = SRC.[LOCATION]
 , TGT.[SHIFT_SHIFT] = SRC.[SHIFT_SHIFT]
-, TGT.[SHIFT_DEPT] = SRC.[SHIFT_DEPT]
 , TGT.[SHIFT_GROUP] = SRC.[SHIFT_GROUP]
 
 ----------------------------------
