@@ -14,8 +14,8 @@
 				,   [OHOrderSuffix] 																								
 				,   [OLOrderSuffix] 																								
 				,   [OLInvoiceNumber] 																								
-				,   stage.[OLDateShipped] 		AS OLDateShipped																					
-				,   [OLDateLineInvoiced] 																							
+				,   dwstage.udf_testdatevalue(stage.[OLDateShipped]) 		AS OLDateShipped																					
+				,   dwstage.udf_testdatevalue([OLDateLineInvoiced])	AS OLDateLineInvoiced																						
 				,   [QtyOrdered]               																						
 				,   [QtyShipped]               																						
 				,   [QtyBO]                    																						
@@ -57,11 +57,7 @@
 																		 
 	                 ) 
                                                                              
-                ,   [SourceSystemName]		      = CAST('Global Shop'        AS NVARCHAR(100))
-		        ,   [DWEffectiveStartDate]	      = CAST(Getdate()            AS DATETIME2(7))
-		        ,   [DWEffectiveEndDate]		  = '2100-01-01'
-		        ,   [DWIsCurrent]				  = CAST(1					  AS BIT)
-		        ,   [LoadLogKey]				  = CAST(0                    AS INT)
+            
 
 
 FROM            dwstage._V_Invoice Stage

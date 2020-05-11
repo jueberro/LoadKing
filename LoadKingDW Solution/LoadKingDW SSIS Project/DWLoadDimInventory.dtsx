@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimInventory"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{284240FB-49C9-4796-9874-FE3C5D23EA5C}">
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{2A24EC07-05C6-4D50-8EA9-E2339033AF01}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -92,6 +92,24 @@
       DTS:ObjectName="ODSExtractSQL">
       <DTS:VariableValue
         DTS:DataType="8">SELECT * FROM dbo._V_Inventory WHERE ETL_Batch = 0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D9D1DD23-949B-4082-B636-EF3F7F5F335E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A49D88B-FB69-4FBF-919B-A9FB59FDF58D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -936,7 +954,7 @@
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
-                      name="SqlCommandVariable"></property>
+                      name="SqlCommandVariable">User::ODSExtractSQL</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -949,7 +967,7 @@
                       dataType="System.Int32"
                       description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="AccessMode">0</property>
+                      typeConverter="AccessMode">3</property>
                     <property
                       dataType="System.String"
                       description="The mappings between the parameters in the SQL command and variables."
@@ -2184,7 +2202,14 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimInventory ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimInventory ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="RowsInsertedCount"
+                SQLTask:DtsVariableName="User::RowsInsertedCount" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="RowsUpdatedCount"
+                SQLTask:DtsVariableName="User::RowsUpdatedCount" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::LoadLogKey"
@@ -2266,10 +2291,22 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
-              SQLTask:SqlStatementSource="EXEC dwetl.LogLoadSuccess @LoadLogKey = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC dwetl.LogLoadSuccess @LoadLogKey = ?, @SourceRecordsRead = 0, @RowsInsertedCount = ?, @RowsUpdatedCount = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::LoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::RowsInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::RowsUpdatedCount"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="3"
                 SQLTask:ParameterSize="-1" />
@@ -2289,7 +2326,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="TRUNCATE TABLE dwstage.OE_MULTI_SHIP" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dwstage._V_INVENTORY" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2460,7 +2497,7 @@
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimInventory"
           TopLeft="65.1666666666667,313.5" />
         <NodeLayout
-          Size="171,43"
+          Size="177,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           TopLeft="85.8333333333333,5.50000000000004" />
         <NodeLayout
@@ -2473,18 +2510,18 @@
           TopLeft="58.5,108.166666666667" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
-          TopLeft="174.416666666667,48.5">
+          TopLeft="175.916666666667,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.666666666667"
+              EndConnector="0,60.666666666667"
               Start="0,0"
-              End="0,52.166666666667">
+              End="0,53.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.166666666667" />
+                    End="0,53.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2646,7 +2683,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Source - _V_Inventory">
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - _V_Inventory">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2659,7 +2696,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Destination - _V_Inventory">
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\ODS Source - _V_Inventory">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
