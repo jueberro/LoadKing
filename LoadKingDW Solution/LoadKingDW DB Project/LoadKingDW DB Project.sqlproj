@@ -145,6 +145,7 @@
     <Build Include="Tables\dwstage.DEPARTMENTS.sql" />
     <Build Include="Stored Procedures\dw.LoadDimDepartment.sql" />
     <Build Include="Views\dwstage.V_LoadDimDepartment.sql" />
+    <Build Include="Functions\dwstage.udf_TestDatevalue.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

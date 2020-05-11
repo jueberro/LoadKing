@@ -10,8 +10,7 @@
 --       Pervasive allowed that I have no idea, but it doesnt matter.  This is a simple 
 --       ISDATE test of a date field that returns 1900-01-01 when it sees a junk date.
 --======================================================================================
-
-         
+    
 
 
 (
