@@ -81,7 +81,7 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 
 --CREATE TEMP table to be used below for identifying records with CHANGES 
 
-	CREATE TABLE ##FactJobHeader_TARGET 
+	CREATE TABLE ##FactInvoice_TARGET 
 					(
 					                       SalesOrderNumber NCHAR(7),
                                            SalesOrderLine   nchar(4) ,
@@ -91,7 +91,7 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 					)
 
 	--Load temp table with NK and Type1RecordHash for CURRENT records
-	INSERT INTO ##FactJobHeader_TARGET
+	INSERT INTO ##FactInvoice_TARGET
 	SELECT	
 			 SalesOrderNumber
 			,SalesOrderLine 
@@ -104,11 +104,11 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	FROM	dw.FactInvoice
 
 	--INSERT NEW TARGET Items
-	INSERT INTO dw.FactJobHeader 
+	INSERT INTO dw.FactInvoice
 	SELECT	*
 	FROM	##FactInvoice_SOURCE AS SRC
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.FactJobHeader AS TGT
+						FROM	dw.FactInvoice AS TGT
 						WHERE	
 							    TGT.SalesOrderNumber = SRC.SalesOrderNumber
 							and TGT.SalesOrderLine   = SRC.SalesOrderLine 
@@ -130,7 +130,6 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 ,TGT.[FactInventory_Key]               = SRC.DimProductLine_Key
 ,TGT.[DimGLMaster_Key]                 = SRC.DimDate_Key
 ,TGT.[DimSalesperson_Key]              = SRC.[DimSalesperson_Key] 
-,TGT.[DimQuote_Key]                    = SRC.[DimQuote_Key]       
 ,TGT.[DimJob_Key]                      = SRC.[DimJob_Key]         
 
 
