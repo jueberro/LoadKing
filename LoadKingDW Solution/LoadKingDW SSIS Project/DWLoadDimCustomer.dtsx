@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimCustomer"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{C2D2B9E8-6BDC-407C-A4FA-7EA3889DEDDF}">
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{27DF0AD7-983D-458C-A749-C0B585FB4745}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -80,7 +80,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="LoadLogKey">
       <DTS:VariableValue
-        DTS:DataType="20">0</DTS:VariableValue>
+        DTS:DataType="20">118</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -691,7 +691,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
-                      name="OpenRowsetVariable"></property>
+                      name="OpenRowsetVariable">User::ODSExtractSQL</property>
                     <property
                       dataType="System.String"
                       description="The SQL command to be executed."
@@ -1489,7 +1489,7 @@
                 SQLTask:ResultName="RowsInsertedCount"
                 SQLTask:DtsVariableName="User::RowsInsertedCount" />
               <SQLTask:ResultBinding
-                SQLTask:ResultName="RowUpdatedCount"
+                SQLTask:ResultName="RowsUpdatedCount"
                 SQLTask:DtsVariableName="User::RowsUpdatedCount" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
@@ -1776,7 +1776,7 @@
         <NodeLayout
           Size="221,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimCustomer"
-          TopLeft="65.1666666666667,313.5" />
+          TopLeft="67.1666666666667,313.5" />
         <NodeLayout
           Size="171,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
@@ -1813,7 +1813,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
-          TopLeft="173.583333333333,355.5">
+          TopLeft="174.333333333333,355.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1857,7 +1857,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
-          TopLeft="175.583333333333,250.833333333334">
+          TopLeft="176.333333333333,250.833333333334">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1877,11 +1877,18 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="DFT needs to source from the actual variable and NOT the table.  Else when&#xD;&#xA;sourced from the source table we would pull all batches. "
+          ParentId="Package\FEL - Extract Batches Not Yet Processed in DW Table"
+          FontInfo="{assembly:Null}"
+          Size="427,60"
+          Id="97930c23-182e-4966-a9b1-90f9fe0743f1"
+          TopLeft="403,204" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1482,476"
-          Size="1482,519"
+          PanelSize="1482,514"
+          Size="1482,557"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           TopLeft="114.5,108.166666666666" />
         <NodeLayout
@@ -1945,37 +1952,37 @@
         <NodeLayout
           Size="157,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source"
-          TopLeft="557,210" />
+          TopLeft="597,135" />
         <NodeLayout
           Size="177,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination"
           TopLeft="557,331" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table.Paths[OLE DB Source Output]"
-          TopLeft="635.5,252">
+          TopLeft="675.5,177">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="10,79"
+              EndConnector="-30,154"
               Start="0,0"
-              End="10,71.5">
+              End="-30,146.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,73" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35.5"
-                    Point2="0,39.5"
-                    Point3="4,39.5" />
+                    Point1="0,73"
+                    Point2="0,77"
+                    Point3="-4,77" />
                   <mssgle:LineSegment
-                    End="6,39.5" />
+                    End="-26,77" />
                   <mssgle:CubicBezierSegment
-                    Point1="6,39.5"
-                    Point2="10,39.5"
-                    Point3="10,43.5" />
+                    Point1="-26,77"
+                    Point2="-30,77"
+                    Point3="-30,81" />
                   <mssgle:LineSegment
-                    End="10,71.5" />
+                    End="-30,146.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

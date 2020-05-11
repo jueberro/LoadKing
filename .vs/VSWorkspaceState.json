@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    "\\LoadKingDW Solution"
+    "",
+    "\\LoadKingDW Solution",
+    "\\LoadKingDW Solution\\LoadKingDW SSIS Project"
   ],
+  "SelectedNode": "\\LoadKingDW Solution\\LoadKingDW SSIS Project\\DWLoadDimCustomer.dtsx",
   "PreviewInSolutionExplorer": false
 }
