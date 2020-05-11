@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadFactInvoice"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="53"
-  DTS:VersionGUID="{7D64618C-51DB-4DE3-936A-3D6A3BCECAB7}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{EBCAF961-7FBF-4B21-B885-76A337FA5072}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>

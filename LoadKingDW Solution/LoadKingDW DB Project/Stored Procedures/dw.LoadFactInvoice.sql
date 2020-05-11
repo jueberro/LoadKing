@@ -43,9 +43,8 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	[FactInventory_Key]             [int] NOT NULL,
 	[DimGLMaster_Key]               [int] NOT NULL,
 	[DimSalesperson_Key]            [int] NOT NULL,
-	[DimQuote_Key]                  [int] NOT NULL,
-	[DimJob_Key]                    [int] NOT NULL,
-
+	
+	
 	[SalesOrderNumber] [nchar](7) NULL,   
     [SalesOrderLine] [nchar](4) NULL,	
     [OHOrderSuffix] [nchar](4) NULL,      
@@ -130,8 +129,6 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 ,TGT.[FactInventory_Key]               = SRC.DimProductLine_Key
 ,TGT.[DimGLMaster_Key]                 = SRC.DimDate_Key
 ,TGT.[DimSalesperson_Key]              = SRC.[DimSalesperson_Key] 
-,TGT.[DimJob_Key]                      = SRC.[DimJob_Key]         
-
 
 , TGT.[SalesOrderNumber]     = SRC.[SalesOrderNumber]    
 , TGT.[SalesOrderLine]       = SRC.[SalesOrderLine]      

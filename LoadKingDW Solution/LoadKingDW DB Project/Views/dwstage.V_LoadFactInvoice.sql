@@ -1,43 +1,43 @@
 ﻿CREATE VIEW [dwstage].[V_LoadFactInvoice]
 	AS
     SELECT       
-	                DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
-	            ,   DimCustomer_Key			     = ISNULL(DC.DimCustomer_Key,         -1)
-		        ,   OrderDateDimDate_Key 		 = ISNULL(OrderDate.DimDate_Key,      -1)
-		        ,   ShipDateDimDate_Key 		 = ISNULL(ShipDate.DimDate_Key,       -1)
-		        ,   DimCustomerShipTo_Key     	 = ISNULL(DCST.DimCustomerShipTo_Key, -1)
-		        ,   DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)
-		        ,   DimGLMaster_Key              = ISNULL(GLAcct.DimGLAccount_Key,    -1)
-		        ,   DimSalesperson_Key           = ISNULL(SalesP.DimSalesperson_Key,  -1)
-	            ,   stage.[SalesOrderNumber]   
-				,   stage.[SalesOrderLine] 
-				,   [OHOrderSuffix] 
-				,   [OLOrderSuffix] 
-				,   [OLInvoiceNumber] 
-				,   stage.[OLDateShipped] 
-				,   [OLDateLineInvoiced] 
-				,   [QtyOrdered]               
-				,   [QtyShipped]               
-				,   [QtyBO]                    
-				,   [QtyOriginal]              
-				,   [Cost]                     
-				,   [CostMaterial]             
-				,   [CostLabor]                
-				,   [CostOutside]              
-				,   [CostOverhead]             
-				,   [CostOther]                
-				,   [Margin]                   
-				,   stage.[Price]                    
-				,   [ExtendedPrice]            
-				,   [TaxApply1]                
-				,   [TaxApply2]                
-				,   [TaxAmt1]                  
-				,   [TaxAmt2]                  
-					    
-                ,   [Type1RecordHash]			  = HASHBYTES('SHA2_256',        
-                                                                             cast(stage.[OLDateShipped]     as nvarchar(26))
-																		 +   cast([OLDateLineInvoiced]      as nvarchar(26))
-																		 +   cast([QtyOrdered]              as nvarchar(16))      
+	                DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)                                          
+	            ,   DimCustomer_Key			     = ISNULL(DC.DimCustomer_Key,         -1)											
+		        ,   OrderDateDimDate_Key 		 = ISNULL(OrderDate.DimDate_Key,      -1)											
+		        ,   ShipDateDimDate_Key 		 = ISNULL(ShipDate.DimDate_Key,       -1)											
+		        ,   DimCustomerShipTo_Key     	 = ISNULL(DCST.DimCustomerShipTo_Key, -1)											
+		        ,   DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)											
+		        ,   DimGLMaster_Key              = ISNULL(GLAcct.DimGLAccount_Key,    -1)											
+		        ,   DimSalesperson_Key           = ISNULL(SalesP.DimSalesperson_Key,  -1)											
+	            ,   stage.[SalesOrderNumber]   	AS SalesOrderNumber																					
+				,   stage.[SalesOrderLine] 		AS SalesOrderLine																					
+				,   [OHOrderSuffix] 																								
+				,   [OLOrderSuffix] 																								
+				,   [OLInvoiceNumber] 																								
+				,   stage.[OLDateShipped] 		AS OLDateShipped																					
+				,   [OLDateLineInvoiced] 																							
+				,   [QtyOrdered]               																						
+				,   [QtyShipped]               																						
+				,   [QtyBO]                    																						
+				,   [QtyOriginal]              																						
+				,   [Cost]                     																						
+				,   [CostMaterial]             																						
+				,   [CostLabor]                																						
+				,   [CostOutside]              																						
+				,   [CostOverhead]             																						
+				,   [CostOther]                																						
+				,   [Margin]                   																						
+				,   stage.[Price]               AS Price     																				
+				,   [ExtendedPrice]            																						
+				,   [TaxApply1]                																						
+				,   [TaxApply2]                																						
+				,   [TaxAmt1]                  																						
+				,   [TaxAmt2]                  																						
+					    																											
+                ,   [Type1RecordHash]			  = HASHBYTES('SHA2_256',        													
+                                                                             cast(stage.[OLDateShipped]     as nvarchar(26))		
+																		 +   cast([OLDateLineInvoiced]      as nvarchar(26))			
+																		 +   cast([QtyOrdered]              as nvarchar(16))      		
 																		 +   cast([QtyShipped]              as nvarchar(16))
 																		 +   cast([QtyBO]                   as nvarchar(16))
 																		 +   cast([QtyOriginal]             as nvarchar(16))
@@ -91,7 +91,7 @@ LEFT OUTER JOIN dw.DimSalesOrder AS DSO
   ON	Stage.OLSalesperson = SalesP.SalespersonID	
    AND  DI.DWIsCurrent = 1
 
- LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
+  LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
   ON	stage.OLCustShipTo = DCST.ShipToSeq
    AND     Stage.OLCustomer = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1

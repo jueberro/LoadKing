@@ -8,7 +8,7 @@
 	[FactInventory_Key] [int] NOT NULL,
 	[DimGLMaster_Key] [int] NOT NULL,
 	[DimSalesperson_Key] [int] NOT NULL,
-	[DimJob_Key] [int] NOT NULL,
+    
 
 	[SalesOrderNumber] [nchar](7) NULL,   
     [SalesOrderLine] [nchar](4) NULL,	
