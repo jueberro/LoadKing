@@ -12,8 +12,8 @@
   DTS:ObjectName="DWTableLoop"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{DFE33BA3-B7F8-4303-976E-90F000FBEE4B}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{5AB87119-4C7B-45B3-8750-EA7187016347}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -275,18 +275,18 @@
           TopLeft="33.5,5.50000000000004" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="142.166666666667,48.1666666666667">
+          TopLeft="142,48.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59.666666666667"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
