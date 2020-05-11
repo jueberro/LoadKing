@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE PROCEDURE dw.sp_LoadFactInvoice @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadFactInvoice] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -122,12 +122,12 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	SET
 
  TGT.[DimSalesOrder_Key]               = SRC.DimSalesOrder_Key
-,TGT.[DimCustomer_Key]                 = SRC.DimWorkOrderType_Key
-,TGT.[OrderDateDimDate_Key]            = SRC.DimInventory_Key
+,TGT.[DimCustomer_Key]                 = SRC.DimCustomer_Key
+,TGT.[OrderDateDimDate_Key]            = SRC.OrderDateDimDate_Key
 ,TGT.[ShipDateDimDate_Key]             = SRC.DimCustomer_Key
 ,TGT.[DimCustomerShipTo_Key]           = SRC.DimSalesPerson_Key
-,TGT.[FactInventory_Key]               = SRC.DimProductLine_Key
-,TGT.[DimGLMaster_Key]                 = SRC.DimDate_Key
+,TGT.[FactInventory_Key]               = SRC.FactInventory_Key
+,TGT.[DimGLMaster_Key]                 = SRC.DimGLMaster_Key
 ,TGT.[DimSalesperson_Key]              = SRC.[DimSalesperson_Key] 
 
 , TGT.[SalesOrderNumber]     = SRC.[SalesOrderNumber]    
