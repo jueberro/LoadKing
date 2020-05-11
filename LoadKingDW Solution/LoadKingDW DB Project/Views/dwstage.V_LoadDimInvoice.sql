@@ -1,21 +1,22 @@
 ﻿CREATE VIEW [dwstage].[V_LoadDimInvoice]
 	AS
-    SELECT          [SalesOrderNumber]		
+    SELECT  
+	                [SalesOrderNumber]		
 				,   [SalesOrderLine]		
 				,   [OHOrderSuffix]			
 				,   [OHInvoiceNumber]		
-				,   [OHCreationDate]		
-				,   [OHDateOrderDue]		
-				,   [OLDateOrderDue]		
-				,   [OLDateDue]				
+				,   dwstage.udf_testdatevalue([OHCreationDate]) AS  [OHCreationDate]
+				,   dwstage.udf_testdatevalue([OHDateOrderDue]) AS  [OHDateOrderDue]	
+				,   dwstage.udf_testdatevalue([OLDateOrderDue]) AS  [OLDateOrderDue] 	
+				,   dwstage.udf_testdatevalue([OLDateDue])      AS  [OLDateDue]				
 				,   [OHOrderSort]			
 				,   [OHProjectType]			
 				,   [OHBranch]				
 				,   [OHShipVia]				
 				,   [OHPrimaryGroup]		
 				,   [OHShippingZone]		
-				,   [OLDateOrder]			
-				,   [OLCustDueDate]			
+				,   dwstage.udf_testdatevalue([OLDateOrder])   AS   [OLDateOrder]			
+				,   dwstage.udf_testdatevalue([OLCustDueDate]) AS   [OLCustDueDate]			
 				,   [OLBranch]				
 				,   [OLShipVia]				
 				,   [OLCustomerPart]		
@@ -92,4 +93,6 @@
 		        ,   [DWIsCurrent]				  = CAST(1					  AS BIT)
 		        ,   [LoadLogKey]				  = CAST(0                    AS INT)
 FROM            dwstage._V_Invoice
+--Test
+GO
 

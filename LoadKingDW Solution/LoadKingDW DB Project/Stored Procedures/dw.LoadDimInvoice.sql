@@ -16,28 +16,28 @@ BEGIN
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
-	BEGIN TRY DROP TABLE #DimSalesOrders_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimSalesOrders_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimInvoice_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimInvoice_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
-	CREATE TABLE #DimSalesOrders_work (                              
+	CREATE TABLE #DimInvoice_work (                              
                                                           
 	[SalesOrderNumber] [nchar](7) NULL,                   
 	[SalesOrderLine] [nchar](4) NULL,	                  
 	[OHOrderSuffix] [nchar](4) NULL,		              
 	[OHInvoiceNumber] [nchar](7) NULL, 		              
-	[OHCreationDate] [date] NULL,		                  
-	[OHDateOrderDue] [date] NULL,		                  
-	[OLDateOrderDue] [date] NULL,			              
-	[OLDateDue] [date] NULL,                              
+	[OHCreationDate] [datetime] NULL,		                  
+	[OHDateOrderDue] [datetime] NULL,		                  
+	[OLDateOrderDue] [datetime] NULL,			              
+	[OLDateDue]      [datetime] NULL,                              
 	[OHOrderSort] [nvarchar](20) NULL,				   	  
 	[OHProjectType] [nvarchar](30) NULL,				  
 	[OHBranch] [nchar](2) NULL,						   	  
 	[OHShipVia] [nvarchar](20) NULL,					  
 	[OHPrimaryGroup] [nchar](2) NULL,		   			  
 	[OHShippingZone] [nchar](6) NULL,				   	  
-	[OLDateOrder] [date] NULL,						   	  
-	[OLCustDueDate] [date] NULL,				   		  
+	[OLDateOrder]   [datetime] NULL,						   	  
+	[OLCustDueDate] [datetime] NULL,				   		  
 	[OLBranch] [nchar](2) NULL,				   			  
 	[OLShipVia] [nvarchar](20) NULL,				   	  
 	[OLCustomerPart] [nvarchar](20) NULL,				  
@@ -73,15 +73,15 @@ BEGIN
 	)
 
 	--Load #work table with data in the format in which it will appear in the dimension
-	INSERT INTO #DimSalesOrders_work
+	INSERT INTO #DimInvoice_work
 			SELECT 		
-				 * from dwstage.V_LoadDimSalesOrder
+				 * from dwstage.V_LoadDimInvoice
     
-    Update #DimSalesOrders_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
+    Update #DimInvoice_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimSalesOrders_current ( SalesOrderNumber NCHAR(7),
+	CREATE TABLE #DimInvoice_current ( SalesOrderNumber NCHAR(7),
                                            SalesOrderLine   nchar(4) ,
 										   OHOrderSuffix    nchar(4) ,
 										   OHInvoiceNumber  nchar(7) ,
@@ -90,19 +90,19 @@ BEGIN
 										)
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
-	INSERT INTO #DimSalesOrders_current
-	SELECT		SalesOrderNumber, SalesOrderLine, Type2RecordHash
+	INSERT INTO #DimInvoice_current
+	SELECT		SalesOrderNumber, SalesOrderLine, OHOrderSuffix , OHInvoiceNumber, Type2RecordHash
 
-	FROM	dw.DimSalesOrder
+	FROM	dw.DimInvoice
 	WHERE	DWIsCurrent = 1
 
 
 	--INSERT NEW Dimension Items
-	INSERT INTO dw.DimSalesOrder
+	INSERT INTO dw.DimInvoice
 	SELECT	*
-	FROM	#DimSalesOrders_work AS Work
+	FROM	#DimInvoice_work AS Work
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.DimSalesOrder AS DIM
+						FROM	dw.Diminvoice AS DIM
 						WHERE	DIM.SalesOrderNumber = Work.SalesOrderNumber 
 						  AND   DIM.SalesOrderline   = Work.SalesOrderline
 						  AND   DIM.OHOrderSuffix    = Work.OHOrderSuffix
@@ -115,9 +115,9 @@ BEGIN
 	UPDATE	DIM
 	SET		DWEffectiveEndDate = @CurrentTimestamp
 			, DWIsCurrent = 0
-	FROM	dw.DimSalesOrder		AS DIM
-	 JOIN   #DimSalesOrders_work	AS Work
-	  ON	    DIM.SalesOrderNumber = Work.SalesOrderNumber 
+	FROM	dw.DimInvoice 		AS DIM
+	 JOIN   #DimInvoice_work	AS Work
+	  ON	                    DIM.SalesOrderNumber = Work.SalesOrderNumber 
 						  AND   DIM.SalesOrderline   = Work.SalesOrderline
 						  AND   DIM.OHOrderSuffix    = Work.OHOrderSuffix
 						  AND   DIM.OHInvoiceNumber  = Work.OHInvoiceNumber
@@ -126,10 +126,10 @@ BEGIN
 
 
 	--INSERT New versions of expired records that have Type 2 changes
-	INSERT INTO dw.DimSalesOrder
+	INSERT INTO dw.DimInvoice
 	SELECT	Work.*
-	FROM	#DimSalesOrders_current AS DIM
-	 JOIN   #DimSalesOrders_work    AS Work
+	FROM	#DimInvoice_current AS DIM
+	 JOIN   #DimInvoice_work    AS Work
 	  ON	  DIM.SalesOrderNumber = Work.SalesOrderNumber 
 		AND   DIM.SalesOrderline   = Work.SalesOrderline
 		AND   DIM.OHOrderSuffix    = Work.OHOrderSuffix
@@ -138,8 +138,8 @@ BEGIN
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
 	--DROP temp tables
-	BEGIN TRY DROP TABLE #DimSalesOrders_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimSalesOrders_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimInvoice_work		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE #DimInvoice_current	END TRY BEGIN CATCH END CATCH
 	 
 
 END
