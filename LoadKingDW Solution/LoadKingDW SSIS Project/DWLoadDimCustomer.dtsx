@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimCustomer"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="46"
-  DTS:VersionGUID="{27DF0AD7-983D-458C-A749-C0B585FB4745}">
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{C981F61A-A6F0-4A60-B0DA-17832E0A08BB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -1878,10 +1878,10 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="DFT needs to source from the actual variable and NOT the table.  Else when&#xD;&#xA;sourced from the source table we would pull all batches. "
+          Text="05/12/2020"
           ParentId="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           FontInfo="{assembly:Null}"
-          Size="427,60"
+          Size="90,40"
           Id="97930c23-182e-4966-a9b1-90f9fe0743f1"
           TopLeft="403,204" />
         <ContainerLayout
