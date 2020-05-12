@@ -81,7 +81,6 @@
     <Build Include="Stored Procedures\dw.LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimEmployee.sql" />
     <Build Include="Views\dwstage.V_LoadDimCustomer.sql" />
-    <Build Include="Stored Procedures\dw.LoadDimCustomer.sql" />
     <Build Include="Views\dwstage.V_LoadDimCustomerShipTo.sql" />
     <Build Include="Functions\dwstage.udf_cv_char6_date_char8_time_to_datetime.sql" />
     <Build Include="Tables\dwstage.OE_MULTI_SHIP.sql" />
@@ -146,6 +145,7 @@
     <Build Include="Stored Procedures\dw.LoadDimDepartment.sql" />
     <Build Include="Views\dwstage.V_LoadDimDepartment.sql" />
     <Build Include="Functions\dwstage.udf_TestDatevalue.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimCusotmer.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
