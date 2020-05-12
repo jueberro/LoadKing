@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimCustomer"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="46"
-  DTS:VersionGUID="{27DF0AD7-983D-458C-A749-C0B585FB4745}">
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{CC4FC8AB-05BA-4CCF-B20B-278EBFFD3116}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -145,6 +145,7 @@
         <DTS:Executable
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{CED6D612-CEC8-4784-AE04-CA831F58D2F2}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -678,6 +679,7 @@
                   description="OLE DB Source"
                   name="OLE DB Source"
                   usesDispositions="true"
+                  validateExternalMetadata="False"
                   version="7">
                   <properties>
                     <property
@@ -700,7 +702,7 @@
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
-                      name="SqlCommandVariable"></property>
+                      name="SqlCommandVariable">User::ODSExtractSQL</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -713,7 +715,7 @@
                       dataType="System.Int32"
                       description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="AccessMode">0</property>
+                      typeConverter="AccessMode">3</property>
                     <property
                       dataType="System.String"
                       description="The mappings between the parameters in the SQL command and variables."
@@ -1770,7 +1772,7 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="339,43"
+          Size="351,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           TopLeft="5.5,207.833333333334" />
         <NodeLayout
@@ -1835,7 +1837,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
-          TopLeft="176.25,150.166666666667">
+          TopLeft="179.25,150.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1857,18 +1859,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
-          TopLeft="176.333333333333,250.833333333334">
+          TopLeft="179.333333333333,249.833333333334">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,62.666666666666"
+              EndConnector="0,63.666666666666"
               Start="0,0"
-              End="0,55.166666666666">
+              End="0,56.166666666666">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.166666666666" />
+                    End="0,56.166666666666" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1878,10 +1880,10 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="DFT needs to source from the actual variable and NOT the table.  Else when&#xD;&#xA;sourced from the source table we would pull all batches. "
+          Text="DFT needs to source from the actual variable and NOT the table.  Else when&#xA;sourced from the source table we would pull all batches. "
           ParentId="Package\FEL - Extract Batches Not Yet Processed in DW Table"
           FontInfo="{assembly:Null}"
-          Size="427,60"
+          Size="427,56"
           Id="97930c23-182e-4966-a9b1-90f9fe0743f1"
           TopLeft="403,204" />
         <ContainerLayout
@@ -1956,16 +1958,16 @@
         <NodeLayout
           Size="177,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination"
-          TopLeft="557,331" />
+          TopLeft="556,331" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table.Paths[OLE DB Source Output]"
           TopLeft="675.5,177">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-30,154"
+              EndConnector="-31,154"
               Start="0,0"
-              End="-30,146.5">
+              End="-31,146.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1976,13 +1978,13 @@
                     Point2="0,77"
                     Point3="-4,77" />
                   <mssgle:LineSegment
-                    End="-26,77" />
+                    End="-27,77" />
                   <mssgle:CubicBezierSegment
-                    Point1="-26,77"
-                    Point2="-30,77"
-                    Point3="-30,81" />
+                    Point1="-27,77"
+                    Point2="-31,77"
+                    Point3="-31,81" />
                   <mssgle:LineSegment
-                    End="-30,146.5" />
+                    End="-31,146.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

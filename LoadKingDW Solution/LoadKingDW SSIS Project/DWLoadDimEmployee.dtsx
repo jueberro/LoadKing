@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimEmployee"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{21FDA113-551F-40AD-908B-860BFA2A9DB5}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{71131595-2BF1-4254-B571-08FD77154418}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -1604,25 +1604,19 @@
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[FILLER]" />
                         <inputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\DST - dwstage EMPLOYEE_MSTR.Inputs[OLE DB Destination Input].Columns[ETL_TblNbr]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="3"
+                          cachedDataType="i4"
                           cachedName="ETL_TblNbr"
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\DST - dwstage EMPLOYEE_MSTR.Inputs[OLE DB Destination Input].ExternalColumns[ETL_TblNbr]"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_TblNbr]" />
                         <inputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\DST - dwstage EMPLOYEE_MSTR.Inputs[OLE DB Destination Input].Columns[ETL_Batch]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="1"
+                          cachedDataType="i4"
                           cachedName="ETL_Batch"
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\DST - dwstage EMPLOYEE_MSTR.Inputs[OLE DB Destination Input].ExternalColumns[ETL_Batch]"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_Batch]" />
                         <inputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\DST - dwstage EMPLOYEE_MSTR.Inputs[OLE DB Destination Input].Columns[ETL_Completed]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="19"
+                          cachedDataType="dbTimeStamp"
                           cachedName="ETL_Completed"
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\DST - dwstage EMPLOYEE_MSTR.Inputs[OLE DB Destination Input].ExternalColumns[ETL_Completed]"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_Completed]" />
@@ -4697,34 +4691,28 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_TblNbr]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].ExternalColumns[ETL_TblNbr]"
-                          length="3"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_TblNbr]"
                           name="ETL_TblNbr"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_Batch]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].ExternalColumns[ETL_Batch]"
-                          length="1"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_Batch]"
                           name="ETL_Batch"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_Completed]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="dbTimeStamp"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].ExternalColumns[ETL_Completed]"
-                          length="19"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].Columns[ETL_Completed]"
                           name="ETL_Completed"
                           truncationRowDisposition="FailComponent" />
@@ -5775,21 +5763,15 @@
                           name="FILLER" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].ExternalColumns[ETL_TblNbr]"
-                          codePage="1252"
-                          dataType="str"
-                          length="3"
+                          dataType="i4"
                           name="ETL_TblNbr" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].ExternalColumns[ETL_Batch]"
-                          codePage="1252"
-                          dataType="str"
-                          length="1"
+                          dataType="i4"
                           name="ETL_Batch" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Output].ExternalColumns[ETL_Completed]"
-                          codePage="1252"
-                          dataType="str"
-                          length="19"
+                          dataType="dbTimeStamp"
                           name="ETL_Completed" />
                       </externalMetadataColumns>
                     </output>
@@ -7017,23 +6999,17 @@
                           name="FILLER" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Error Output].Columns[ETL_TblNbr]"
-                          codePage="1252"
-                          dataType="str"
-                          length="3"
+                          dataType="i4"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Error Output].Columns[ETL_TblNbr]"
                           name="ETL_TblNbr" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Error Output].Columns[ETL_Batch]"
-                          codePage="1252"
-                          dataType="str"
-                          length="1"
+                          dataType="i4"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Error Output].Columns[ETL_Batch]"
                           name="ETL_Batch" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Error Output].Columns[ETL_Completed]"
-                          codePage="1252"
-                          dataType="str"
-                          length="19"
+                          dataType="dbTimeStamp"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch.Outputs[OLE DB Source Error Output].Columns[ETL_Completed]"
                           name="ETL_Completed" />
                         <outputColumn
@@ -7517,7 +7493,7 @@
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="298,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\SRC - ODS EMPLOYEE_MSTR - One Batch"
@@ -7545,9 +7521,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
