@@ -1,6 +1,20 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimCustomer] @LoadLogKey INT  AS
+--USE [LK-GS-EDW]
+--GO
+
+
+
+CREATE PROCEDURE [dw].[sp_LoadDimCustomer] @LoadLogKey INT  AS
 
 BEGIN
+
+/*
+DECLARE @LoadLogKey INT
+SET @LoadLogKey = 118
+*/
+
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
+
 
 	/*
 
@@ -17,6 +31,8 @@ BEGIN
 
 	BEGIN TRY DROP TABLE #DimCustomer_work		END TRY BEGIN CATCH END CATCH
 	BEGIN TRY DROP TABLE #DimCustomer_current	END TRY BEGIN CATCH END CATCH
+
+
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimCustomer_work (
@@ -57,7 +73,7 @@ BEGIN
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimCustomer_current (CustomerID NCHAR(5)
+	CREATE TABLE #DimCustomer_current (CustomerID NCHAR(6)
 										, Type2RecordHash VARBINARY(64)
 										)
 
@@ -78,6 +94,7 @@ BEGIN
 						WHERE	DIM.CustomerID = Work.CustomerID 
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -85,10 +102,11 @@ BEGIN
 			, DWIsCurrent = 0
 	FROM	dw.DimCustomer		AS DIM
 	 JOIN   #DimCustomer_work	AS Work
-	  ON	Dim.CustomerD = Work.CustomerID
+	  ON	Dim.CustomerID = Work.CustomerID
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimCustomer
@@ -104,3 +122,10 @@ BEGIN
 	 
 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+
+GO
+
+
