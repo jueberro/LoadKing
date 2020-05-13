@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dw].[FactInvoice](
-	[FactSalesOrderLine_Key] [int] IDENTITY(1,1) NOT NULL,
-	[DimSalesOrder_Key] [int] NOT NULL,
+
+	[DimInvoice_Key] [int] NOT NULL,
 	[DimCustomer_Key] [int] NOT NULL,
 	[OrderDateDimDate_Key] [int] NOT NULL,
 	[ShipDateDimDate_Key] [int] NOT NULL,

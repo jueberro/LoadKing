@@ -17,6 +17,10 @@ BEGIN
 
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 
+	DECLARE     @RowsInsertedCount int
+    DECLARE     @RowsUpdatedCount int
+
+
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
 	--BEGIN TRY DROP TABLE ##FactInvoice_SOURCE		END TRY BEGIN CATCH END CATCH
@@ -35,7 +39,7 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE ##FactInvoice_SOURCE (
 
-    [DimSalesOrder_Key]             [int] NOT NULL,
+    [DimInvoice_Key]                [int] NOT NULL,
 	[DimCustomer_Key]               [int] NOT NULL,
 	[OrderDateDimDate_Key]          [int] NOT NULL,
 	[ShipDateDimDate_Key]           [int] NOT NULL,
@@ -115,13 +119,14 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 							and TGT.OLInvoiceNumber  = SRC.OLInvoiceNumber			
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE Existing Items that have CHANGES
 
 	UPDATE	TGT
 	SET
 
- TGT.[DimSalesOrder_Key]               = SRC.DimSalesOrder_Key
+ TGT.[DimInvoice_Key]               = SRC.DimInvoice_Key
 ,TGT.[DimCustomer_Key]                 = SRC.DimCustomer_Key
 ,TGT.[OrderDateDimDate_Key]            = SRC.OrderDateDimDate_Key
 ,TGT.[ShipDateDimDate_Key]             = SRC.DimCustomer_Key
@@ -165,11 +170,18 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	   
 	WHERE	TGT.Type1RecordHash <> SRC.Type1RecordHash
 	
+
+SET @RowsUpdatedCount = @@ROWCOUNT
+
+
 	--DROP temp tables
 
 	 DROP TABLE ##FactInvoice_SOURCE		
 	 DROP TABLE ##FactInvoice_TARGET	
 	 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
 GO
 

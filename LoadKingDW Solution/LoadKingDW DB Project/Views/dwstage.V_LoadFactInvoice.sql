@@ -1,7 +1,7 @@
 ﻿CREATE VIEW [dwstage].[V_LoadFactInvoice]
 	AS
     SELECT       
-	                DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)                                          
+	                DimInvoice_Key			     = ISNULL(DSO.DimInvoice_Key,      -1)                                          
 	            ,   DimCustomer_Key			     = ISNULL(DC.DimCustomer_Key,         -1)											
 		        ,   OrderDateDimDate_Key 		 = ISNULL(OrderDate.DimDate_Key,      -1)											
 		        ,   ShipDateDimDate_Key 		 = ISNULL(ShipDate.DimDate_Key,       -1)											
@@ -9,13 +9,13 @@
 		        ,   DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)											
 		        ,   DimGLMaster_Key              = ISNULL(GLAcct.DimGLAccount_Key,    -1)											
 		        ,   DimSalesperson_Key           = ISNULL(SalesP.DimSalesperson_Key,  -1)											
-	            ,   stage.[SalesOrderNumber]   	AS SalesOrderNumber																					
-				,   stage.[SalesOrderLine] 		AS SalesOrderLine																					
-				,   [OHOrderSuffix] 																								
+	            ,   stage.[SalesOrderNumber]   	AS SalesOrderNumber																		
+				,   stage.[SalesOrderLine] 		AS SalesOrderLine																		
+				,   stage.[OHOrderSuffix] 		AS OHOrderSuffix																						
 				,   [OLOrderSuffix] 																								
 				,   [OLInvoiceNumber] 																								
-				,   dwstage.udf_testdatevalue(stage.[OLDateShipped]) 		AS OLDateShipped																					
-				,   dwstage.udf_testdatevalue([OLDateLineInvoiced])	AS OLDateLineInvoiced																						
+				,   dwstage.udf_testdatevalue(stage.[OLDateShipped]) 		AS OLDateShipped											
+				,   dwstage.udf_testdatevalue([OLDateLineInvoiced])	AS OLDateLineInvoiced												
 				,   [QtyOrdered]               																						
 				,   [QtyShipped]               																						
 				,   [QtyBO]                    																						
@@ -27,7 +27,7 @@
 				,   [CostOverhead]             																						
 				,   [CostOther]                																						
 				,   [Margin]                   																						
-				,   stage.[Price]               AS Price     																				
+				,   stage.[Price]               AS Price     																			
 				,   [ExtendedPrice]            																						
 				,   [TaxApply1]                																						
 				,   [TaxApply2]                																						
@@ -62,8 +62,10 @@
 
 FROM            dwstage._V_Invoice Stage
 
-LEFT OUTER JOIN dw.DimSalesOrder AS DSO
-  ON	Stage.SalesOrderNumber = DSO.SalesOrderNumber   AND	DSO.DWIsCurrent = 1 
+LEFT OUTER JOIN dw.DimInvoice AS DSO
+  ON	Stage.SalesOrderNumber = DSO.SalesOrderNumber   
+   AND  Stage.SalesOrderLine   = DSO.SalesOrderLine
+   AND	DSO.DWIsCurrent = 1 
 
  LEFT OUTER JOIN dw.DimCustomer AS DC
   ON    Stage.OLCustomer = DC.CustomerID
@@ -91,4 +93,4 @@ LEFT OUTER JOIN dw.DimSalesOrder AS DSO
   ON	stage.OLCustShipTo = DCST.ShipToSeq
    AND     Stage.OLCustomer = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
-
+GO
