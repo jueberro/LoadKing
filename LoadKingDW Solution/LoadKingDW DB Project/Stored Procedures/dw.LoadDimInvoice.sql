@@ -14,6 +14,10 @@ BEGIN
 
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 
+	DECLARE @RowsInsertedCount int
+    DECLARE @RowsUpdatedCount int
+
+
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
 	BEGIN TRY DROP TABLE #DimInvoice_work		END TRY BEGIN CATCH END CATCH
@@ -110,6 +114,7 @@ BEGIN
 						   
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -124,6 +129,7 @@ BEGIN
 	                      AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimInvoice
@@ -143,3 +149,7 @@ BEGIN
 	 
 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+GO

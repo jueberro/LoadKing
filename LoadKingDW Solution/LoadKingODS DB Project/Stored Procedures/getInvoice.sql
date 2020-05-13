@@ -221,8 +221,9 @@ SELECT   SO.*
 			,CAST(ol.TAX_AMT_1_ORDER      AS    [decimal](11, 2))   AS            TaxAmt1
 			,CAST(ol.TAX_AMT_2            AS    [decimal](11, 2))   AS            TaxAmt2
 	 
-			 , 1 as ETL_TablNbr
-			 , 1 as ETL_Batch
+			 , @TblNbr AS ETL_TablNbr
+			 , @Batch  AS ETL_Batch
+
 			 , getdate() as ETL_Completed -- select count(*)
 		FROM
 		##tmp_Order_Hist_Head oh
@@ -232,9 +233,9 @@ SELECT   SO.*
 		AND oh.ORDER_SUFFIX = ol.ORDER_SUFFIX
 		AND oh.INVOICE = ol.INVOICE
 
-		--- truncate table dbo._v_Invoice -- select * from dbo._v_Invoice
+		-- truncate table dbo._v_Invoice -- select * from dbo._v_Invoice
 
-		--WHERE -- PULL ALL DELTAS
+		-- WHERE -- PULL ALL DELTAS
 		--	(
 		--		oh.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
 		--		OR
