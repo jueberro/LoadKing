@@ -9,6 +9,9 @@ BEGIN
 --DECLARE @LoadLogKey int
 --SET @LoadLogKey = 0
 
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
+
 	/*
 
 	- This procedure is called from an SSIS package
@@ -88,6 +91,7 @@ IF object_id('##DimWorkOrderType_TARGET', 'U') is not null -- if table exists
 						WHERE	DIM.WorkOrderType = SOURCE.WorkOrderType 
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -98,6 +102,8 @@ IF object_id('##DimWorkOrderType_TARGET', 'U') is not null -- if table exists
 	  ON	Dim.WorkOrderType = SOURCE.WorkOrderType
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> SOURCE.Type2RecordHash
+
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 
 	--INSERT New versions of expired records that have Type 2 changes

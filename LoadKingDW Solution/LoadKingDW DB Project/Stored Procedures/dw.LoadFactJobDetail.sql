@@ -8,6 +8,9 @@ BEGIN
 --DECLARE @LoadLogKey int
 --SET @LoadLogKey = 0
 
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
+
 	/*
 	- This procedure is called from an SSIS package
 	- This procedure assumes that a stage table has been loaded with data for one and ONLY one batch of source data
@@ -146,6 +149,8 @@ HEADER_SALESPERSON char(3) NULL,
 							and TGT.HEADER_CUSTOMER = SRC.HEADER_CUSTOMER					
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
+
 	--UPDATE Existing Items that have CHANGES
 
 	UPDATE	TGT
@@ -207,7 +212,7 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 , TGT.[MULTIPLE_FRACTION] = SRC.[MULTIPLE_FRACTION]
 , TGT.[START_TIME] = SRC.[START_TIME]
 , TGT.[END_TIME] = SRC.[END_TIME]
-
+, TGT.Type1RecordHash = SRC.Type1RecordHash
 	FROM	dw.FactJobDetail		AS TGT
 	 JOIN   ##FactJobDetail_SOURCE	AS SRC
 			ON TGT.JOB = SRC.JOB
@@ -217,6 +222,8 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 			and TGT.PART = SRC.PART
 			and TGT.HEADER_CUSTOMER = SRC.HEADER_CUSTOMER					
 	WHERE	TGT.Type1RecordHash <> SRC.Type1RecordHash
+
+SET @RowsUpdatedCount = @@ROWCOUNT
 	
 	--DROP temp tables
 
@@ -224,5 +231,8 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 	 DROP TABLE ##FactJobDetail_TARGET	
 	 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
 GO
 

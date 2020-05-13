@@ -1,6 +1,17 @@
-CREATE PROCEDURE [dw].[sp_LoadDimProductLine] @LoadLogKey INT  AS
+--USE [LK-GS-EDW]
+--GO
+
+
+CREATE PROCEDURE dw.sp_LoadDimProductLine @LoadLogKey INT  AS
 
 BEGIN
+
+--DECLARE @LoadLogKey int
+--SET @LoadLogKey = 0
+
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
+
 
 	/*
 
@@ -15,11 +26,21 @@ BEGIN
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
-	BEGIN TRY DROP TABLE #DimProductLine_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimProductLine_current	END TRY BEGIN CATCH END CATCH
+	--BEGIN TRY DROP TABLE ##DimProductLine_SOURCE		END TRY BEGIN CATCH END CATCH
+	--BEGIN TRY DROP TABLE ##DimProductLine_TARGET	END TRY BEGIN CATCH END CATCH
+
+IF object_id('##DimProductLine_SOURCE', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##DimProductLine_SOURCE
+	END
+
+IF object_id('##DimProductLine_TARGET', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##DimProductLine_TARGET
+	END
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
-	CREATE TABLE #DimProductLine_work (
+	CREATE TABLE ##DimProductLine_SOURCE (
 		[ProductLine]				[nchar](6) NOT NULL,
 		[ProductLineName]				[nvarchar](50) NOT NULL,
 
@@ -37,21 +58,33 @@ BEGIN
 		[LoadLogKey]				INT
 	)
 
-	--Load #work table with data in the format in which it will appear in the dimension
-	INSERT INTO #DimProductLine_work
+	--Load #SOURCE table with data in the format in which it will appear in the dimension
+	INSERT INTO ##DimProductLine_SOURCE
 			SELECT 		
 				 * from dwstage.V_LoadDimProductLine
-    
-    Update #DimProductLine_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
+
+/*
+INSERT INTO dwstage.JOB_HEADER
+SELECT * FROM [LK-GS-ODS].dbo.JOB_HEADER
+
+INSERT INTO dwstage.PRODUCT_LINE
+SELECT * FROM [LK-GS-ODS].dbo.PRODUCT_LINE
+*/
+
+--SELECT * FROM ##DimProductLine_SOURCE
+
+
+
+    Update ##DimProductLine_SOURCE Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimProductLine_current (ProductLine NCHAR(5)
+	CREATE TABLE ##DimProductLine_TARGET (ProductLine NCHAR(5)
 										, Type2RecordHash VARBINARY(64)
 										)
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
-	INSERT INTO #DimProductLine_current
+	INSERT INTO ##DimProductLine_TARGET
 	SELECT	ProductLine
 			, Type2RecordHash
 	FROM	dw.DimProductLine
@@ -61,35 +94,43 @@ BEGIN
 	--INSERT NEW Dimension Items
 	INSERT INTO dw.DimProductLine 
 	SELECT	*
-	FROM	#DimProductLine_work AS Work
+	FROM	##DimProductLine_SOURCE AS SOURCE
 	WHERE	NOT EXISTS(	SELECT  1
 						FROM	dw.DimProductLine AS DIM
-						WHERE	DIM.ProductLine = Work.ProductLine 
+						WHERE	DIM.ProductLine = SOURCE.ProductLine 
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
 	SET		DWEffectiveEndDate = @CurrentTimestamp
 			, DWIsCurrent = 0
 	FROM	dw.DimProductLine		AS DIM
-	 JOIN   #DimProductLine_work	AS Work
-	  ON	Dim.CustomerD = Work.ProductLine
+	 JOIN   ##DimProductLine_SOURCE	AS SOURCE
+	  ON	Dim.ProductLine = SOURCE.ProductLine
 	   AND	Dim.DWIsCurrent = 1
-	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
+	WHERE	DIM.Type2RecordHash <> SOURCE.Type2RecordHash
+
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimProductLine
-	SELECT	Work.*
-	FROM	#DimProductLine_current AS DIM
-	 JOIN   #DimProductLine_work    AS Work
-	  ON	Dim.ProductLine = Work.ProductLine
-	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
+	SELECT	SOURCE.*
+	FROM	##DimProductLine_TARGET AS DIM
+	 JOIN   ##DimProductLine_SOURCE    AS SOURCE
+	  ON	Dim.ProductLine = SOURCE.ProductLine
+	WHERE	DIM.Type2RecordHash <> SOURCE.Type2RecordHash
 	
 	--DROP temp tables
-	BEGIN TRY DROP TABLE #DimProductLine_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #DimProductLine_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE ##DimProductLine_SOURCE		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE ##DimProductLine_TARGET	END TRY BEGIN CATCH END CATCH
 	 
-
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+GO
+
+
