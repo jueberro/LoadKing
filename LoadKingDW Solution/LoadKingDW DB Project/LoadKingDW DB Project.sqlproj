@@ -147,6 +147,9 @@
     <Build Include="Functions\dwstage.udf_TestDatevalue.sql" />
     <Build Include="Stored Procedures\dw.LoadDimCusotmer.sql" />
     <Build Include="Tables\dwstage._V_JobOperations.sql" />
+    <Build Include="Tables\dw.FactJobOperations.sql" />
+    <Build Include="Views\dwstage.V_LoadFactJobOperations.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactJobOperations.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

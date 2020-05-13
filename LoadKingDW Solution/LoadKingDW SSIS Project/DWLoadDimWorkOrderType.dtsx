@@ -5,40 +5,40 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-10LHH5T"
   DTS:CreatorName="AzureAD\BobRubocki"
-  DTS:DTSID="{EA6516F8-8D19-44F2-8143-F3CBE061D9F6}"
+  DTS:DTSID="{8F62C76C-2081-480C-9AE0-5CD18DC73EBA}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadDimWorkOrderType"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{9E5AC006-B6A3-4814-9367-878B82CA16A1}">
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{1277E966-3FC7-4065-A282-FB1B8690450D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{31EC30B5-3157-4AE3-82DE-C4B7A3691126}"
+      DTS:DTSID="{14A787C9-A233-45B8-83B8-3A4853D6B496}"
       DTS:ObjectName="DWTableName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">dw.DimWorkOrderType</DTS:Property>
+        DTS:Name="ParameterValue">DimWorkOrderType</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{23C1531A-A3E5-45D7-B003-FBC001D63C2A}"
+      DTS:DTSID="{19A36CAE-71B3-4682-B625-AE45EE13CF5E}"
       DTS:ObjectName="SourceDataSetName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">WorkOrderType</DTS:Property>
+        DTS:Name="ParameterValue">JOB_HEADER</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{E66E247B-7AB8-4CC8-8969-A34064CB8B88}"
+      DTS:DTSID="{DC8B6246-F56F-4A50-9AA3-07579884009B}"
       DTS:ObjectName="SourceSystemName">
       <DTS:Property
         DTS:DataType="8"
@@ -47,17 +47,17 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{8BC405E9-197B-4520-806D-DC4B1FF154FA}"
+      DTS:DTSID="{FF3B2F25-BEE4-4223-B2F4-923817E1B2D1}"
       DTS:ObjectName="StoredProcedureName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">dw.sp_LoadDimWorkOrderType</DTS:Property>
+        DTS:Name="ParameterValue">dw.sp_LoadDimCustomer</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9C4B7422-ED4E-4E6D-B4A0-122A1E46E862}"
+      DTS:DTSID="{B44CDB5D-D418-45BE-AFA2-A5E218477EA7}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="BatchesToProcessList">
@@ -75,7 +75,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{898C9A60-22C7-4719-9333-DC3DD91546FA}"
+      DTS:DTSID="{C955C6FC-0D01-4FD6-97F6-5F0D7DDE4CF0}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="LoadLogKey">
@@ -84,7 +84,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{7FA05A4B-6AAE-4E77-8F21-971A94F99961}"
+      DTS:DTSID="{7C8D5E8D-4E8B-4E69-B3DB-D37CB82CBCE4}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;SELECT * FROM dbo.JOB_HEADER WHERE ETL_Batch = &quot; + (DT_STR, 5, 1252)@[User::SourceLoadLogKey]"
       DTS:IncludeInDebugDump="2345"
@@ -95,7 +95,25 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{1E1C4C55-4112-48B3-A003-F3179478DE4C}"
+      DTS:DTSID="{77201797-2AD7-49F0-864C-3F87B89DD9C0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8782E2DC-E88B-426A-A287-2C897009B579}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6B76D5E6-03D7-4808-9484-B9152E67A618}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="SourceLoadLogKey">
@@ -108,14 +126,14 @@
       DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{693A9611-55D1-4B21-9C57-68EFA129DC55}"
+      DTS:DTSID="{9981DEBF-A836-4EB5-9D0B-30CC783E622F}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="FEL - Extract Batches Not Yet Processed in DW Table">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachADOEnumerator"
-        DTS:DTSID="{0073A55E-6D5B-449B-A942-C38B8898DF0C}"
-        DTS:ObjectName="{0073A55E-6D5B-449B-A942-C38B8898DF0C}">
+        DTS:DTSID="{EBB5FEC2-3DD6-40E2-86EA-C0A808ADAECE}"
+        DTS:ObjectName="{EBB5FEC2-3DD6-40E2-86EA-C0A808ADAECE}">
         <DTS:ObjectData>
           <FEEADO
             EnumType="EnumerateRowsInFirstTable"
@@ -125,20 +143,27 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimProductLine"
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimWorkOrderType"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{5B3747F4-F315-4033-A512-149BAA438E80}"
+          DTS:DTSID="{E0E40890-D0D6-472D-B7EE-A73278A5582E}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - LoadDWDimProductLine"
+          DTS:ObjectName="SQL - LoadDWDimWorkOrderType"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimWorkOrderType ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC dw.sp_LoadDimWorkOrderType ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="RowsInsertedCount"
+                SQLTask:DtsVariableName="User::RowsInsertedCount" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="RowsUpdatedCount"
+                SQLTask:DtsVariableName="User::RowsUpdatedCount" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::LoadLogKey"
@@ -152,7 +177,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{B70778B6-ABA2-4B02-8565-AF2CDCC6E221}"
+          DTS:DTSID="{C0441D1A-E2E3-40D9-B03B-7194CB975DD9}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - LogLoadStart"
@@ -210,7 +235,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{134BF0DA-3A17-41AB-9140-866911AD67DA}"
+          DTS:DTSID="{5C523913-D41F-44A5-A1C9-5C0F5191CD7F}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - LogLoadSuccess"
@@ -220,10 +245,22 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
-              SQLTask:SqlStatementSource="EXEC dwetl.LogLoadSuccess @LoadLogKey = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="EXEC dwetl.LogLoadSuccess @LoadLogKey = ?, @SourceRecordsRead = 0, @RowsInsertedCount = ?, @RowsUpdatedCount = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::LoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::RowsInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::RowsUpdatedCount"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="3"
                 SQLTask:ParameterSize="-1" />
@@ -235,16 +272,16 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{21CA6C53-8297-4DE3-98C5-50CC8BDD4D0A}"
+          DTS:DTSID="{06605A19-9C1E-4353-88F1-343E77B2A937}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
-          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimProductLine" />
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimWorkOrderType" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{A937B96A-10E2-4640-9A6C-3C85DFDC469E}"
-          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimProductLine"
+          DTS:DTSID="{2241463D-CB33-4E52-B042-17C040AF84FB}"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimWorkOrderType"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
           DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess" />
@@ -252,8 +289,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{C5EBD2F9-CF77-4F2E-8DFC-11DF5AB1BD4F}"
-          DTS:ObjectName="{C5EBD2F9-CF77-4F2E-8DFC-11DF5AB1BD4F}"
+          DTS:DTSID="{C76FF982-F3B9-4A0F-9658-9A280402D9A6}"
+          DTS:ObjectName="{C76FF982-F3B9-4A0F-9658-9A280402D9A6}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::SourceLoadLogKey" />
       </DTS:ForEachVariableMappings>
@@ -262,7 +299,7 @@
       DTS:refId="Package\SQL - GetExtractBatchesToProcess"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{84C6A956-B56C-4707-A518-7712A70C6E10}"
+      DTS:DTSID="{39E25F96-97D9-4878-94B7-8145249FD5F1}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL - GetExtractBatchesToProcess"
@@ -303,7 +340,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{25D46281-F509-425F-9827-C18E936EB2D8}"
+      DTS:DTSID="{B9C72EDC-F764-4FE0-8893-0E9D59273C2F}"
       DTS:From="Package\SQL - GetExtractBatchesToProcess"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -313,7 +350,7 @@
     <DTS:EventHandler
       DTS:refId="Package.EventHandlers[OnError]"
       DTS:CreationName="OnError"
-      DTS:DTSID="{C6013C14-2BED-4929-8E2B-C8F7CC38A035}"
+      DTS:DTSID="{A781B091-58DA-4737-A72F-93940EFE5B74}"
       DTS:EventID="1431677695"
       DTS:EventName="OnError"
       DTS:LocaleID="-1">
@@ -321,7 +358,7 @@
         <DTS:Variable
           DTS:CreationName=""
           DTS:Description="The propagate property of the event"
-          DTS:DTSID="{094B4E2D-B997-46B1-9225-7EF3F94A5EB9}"
+          DTS:DTSID="{77E04C7A-6A4B-46F5-A194-E177A0A3732A}"
           DTS:IncludeInDebugDump="6789"
           DTS:Namespace="System"
           DTS:ObjectName="Propagate">
@@ -334,7 +371,7 @@
           DTS:refId="Package.EventHandlers[OnError]\SQL-Log Failure"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{5875B2F6-2993-40A9-913A-B396B7256876}"
+          DTS:DTSID="{8BA76985-A603-43D1-949E-4844BC2C5606}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL-Log Failure">
@@ -372,11 +409,11 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="232,42"
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimProductLine"
-          TopLeft="65.1666666666667,313.5" />
+          Size="221,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimWorkOrderType"
+          TopLeft="69.1666666666667,313.5" />
         <NodeLayout
           Size="171,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
@@ -386,48 +423,14 @@
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           TopLeft="78.5,416.166666666667" />
         <EdgeLayout
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
-          TopLeft="171.333333333333,48.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="9.83333333333337,265"
-              Start="0,0"
-              End="9.83333333333337,257.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,128.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,128.5"
-                    Point2="0,132.5"
-                    Point3="4,132.5" />
-                  <mssgle:LineSegment
-                    End="5.83333333333337,132.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="5.83333333333337,132.5"
-                    Point2="9.83333333333337,132.5"
-                    Point3="9.83333333333337,136.5" />
-                  <mssgle:LineSegment
-                    End="9.83333333333337,257.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
-          TopLeft="181.166666666667,355.5">
+          TopLeft="179.666666666667,355.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-10.1666666666667,60.666666666667"
+              EndConnector="-8.66666666666669,60.666666666667"
               Start="0,0"
-              End="-10.1666666666667,53.166666666667">
+              End="-8.66666666666669,53.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -438,13 +441,47 @@
                     Point2="0,30.3333333333335"
                     Point3="-4,30.3333333333335" />
                   <mssgle:LineSegment
-                    End="-6.16666666666669,30.3333333333335" />
+                    End="-4.66666666666669,30.3333333333335" />
                   <mssgle:CubicBezierSegment
-                    Point1="-6.16666666666669,30.3333333333335"
-                    Point2="-10.1666666666667,30.3333333333335"
-                    Point3="-10.1666666666667,34.3333333333335" />
+                    Point1="-4.66666666666669,30.3333333333335"
+                    Point2="-8.66666666666669,30.3333333333335"
+                    Point3="-8.66666666666669,34.3333333333335" />
                   <mssgle:LineSegment
-                    End="-10.1666666666667,53.166666666667" />
+                    End="-8.66666666666669,53.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
+          TopLeft="171.333333333333,48.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.33333333333337,265"
+              Start="0,0"
+              End="8.33333333333337,257.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,128.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,128.5"
+                    Point2="0,132.5"
+                    Point3="4,132.5" />
+                  <mssgle:LineSegment
+                    End="4.33333333333337,132.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.33333333333337,132.5"
+                    Point2="8.33333333333337,132.5"
+                    Point3="8.33333333333337,136.5" />
+                  <mssgle:LineSegment
+                    End="8.33333333333337,257.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -456,28 +493,40 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="362,515"
-          Size="362,558"
+          PanelSize="1482,514"
+          Size="1482,557"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
-          TopLeft="5.50000000000009,108.166666666666" />
+          TopLeft="114.5,108.166666666666" />
         <NodeLayout
           Size="255,42"
           Id="Package\SQL - GetExtractBatchesToProcess"
-          TopLeft="65.6666667535901,5.49999999999993" />
+          TopLeft="1269.41666675359,5.49999999999993" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="189.833333376795,47.4999999999999">
+          TopLeft="1396.91666675359,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.6666666666661"
+              EndConnector="-541.41666675359,60.6666666666661"
               Start="0,0"
-              End="0,53.1666666666661">
+              End="-541.41666675359,53.1666666666661">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.1666666666661" />
+                    End="0,26.333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.333333333333"
+                    Point2="0,30.333333333333"
+                    Point3="-4,30.333333333333" />
+                  <mssgle:LineSegment
+                    End="-537.41666675359,30.333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-537.41666675359,30.333333333333"
+                    Point2="-541.41666675359,30.333333333333"
+                    Point3="-541.41666675359,34.333333333333" />
+                  <mssgle:LineSegment
+                    End="-541.41666675359,53.1666666666661" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -486,13 +535,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="Note DimWorkOrderType is derived from existing dbo.JOB_HEADER extracted data&#xA;the view sources this data and the stored proc loads the dimension with any new&#xA;records"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="465,72"
-          Id="98cee8b7-7d62-4de5-acca-0f7746d042e9"
-          TopLeft="523,301" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -502,9 +544,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="NaN,NaN"
+          Size="160,42"
           Id="Package.EventHandlers[OnError]\SQL-Log Failure"
-          TopLeft="NaN,NaN" />
+          TopLeft="248,95" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
