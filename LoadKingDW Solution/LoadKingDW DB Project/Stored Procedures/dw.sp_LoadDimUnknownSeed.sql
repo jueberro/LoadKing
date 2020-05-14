@@ -1,4 +1,8 @@
-
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 -- =============================================
 -- Author:           Edwin Davis
 -- Create date: 4/27/2020
@@ -6,11 +10,12 @@
 -- =============================================
 -- exec dw.[sp_LoadDimUnknownSeed] 
 
-CREATE PROCEDURE dw.[sp_LoadDimUnknownSeed] 
+ALTER PROCEDURE dw.sp_LoadDimUnknownSeed 
        
 
 AS
 BEGIN
+
 
 
 
@@ -172,7 +177,7 @@ IF NOT Exists (Select * from dw.DimInventory where DimInventory_Key = -1)
 		   insert into dw.DimInventory
 		   (
 		   DimInventory_Key 
-		   , PartID
+		   , PartID, PartDescription
 		   , SourceSystemName 
 		   , DWEffectiveStartDate, DWEffectiveEndDate
 		   , DWIsCurrent
@@ -181,7 +186,7 @@ IF NOT Exists (Select * from dw.DimInventory where DimInventory_Key = -1)
 		   values
 		   (
 		   -1
-		   , 'Unknown'
+		   , 'Unknown', 'Un'
 		   , 'Global Shop'
 		   , getutcdate(), '2100-01-01'
 		   , 1
@@ -309,6 +314,114 @@ ELSE
 		Print 'DimSalesPerson Exists'
        END 
 -- END Dim 8 -----------------------------------------------------------------------------------
+-- BEGIN Dim 9  ---------------------------------------------------------------------------------      
+IF NOT Exists (Select * from dw.DimProductLIne where DimProductLIne_Key = -1)
+
+       BEGIN
+
+		   SET IDENTITY_INSERT dw.DimProductLine ON
+
+		   insert into dw.DimProductLine
+		   (
+		   DimProductLIne_Key 
+		   , ProductLine, ProductLineName
+		   , SourceSystemName 
+		   , DWEffectiveStartDate, DWEffectiveEndDate
+		   , DWIsCurrent
+		   , LoadLogKey
+		   )
+		   values
+		   (
+		   -1
+		   , '-1', 'Unknown'
+		   , 'Global Shop'
+		   , getutcdate(), '2100-01-01'
+		   , 1
+		   , -1
+		   )
+
+		   SET IDENTITY_INSERT dw.DimProductLine OFF
+
+       END
+
+ELSE 
+
+       BEGIN
+		Print 'DimProductLine Exists'
+       END 
+-- END Dim 9 -----------------------------------------------------------------------------------
+-- BEGIN Dim 10  ---------------------------------------------------------------------------------      
+IF NOT Exists (Select * from dw.DimWorkOrderType where DimWorkOrderType_Key = -1)
+
+       BEGIN
+
+		   SET IDENTITY_INSERT dw.DimWorkOrderType ON
+
+		   insert into dw.DimWorkOrderType
+		   (
+		   DimWorkOrderType_Key 
+		   , WorkOrderType, WorkOrderTypeDescription
+		   , SourceSystemName 
+		   , DWEffectiveStartDate, DWEffectiveEndDate
+		   , DWIsCurrent
+		   , LoadLogKey
+		   )
+		   values
+		   (
+		   -1
+		   , 'Unk000', 'Unknown'
+		   , 'Global Shop'
+		   , getutcdate(), '2100-01-01'
+		   , 1
+		   , -1
+		   )
+
+		   SET IDENTITY_INSERT dw.DimWorkOrderType OFF
+
+       END
+
+ELSE 
+
+       BEGIN
+		Print 'DimWorkOrderType Exists'
+       END 
+-- END Dim 10 -----------------------------------------------------------------------------------
+-- BEGIN Dim 11  ---------------------------------------------------------------------------------      
+IF NOT Exists (Select * from dw.DimDepartment where DimDepartment_Key = -1)
+
+       BEGIN
+
+		   SET IDENTITY_INSERT dw.DimDepartment ON
+
+		   insert into dw.DimDepartment
+		   (
+		   DimDepartment_Key 
+		   , DepartmentID, DepartmentName
+		   , SourceSystemName 
+		   , DWEffectiveStartDate, DWEffectiveEndDate
+		   , DWIsCurrent
+		   , LoadLogKey
+		   )
+		   values
+		   (
+		   -1
+		   , 'Unk0', 'Unknown'
+		   , 'Global Shop'
+		   , getutcdate(), '2100-01-01'
+		   , 1
+		   , -1
+		   )
+
+		   SET IDENTITY_INSERT dw.DimDepartment OFF
+
+       END
+
+ELSE 
+
+       BEGIN
+		Print 'DimDepartment Exists'
+       END 
+-- END Dim 11 -----------------------------------------------------------------------------------
 
 
 END
