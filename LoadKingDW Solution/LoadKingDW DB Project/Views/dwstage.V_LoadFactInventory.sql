@@ -36,17 +36,42 @@ SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
 		  ,Stage.UsageOctober		  
 		  ,Stage.UsageNovember		  
 		  ,Stage.UsageDecember          
-		--just a change to force a refresh
-		/*Hash used for identifying changes, not required for reporting*/
-		, RecordHash				  = CAST(0 AS VARBINARY(64)) 
+	    	--just a change to force a refresh
+		    /*Hash used for identifying changes, not required for reporting*/
+		  , RecordHash				  = HASHBYTES('SHA2_256',        													
+                                                                             cast(stage.[DateLastUsage]     as nvarchar(26))		
+																		 +   cast(stage.[DateLastAudit]     as nvarchar(26))	
+																		 +   cast(stage.[DateLastChg]       as nvarchar(26))	
+																		 +   stage.[WhoChgLast] 		
+																		 +   [BIN]     		
+																		 +   cast(stage.[DateCycle] as nvarchar(26))
+																		 +   [CodeBOM]
+																		 +   [CodeDiscount]
+																		 +   [CodeTotal]
+																		 +   cast([PriorUsage]              as nvarchar(16))
+																		 +   cast([AltCostAmt]              as nvarchar(12))
+																		 +   cast([MinMultiple]             as nvarchar(12))
+																		 +   cast([FloorStockingLevel]      as nvarchar(12))
+																		 +   cast([QtyOnHand]               as nvarchar(12))
+																		 +   cast([QtyReorder]              as nvarchar(12))
+																		 +   cast([QtyOnOrderPO]            as nvarchar(12))
+																		 +   cast([QtyOnOrderWO]            as nvarchar(12))
+																		 +   cast([QtyRequired]             as nvarchar(12))
+																		 +   cast([AmtCost]                 as nvarchar(12))
+																		 +   cast([UsageJanuary]            as nvarchar(7))
+																		 +   cast([UsageFebruary]           as nvarchar(7))
+																		 +   cast([UsageMarch]              as nvarchar(7))
+																		 +   cast([UsageApril]              as nvarchar(7))
+																		 +   cast([UsageMay]                as nvarchar(7))
+																		 +   cast([UsageJune]               as nvarchar(7))
+																		 +   cast([UsageJuly]               as nvarchar(7))
+																		 +   cast([UsageAugust]             as nvarchar(7))
+																		 +   cast([UsageSeptember]          as nvarchar(7))
+																		 +   cast([UsageOctober]            as nvarchar(7))
+																		 +   cast([UsageNovember]           as nvarchar(7))
+																		 +   cast([UsageDecember]           as nvarchar(7)))
 
-		/*DW Metadata fields, not required for reporting*/
-	    , [SourceSystemName]		  = CAST('Global Shop'        AS NVARCHAR(100))
-		, [DWEffectiveStartDate]	  = CAST(Getdate()            AS DATETIME2(7))
-		, [DWEffectiveEndDate]		  = '2100-01-01'
-		, [DWIsCurrent]				  = CAST(1					  AS BIT)
-		, [LoadLogKey]				  = CAST(0                    AS INT)
-
+		
 FROM	dwstage._V_Inventory as Stage
    
   LEFT OUTER JOIN dw.DimInventory AS DIN

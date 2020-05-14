@@ -171,8 +171,8 @@ SELECT   IM.*
 	From
 
 	(Select
-                    CAST(im.[PART]	                                AS nchar(20))       AS  PartID                 --B         INVENTORY_MSTR    
-                ,dbo.udf_cv_nvarchar6_to_date([DATE_LAST_CHG])	                    AS  DateLastChg		 	   --B	     INVENTORY_MSTR	
+                CAST(im.[PART]	                                AS nchar(20))       AS  PartID                 --B         INVENTORY_MSTR    
+                ,dbo.udf_cv_nvarchar6__yymmdd_to_date([DATE_LAST_CHG])	                    AS  DateLastChg		 	   --B	     INVENTORY_MSTR	
                 ,dbo.udf_cv_nvarchar8_to_date([WHO_CHG_LAST])           	        AS  WhoChgLast		 	   --B	     INVENTORY_MSTR	
                 ,CAST(im.[AMT_PRICE]                            AS decimal(13, 5))  AS  Price	               --D		 INVENTORY_MSTR
                 ,CAST(im.[CODE_ABC]                 			AS nchar(1))	    AS  CodeABC	         	   --D		 INVENTORY_MSTR

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dw].[FactInventory](
-	[FactInventory_Key] [int] IDENTITY(1,1) NOT NULL,
+	
 	[DimInventory_Key] [int] NOT NULL,
 	
 	PartID					nchar(20)			NOT NULL,
@@ -36,14 +36,6 @@
 	UsageNovember			decimal(7,0) 	  		NULL,
 	UsageDecember			decimal(7,0)    		NULL,
 	[RecordHash]            [varbinary](64)         NULL,	
-	[SourceSystemName]      [nvarchar](100)         NOT NULL,
-	[DWEffectiveStartDate]  [datetime2](7)          NOT NULL,
-	[DWEffectiveEndDate]    [datetime2](7)          NOT NULL,
-	[DWIsCurrent]           [bit]                   NOT NULL,
-	[LoadLogKey]            [int]                   NOT NULL
- CONSTRAINT [pk_Inventory] PRIMARY KEY NONCLUSTERED 
-(
-	[FactInventory_Key] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	
 ) ON [PRIMARY]
 GO

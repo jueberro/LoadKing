@@ -85,5 +85,7 @@
     <Build Include="Stored Procedures\getAPSV3_JBMASTER.sql" />
     <Build Include="Stored Procedures\getDEPARTMENTS.sql" />
     <Build Include="Stored Procedures\getJobOperations.sql" />
+    <Build Include="Functions\dbo.udf_cv_nvarchar6_to_date.sql" />
+    <Build Include="Functions\dbo.udf_cv_nvarchar6__yymmdd_to_date.sql" />
   </ItemGroup>
 </Project>

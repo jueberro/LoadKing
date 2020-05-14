@@ -2,24 +2,37 @@
 
 BEGIN
 
+--DECLARE @LoadLogKey int
+--SET @LoadLogKey = 0
 
 	/*
-
 	- This procedure is called from an SSIS package
 	- This procedure assumes that a stage table has been loaded with data for one and ONLY one batch of source data
 	
 	- @LoadLogKey	- corresponds to LoadLogKey in dwetl.LoadLog table
-
 	*/
 
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 
-    SELECT		@CurrentTimestamp = GETUTCDATE()
-	
-	--Set @LoadLogKey = 21
+	DECLARE     @RowsInsertedCount int
+    DECLARE     @RowsUpdatedCount int
 
-	BEGIN TRY DROP TABLE #FactInventory_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #FactInventory_current	    END TRY BEGIN CATCH END CATCH
+
+	SELECT		@CurrentTimestamp = GETUTCDATE()
+
+	--BEGIN TRY DROP TABLE ##Factinventory_SOURCE		END TRY BEGIN CATCH END CATCH
+	--BEGIN TRY DROP TABLE ##FactInventory_TARGET	    END TRY BEGIN CATCH END CATCH
+
+IF object_id('##FactInventory_SOURCE', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##FactInventory_SOURCE
+	END
+
+IF object_id('##FactInventory_TARGET', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##FactInventory_TARGET
+	END
+
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #FactInventory_work (
@@ -62,86 +75,112 @@ BEGIN
 	UsageOctober			decimal(7,0) 	  		NULL,
 	UsageNovember			decimal(7,0) 	  		NULL,
 	UsageDecember			decimal(7,0)    		NULL,
-		
-	/*Hash used for identifying changes, not required for reporting*/
-	RecordHash					VARBINARY(64)			NULL,
+    RecordHash              Varbinary(64)	        NULL
 
-	/*DW Metadata fields, not required for reporting*/
-	SourceSystemName			NVARCHAR(100)		NOT NULL,
-    DWEffectiveStartDate		DATETIME2(7)		NOT NULL,
-	DWEffectiveEndDate			DATETIME2(7)		NOT NULL,
-	DWIsCurrent			     	BIT				    NOT NULL,
-	
-	/*ETL Metadata fields, not required for reporting */
-	LoadLogKey					INT					NOT NULL	--ID of ETL process that inserted the record
 	)
 
 	--Load #work table with data in the format in which it will appear in the dimension
-	INSERT INTO #FactInventory_work
+	INSERT INTO  ##FactInventory_SOURCE
 			SELECT 		
 				 * from dwstage.V_LoadFactInventory
-				     
-    
-    Update #FactInventory_work 
-	Set 
-	[DWEffectiveStartDate] = @CurrentTimestamp, 
-	[LoadLogKey]	 = @LoadLogKey
 
-    ----  UPDATE The 
-	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #FactInventory_current ( PartID NCHAR(20)
-	                                        ,  Location   NCHAR(2)
-									    	,  RecordHash   VARBINARY(64)
-										     )
+--CREATE TEMP table to be used below for identifying records with CHANGES 
 
-	--Load temp table with NK and Type2RecordHash for CURRENT Extension records
-	INSERT INTO #FactInventory_current
-	SELECT		PartID, 
-	            Location, 
-				RecordHash
+	CREATE TABLE ##FactInventory_TARGET 
+					(
+					                       PartID           NCHAR(20),
+                                           Location         nchar(2) ,
+	                                       RecordHash   VARBINARY(64)
+					)
+
+	--Load temp table with NK and Type1RecordHash for CURRENT records
+	INSERT INTO ##FactInventory_TARGET
+	SELECT	
+			 PartID
+			,Location 
+            ,RecordHash
+
 
 	FROM	dw.FactInventory
-	WHERE	DWIsCurrent = 1
 
-
-	--INSERT NEW Fact Items
+	--INSERT NEW TARGET Items
 	INSERT INTO dw.FactInventory
 	SELECT	*
-	FROM	#FactInventory_work AS Work
+	FROM	##FactInventory_SOURCE AS SRC
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.FactInventory AS Fact
-						WHERE	Fact.PartID = Work.PartID
-						 AND    Fact.Location   = Work.Location
-						 
+						FROM	dw.FactInventory AS TGT
+						WHERE	
+							    TGT.PartID = SRC.PartID
+							and TGT.Location   = SRC.Location 
+								
 						)
 
-
-	--UPDATE/Expire Existing Items that have Type 2 changes
-	UPDATE	Fact
-	SET		DWEffectiveEndDate = @CurrentTimestamp
-			, DWIsCurrent = 0
-	FROM	dw.FactInventory		AS Fact
-	 JOIN   #FactInventory_work	AS Work
-	  ON	fact.PartID = Work.PartID
-	      AND fact.Location = Work.Location
-	        AND	fact.DWIsCurrent = 1
-	WHERE	Fact.RecordHash <> Work.RecordHash
+SET @RowsInsertedCount = @@ROWCOUNT
 
 
-	--INSERT New versions of expired records that have Type 2 changes
-	INSERT INTO dw.FactInventory
-	SELECT	Work.*
-	FROM	#FactInventory_current AS Fact
-	 JOIN   #FactInventory_work    AS Work
-	  ON	Fact.PartID = Work.PartID
-	    AND   Fact.Location = Work.Location
-	  
-	WHERE	Fact.RecordHash <> Work.RecordHash
+	--UPDATE Existing Items that have CHANGES
+
+	UPDATE	TGT
+	SET
+
+    TGT.[DimInventory_Key]              = SRC.DimInventory_Key     ,
+	TGT.PartID				             = SRC.PartID				,
+	TGT.DateLastUsage					 = SRC.DateLastUsage		,
+	TGT.DateLastAudit					 = SRC.DateLastAudit		,
+	TGT.Location						 = SRC.Location				,
+	TGT.DateLastChg						 = SRC.DateLastChg			,
+	TGT.WhoChgLast						 = SRC.WhoChgLast			,
+	TGT.BIN								 = SRC.BIN					,
+	TGT.DateCycle						 = SRC.DateCycle			,
+	TGT.CodeBOM							 = SRC.CodeBOM				,
+	TGT.CodeDiscount					 = SRC.CodeDiscount			,
+	TGT.CodeTotal						 = SRC.CodeTotal			,
+	TGT.PriorUsage						 = SRC.PriorUsage			,
+	TGT.AltCostAmt						 = SRC.AltCostAmt			,
+	TGT.MinMultiple						 = SRC.MinMultiple			,
+	TGT.FloorStockingLevel				 = SRC.FloorStockingLevel	,
+	TGT.QtyOnHand						 = SRC.QtyOnHand			,
+	TGT.QtyReorder						 = SRC.QtyReorder			,
+	TGT.QtyOnOrderPO					 = SRC.QtyOnOrderPO			,
+	TGT.QtyOnOrderWO					 = SRC.QtyOnOrderWO			,
+	TGT.QtyRequired						 = SRC.QtyRequired			,
+	TGT.AmtCost  						 = SRC.AmtCost  			,
+	TGT.UsageJanuary					 = SRC.UsageJanuary			,
+	TGT.UsageFebruary					 = SRC.UsageFebruary		,
+	TGT.UsageMarch						 = SRC.UsageMarch			,
+	TGT.UsageApril						 = SRC.UsageApril			,
+	TGT.UsageMay						 = SRC.UsageMay				,
+	TGT.UsageJune						 = SRC.UsageJune			,
+	TGT.UsageJuly						 = SRC.UsageJuly			,
+	TGT.UsageAugust						 = SRC.UsageAugust			,
+	TGT.UsageSeptember					 = SRC.UsageSeptember		,
+	TGT.UsageOctober					 = SRC.UsageOctober			,
+	TGT.UsageNovember					 = SRC.UsageNovember		,
+	TGT.UsageDecember					 = SRC.UsageDecember		,
+	TGT.RecordHash           			 = SRC.RecordHash          	
+
+
+FROM	dw.FactInventory		    AS TGT
+	 JOIN   ##FactInventory_SOURCE	AS SRC
+			ON  TGT.PartID = SRC.PartID
+			and TGT.Location  = SRC.Location 
+				   
+	WHERE	TGT.RecordHash <> SRC.RecordHash
+	
+
+SET @RowsUpdatedCount = @@ROWCOUNT
+
+
+
+
+   
 	
 	--DROP temp tables
-	BEGIN TRY DROP TABLE #FactInventory_work		END TRY BEGIN CATCH END CATCH
-	BEGIN TRY DROP TABLE #FactInventory_current	END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE ##FactInventory_SOURCE		END TRY BEGIN CATCH END CATCH
+	BEGIN TRY DROP TABLE ##FactInventory_TARGET	END TRY BEGIN CATCH END CATCH
 	 
-
 END
 
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+GO
