@@ -36,7 +36,7 @@ DECLARE @RowsUpdatedCount int
 	CREATE TABLE #DimInventory_work (
     PartID                 nchar(20)        NULL,
     DateLastChg		 	   datetime         NULL,
-    WhoChgLast		 	   nchar(6)         NULL,
+    WhoChgLast		 	   nchar(8)         NULL,
     Price	               decimal(13, 5)   NULL,
     CodeABC	         	   nchar(1)	        NULL,
     ProductLine	     	   nchar(2)         NULL,

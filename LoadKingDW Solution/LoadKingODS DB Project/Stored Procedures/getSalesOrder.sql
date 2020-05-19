@@ -7,9 +7,10 @@
 --Procedure Name: [LK-GS-ODS].dbo.getSalesOrder
 --       Created: Pragmatic Works, Edwin Davis 4/24/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_SalesOrder 
+-- r1 - Joe U - 5/19/2020 - Added logic to use Order_header record type L to get GL
 --==============================================
 
-CREATE PROCEDURE dbo.getSalesOrder
+CREATE PROCEDURE [dbo].[getSalesOrder]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -18,20 +19,18 @@ AS
 
 BEGIN
 
-/* DEBUGGING
-DECLARE
-@SourceTableName varchar(255)
+/*DECLARE
+@SourceTableName varchar(255)  --There is already an object named '##tmp_Order_Header' in the database.
 ,@LoadLogKey int
 ,@StartDate datetime
 ,@EndDate datetime	
 
 SELECT 
 @SourceTableName = '_V_SalesOrder'
-@LoadLogKey = 0
+,@LoadLogKey = 0
 ,@StartDate = '1/1/1900'
 ,@EndDate = getdate() 	
-*/
-
+--*/
 
 SET NOCOUNT ON;
 
@@ -70,7 +69,7 @@ Select @TblNbr = TableNbr,@Tblname = Table_Name,@Viewname = View_Name,@LastBatch
 from 
 [LK-GS-CNC].dbo._TableList tl
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
-ON tl.TABLE_NAME = @SourceTableName -- ec.SourceTableName
+ON tl.TABLE_NAME =  @SourceTableName --'_V_SalesOrder'
 where 
 MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1
 order by runpriority, tablenbr asc
@@ -117,9 +116,20 @@ IF object_id('##tmp_Order_Header', 'U') is not null -- if table exists
 		Drop table ##tmp_Order_Header
 	END
 
+IF object_id('##tmp_Order_HeaderL', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp_Order_HeaderL
+	END
+
+
 IF object_id('##tmp_Order_Lines', 'U') is not null -- if table exists
 	BEGIN
 		Drop table ##tmp_Order_Lines
+	END
+
+IF object_id('##tmp_SalesOrder', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp_SalesOrder
 	END
 
 
@@ -135,6 +145,15 @@ Set @Sql = 'Select * INTO ##tmp_Order_Header From ' +  @BaseSql
 
 EXEC(@Sql)
 
+  -- create the select from source table Openquery using a wildcard (use record Type L to pick up GL account)
+Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_HEADER Where RECORD_TYPE = ' + ''''+ '''' + 'L' + '''' + ''''   --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + ')' 
+	  
+Set @Sql = 'Select * INTO ##tmp_Order_HeaderL From ' +  @BaseSql 
+
+EXEC(@Sql)
+
   -- create the select from source table Openquery using a wildcard
 Set @BaseSql = ' Openquery([LK_GS],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_LINES Where RECORD_TYPE = ' + +'''' + '''' + 'L' + '''' + '''' --Rev4 n.
@@ -145,10 +164,7 @@ Set @Sql = 'Select * INTO ##tmp_Order_Lines From ' +  @BaseSql
 EXEC(@Sql)
 
 
-INSERT INTO dbo._V_SalesOrder
-
-SELECT   SO.*
-	--INTO [LK-GS-ODS].dbo._V_SalesOrder
+SELECT   SO.* INTO ##tmp_SalesOrder
 	From
 	(Select
 	       CAST(oh.[ORDER_NO]	                              AS nchar(7))     AS SalesOrderNumber   -- [ORDER_HEADER]            
@@ -180,7 +196,7 @@ SELECT   SO.*
 		 , CAST(ol.SHIP_ID           AS nchar(6))                AS OLShipToSeq                       -- [ORDER_LINE]
 		 , CAST(oh.SALESPERSON       AS nvarchar(3))             AS OHSalespersonID                   -- [ORDER_HEADER]
          , CAST(oh.QUOTE             AS nchar(7))                AS OHQuoteNumber                     -- [ORDER_HEADER]
-         , CAST(oh.GL_Account        AS nchar(15))               AS OHGLAccount                       -- [ORDER_HEADER]
+         , CAST(oh.GL_Account        AS nchar(15))               AS OHGLAccount                       -- [ORDER_HEADER] --Record Type L, just to get the GLAccount
 	     , CAST(ol.PART              AS nchar(20))               AS OLPartID                          -- [ORDER_LINE]
 
 -- Attributes
@@ -229,6 +245,10 @@ SELECT   SO.*
 			LEFT JOIN 
 			##tmp_Order_Lines ol 
 			ON oh.ORDER_NO = ol.ORDER_NO
+		--	LEFT JOIN 
+			--##tmp_Order_HeaderL ohl 
+		--	ON oh.ORDER_NO = ohl.ORDER_NO
+
 
 		WHERE -- PULL ALL DELTAS
 			(
@@ -238,9 +258,26 @@ SELECT   SO.*
 			)
 
 	) AS SO
-	
+
+
+
+
+Update x set x.OHGLAccount = y.GL_Account from
+##tmp_SalesOrder x
+INNER JOIN ##tmp_Order_HeaderL y
+ON     x.SalesOrderNumber = y.Order_No
+   and x.SalesOrderLine   = y.Record_No 
+
+
+INSERT INTO dbo._V_SalesOrder
+SELECT  * from 	 ##tmp_SalesOrder
+
+
 	Drop table ##tmp_Order_Header
+	Drop table ##tmp_Order_HeaderL
 	Drop table ##tmp_Order_Lines
+	Drop table ##tmp_SalesOrder
+
 
 
 -- ***** END MULTI SOURCE TABLE LOAD LOGIC ***********************************************
@@ -372,14 +409,15 @@ END TRY
 	     	Where Table_Name  = @Tblname and LastBatch = @Batch
 
  END CATCH    
- 
- -- Return one row result set to use in SSIS package
+-- Return one row result set to use in SSIS package
 SELECT SourceRecordCount = @Reccnt
-
+ 
 
 
 END
 
+
 GO
+
 
 
