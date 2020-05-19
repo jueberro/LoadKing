@@ -44,7 +44,7 @@ SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
 																		 +   cast(stage.[DateLastChg]       as nvarchar(26))	
 																		 +   stage.[WhoChgLast] 		
 																		 +   [BIN]     		
-																		 +   cast(stage.[DateCycle] as nvarchar(26))
+																		 +   cast(stage.[DateCycle]         as nvarchar(26))
 																		 +   [CodeBOM]
 																		 +   [CodeDiscount]
 																		 +   [CodeTotal]

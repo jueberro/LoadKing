@@ -35,7 +35,7 @@ IF object_id('##FactInventory_TARGET', 'U') is not null -- if table exists
 
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
-	CREATE TABLE #FactInventory_work (
+	CREATE TABLE ##FactInventory_SOURCE (
   
   -- dimensions
 
@@ -47,9 +47,9 @@ IF object_id('##FactInventory_TARGET', 'U') is not null -- if table exists
 	DateLastAudit			datetime			NOT NULL, 		  
 	Location				nchar(2)				NULL,
 	DateLastChg				datetime				NULL,
-	WhoChgLast				nchar(6)				NULL,
+	WhoChgLast				nchar(8)				NULL,
 	BIN						nchar(6)			    NULL, 
-	DateCycle				nchar(1)                NULL,
+	DateCycle				datetime                NULL,
 	CodeBOM					nchar(1)        	  	NULL,
 	CodeDiscount			nchar(1)          		NULL,
 	CodeTotal				nchar(1)         		NULL,
