@@ -1,7 +1,8 @@
---USE [LK-GS-ODS]
---GO
+USE [LK-GS-ODS]
+GO
 
-CREATE PROCEDURE dbo.getQUAL_DISP_H
+
+ALTER PROCEDURE dbo.getINVENTORY_MSTR
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -14,8 +15,8 @@ BEGIN
 
 Declare @TblNbr       as Int
 Declare @TblName      as varchar(100)
-Declare @Basesql      as varchar(255)
-Declare @Sql          as varchar(1000) 
+Declare @Basesql      as varchar(4000)
+Declare @Sql          as varchar(4000) 
 Declare @Reccnt       as int
 Declare @ETLStarted   as datetime
 Declare @Servername   as varchar(255)
@@ -55,8 +56,6 @@ ON tl.TABLE_NAME = ec.SourceTableName
 where 
 MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
-
--- update x set MasterRunFlag = 'Y' from [LK-GS-CNC].dbo._TableList x where Table_Name = 'QUAL_DISP_H'
        
 --OPEN TBLList            
 --FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
@@ -76,15 +75,14 @@ BEGIN TRY
 
     Set  @TblNamePath = @ODSdatabase + @tblname -- Rev4 i.
 
-
       -- create the select from source table Openquery using a wildcard
     Set @BaseSql = ' Openquery([LK_GS],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname 
+    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  + ' WHERE DATE_LAST_CHG BETWEEN  ' + '''''' +   cast(CAST(@StartDate as date)as varchar(19)) + '''''' + ' AND ' + '''''' + cast(CAST(@EndDate as date) as varchar(19)) + '''''' 
     Set @BaseSql = @BaseSql + '''' + ')' 
 	  
  -- Increment the last Batch ID
 
-	Set @Batch = @LoadLogKey --@LastBatch +1
+	Set @Batch = @LoadLogKey -- @LastBatch +1
 
  -- Insert the  the Start Time of the ETL into the table record
   
@@ -106,7 +104,7 @@ BEGIN TRY
 	select 
 	[TableNbr], [TABLE_CAT], [TABLE_SCHEM], [TABLE_NAME], [TABLE_TYPE], 'SSIS Framework Pkg' as [REMARKS], [VIEW_NAME],SourceStoredProc, [ETL_Start], [ETL_Completed]
 	, [Status], [Recordcount], [CurRunFlag], [RunPriority], [MasterRunFlag], [LastBatch], [ServerName], [DBname], [WinUsername], [SqlUsername], [Procname] 
-	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName -- 'QUAL_DISP_H' -- @TblName
+	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName 
 
     -- If The Table Exists, truncate table and Insert the records from Source, else create table from source
 
@@ -173,7 +171,6 @@ BEGIN TRY
       
       END
 
-
  END TRY
  BEGIN CATCH  --ERROR TRAPPING
  
@@ -205,7 +202,6 @@ BEGIN TRY
 		,@WinUsername
 		,@SQLUsername
 		,@Procname
-
 	
 		-- Complete the Logging for _TableList and _TablelistLOG to show Error Status  -- rev4 g.5
 		 
@@ -224,7 +220,6 @@ BEGIN TRY
     
 	   EXEC(@Sql)
    
-
 		 Update  [LK-GS-CNC].dbo._TableList  -- Rev4 g.
         Set ETL_Start       =  @ETLStarted,
 	        ETL_Completed   =  getdate(),
@@ -261,12 +256,9 @@ END
 --CLOSE TblList           
 --DEALLOCATE TBLList    
 
-
 -- Return one row result set to use in SSIS package
 SELECT SourceRecordCount = @Reccnt
 
-
-    
 END
 GO
 

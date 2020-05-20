@@ -103,5 +103,8 @@
     <Build Include="Stored Procedures\getQUALITY_ADDL.sql" />
     <Build Include="Stored Procedures\getQUALITY.sql" />
     <Build Include="Stored Procedures\getPRODUCT_LINE.sql" />
+    <Build Include="Stored Procedures\getINVENTORY_MST2.sql" />
+    <Build Include="Stored Procedures\getINVENTORY_MST3.sql" />
+    <Build Include="Stored Procedures\getINVENTORY_MSTR.sql" />
   </ItemGroup>
 </Project>
