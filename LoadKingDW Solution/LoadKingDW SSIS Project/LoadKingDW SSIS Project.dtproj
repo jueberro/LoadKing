@@ -26,17 +26,15 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="OaWHvxh5nf0=" SSIS:IV="kBvrRV++zs09fr2otolcjA==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">nCA+48/91NZPe8o3BYfMPrqS/ahm4QPkN8B7LDm7AP/VFFii/fM8rz7cRJuDWwNt9GeRGL0Dre/WNPvGYAzg41gfo4axZfBzVa/aAp17Z9v2IwHEEEH7n3xOzkoUEUfVsIBQqpTkMTnCKcfb2EdDtVSz2Kmsd1JLzKHdJN3pjmFa0cbKFYplsSvBAa0bMeSv</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="/ZYWAiDUjZ4=" SSIS:IV="Uag1iE5kk9UVSQG6eHNXxQ==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">Gv2j65BYDwo6uO9dSUg5TbLL1aUSlR29R+9ndrt8B8S6ojKDrjXJOTNsPuyjXGcStRxjHfjmDZ5H2aeg+wkJo+9/+8vnLfzmJxPO2993K2FWGqy1hsUGrH263Tulir1ncXTAfNsb/WnAjuQ4wGuUsGJNx82icy1xcVP9WXpp3PyB3ycaoMuFTBzoUjkBwH2V</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="DWMaster.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="GlobalShopExtractMaster.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="DWLoadDimEmployee.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadSingleDWTable.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWTableLoop.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimCustomer.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="DWLoadDimSalesperson.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimQuote.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimGLAccount.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimCustomerShipTo.dtsx" SSIS:EntryPoint="1" />
@@ -52,6 +50,8 @@
           <SSIS:Package SSIS:Name="DWLoadFactJobOperations.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimInventory.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadFactInventory.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadDimSalesPerson.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadDimEmployee.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LK_CNC.conmgr" />
@@ -481,80 +481,6 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="DWLoadDimEmployee.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{E5DC2BDC-66F0-4046-B2B9-95C877432C87}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DWLoadDimEmployee</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">17</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{21FDA113-551F-40AD-908B-860BFA2A9DB5}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters>
-                <SSIS:Parameter SSIS:Name="DWTableName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{DA7E0366-BA9D-4612-99E6-F8EFF60C9CBD}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">dw.DimEmployee</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="SourceDataSetName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{A204BE64-365A-4548-BB8E-14D11FE6E113}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Employee</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="SourceSystemName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{2680868C-C9DA-4C19-AEDD-BE307169878F}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Global Shop</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="StoredProcedureName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{0FE8B132-C2A8-41E0-82DF-4313C2EEEEDE}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">dw.LoadDimEmployee</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-              </SSIS:Parameters>
-            </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="DWLoadSingleDWTable.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{070E870E-BC1C-464D-B2BC-4198623C41B4}</SSIS:Property>
@@ -743,80 +669,6 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">dw.sp_LoadDimCustomer</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-              </SSIS:Parameters>
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="DWLoadDimSalesperson.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{E644E602-74A2-439D-9E08-5089918E4261}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DWLoadDimEmployee</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{1ACECC9D-0FB1-49CE-9FF2-6C393EE94A60}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters>
-                <SSIS:Parameter SSIS:Name="DWTableName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{A0554915-5553-43C2-8B79-AE12B5930228}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">dw.DimSalesperson</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="SourceDataSetName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{F0C9D733-86DE-451F-A4CC-EECB41ED370B}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">SalesPerson</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="SourceSystemName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{D28352C6-4ACB-426A-8BD9-10B3263D7EA0}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Global Shop</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="StoredProcedureName">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{4E56028F-3420-4BB4-9C2F-548FE1C2589F}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">dw.LoadDimSalesperson</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1927,6 +1779,154 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">dw.sp_LoadFactInventory</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DWLoadDimSalesPerson.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{FED1E47C-D8A3-4A74-BA1C-4F5FF5EE3A3A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadDimSalesPerson</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">59</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{934D609D-8B32-4688-BAE4-BEEA7392B9CC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="DWTableName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{609B737A-9960-4696-B96F-29900FC3B0F6}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">DimSalesPerson</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceDataSetName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{82EE840C-A209-4E03-B1CA-7012C5EC9AA0}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">SALESPERSONS</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceSystemName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{E9CCF5CA-8856-41E0-A06D-862B3CC8473F}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Global Shop</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="StoredProcedureName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{C5172BAF-4D2E-4E1B-BCB2-A1A205ABED99}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadDimSalesPerson</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DWLoadDimEmployee.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{42ABECCB-8FCF-42D0-A9A9-0E62FF5668FD}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadDimEmployee</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">59</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5AB9D10F-6BA3-40FB-B44D-1CF0A65A786C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="DWTableName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{824CF5F5-2BD1-48C2-8F20-120C867D386C}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">DimEmployee</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceDataSetName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{BFD450F7-82B5-40AE-89FE-1886F0083ABF}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">SALES_MSTR</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceSystemName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{B0F4098F-E2EE-4BBD-9698-EB1B779BC2D6}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Global Shop</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="StoredProcedureName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{1977A243-3674-4E42-912A-85896A658B8F}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadDimEmployee</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
