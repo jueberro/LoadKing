@@ -107,7 +107,7 @@
     <Build Include="Tables\dwstage.GL_Master.sql" />
     <Build Include="Stored Procedures\dw.LoadDimGLAccount.sql" />
     <Build Include="Tables\dw.DimGLAccount.sql" />
-    <Build Include="Views\dwstage.V_LoadDIMGLAccount.sql" />
+    <Build Include="Views\dwstage.V_LoadDimGLAccount.sql" />
     <Build Include="Tables\dwstage._V_SalesOrder.sql" />
     <Build Include="Tables\dw.FactSalesOrderLine.sql" />
     <Build Include="Tables\dwstage.SALESPERSONS.sql" />

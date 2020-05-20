@@ -2,6 +2,8 @@
 
 BEGIN
 
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
 
 	/*
 
@@ -77,7 +79,7 @@ BEGIN
 						FROM	dw.DimGLAccount AS DIM
 						WHERE	DIM.GLAccount = Work.GLAccount 
 						)
-
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -89,6 +91,7 @@ BEGIN
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimGLAccount
@@ -103,3 +106,9 @@ BEGIN
 	BEGIN TRY DROP TABLE #DIMGLAccount_current	END TRY BEGIN CATCH END CATCH
 
 End
+
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+
+GO

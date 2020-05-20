@@ -1,5 +1,4 @@
 ﻿CREATE TABLE [dw].[FactSalesOrderLine](
-	[FactSalesOrderLine_Key] [int] IDENTITY(1,1) NOT NULL,
 	[DimSalesOrder_Key] [int] NOT NULL,
 	[DimCustomer_Key] [int] NOT NULL,
 	[OrderDateDimDate_Key] [int] NOT NULL,
@@ -10,7 +9,7 @@
 	[DimSalesperson_Key] [int] NOT NULL,
 	[DimQuote_Key] [int] NOT NULL,
 	[OrderNumber] [nchar](7) NOT NULL,
-	[OrderLine] [nchar](4) NULL DEFAULT 0,
+	[OrderLine] [nchar](4) NULL,
 	[OLDateOrder] [datetime] NULL,
 	[OLDateShipped] [datetime] NULL,
 	[Price] [decimal](16, 4) NULL,
@@ -34,16 +33,7 @@
 	[OrderPrice] [decimal](16, 4) NULL,
 	[OrderDiscountPrice] [decimal](16, 4) NULL,
 	[OrderPricePerPound] [decimal](16, 4) NULL,
-	[RecordHash] [varbinary](64) NULL,
-	[SourceSystemName] [nvarchar](100) NOT NULL,
-	[DWEffectiveStartDate] [datetime2](7) NOT NULL,
-	[DWEffectiveEndDate] [datetime2](7) NOT NULL,
-	[DWIsCurrent] [bit] NOT NULL,
-	[LoadLogKey] [int] NOT NULL,
- 
- CONSTRAINT [pk_FactSalesOrderLine] PRIMARY KEY NONCLUSTERED 
+	[RecordHash] [varbinary](64) NULL
+) ON [PRIMARY]
+GO
 
-(
-	[FactSalesOrderLine_Key] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-)

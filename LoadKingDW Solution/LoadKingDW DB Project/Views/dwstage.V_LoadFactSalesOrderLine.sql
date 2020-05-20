@@ -1,5 +1,5 @@
 ﻿
-Create VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
+CREATE VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
 
 SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 	    , DimCustomer_Key			 = ISNULL(DC.DimCustomer_Key,         -1)
@@ -43,15 +43,32 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 		, Stage.OrderPricePerPound          
 		
 
-		/*Hash used for identifying changes, not required for reporting*/
-		, RecordHash				= CAST(0 AS VARBINARY(64)) 
-
-		/*DW Metadata fields, not required for reporting*/
-	    , [SourceSystemName]		  = CAST('Global Shop'        AS NVARCHAR(100))
-		, [DWEffectiveStartDate]	  = CAST(Getdate()            AS DATETIME2(7))
-		, [DWEffectiveEndDate]		  = '2100-01-01'
-		, [DWIsCurrent]				  = CAST(1					  AS BIT)
-		, [LoadLogKey]				  = CAST(0                    AS INT)
+		  ,   [Type1RecordHash]			  = HASHBYTES('SHA2_256',                                                                  
+																		     cast(stage.[OLDateOrder]       as nvarchar(26))
+		                                                                 +   cast(stage.[OLDateShipped]     as nvarchar(26))		
+																		 +   cast(stage.[Price]             as nvarchar(26))			
+																		 +   cast([Cost]                    as nvarchar(16))      		
+																		 +   cast([ExtenedPrice]            as nvarchar(16))
+																		 +   cast([Margin]                  as nvarchar(16))
+																		 +   cast([QtyOriginal]             as nvarchar(16))
+																		 +   cast([QtyAllocated]            as nvarchar(16))
+																		 +   cast([QuantityOrdered]         as nvarchar(16))
+																		 +   cast([Qty_Shipped]             as nvarchar(16))
+																		 +   cast([QtyBackOrdered]          as nvarchar(16))
+																		 +   cast([PriceDiscount]           as nvarchar(16))
+																		 +   cast([PricePerPound]           as nvarchar(16))
+																		 +   cast([DiscountAmount]          as nvarchar(16))
+																		 +   cast([OrderDiscount]           as nvarchar(16))
+																		 +   cast([ProductClassDiscountAmount] as nvarchar(16))
+																		 +   cast([ProductLineDiscount]     as nvarchar(16))
+																		 +   cast([OrderDiscountAmount]     as nvarchar(16))
+																		 +   cast([PriceClassDiscount]      as nvarchar(16))
+																		 +   cast([ProductLineDiscountAmount]  as nvarchar(16))
+																		 +   cast([Orderprice]              as nvarchar(16))
+																		 +   cast([OrderDiscountPrice]      as nvarchar(16))
+																		 +   cast([OrderPricePerPound]      as nvarchar(16))
+																		 )
+																		 
 
 FROM	dwstage._V_SalesOrder as Stage
    
@@ -88,6 +105,4 @@ LEFT OUTER JOIN dw.DimQuote AS Quote
   ON	stage.OHShipToSeq = DCST.ShipToSeq
    AND     Stage.OHCustomerID  = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
-
-  
-
+GO
