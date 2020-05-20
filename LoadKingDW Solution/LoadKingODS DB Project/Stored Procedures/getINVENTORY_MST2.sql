@@ -1,11 +1,13 @@
 --USE [LK-GS-ODS]
 --GO
 
-CREATE PROCEDURE dbo.getQUAL_DISP_H
+
+ALTER PROCEDURE dbo.getINVENTORY_MST2
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
 ,@EndDate datetime
+
 AS
 
 BEGIN
@@ -51,12 +53,12 @@ Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBa
 from 
 [LK-GS-CNC].dbo._TableList tl
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
-ON tl.TABLE_NAME = ec.SourceTableName
+ON tl.TABLE_NAME = @SourceTableName 
 where 
 MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
 
--- update x set MasterRunFlag = 'Y' from [LK-GS-CNC].dbo._TableList x where Table_Name = 'QUAL_DISP_H'
+-- update x set MasterRunFlag = 'Y' from [LK-GS-CNC].dbo._TableList x where Table_Name = 'CUSTOMER_MASTER'
        
 --OPEN TBLList            
 --FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
@@ -79,12 +81,12 @@ BEGIN TRY
 
       -- create the select from source table Openquery using a wildcard
     Set @BaseSql = ' Openquery([LK_GS],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname 
+    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
     Set @BaseSql = @BaseSql + '''' + ')' 
 	  
  -- Increment the last Batch ID
 
-	Set @Batch = @LoadLogKey --@LastBatch +1
+	Set @Batch = @LoadLogKey--@LastBatch +1
 
  -- Insert the  the Start Time of the ETL into the table record
   
@@ -106,7 +108,7 @@ BEGIN TRY
 	select 
 	[TableNbr], [TABLE_CAT], [TABLE_SCHEM], [TABLE_NAME], [TABLE_TYPE], 'SSIS Framework Pkg' as [REMARKS], [VIEW_NAME],SourceStoredProc, [ETL_Start], [ETL_Completed]
 	, [Status], [Recordcount], [CurRunFlag], [RunPriority], [MasterRunFlag], [LastBatch], [ServerName], [DBname], [WinUsername], [SqlUsername], [Procname] 
-	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName -- 'QUAL_DISP_H' -- @TblName
+	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName -- 'CUSTOMER_MASTER' -- @TblName
 
     -- If The Table Exists, truncate table and Insert the records from Source, else create table from source
 
@@ -172,7 +174,6 @@ BEGIN TRY
 	     	Where Table_Name  = @Tblname and LastBatch = @Batch
       
       END
-
 
  END TRY
  BEGIN CATCH  --ERROR TRAPPING

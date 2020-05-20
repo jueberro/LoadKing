@@ -1,4 +1,7 @@
-﻿Create VIEW [dwstage].[V_LoadDimEmployee]
+--USE [LK-GS-EDW]
+--GO
+
+CREATE VIEW dwstage.V_LoadDimEmployee
 AS
 SELECT 		
 		  [EmployeeID]				= CAST(EMPLOYEE				AS NCHAR(5))
@@ -13,7 +16,7 @@ SELECT
 		, [EmployeeTerminationDate]	= dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)
 		, [EmployeeDepartment]		= CAST(DEPT_EMPLOYEE		AS NCHAR(4))
 		, [EmployeeIsSalesperson]	= CAST(0					AS BIT) 	
-		, [EmployeeInitials]        = CAST(''                   AS NVARCHAR(3))
+		, [EmployeeInitials]        = CAST([EMPL_INITIALS]      AS NVARCHAR(3))
 		, [Type1RecordHash]			= CAST(0 AS VARBINARY(64))
 		, [Type2RecordHash]			= HASHBYTES('SHA2_256', CAST(EMPLOYEE		AS NCHAR(5))
 															+ CAST(RECORD_TYPE		AS NCHAR(1))
@@ -26,7 +29,9 @@ SELECT
 															+ CAST(dwstage.udf_cv_nvarchar6_to_date(DATE_HIRE)  AS NVARCHAR(12))
 															+ CAST(dwstage.udf_cv_nvarchar6_to_date(DATE_TERMINATION)  AS NVARCHAR(12))
 															+ CAST(DEPT_EMPLOYEE	AS NCHAR(4))
-															+ CAST(0				AS NCHAR(1)))
+															+ CAST(0				AS NCHAR(1))
+															+ CAST([EMPL_INITIALS]  AS NVARCHAR(3))
+															)
 		
 		, [SourceSystemName]		= CAST('Global Shop'        AS NVARCHAR(100))
 		, [DWEffectiveStartDate]	= CAST(Getdate()            AS DATETIME2(7))
@@ -34,5 +39,6 @@ SELECT
 		, [DWIsCurrent]				= CAST(1					AS BIT)
 		
 		, [LoadLogKey]				= CAST(0                    AS INT)
-		FROM dwstage.EMPLOYEE_MSTR
+		FROM dwstage.EMPLOYEE_MSTR 
 GO
+

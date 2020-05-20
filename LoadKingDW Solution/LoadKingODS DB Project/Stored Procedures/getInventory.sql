@@ -7,11 +7,9 @@
 --Procedure Name: [LK-GS-ODS].dbo.getInventory
 --       Created: Pragmatic Works, Edwin Davis 4/28/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Inventory 
---
---      r1 . Added the proper date conversions to the date fields.
 --==============================================
 
-CREATE PROCEDURE [dbo].[getInventory]
+CREATE PROCEDURE dbo.getInventory
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -68,7 +66,7 @@ Set @EDWdatabase  = '[LK-GS-EDW].dbo.'
 Set @ODSdatabase  = '[LK-GS-ODS].dbo.'
 
 
-Select @TblNbr = TableNbr,@TblName = Table_Name, @Viewname = View_Name, @LastBatch = LastBatch 
+Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBatch = LastBatch 
 from 
 [LK-GS-CNC].dbo._TableList tl
 LEFT JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
@@ -173,15 +171,15 @@ SELECT   IM.*
 	From
 
 	(Select
-                 CAST(im.[PART]	                                AS nchar(20))       AS  PartID                 --B         INVENTORY_MSTR    
-                ,dbo.udf_cv_nvarchar6__yymmdd_to_date([DATE_LAST_CHG])	            AS  DateLastChg		 	   --B	     INVENTORY_MSTR	
-                ,CAST([WHO_CHG_LAST]                            AS nvarchar(8))     AS  WhoChgLast		 	   --B	     INVENTORY_MSTR	
+                    CAST(im.[PART]	                                AS nchar(20))       AS  PartID                 --B         INVENTORY_MSTR    
+                ,dbo.udf_cv_nvarchar6_to_date([DATE_LAST_CHG])	                    AS  DateLastChg		 	   --B	     INVENTORY_MSTR	
+                ,dbo.udf_cv_nvarchar8_to_date([WHO_CHG_LAST])           	        AS  WhoChgLast		 	   --B	     INVENTORY_MSTR	
                 ,CAST(im.[AMT_PRICE]                            AS decimal(13, 5))  AS  Price	               --D		 INVENTORY_MSTR
                 ,CAST(im.[CODE_ABC]                 			AS nchar(1))	    AS  CodeABC	         	   --D		 INVENTORY_MSTR
                 ,CAST(im.[PRODUCT_LINE]             			AS nchar(2))        AS  ProductLine	     	   --D		 INVENTORY_MSTR
                 ,CAST(im.[DESCRIPTION] 	            			AS nvarchar(100))   AS  PartDescription	 	   --D		 INVENTORY_MSTR
                 ,CAST(im.[UM_INVENTORY] 	            		AS nchar(3))        AS  UM	             	   --D		 INVENTORY_MSTR
-                ,CAST(im.[OBSOLETE_FLAG]                        AS nchar(1))        AS  Obsolete           	   --D		 INVENTORY_MSTR
+                ,CAST(im.[OBSOLETE_FLAG]                        AS nchar(1))             AS  Obsolete           	   --D		 INVENTORY_MSTR
                 ,CAST(im.[CODE_SORT]                            AS nchar(10))       AS  CodeSort           	   --D		 INVENTORY_MSTR
                 ,CAST(im.[TIME_MATERIAL_LEAD]                   AS decimal(4, 0))   AS  MaterialLeadTime	   --D		 INVENTORY_MSTR
                 ,CAST(im.[FLAG_SERIALIZE]                       AS nchar(1))	    AS  SerializeFlag		   --D		 INVENTORY_MSTR
@@ -197,9 +195,9 @@ SELECT   IM.*
                 ,CAST(i3.[TAX_EXEMPT_FLG]                       AS nchar(1)) 	    AS  TaxExemptFlag	       --D		 INVENTORY_MST3	
                 ,CAST(im.[LOCATION]                             AS nchar(2))        AS  Location	       	   --F		 INVENTORY_MSTR	
                 ,CAST(im.[BIN]                                  AS nchar(6))        AS  BIN		         	   --F		 INVENTORY_MSTR	
-                ,dbo.udf_cv_nvarchar6_to_date(DATE_LAST_USAGE)                      AS  DateLastUsage	       --F		 INVENTORY_MSTR	
-                ,dbo.udf_cv_nvarchar6_to_date(DATE_LAST_AUDIT)                      AS  DateLastAudit		   --F		 INVENTORY_MSTR	
-                ,dbo.udf_cv_nvarchar6__yymmdd_to_date(DATE_CYCLE)                   AS  DateCycle		       --F		 INVENTORY_MST2	
+                ,dbo.udf_cv_nvarchar8_to_date(DATE_LAST_USAGE)                      AS  DateLastUsage	       --F		 INVENTORY_MSTR	
+                ,dbo.udf_cv_nvarchar8_to_date(DATE_LAST_AUDIT)                      AS  DateLastAudit		   --F		 INVENTORY_MSTR	
+                ,dbo.udf_cv_nvarchar8_to_date(DATE_CYCLE)                           AS  DateCycle		       --F		 INVENTORY_MST2	
                 ,CAST(im.[CODE_BOM]                             AS nchar(1))        AS  CodeBOM	         	   --F		 INVENTORY_MSTR	
                 ,CAST(im.[CODE_DISCOUNT]                        AS nchar(1))        AS  CodeDiscount		   --F		 INVENTORY_MSTR	
                 ,CAST(im.[CODE_TOTAL]                           AS nchar(1))        AS  CodeTotal	           --F		 INVENTORY_MSTR	
@@ -239,7 +237,7 @@ SELECT   IM.*
 				ON i2.Part = i3.Part and i2.Location = i3.Location
 
 		WHERE -- PULL ALL DELTAS	
-				dbo.udf_cv_nvarchar6__yymmdd_to_date(im.[DATE_LAST_CHG]) between CAST(@StartDate as date) and CAST(@EndDate as date) 
+				im.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
 
 	) AS IM
 	
@@ -385,6 +383,7 @@ SELECT SourceRecordCount = @Reccnt
 
 
 END
+
 GO
 
 

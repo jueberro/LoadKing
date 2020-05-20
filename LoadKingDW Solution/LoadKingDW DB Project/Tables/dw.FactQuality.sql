@@ -2,8 +2,8 @@
 --GO
 CREATE TABLE dw.FactQuality
 (
-	DimDisposition int NOT NULL,
-	DimWorkOrder int NOT NULL,
+	DimQualityDisposition_Key int NOT NULL,
+	DimWorkOrder_Key int NOT NULL,
 	[DimCustomer_Key] [int] NOT NULL,
 	DimVendor_Key int NOT NULL,
 	[DimInventory_Key] [int] NOT NULL,
@@ -29,9 +29,11 @@ CREATE TABLE dw.FactQuality
 	[SCRAP_CODE] [char](2) NULL, -- DK
 	[ORIGINATOR] [char](8) NULL, -- DK
 
-	[DATE_QUALITY] [char](6) NULL,
-	[DATE_ENTERED] [char](8) NULL,
+	[DATE_QUALITY] datetime NULL,
+	[DATE_ENTERED] datetime NULL,
 	[TIME_ENTERED] [char](8) NULL,
+	[F_DATE] datetime NULL,
+	[CLOSE_DATE] datetime NULL,
 
 	[QTY_REJECTED] [numeric](14, 6) NULL,
 	[ORIG_SCRAP_VALUE] [numeric](12, 2) NULL,

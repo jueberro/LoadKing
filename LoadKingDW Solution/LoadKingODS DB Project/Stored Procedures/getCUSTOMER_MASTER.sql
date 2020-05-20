@@ -2,12 +2,11 @@
 --GO
 
 
-CREATE PROCEDURE dbo.getCUSTOMER_MASTER
+ALTER PROCEDURE dbo.getCUSTOMER_MASTER
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
 ,@EndDate datetime
-
 AS
 
 BEGIN
@@ -47,23 +46,23 @@ Set @EDWdatabase  = '[LK-GS-EDW].dbo.'
 Set @ODSdatabase  = '[LK-GS-ODS].dbo.'
 
 
-DECLARE TBLList CURSOR FOR    -- Create a CURSOR of TableNbr's to process from _TableList table     
+--DECLARE TBLList CURSOR FOR    -- Create a CURSOR of TableNbr's to process from _TableList table     
  
-Select TableNbr,Table_Name,View_Name,LastBatch 
+Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBatch = LastBatch 
 from 
 [LK-GS-CNC].dbo._TableList tl
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
-ON tl.TABLE_NAME = @SourceTableName -- ec.SourceTableName
+ON tl.TABLE_NAME = ec.SourceTableName
 where 
-MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1
+MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
 
 -- update x set MasterRunFlag = 'Y' from [LK-GS-CNC].dbo._TableList x where Table_Name = 'CUSTOMER_MASTER'
        
-OPEN TBLList            
-FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
+--OPEN TBLList            
+--FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
 
-WHILE @@fetch_status = 0            
+--WHILE @@fetch_status = 0            
 BEGIN  
 BEGIN TRY
 
@@ -81,7 +80,7 @@ BEGIN TRY
 
       -- create the select from source table Openquery using a wildcard
     Set @BaseSql = ' Openquery([LK_GS],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname --  + ' WHERE DATE_LAST_MODIFIED BETWEEN ''''' + @StartDateString + ''''' AND ''''' + @EndDateString + ''''''; 
+    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname 
     Set @BaseSql = @BaseSql + '''' + ')' 
 	  
  -- Increment the last Batch ID
@@ -174,66 +173,7 @@ BEGIN TRY
 	     	Where Table_Name  = @Tblname and LastBatch = @Batch
       
       END
-/*	  *** If the table id not exist, create the table during the stored procedure execution ***
-    ELSE
-      BEGIN 
-       --Create New ODS File (Table did not exist)
-	    
-     Set @Sql = 'Select *,' + '''' + CONVERT(varchar(255),@TblNbr) + '''' + ' as ETL_TblNbr ,' + '''' 
-							       + CONVERT(varchar(255),@Batch)  + '''' + ' as ETL_Batch ,' + '''' 
-								   + @TestDate + '''' + ' as ETL_Completed INTO ' + @TblName + ' From ' +  @BaseSql 
-       EXEC(@Sql)  
-       
 
-	 --Log to TableList and Tablelistlog
-
-	   Set @SQL = 'Update [LK-GS-CNC].dbo._TablelistLOG '
-	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
-					      Where  Table_Name   = ' + '''' + @TblName + '''' 
-					 + '     and LastBatch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) -- Rev4 l
-    
-	   EXEC(@Sql)
-
-	   Set @SQL = 'Update [LK-GS-CNC].dbo._TableList '
-	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
-					      Where  Table_Name   = ' + '''' + @TblName + ''''  -- Rev4 l
-
-	-- ELD added Record Count
-	 SET @Reccnt = 
-		(Select RecordCount from [LK-GS-CNC].dbo._Tablelist Where Table_Name = @TblName and Lastbatch = @Batch)
-
-    
-	   EXEC(@Sql)
-   
-
-	Update  [LK-GS-CNC].dbo._TableList  -- Rev4 c.
-        Set ETL_Start       =  @ETLStarted,
-	        ETL_Completed   =  getdate(),
-	        Status          =  'Completed',
-            LastBatch       =  @Batch,
-            ServerName      =  @Servername,
-	        DBName          =  @DataBaseName,
-	        WinUsername     =  @Winusername,
-		    SQLUsername     =  @SQLUsername,  
-		    Procname        =  @Procname,  
-		    CurRunFlag      =  'N',
-			Remarks         = 'Full Load'
-	     	Where Table_Name  = @Tblname
-
-	Update [LK-GS-CNC].dbo._TablelistLOG  -- Rev4 c.
-	        Set ETL_Start   =  @ETLStarted,
-	        ETL_Completed   =  getdate(),
-	        Status          =  'Completed',
-            ServerName      =  @Servername,
-	        DBName          =  @DataBaseName,
-	        WinUsername     =  @Winusername,
-		    SQLUsername     =  @SQLUsername,  
-		    Procname        =  @Procname,  
-		    CurRunFlag      =  'N',
-			Remarks         = 'Full Load'
-	     	Where Table_name  = @Tblname and LastBatch = @Batch
-      END
-*/
 
  END TRY
  BEGIN CATCH  --ERROR TRAPPING
@@ -316,11 +256,11 @@ BEGIN TRY
 
  END CATCH    
    
- Print @Tblname
-    FETCH NEXT FROM TBLList INTO  @TblNbr,@Tblname, @Viewname,@LastBatch     -- rev4 e.  
+-- Print @Tblname
+    --FETCH NEXT FROM TBLList INTO  @TblNbr,@Tblname, @Viewname,@LastBatch     -- rev4 e.  
 END            
-CLOSE TblList           
-DEALLOCATE TBLList    
+--CLOSE TblList           
+--DEALLOCATE TBLList    
 
 
 -- Return one row result set to use in SSIS package

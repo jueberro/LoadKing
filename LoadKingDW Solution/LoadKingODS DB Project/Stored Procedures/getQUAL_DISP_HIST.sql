@@ -9,8 +9,20 @@ CREATE PROCEDURE dbo.getQUAL_DISP_HIST
 AS
 
 BEGIN
-	SET ANSI_NULLS ON
-	SET NOCOUNT ON
+
+/* DEBUGGING
+DECLARE
+@SourceTableName varchar(255)
+,@LoadLogKey int
+,@StartDate datetime
+,@EndDate datetime	
+
+SELECT 
+@SourceTableName = 'QUAL_DISP_HIST'
+,@LoadLogKey = -99
+,@StartDate = '1/1/1900'
+,@EndDate = getdate() 	
+*/
 
 Declare @TblNbr       as Int
 Declare @TblName      as varchar(100)
@@ -45,23 +57,24 @@ Set @EDWdatabase  = '[LK-GS-EDW].dbo.'
 Set @ODSdatabase  = '[LK-GS-ODS].dbo.'
 
 
-DECLARE TBLList CURSOR FOR    -- Create a CURSOR of TableNbr's to process from _TableList table     
+----DECLARE TBLList CURSOR FOR    -- Create a CURSOR of TableNbr's to process from _TableList table     
  
-Select TableNbr,Table_Name,View_Name,LastBatch 
+--Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBatch = LastBatch 
+Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBatch = LastBatch 
 from 
 [LK-GS-CNC].dbo._TableList tl
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
-ON tl.TABLE_NAME = @SourceTableName -- ec.SourceTableName
+ON tl.TABLE_NAME = ec.SourceTableName
 where 
-MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1
+MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
 
 -- update x set MasterRunFlag = 'Y' from [LK-GS-CNC].dbo._TableList x where Table_Name = 'QUAL_DISP_HIST'
        
-OPEN TBLList            
-FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
+----OPEN TBLList            
+----FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
 
-WHILE @@fetch_status = 0            
+----WHILE @@fetch_status = 0            
 BEGIN  
 BEGIN TRY
 
@@ -113,7 +126,15 @@ BEGIN TRY
     IF object_id(@TblName, 'U') is not null -- if table exists
       
 	  BEGIN
-	       	 
+
+	    --   PRINT 'STEP BEFORE THE INSERT'
+
+		   --PRINT '@TblName:' + @TblName
+		   --PRINT '@TblNbr:' + CONVERT(varchar(255),@TblNbr)
+		   --PRINT '@Batch:' + CONVERT(varchar(255),@Batch)
+		   --PRINT '@TestDate:' + @TestDate
+		   --PRINT '@BaseSql:' + @BaseSql
+
 	  --INSERT New ODS Recs (Append with new Batch ID)
 
       Set @Sql = 'INSERT INTO ' + @TblName + ' Select *,' + ''''
@@ -121,11 +142,12 @@ BEGIN TRY
 								 + CONVERT(varchar(255),@Batch)  + '''' + ',' + '''' 
 								 + @TestDate + '''' + ' From ' +  @BaseSql 
 
+	  --PRINT 'value of @SQL is:' + @SQL
+
       EXEC(@Sql)     -- insert records from source table1
 
      --Log to TableList and Tablelistlog
 
-	
 	   Set @SQL = 'Update [LK-GS-CNC].dbo._TablelistLOG '
 	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
 					      Where  Table_Name   = ' + '''' + @TblName + '''' 
@@ -255,11 +277,11 @@ BEGIN TRY
 
  END CATCH    
    
- Print @Tblname
-    FETCH NEXT FROM TBLList INTO  @TblNbr,@Tblname, @Viewname,@LastBatch     -- rev4 e.  
+ --Print @Tblname
+ --   --FETCH NEXT FROM TBLList INTO  @TblNbr,@Tblname, @Viewname,@LastBatch     -- rev4 e.  
 END            
-CLOSE TblList           
-DEALLOCATE TBLList    
+----CLOSE TblList           
+----DEALLOCATE TBLList    
 
 
 -- Return one row result set to use in SSIS package

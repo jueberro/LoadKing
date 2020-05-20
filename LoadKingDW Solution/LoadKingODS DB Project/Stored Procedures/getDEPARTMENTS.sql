@@ -59,9 +59,9 @@ Set @EDWdatabase  = '[LK-GS-EDW].dbo.'
 Set @ODSdatabase  = '[LK-GS-ODS].dbo.'
 
 
-DECLARE TBLList CURSOR FOR    -- Create a CURSOR of TableNbr's to process from _TableList table     
+--DECLARE TBLList CURSOR FOR    -- Create a CURSOR of TableNbr's to process from _TableList table     
  
-Select TableNbr,Table_Name,View_Name,LastBatch 
+Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBatch = LastBatch 
 from 
 [LK-GS-CNC].dbo._TableList tl
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
@@ -71,10 +71,10 @@ MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1
 and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
        
-OPEN TBLList            
-FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
+--OPEN TBLList            
+--FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
 
-WHILE @@fetch_status = 0            
+--WHILE @@fetch_status = 0            
 BEGIN  
 BEGIN TRY
 
@@ -264,11 +264,11 @@ BEGIN TRY
 
  END CATCH    
    
- Print @Tblname
-    FETCH NEXT FROM TBLList INTO  @TblNbr,@Tblname, @Viewname,@LastBatch     -- rev4 e.  
+-- Print @Tblname
+    --FETCH NEXT FROM TBLList INTO  @TblNbr,@Tblname, @Viewname,@LastBatch     -- rev4 e.  
 END            
-CLOSE TblList           
-DEALLOCATE TBLList    
+--CLOSE TblList           
+--DEALLOCATE TBLList    
 
 -- Return one row result set to use in SSIS package
 SELECT SourceRecordCount = @Reccnt
