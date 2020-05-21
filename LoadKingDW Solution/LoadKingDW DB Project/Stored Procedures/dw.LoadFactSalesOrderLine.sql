@@ -1,4 +1,9 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadFactSalesOrderLine] @LoadLogKey INT  AS
+--USE [LK-GS-EDW]
+--GO
+
+
+
+CREATE PROCEDURE dw.sp_LoadFactSalesOrderLine @LoadLogKey INT  AS
 
 BEGIN
 
@@ -86,7 +91,7 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 
 	--Load #SOURCE table with data in the format in which it will appear in the dimension
 	INSERT INTO ##FactSalesOrderLine_SOURCE
-			SELECT * from dwstage.V_LoadFactInvoice
+			SELECT * from dwstage.V_LoadFactSalesOrderLine --dwstage.V_LoadFactInvoice
 
 --CREATE TEMP table to be used below for identifying records with CHANGES 
 
