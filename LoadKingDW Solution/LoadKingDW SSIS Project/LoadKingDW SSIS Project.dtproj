@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="/ZYWAiDUjZ4=" SSIS:IV="Uag1iE5kk9UVSQG6eHNXxQ==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">Gv2j65BYDwo6uO9dSUg5TbLL1aUSlR29R+9ndrt8B8S6ojKDrjXJOTNsPuyjXGcStRxjHfjmDZ5H2aeg+wkJo+9/+8vnLfzmJxPO2993K2FWGqy1hsUGrH263Tulir1ncXTAfNsb/WnAjuQ4wGuUsGJNx82icy1xcVP9WXpp3PyB3ycaoMuFTBzoUjkBwH2V</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="AxZ7vEatn3U=" SSIS:IV="kX6TMrgrR5rWcbytliwoQw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">4U1MHIs5YDpc/th+nvxAo2jomgtnGQXnPfbAZyvbtmi8XV53rAjoAA4jR+8BGxaspnniBeeVe5rtRAiLIAt3Djand14RS9NzLaIqlclG55zIG+OOG54mwqNtLk4U6qsRv7jOrQWIRtc2U1KVickWsv8DPkcOGqO8hrsfzfPMcTk2AJvpt3zcXOtXSCiQktM2</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -52,6 +52,7 @@
           <SSIS:Package SSIS:Name="DWLoadFactInventory.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimSalesPerson.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimEmployee.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadFactQuality.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LK_CNC.conmgr" />
@@ -1927,6 +1928,80 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">dw.sp_LoadDimEmployee</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DWLoadFactQuality.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{BA71124B-7914-484F-B5EE-37064BD60586}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadFactQuality</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">56</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{174635EE-E097-440F-8821-D0B0F669B0F4}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="DWTableName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{60A6BA17-467F-4941-B3BD-7B87FB859EDE}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">FactQuality</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceDataSetName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{2E871DDD-C31D-42FD-B62D-22BAFE67C86E}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">QUALITY</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceSystemName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{595FCB6D-0919-4BAC-B310-8B78F5976129}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Global Shop</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="StoredProcedureName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{DF35558D-7E18-4B48-9CF1-58B075957353}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadFactQuality</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
