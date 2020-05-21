@@ -35,7 +35,7 @@ IF object_id('##FactQuality_TARGET', 'U') is not null -- if table exists
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE ##FactQuality_SOURCE (
 
-DimQualityDispositon_Key int NOT NULL,
+DimQualityDisposition_Key int NOT NULL,
 DimWorkOrder_Key int NOT NULL,
 DimCustomer_Key int NOT NULL,
 DimVendor_Key int NOT NULL,
