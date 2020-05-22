@@ -2,7 +2,6 @@
 --GO
 CREATE TABLE dw.FactQuality
 (
-	DimQualityDisposition_Key int NOT NULL,
 	DimWorkOrder_Key int NOT NULL,
 	[DimCustomer_Key] [int] NOT NULL,
 	DimVendor_Key int NOT NULL,
