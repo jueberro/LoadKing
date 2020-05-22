@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimEmployee"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="59"
-  DTS:VersionGUID="{5AB9D10F-6BA3-40FB-B44D-1CF0A65A786C}">
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{7D021033-1C43-4AA5-8F61-3DF2F9C7E7DD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -173,7 +173,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[EMPLOYEE_MSTR]</property>
+                      name="OpenRowset">[dwstage].[EMPLOYEE_MSTR]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -216,8 +216,8 @@
                   <connections>
                     <connection
                       refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Connections[OleDbConnection]"
-                      connectionManagerID="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[LK_ODS]"
+                      connectionManagerID="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[LK_DW]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2686,15 +2686,21 @@
                           name="FILLER" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ETL_TblNbr]"
-                          dataType="i4"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
                           name="ETL_TblNbr" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ETL_Batch]"
-                          dataType="i4"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
                           name="ETL_Batch" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ETL_Completed]"
-                          dataType="dbTimeStamp"
+                          codePage="1252"
+                          dataType="str"
+                          length="19"
                           name="ETL_Completed" />
                       </externalMetadataColumns>
                     </input>
@@ -7527,9 +7533,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="160,42"
+          Size="NaN,NaN"
           Id="Package.EventHandlers[OnError]\SQL-Log Failure"
-          TopLeft="248,95" />
+          TopLeft="NaN,NaN" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -7572,14 +7578,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
       <Property>
@@ -7589,6 +7587,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

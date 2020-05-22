@@ -1,5 +1,9 @@
-﻿
-CREATE VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
+--USE [LK-GS-EDW]
+--GO
+
+
+
+CREATE VIEW dwstage.V_LoadFactSalesOrderLine AS
 
 SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 	    , DimCustomer_Key			 = ISNULL(DC.DimCustomer_Key,         -1)
@@ -69,11 +73,13 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 																		 +   cast([OrderPricePerPound]      as nvarchar(16))
 																		 )
 																		 
-
+-- select count(*)
 FROM	dwstage._V_SalesOrder as Stage
    
  LEFT OUTER JOIN dw.DimSalesOrder AS DSO
-  ON	Stage.SalesOrderNumber = DSO.SalesOrderNumber   AND	DSO.DWIsCurrent = 1 
+  ON	Stage.SalesOrderNumber = DSO.SalesOrderNumber
+  AND stage.SalesOrderLine = DSO.SalesOrderLine -- ELD 5/20/2020 ADDED THIS join to the line
+  AND	DSO.DWIsCurrent = 1 
 
  LEFT OUTER JOIN dw.DimCustomer AS DC
   ON    Stage.OHCustomerID = DC.CustomerID
@@ -95,7 +101,7 @@ FROM	dwstage._V_SalesOrder as Stage
 
   LEFT OUTER JOIN dw.DimSalesPerson AS SalesP
   ON	Stage.OHSalespersonID = SalesP.SalespersonID	
-   AND  DI.DWIsCurrent = 1
+   AND  SalesP.DWIsCurrent = 1 -- DI.DWIsCurrent = 1 -- ELD 5/20/2020 Was joing to the wrong dim
 
 LEFT OUTER JOIN dw.DimQuote AS Quote
   ON	Stage.OHQuoteNumber = Quote.QuoteNumber
@@ -106,3 +112,5 @@ LEFT OUTER JOIN dw.DimQuote AS Quote
    AND     Stage.OHCustomerID  = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
 GO
+
+

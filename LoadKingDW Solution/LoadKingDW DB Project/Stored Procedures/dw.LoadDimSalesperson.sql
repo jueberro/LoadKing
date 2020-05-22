@@ -1,6 +1,17 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimSalesperson] @LoadLogKey INT  AS
+--USE [LK-GS-EDW]
+--GO
+
+
+
+CREATE PROCEDURE dw.sp_LoadDimSalesperson @LoadLogKey INT  AS
 
 BEGIN
+
+--DECLARE @LoadLogKey int
+--SET @LoadLogKey = 0
+
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
 
 
 	/*
@@ -70,6 +81,7 @@ BEGIN
 						WHERE	DIM.SalespersonID = Work.SalespersonID 
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -80,6 +92,8 @@ BEGIN
 	  ON	Dim.SalespersonID = Work.SalespersonID
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
+
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 
 	--INSERT New versions of expired records that have Type 2 changes
@@ -96,3 +110,9 @@ BEGIN
 	 
 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+GO
+
+

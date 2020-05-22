@@ -46,6 +46,7 @@ CREATE TABLE dw.FactQuality
 	[FREIGHT_COST] [numeric](16, 6) NULL,
 	[OTHER_COST] [numeric](16, 6) NULL,
 	[CONV_FACTOR] [numeric](11, 5) NULL,
+    [Type1RecordHash] VARBINARY(64)	NULL
 ) ON [PRIMARY]
 GO
 

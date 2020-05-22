@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimSalesPerson"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="59"
-  DTS:VersionGUID="{934D609D-8B32-4688-BAE4-BEEA7392B9CC}">
+  DTS:VersionBuild="64"
+  DTS:VersionGUID="{4B24DDBC-684A-4475-A1B6-DB6201E62817}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -173,7 +173,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[SALESPERSONS]</property>
+                      name="OpenRowset">[dwstage].[SALESPERSONS]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -216,8 +216,8 @@
                   <connections>
                     <connection
                       refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Connections[OleDbConnection]"
-                      connectionManagerID="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[LK_ODS]"
+                      connectionManagerID="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[LK_DW]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1221,9 +1221,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="160,42"
+          Size="NaN,NaN"
           Id="Package.EventHandlers[OnError]\SQL-Log Failure"
-          TopLeft="248,95" />
+          TopLeft="NaN,NaN" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -1266,14 +1266,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
       <Property>
@@ -1283,6 +1275,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

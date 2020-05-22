@@ -1,6 +1,16 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimEmployee] @LoadLogKey INT  AS
+--USE [LK-GS-EDW]
+--GO
+
+
+CREATE PROCEDURE dw.sp_LoadDimEmployee @LoadLogKey INT  AS
 
 BEGIN
+
+--DECLARE @LoadLogKey int
+--SET @LoadLogKey = 0
+
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
 
 	/*
 
@@ -78,6 +88,7 @@ BEGIN
 						WHERE	DIM.EmployeeID = Work.EmployeeID 
 						)
 
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -97,10 +108,17 @@ BEGIN
 	 JOIN   #DimEmployee_work	AS Work
 	  ON	Dim.EmployeeID = Work.EmployeeID
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
+
+SET @RowsUpdatedCount = @@ROWCOUNT
 	
 	--DROP temp tables
 	BEGIN TRY DROP TABLE #DimEmployee_work		END TRY BEGIN CATCH END CATCH
 	BEGIN TRY DROP TABLE #DimEmployee_current	END TRY BEGIN CATCH END CATCH
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
 	 
 
 END
+GO
+
+
