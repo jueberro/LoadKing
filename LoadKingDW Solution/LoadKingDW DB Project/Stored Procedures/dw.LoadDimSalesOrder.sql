@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimSalesOrder] @LoadLogKey INT  AS
+﻿
+CREATE PROCEDURE [dw].[sp_LoadDimSalesOrder] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -13,6 +14,11 @@ BEGIN
 	*/
 
 	DECLARE		@CurrentTimestamp DATETIME2(7)
+
+	DECLARE @RowsInsertedCount int
+    DECLARE @RowsUpdatedCount int
+
+
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
@@ -107,6 +113,8 @@ BEGIN
 						)
 
 
+SET @RowsInsertedCount = @@ROWCOUNT
+
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
 	SET		DWEffectiveEndDate = @CurrentTimestamp
@@ -117,6 +125,8 @@ BEGIN
 	     AND    Dim.SalesOrderline   = Work.Salesorderline
 	     AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
+
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 
 	--INSERT New versions of expired records that have Type 2 changes
@@ -135,3 +145,7 @@ BEGIN
 	 
 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+GO
