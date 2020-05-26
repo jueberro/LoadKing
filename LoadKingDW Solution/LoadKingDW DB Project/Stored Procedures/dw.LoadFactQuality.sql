@@ -35,7 +35,6 @@ IF object_id('##FactQuality_TARGET', 'U') is not null -- if table exists
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE ##FactQuality_SOURCE (
 
-DimQualityDisposition_Key int NOT NULL,
 DimWorkOrder_Key int NOT NULL,
 DimCustomer_Key int NOT NULL,
 DimVendor_Key int NOT NULL,
@@ -120,8 +119,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 
 	UPDATE	TGT
 	SET
-	TGT.DimQualityDisposition_Key = SRC.DimQualityDisposition_Key
-	,TGT.DimWorkOrder_Key = SRC.DimWorkOrder_Key
+	TGT.DimWorkOrder_Key = SRC.DimWorkOrder_Key
 	,TGT.DimCustomer_Key = SRC.DimCustomer_Key
 	,TGT.[DimVendor_Key] = SRC.[DimVendor_Key]
 	,TGT.DimInventory_Key = SRC.DimInventory_Key

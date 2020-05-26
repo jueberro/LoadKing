@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="c787TtIIoVU=" SSIS:IV="xteFExar2wbXMirv7AD2WA==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">ZW1yiLzQ9Fe+yWeC4jsvKECLw9i0WwjVgIJK2Z5WIxzG9ISXUrm6VZej72oeRG0iIZh/yn+AQGN5h5/XbAwHs3Oz4FjMJPNXc4ZVYTwALA3iwZxX8aR8y7Ob7Xi8veBKAsFS+lj0q2IMM0dAJHEOiaNix3TMFIZrqM9U525qVUjU5GvlhK1E5f/9iBj5eSua</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="DnpmTLQ465U=" SSIS:IV="vFuQ2Ryv8H9yR+G8QL3gyA==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">P/SP32Dom5k9crBVaL/PwVW7qQEo45Z8r/iuxgh8QNqyr3vWGhJEo/cU9Rzs6SXU7DnYfEr6GTurblpx6yQoQ1YP4bhCvn/JbvQT7WHQqKm5npelTMJ+Io/AQkc79jOu8wjEEsrDeleZn5CYRJgYPm0aPWN2DzZndagAZRn+CNQTZvV2YqUiTtNqbyqSqoLa</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -53,7 +53,7 @@
           <SSIS:Package SSIS:Name="DWLoadDimSalesPerson.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimEmployee.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadFactQuality.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="DWLoadDimWorkOrder.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadFactQualityDisposition.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LK_CNC.conmgr" />
@@ -2008,16 +2008,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="DWLoadDimWorkOrder.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DWLoadFactQualityDisposition.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{7EBFA827-5D61-4F6F-A511-224B25FA25E4}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DWLoadDimWorkOrder</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{3961C73D-7B40-471A-8D71-DD79CF080BA5}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadFactQualityDisposition</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">57</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8B8176EA-0F46-4510-A71C-5E572290DE1E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0E68C021-7A88-451B-B3E2-3251AC41403A}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -2026,7 +2026,7 @@
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="DWTableName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{EAEA676D-D2E5-4D03-8069-B380B41199FD}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{2629A7F1-0BBB-4EBE-B81B-5531350D0E9A}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -2034,13 +2034,13 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">DimWorkOrder</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">FactQualityDisposition</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceDataSetName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{35E81F19-4FAD-4AE1-B4EE-B49386BE6959}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{2671E5A0-A335-45AC-8E0B-FA86E55E31D5}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -2048,13 +2048,13 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">JOB_HEADER</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">QUALITY_DISP</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceSystemName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{3C7AE619-62AD-4B06-8BEB-1A9BB697902D}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{443A226C-4AD9-495B-B504-70D2F36645F4}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -2068,7 +2068,7 @@
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="StoredProcedureName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{81C23AF5-0B76-4C54-B4A7-FD1BB5B2EB6F}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{26BF807E-7D25-495B-9FBA-0DDB7B2AD13C}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -2076,7 +2076,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadDimWorkOrder</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadFactQualityDisposition</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

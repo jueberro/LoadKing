@@ -4,8 +4,7 @@
 CREATE VIEW dwstage.V_LoadFactQuality
 AS
 SELECT
--1 as DimQualityDisposition_Key
-,-1 as DimWorkOrder_Key -- ISNULL(wo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
+-1 as DimWorkOrder_Key -- ISNULL(wo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 ,ISNULL(c.DimCustomer_Key, -1) as DimCustomer_Key
 ,-1 as DimVendor_Key
 ,ISNULL(i.DimInventory_Key, -1) as DimInventory_Key
