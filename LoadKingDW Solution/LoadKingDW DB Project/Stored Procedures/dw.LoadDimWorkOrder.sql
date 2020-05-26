@@ -16,13 +16,17 @@ BEGIN
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
+	DECLARE @RowsInsertedCount int
+    DECLARE @RowsUpdatedCount int
+
+
 	BEGIN TRY DROP TABLE #DimWorkOrder_work		END TRY BEGIN CATCH END CATCH
 	BEGIN TRY DROP TABLE #DimWorkOrder_current	END TRY BEGIN CATCH END CATCH
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimWorkOrder_work (
-		[WorkOrderNumber_DW]				[nchar](13) NOT NULL,
-		[WorkOrderNumber]			        [nchar](7)  NULL,
+		[WorkOrderNumber_DW]				[nchar](12) NOT NULL,
+		[WorkOrderNumber]			        [nchar](6)  NULL,
 		
 
 		/*Hashes used for identifying changes, not required for reporting*/
@@ -46,7 +50,8 @@ BEGIN
     
     Update #DimWorkOrder_work Set [DWEffectiveStartDate] = @CurrentTimestamp, [LoadLogKey]	 = @LoadLogKey
 
-    ----  UPDATE The 
+	
+    
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
 	CREATE TABLE #DimWorkOrder_current (WorkOrderNumber_DW NVARCHAR(6))
 
@@ -66,6 +71,8 @@ BEGIN
 						FROM	dw.DimWorkOrder AS DIM
 						WHERE	DIM.WorkOrderNumber_DW = Work.WorkOrderNumber_DW )
 
+SET @RowsInsertedCount = @@ROWCOUNT
+
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -78,6 +85,8 @@ BEGIN
 	WHERE	DIM.WorkOrderNumber_DW <> Work.WorkOrderNumber_DW
 
 
+SET @RowsUpdatedCount = @@ROWCOUNT	
+	
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimWorkOrder
 	SELECT	Work.*
@@ -92,4 +101,7 @@ BEGIN
 	 
 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
 GO

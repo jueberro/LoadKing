@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimWorkOrder"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="58"
-  DTS:VersionGUID="{B747DE7F-5D4B-4A99-96AD-EFD96393DECB}">
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{88D5C0D0-F4B2-4D9D-8C96-6787F7AA073B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -4610,33 +4610,33 @@
         <NodeLayout
           Size="255,42"
           Id="Package\SQL - GetExtractBatchesToProcess"
-          TopLeft="1269.41666675359,5.49999999999993" />
+          TopLeft="190.41666675359,27.4999999999999" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="1396.91666675359,47.4999999999999">
+          TopLeft="317.91666675359,69.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-541.41666675359,60.6666666666661"
+              EndConnector="537.58333324641,38.6666666666661"
               Start="0,0"
-              End="-541.41666675359,53.1666666666661">
+              End="537.58333324641,31.1666666666661">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.333333333333" />
+                    End="0,15.333333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26.333333333333"
-                    Point2="0,30.333333333333"
-                    Point3="-4,30.333333333333" />
+                    Point1="0,15.333333333333"
+                    Point2="0,19.333333333333"
+                    Point3="4,19.333333333333" />
                   <mssgle:LineSegment
-                    End="-537.41666675359,30.333333333333" />
+                    End="533.58333324641,19.333333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="-537.41666675359,30.333333333333"
-                    Point2="-541.41666675359,30.333333333333"
-                    Point3="-541.41666675359,34.333333333333" />
+                    Point1="533.58333324641,19.333333333333"
+                    Point2="537.58333324641,19.333333333333"
+                    Point3="537.58333324641,23.333333333333" />
                   <mssgle:LineSegment
-                    End="-541.41666675359,53.1666666666661" />
+                    End="537.58333324641,31.1666666666661" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4664,7 +4664,7 @@
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source"
@@ -4692,7 +4692,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-15.45359375,15.4658203125,30.9071875,9.568359375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

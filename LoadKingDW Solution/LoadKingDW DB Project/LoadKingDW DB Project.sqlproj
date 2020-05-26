@@ -145,7 +145,7 @@
     <Build Include="Stored Procedures\dw.LoadDimDepartment.sql" />
     <Build Include="Views\dwstage.V_LoadDimDepartment.sql" />
     <Build Include="Functions\dwstage.udf_TestDatevalue.sql" />
-    <Build Include="Stored Procedures\dw.LoadDimCusotmer.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimCustomer.sql" />
     <Build Include="Tables\dwstage._V_JobOperations.sql" />
     <Build Include="Tables\dw.FactJobOperations.sql" />
     <Build Include="Views\dwstage.V_LoadFactJobOperations.sql" />

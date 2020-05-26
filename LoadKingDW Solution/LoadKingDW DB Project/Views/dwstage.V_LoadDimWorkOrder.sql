@@ -1,8 +1,8 @@
 ﻿CREATE VIEW [dwstage].[V_LoadDimWorkOrder]
 AS
 SELECT 		                                 
-		  [WorkOrderNumber_DW]			= CAST(jh.[Job]	AS NCHAR(7)) + CAST(jh.DATE_OPENED as nchar(6))
-		, [WorkOrderNumber]			    = CAST(jh.[Job]	AS NCHAR(7))
+		  [WorkOrderNumber_DW]			= CAST(jh.[Job]	AS NCHAR(6)) + CAST(jh.DATE_OPENED as nchar(6))
+		, [WorkOrderNumber]			    = CAST(jh.[Job]	AS NCHAR(6))
 				
 		, [Type1RecordHash]				= CAST(0 AS VARBINARY(64))
 		, [Type2RecordHash]				= CAST(0 AS VARBINARY(64))   

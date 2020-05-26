@@ -1,4 +1,14 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadDimQuote] @LoadLogKey INT  AS
+USE [LK-GS-EDW]
+GO
+
+/****** Object:  StoredProcedure [dw].[sp_LoadDimQuote]    Script Date: 5/26/2020 10:38:01 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE dw.sp_LoadDimQuote @LoadLogKey INT  AS
 
 BEGIN
 
@@ -15,6 +25,10 @@ BEGIN
 	DECLARE		@CurrentTimestamp DATETIME2(7)
 
 	SELECT		@CurrentTimestamp = GETUTCDATE()
+
+	DECLARE @RowsInsertedCount int
+    DECLARE @RowsUpdatedCount int
+
 
 	BEGIN TRY DROP TABLE #DimQuote_work		END TRY BEGIN CATCH END CATCH
 	BEGIN TRY DROP TABLE #DimQuote_current	END TRY BEGIN CATCH END CATCH
@@ -69,7 +83,7 @@ BEGIN
 						FROM	dw.DimQuote AS DIM
 						WHERE	DIM.QuoteNumber = Work.QuoteNumber 
 						)
-
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -81,7 +95,7 @@ BEGIN
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
-
+SET @RowsUpdatedCount = @@ROWCOUNT	
 	--INSERT New versions of expired records that have Type 2 changes
 	INSERT INTO dw.DimSalesPerson
 	SELECT	Work.*
@@ -96,3 +110,9 @@ BEGIN
 	 
 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+GO
+
+
