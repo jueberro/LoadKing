@@ -25,9 +25,10 @@ BEGIN
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimWorkOrder_work (
-		[WorkOrderNumber_DW]				[nchar](12) NOT NULL,
+		[WorkOrderNumber_DW]				[nchar](15) NOT NULL,
 		[WorkOrderNumber]			        [nchar](6)  NULL,
-		
+		[Suffix]                            [nchar](6)  NULL,
+		[DateOpened]                        datetime    NULL,
 
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
