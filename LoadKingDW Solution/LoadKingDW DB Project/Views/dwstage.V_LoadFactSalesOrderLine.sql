@@ -11,7 +11,7 @@ SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 		, ShipDateDimDate_Key 		 = ISNULL(ShipDate.DimDate_Key,       -1)
 		, DimCustomerShipTo_Key 	 = ISNULL(DCST.DimCustomerShipTo_Key, -1)
 		, DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)
-		, DimGLMaster_Key            = ISNULL(GLAcct.DimGLAccount_Key,    -1)
+		, DimGLAccount_Key            = ISNULL(GLAcct.DimGLAccount_Key,    -1)
 		, DimSalesperson_Key         = ISNULL(SalesP.DimSalesperson_Key,  -1)
 	    , DimQuote_Key               = ISNULL(Quote.DimQuote_Key,         -1)
 

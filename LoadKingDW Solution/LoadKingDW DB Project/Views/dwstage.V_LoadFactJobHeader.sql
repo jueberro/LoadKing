@@ -2,7 +2,7 @@
 --GO
 
 
-CREATE VIEW dwstage.V_LoadFactJobHeader
+CREATE VIEW [dwstage].[V_LoadFactJobHeader]
 AS
 SELECT 
 ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
@@ -12,9 +12,10 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,ISNULL(sp.DimSalesperson_Key, -1) as DimSalesPerson_Key
 ,ISNULL(pl.DimProductLine_Key, -1) as DimProductLine_Key
 ,ISNULL(do.DimDate_Key, -1) as DimDate_Key
+,ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 
 , stage.JOB
-, SUFFIX
+, stage.SUFFIX
 , stage.PART
 , PRODUCT_LINE
 , ROUTER
@@ -78,7 +79,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 , [Type1RecordHash]			  = HASHBYTES('SHA2_256',
 																	
 + stage.JOB
-+ SUFFIX
++ stage.SUFFIX
 + stage.PART
 + PRODUCT_LINE
 + ROUTER
@@ -189,10 +190,12 @@ AND  wo.DWIsCurrent = 1
 AND	so.DWIsCurrent = 1 
 
 LEFT OUTER JOIN dw.DimDate AS do
-ON	dwstage.udf_cv_nvarchar6_to_date(Stage.DATE_OPENED)  = do.[Date]			
+ON	dwstage.udf_cv_nvarchar6_to_date(Stage.DATE_OPENED)  = do.[Date]
 
-
-		
-GO
+LEFT OUTER JOIN dw.DimWorkOrder dwo
+ON stage.JOB = dwo.WorkOrderNumber
+AND stage.Suffix = dwo.Suffix
+AND dwstage.udf_cv_nvarchar6_to_date(stage.DATE_OPENED)  = dwo.DateOpened
+AND dwo.DWIsCurrent = 1
 
 

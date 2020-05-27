@@ -3,7 +3,7 @@
 
 
 
-CREATE PROCEDURE dw.sp_LoadFactSalesOrderLine @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadFactSalesOrderLine] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -48,8 +48,8 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	OrderDateDimDate_Key int not null,
 	ShipDateDimDate_Key int not null,
 	DimCustomerShipTo_Key int not null,
-	FactInventory_Key int not null,
-	DimGLMaster_Key int not null,
+	DimInventory_Key int not null,
+	DimGLAccount_Key int not null,
 	DimSalesperson_Key int not null,
 	DimQuote_Key int not null,
 	
@@ -136,8 +136,8 @@ SET @RowsInsertedCount = @@ROWCOUNT
 ,TGT.[OrderDateDimDate_Key]            = SRC.OrderDateDimDate_Key
 ,TGT.[ShipDateDimDate_Key]             = SRC.DimCustomer_Key
 ,TGT.[DimCustomerShipTo_Key]           = SRC.DimSalesPerson_Key
-,TGT.[FactInventory_Key]               = SRC.FactInventory_Key
-,TGT.[DimGLMaster_Key]                 = SRC.DimGLMaster_Key
+,TGT.[DimInventory_Key]                = SRC.DimInventory_Key
+,TGT.[DimGLAccount_Key]                = SRC.DimGLAccount_Key
 ,TGT.[DimSalesperson_Key]              = SRC.[DimSalesperson_Key] 
 
 , TGT.[OrderNumber]                 = SRC.[OrderNumber]    
@@ -187,5 +187,3 @@ END
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
 
 GO
-
-

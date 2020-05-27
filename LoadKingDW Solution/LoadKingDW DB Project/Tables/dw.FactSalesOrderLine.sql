@@ -4,8 +4,8 @@
 	[OrderDateDimDate_Key] [int] NOT NULL,
 	[ShipDateDimDate_Key] [int] NOT NULL,
 	[DimCustomerShipTo_Key] [int] NOT NULL,
-	[FactInventory_Key] [int] NOT NULL,
-	[DimGLMaster_Key] [int] NOT NULL,
+	[DimInventory_Key] [int] NOT NULL,
+	[DimGLAccount_Key] [int] NOT NULL,
 	[DimSalesperson_Key] [int] NOT NULL,
 	[DimQuote_Key] [int] NOT NULL,
 	[OrderNumber] [nchar](7) NOT NULL,
@@ -37,3 +37,5 @@
 ) ON [PRIMARY]
 GO
 
+ALTER TABLE [dw].[FactSalesOrderLine] ADD  DEFAULT ((0)) FOR [OrderLine]
+GO

@@ -11,6 +11,7 @@ DimCustomer_Key int NOT NULL,
 DimSalesPerson_Key int NOT NULL,
 DimProductLine_Key int NOT NULL,
 DimDate_Key int NOT NULL,
+DimWorkOrder_Key int NOT NULL,
 -- DEGENERATE ATTRIBUTES ----------------------------------------------
 	[JOB] [char](6) NULL,
 	[SUFFIX] [char](3) NULL,

@@ -7,15 +7,15 @@
 		        ,   ShipDateDimDate_Key 		 = ISNULL(ShipDate.DimDate_Key,       -1)											
 		        ,   DimCustomerShipTo_Key     	 = ISNULL(DCST.DimCustomerShipTo_Key, -1)											
 		        ,   DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)											
-		        ,   DimGLMaster_Key              = ISNULL(GLAcct.DimGLAccount_Key,    -1)											
+		        ,   DimGLAccount_Key             = ISNULL(GLAcct.DimGLAccount_Key,    -1)											
 		        ,   DimSalesperson_Key           = ISNULL(SalesP.DimSalesperson_Key,  -1)											
-	            ,   stage.[SalesOrderNumber]   	AS SalesOrderNumber																		
-				,   stage.[SalesOrderLine] 		AS SalesOrderLine																		
+	            ,   stage.[SalesOrderNumber]   	AS SalesOrderNumber																					
+				,   stage.[SalesOrderLine] 		AS SalesOrderLine																					
 				,   stage.[OHOrderSuffix] 		AS OHOrderSuffix																						
 				,   [OLOrderSuffix] 																								
 				,   [OLInvoiceNumber] 																								
-				,   dwstage.udf_testdatevalue(stage.[OLDateShipped]) 		AS OLDateShipped											
-				,   dwstage.udf_testdatevalue([OLDateLineInvoiced])	AS OLDateLineInvoiced												
+				,   dwstage.udf_testdatevalue(stage.[OLDateShipped]) 		AS OLDateShipped																					
+				,   dwstage.udf_testdatevalue([OLDateLineInvoiced])	AS OLDateLineInvoiced																						
 				,   [QtyOrdered]               																						
 				,   [QtyShipped]               																						
 				,   [QtyBO]                    																						
@@ -27,7 +27,7 @@
 				,   [CostOverhead]             																						
 				,   [CostOther]                																						
 				,   [Margin]                   																						
-				,   stage.[Price]               AS Price     																			
+				,   stage.[Price]               AS Price     																				
 				,   [ExtendedPrice]            																						
 				,   [TaxApply1]                																						
 				,   [TaxApply2]                																						
@@ -65,6 +65,8 @@ FROM            dwstage._V_Invoice Stage
 LEFT OUTER JOIN dw.DimInvoice AS DSO
   ON	Stage.SalesOrderNumber = DSO.SalesOrderNumber   
    AND  Stage.SalesOrderLine   = DSO.SalesOrderLine
+   AND  Stage.OHOrderSuffix    = DSO.OHOrderSuffix
+   AND  Stage.OHInvoiceNumber  = DSO.OHInvoiceNumber
    AND	DSO.DWIsCurrent = 1 
 
  LEFT OUTER JOIN dw.DimCustomer AS DC
@@ -83,14 +85,15 @@ LEFT OUTER JOIN dw.DimInvoice AS DSO
 
   LEFT OUTER JOIN dw.DimGLAccount AS GLAcct
   ON	Stage.OLGLAccount = GLAcct.GLAccount		
-   AND  DI.DWIsCurrent = 1
+   AND  GLAcct.DWIsCurrent = 1
 
   LEFT OUTER JOIN dw.DimSalesPerson AS SalesP
   ON	Stage.OLSalesperson = SalesP.SalespersonID	
-   AND  DI.DWIsCurrent = 1
+   AND  SalesP.DWIsCurrent = 1
 
   LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
   ON	stage.OLCustShipTo = DCST.ShipToSeq
    AND     Stage.OLCustomer = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
-GO
+
+	  GO

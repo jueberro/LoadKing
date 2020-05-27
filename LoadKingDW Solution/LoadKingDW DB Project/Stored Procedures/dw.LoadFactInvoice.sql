@@ -44,8 +44,8 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	[OrderDateDimDate_Key]          [int] NOT NULL,
 	[ShipDateDimDate_Key]           [int] NOT NULL,
 	[DimCustomerShipTo_Key]         [int] NOT NULL,
-	[FactInventory_Key]             [int] NOT NULL,
-	[DimGLMaster_Key]               [int] NOT NULL,
+	[DimInventory_Key]              [int] NOT NULL,
+	[DimGLAccount_Key]              [int] NOT NULL,
 	[DimSalesperson_Key]            [int] NOT NULL,
 	
 	
@@ -126,13 +126,13 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	UPDATE	TGT
 	SET
 
- TGT.[DimInvoice_Key]               = SRC.DimInvoice_Key
+ TGT.[DimInvoice_Key]                  = SRC.DimInvoice_Key
 ,TGT.[DimCustomer_Key]                 = SRC.DimCustomer_Key
 ,TGT.[OrderDateDimDate_Key]            = SRC.OrderDateDimDate_Key
 ,TGT.[ShipDateDimDate_Key]             = SRC.DimCustomer_Key
 ,TGT.[DimCustomerShipTo_Key]           = SRC.DimSalesPerson_Key
-,TGT.[FactInventory_Key]               = SRC.FactInventory_Key
-,TGT.[DimGLMaster_Key]                 = SRC.DimGLMaster_Key
+,TGT.[DimInventory_Key]                = SRC.DimInventory_Key
+,TGT.[DimGLAccount_Key]                = SRC.DimGLAccount_Key
 ,TGT.[DimSalesperson_Key]              = SRC.[DimSalesperson_Key] 
 
 , TGT.[SalesOrderNumber]     = SRC.[SalesOrderNumber]    
