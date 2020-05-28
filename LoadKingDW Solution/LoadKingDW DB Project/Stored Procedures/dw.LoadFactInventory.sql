@@ -39,9 +39,13 @@ IF object_id('##FactInventory_TARGET', 'U') is not null -- if table exists
   
   -- dimensions
 
-	DimInventory_Key int not null,
 	
-		
+	
+	[DimInventory_Key]      [int]               NOT NULL,
+	[DimLastChgDate_Key]    [int]                   NULL,
+	[DimLastUsageDate_Key]  [int]                   NULL,
+	[DimLastAuditDate_Key]  [int]                   NULL,
+	[DimCycleDate_Key]      [int]                   NULL,	
 	PartID					nchar(20)			NOT NULL,
 	DateLastUsage			datetime			NOT NULL,      
 	DateLastAudit			datetime			NOT NULL, 		  
@@ -123,7 +127,11 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	UPDATE	TGT
 	SET
 
-    TGT.[DimInventory_Key]              = SRC.DimInventory_Key     ,
+    TGT.[DimInventory_Key]               = SRC.DimInventory_Key         ,
+	TGT.[DimLastChgDate_Key]             = SRC.[DimLastChgDate_Key]     ,
+	TGT.[DimLastUsageDate_Key]           = SRC.[DimLastUsageDate_Key]   ,
+	TGT.[DimLastAuditDate_Key]           = SRC.[DimLastAuditDate_Key]   ,
+	TGT.[DimCycleDate_Key]               = SRC.[DimCycleDate_Key]       ,
 	TGT.PartID				             = SRC.PartID				,
 	TGT.DateLastUsage					 = SRC.DateLastUsage		,
 	TGT.DateLastAudit					 = SRC.DateLastAudit		,

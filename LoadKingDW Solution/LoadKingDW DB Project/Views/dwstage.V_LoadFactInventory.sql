@@ -2,8 +2,11 @@
 Create VIEW [dwstage].[V_LoadFactInventory] AS
 
 SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
-	   
-          ,Stage.PartID
+          ,DimLastChgDate_Key          = ISNULL(LastChgDate.DimDate_Key,        -1)
+	      ,DimLastUsageDate_Key        = ISNULL(LastUsagedate.DimDate_Key,      -1)			
+ 		  ,DimLastAuditDate_Key        = ISNULL(LastAuditdate.DimDate_Key,      -1)
+		  ,DimCycleDate_Key            = ISNULL(CycleDate.DimDate_Key,      -1)
+		  ,Stage.PartID
 		  ,Stage.DateLastUsage	      
 		  ,Stage.DateLastAudit	
 		  ,Stage.Location				
@@ -78,7 +81,21 @@ FROM	dwstage._V_Inventory as Stage
   ON    Stage.PartID = DIN.PartID
    AND  DIN.DWIsCurrent = 1
 
- 
+   LEFT OUTER JOIN dw.DimDate AS LastUsageDate
+  ON	Stage.DateLastUsage = LastUsagedate.[Date]			
 
+ LEFT OUTER JOIN dw.DimDate AS LastAuditDate
+  ON	Stage.DateLastAudit = LastAuditDate.[Date]	
+
+  LEFT OUTER JOIN dw.DimDate AS LastChgDate
+  ON	Stage.DateLastChg = LastChgDate.[Date]
+
+  LEFT OUTER JOIN dw.DimDate AS CycleDate
+  ON	Stage.DateCycle = CycleDate.[Date]
+
+
+
+
+GO
   
 
