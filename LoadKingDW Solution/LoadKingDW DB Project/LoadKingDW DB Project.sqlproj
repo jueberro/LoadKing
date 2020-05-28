@@ -154,6 +154,11 @@
     <Build Include="Tables\dw.DimWorkOrder.sql" />
     <Build Include="Views\dwstage.V_LoadDimWorkOrder.sql" />
     <Build Include="Stored Procedures\dw.LoadDimWorkOrder.sql" />
+    <Build Include="Tables\dw.FactQualityDisposition.sql" />
+    <Build Include="Views\dwstage.V_LoadFactQuality.sql" />
+    <Build Include="Views\dwstage.V_LoadFactQualityDisposition.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactQualityDisposition.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactQuality.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
