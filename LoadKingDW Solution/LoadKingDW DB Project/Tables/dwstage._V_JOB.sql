@@ -5,6 +5,9 @@
 
 CREATE TABLE dwstage._V_JOB
 (
+	[JBMASTER_JOB] [char](6) NULL,
+	[JBMASTER_SFX] [char](3) NULL,
+	[JBMASTER_BOMPARENT] [bit] NULL,
 	[HEADER_JOB] [char](6) NULL,
 	[HEADER_SUFFIX] [char](3) NULL,
 	[HEADER_PART] [char](20) NULL,

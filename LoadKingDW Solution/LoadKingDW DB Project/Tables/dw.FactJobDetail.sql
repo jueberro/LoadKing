@@ -15,7 +15,7 @@ DimEmployee_Key int NOT NULL,
 DimDepartmentWorkCenter_Key int NOT NULL,
 DimDepartmentShift_Key int NOT NULL,
 DimDepartmentEmployee_Key int NOT NULL,
-
+DimWorkOrder_Key int NOT NULL,
 -- DEGENERATE HEADER ATTRIBUTES ----------------------------------------------
 	[HEADER_JOB] [char](6) NULL,
 	[HEADER_SUFFIX] [char](3) NULL,

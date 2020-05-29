@@ -11,6 +11,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,ISNULL(sp.DimSalesperson_Key, -1) as DimSalesPerson_Key
 ,ISNULL(pl.DimProductLine_Key, -1) as DimProductLine_Key
 ,ISNULL(do.DimDate_Key, -1) as DimDate_Key
+,ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 
 ,[HEADER_JOB]
 ,[HEADER_SUFFIX]
@@ -22,7 +23,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,HEADER_SALES_ORDER_LINE
 
 ,stage.[JOB]
-,[SUFFIX]
+,stage.[SUFFIX]
 ,[SEQ] 
 
 ,[PROJ_GROUP]
@@ -88,7 +89,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 + HEADER_SALES_ORDER_LINE
 																	
 + stage.[JOB]
-+ [SUFFIX]
++ stage.[SUFFIX]
 + [SEQ] 
 
 + [PROJ_GROUP]
@@ -170,14 +171,15 @@ ON	Stage.HEADER_PRODUCT_LINE = pl.ProductLine
 AND  pl.DWIsCurrent = 1
 
 -- Join to table APSV3_JBMASTER producting 808 dups where Job has a BOM Parent = 1 
-LEFT JOIN (select max(JOB) as JOB, 1 as BOMPARENT from dwstage.APSV3_JBMASTER where BOMPARENT = 1 group by JOB, BOMPARENT) m
-ON stage.JOB = m.JOB
-and m.BOMPARENT = 1
+--LEFT JOIN (select max(JOB) as JOB, 1 as BOMPARENT from dwstage.APSV3_JBMASTER where BOMPARENT = 1 group by JOB, BOMPARENT) m
+--ON stage.JOB = m.JOB
+--and m.BOMPARENT = 1
 
 LEFT OUTER JOIN dw.DimWorkOrderType AS wo
 ON	
 (CASE WHEN substring(so.SalesOrderNumber, 4,4) = substring(stage.job, 1, 4) THEN 'Sales Order'
-WHEN m.BOMPARENT = 1 THEN 'BOM'
+--WHEN m.BOMPARENT = 1 THEN 'BOM'
+WHEN stage.JBMASTER_BOMPARENT = 1 THEN 'BOM'
 ELSE 'Other'
 END) = wo.WorkOrderType		
 AND  wo.DWIsCurrent = 1
@@ -186,6 +188,11 @@ AND	so.DWIsCurrent = 1
 LEFT OUTER JOIN dw.DimDate AS do
 ON	dwstage.udf_cv_nvarchar6_to_date(Stage.HEADER_DATE_OPENED)  = do.[Date]			
 
+LEFT OUTER JOIN dw.DimWorkOrder dwo
+ON stage.JOB = dwo.WorkOrderNumber
+AND stage.Suffix = dwo.Suffix
+AND dwstage.udf_cv_nvarchar6_to_date(stage.HEADER_DATE_OPENED)  = dwo.DateOpened
+AND dwo.DWIsCurrent = 1
 
 		
 GO

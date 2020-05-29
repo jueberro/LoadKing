@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE PROCEDURE [dw].[sp_LoadFactJobHeader] @LoadLogKey INT  AS
+CREATE PROCEDURE dw.sp_LoadFactJobHeader @LoadLogKey INT  AS
 
 BEGIN
 
@@ -46,7 +46,6 @@ DimSalesPerson_Key int NOT NULL,
 DimProductLine_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 DimWorkOrder_Key int NOT NULL,
-
 	[JOB] [char](6) NULL,
 	[SUFFIX] [char](3) NULL,
 	[PART] [char](20) NULL,
@@ -260,7 +259,4 @@ END
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
 
 GO
-
-
-
 

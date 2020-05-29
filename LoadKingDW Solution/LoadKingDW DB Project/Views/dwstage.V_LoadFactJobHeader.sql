@@ -150,7 +150,8 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 		--, [LoadLogKey]				  = CAST(0                    AS INT)
 -- SELECT COUNT(*)
 FROM 
-	dwstage.JOB_HEADER Stage
+	--dwstage.JOB_HEADER Stage
+	dwstage._V_JOB_HEADER Stage
 
 LEFT OUTER JOIN (select SalesOrderNumber, min(DimSalesOrder_Key) DimSalesOrder_Key, min(SalesOrderLine) SalesOrderLine, 1 as DWIsCurrent from dw.DimSalesOrder group by SalesOrderNumber)  AS so
 ON	Stage.SALES_ORDER = so.SalesOrderNumber AND	so.DWIsCurrent = 1 
@@ -176,14 +177,15 @@ LEFT OUTER JOIN dw.DimProductLine AS pl
 ON	Stage.PRODUCT_LINE = pl.ProductLine		
 AND  pl.DWIsCurrent = 1
 
-LEFT JOIN dwstage.APSV3_JBMASTER m
-ON stage.JOB = m.JOB
-and m.BOMPARENT = 1
+--LEFT JOIN dwstage.APSV3_JBMASTER m
+--ON stage.JOB = m.JOB
+--and m.BOMPARENT = 1
 
 LEFT OUTER JOIN dw.DimWorkOrderType AS wo
 ON	
 (CASE WHEN substring(so.SalesOrderNumber, 4,4) = substring(stage.job, 1, 4) THEN 'Sales Order'
-WHEN m.BOMPARENT = 1 THEN 'BOM'
+--WHEN m.BOMPARENT = 1 THEN 'BOM'
+WHEN stage.JBMASTER_BOMPARENT = 1 THEN 'BOM'
 ELSE 'Other'
 END) = wo.WorkOrderType		
 AND  wo.DWIsCurrent = 1
