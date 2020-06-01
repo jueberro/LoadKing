@@ -163,7 +163,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	,TGT.DimSalesperson_Key = SRC.DimSalesPerson_Key
 	,TGT.DimProductLine_Key = SRC.DimProductLine_Key
 	,TGT.DimDate_Key = SRC.DimDate_Key
-	,TGE.DimWorkOrder_Key = SRC.DimWorkOrder_Key
+	,TGT.DimWorkOrder_Key = SRC.DimWorkOrder_Key
 	-----------------------------------
 	, TGT.[HEADER_JOB] = SRC.[HEADER_JOB]
 	, TGT.[HEADER_SUFFIX] = SRC.[HEADER_SUFFIX]
