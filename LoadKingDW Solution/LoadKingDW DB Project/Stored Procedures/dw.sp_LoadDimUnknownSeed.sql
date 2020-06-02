@@ -422,6 +422,78 @@ ELSE
 		Print 'DimDepartment Exists'
        END 
 -- END Dim 11 -----------------------------------------------------------------------------------
+-- BEGIN Dim 12  ---------------------------------------------------------------------------------      
+IF NOT Exists (Select * from dw.DimWorkCenter where DimWorkCenter_Key = -1)
+
+       BEGIN
+
+		   SET IDENTITY_INSERT dw.DimWorkCenter ON
+
+		   insert into dw.DimWorkCenter
+		   (
+		   DimWorkCenter_Key 
+		   , Machine, WorkCenterName, WorkCenterDepartment
+		   , SourceSystemName 
+		   , DWEffectiveStartDate, DWEffectiveEndDate
+		   , DWIsCurrent
+		   , LoadLogKey
+		   )
+		   values
+		   (
+		   -1
+		   , 'Unk0', 'Unknown', 'Unk0'
+		   , 'Global Shop'
+		   , getutcdate(), '2100-01-01'
+		   , 1
+		   , -1
+		   )
+
+		   SET IDENTITY_INSERT dw.DimWorkCenter OFF
+
+       END
+
+ELSE 
+
+       BEGIN
+		Print 'DimWorkCenter Exists'
+       END 
+-- END Dim 12 -----------------------------------------------------------------------------------
+-- BEGIN Dim 13  ---------------------------------------------------------------------------------      
+IF NOT Exists (Select * from dw.DimVendor where DimVendor_Key = -1)
+
+       BEGIN
+
+		   SET IDENTITY_INSERT dw.DimVendor ON
+
+		   insert into dw.DimVendor
+		   (
+		   DimVendor_Key 
+		   , Vendor, VendorName
+		   , SourceSystemName 
+		   , DWEffectiveStartDate, DWEffectiveEndDate
+		   , DWIsCurrent
+		   , LoadLogKey
+		   )
+		   values
+		   (
+		   -1
+		   , 'Unk000', 'Unknown'
+		   , 'Global Shop'
+		   , getutcdate(), '2100-01-01'
+		   , 1
+		   , -1
+		   )
+
+		   SET IDENTITY_INSERT dw.DimVendor OFF
+
+       END
+
+ELSE 
+
+       BEGIN
+		Print 'DimVendor Exists'
+       END 
+-- END Dim 13 -----------------------------------------------------------------------------------
 
 
 END

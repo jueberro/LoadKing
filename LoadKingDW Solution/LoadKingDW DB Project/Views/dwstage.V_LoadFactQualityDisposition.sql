@@ -1,3 +1,4 @@
+
 --USE [LK-GS-EDW]
 --GO
 
@@ -10,7 +11,7 @@ SELECT
 ,ISNULL(i.DimInventory_Key, -1) as DimInventory_Key
 ,ISNULL(e.DimEmployee_Key, -1) as DimEmployee_Key
 ,ISNULL(de.DimDepartment_Key, -1) as DimDepartmentEmployee_Key
-,ISNULL(dw.DimDepartment_Key, -1) as DimDepartmentWorkCenter_Key
+,ISNULL(dw.DimWorkCenter_Key, -1) as DimWorkCenter_Key
 ,ISNULL(d.DimDate_Key, -1) as DimDate_Key
 
 ,quality.CONTROL_NUMBER as Header_CONTROL_NUMBER
@@ -33,12 +34,12 @@ SELECT
 ,qd.USER2
 
 -- DATES--------------------------------
-,dwstage.udf_cv_nvarchar6_to_date(quality.DATE_QUALITY) as Header_DATE_QUALITY
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(quality.DATE_QUALITY) as Header_DATE_QUALITY
 ,dwstage.udf_cv_nvarchar8_to_date(quality.DATE_ENTERED) as Header_DATE_ENTERED
-,dwstage.udf_cv_nvarchar6_to_date(qa.F_DATE) as Header_F_DATE
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(qa.F_DATE) as Header_F_DATE
 ,dwstage.udf_cv_nvarchar8_to_date(qa.CLOSE_DATE) as Header_CLOSE_DATE
 
-,dwstage.udf_cv_nvarchar8_to_date(qd.DATE_DISPOSED) as DATE_DISPOSED
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(qd.DATE_DISPOSED) as DATE_DISPOSED
 ,qd.TIME_DISPOSED
 ,dwstage.udf_cv_nvarchar6_to_date(qd.DATE_INSPECTED) as DATE_INSPECTED
 ,dwstage.udf_cv_nvarchar6_to_date(qd.DATE_CNC_REQ) as DATE_CNC_REQ
@@ -67,12 +68,12 @@ SELECT
 + qd.USER1
 + qd.USER2
 
-+ CAST(dwstage.udf_cv_nvarchar6_to_date(quality.DATE_QUALITY) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(quality.DATE_QUALITY) AS NVARCHAR(20))
 + CAST(dwstage.udf_cv_nvarchar8_to_date(quality.DATE_ENTERED) AS NVARCHAR(20))
-+ CAST(dwstage.udf_cv_nvarchar6_to_date(qa.F_DATE) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(qa.F_DATE) AS NVARCHAR(20))
 + CAST(dwstage.udf_cv_nvarchar8_to_date(qa.CLOSE_DATE) AS NVARCHAR(20))
 
-+ CAST(dwstage.udf_cv_nvarchar8_to_date(qd.DATE_DISPOSED) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(qd.DATE_DISPOSED) AS NVARCHAR(20))
 + CAST(qd.TIME_DISPOSED AS NVARCHAR(20))
 + CAST(dwstage.udf_cv_nvarchar6_to_date(qd.DATE_INSPECTED) AS NVARCHAR(20))
 + CAST(dwstage.udf_cv_nvarchar6_to_date(qd.DATE_CNC_REQ) AS NVARCHAR(20))
@@ -109,20 +110,16 @@ LEFT OUTER JOIN dw.DimDepartment AS de
 ON	quality.EMPLOYEE_DEPT = de.DepartmentID		
 AND  de.DWIsCurrent = 1
 
-LEFT OUTER JOIN dw.DimDepartment AS dw
-ON	quality.WORKCENTER = de.DepartmentID		
+LEFT OUTER JOIN dw.DimWorkCenter AS dw
+ON	quality.WORKCENTER = dw.Machine		
 AND  dw.DWIsCurrent = 1
-
--- Join to table APSV3_JBMASTER producting 808 dups where Job has a BOM Parent = 1 
-LEFT JOIN (select max(JOB) as JOB, 1 as BOMPARENT from dwstage.APSV3_JBMASTER where BOMPARENT = 1 group by JOB, BOMPARENT) m
-ON quality.JOB = m.JOB
-and m.BOMPARENT = 1
 
 LEFT OUTER JOIN dw.DimDate AS d
 ON	dwstage.udf_cv_nvarchar8_to_date(quality.DATE_ENTERED)  = d.[Date]			
 
 
 		
+
 GO
 
 

@@ -1,7 +1,8 @@
+
 --USE [LK-GS-EDW]
 --GO
 
-CREATE PROCEDURE dw.sp_LoadFactQualityDisposition @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadFactQualityDisposition] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -41,7 +42,7 @@ DimVendor_Key int NOT NULL,
 DimInventory_Key int NOT NULL,
 DimEmployee_Key int NOT NULL,
 DimDepartmentEmployee_Key int NOT NULL,
-DimDepartmentWorkCenter_Key int NOT NULL,
+DimWorkCenter_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 -- DEGENERATE DETAIL ATTRIBUTES ---------------
 [Header_CONTROL_NUMBER] [char](7) NULL,
@@ -133,7 +134,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	,TGT.DimInventory_Key = SRC.DimInventory_Key
 	,TGT.[DimEmployee_Key] = SRC.[DimEmployee_Key]
 	,TGT.[DimDepartmentEmployee_Key] = SRC.[DimDepartmentEmployee_Key]
-	,TGT.[DimDepartmentWorkCenter_Key] = SRC.[DimDepartmentWorkCenter_Key]
+	,TGT.[DimWorkCenter_Key] = SRC.[DimWorkCenter_Key]
 	,TGT.DimDate_Key = SRC.DimDate_Key
 
 

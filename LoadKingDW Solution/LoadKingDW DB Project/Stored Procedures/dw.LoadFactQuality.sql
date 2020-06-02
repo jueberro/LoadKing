@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE PROCEDURE dw.sp_LoadFactQuality @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadFactQuality] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -41,12 +41,13 @@ DimVendor_Key int NOT NULL,
 DimInventory_Key int NOT NULL,
 DimEmployee_Key int NOT NULL,
 DimDepartmentEmployee_Key int NOT NULL,
-DimDepartmentWorkCenter_Key int NOT NULL,
+DimWorkCenter_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 -- DEGENERATE DETAIL ATTRIBUTES ---------------
 [CONTROL_NUMBER] char(7),
 [JOB] [varchar](50) NULL,
 [SUFFIX] [varchar](50) NULL,
+[JOB_DATE_OPENED] [char](6) NULL,
 [SEQUENCE] [char](6) NULL,
 [KEY_SEQ] [char](4) NULL, -- DK
 [PO_LINE] [char](4) NULL, -- DK
@@ -125,7 +126,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	,TGT.DimInventory_Key = SRC.DimInventory_Key
 	,TGT.[DimEmployee_Key] = SRC.[DimEmployee_Key]
 	,TGT.[DimDepartmentEmployee_Key] = SRC.[DimDepartmentEmployee_Key]
-	,TGT.[DimDepartmentWorkCenter_Key] = SRC.[DimDepartmentWorkCenter_Key]
+	,TGT.[DimWorkCenter_Key] = SRC.[DimWorkCenter_Key]
 	,TGT.DimDate_Key = SRC.DimDate_Key
 
 
@@ -174,6 +175,7 @@ SET @RowsUpdatedCount = @@ROWCOUNT
 END
 
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
 
 
 GO

@@ -8,7 +8,7 @@ CREATE TABLE dw.FactQuality
 	[DimInventory_Key] [int] NOT NULL,
 	[DimEmployee_Key] [int] NOT NULL,
 	[DimDepartmentEmployee_Key] [int] NOT NULL,
-	[DimDepartmentWorkCenter_Key] [int] NOT NULL,
+	[DimWorkCenter_Key] [int] NOT NULL,
 	[DimDate_Key] [int] NOT NULL,
 -----------------------------------------------------------------
 	--[CUSTOMER] [char](6) NULL, -- SK
