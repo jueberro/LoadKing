@@ -126,7 +126,7 @@ Declare @Sql          as varchar(1000)
 
   -- create the select from source table Openquery using a wildcard
 Set @BaseSql = ' Openquery([LK_GS],'
-Set @BaseSql = @BaseSql + '''' + 'Select * from  JOB_HEADER '   --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + 'select m.JOB JBMASTER_JOB, m.sfx JBMASTER_SFX, m.bomparent JBMASTER_BOMPARENT, h.* from job_header h left join APSV3_JBMASTER m on h.JOB = m.job and h.suffix = m.sfx and m.bomparent = 1 '   --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ')' 
 	  
 Set @Sql = 'Select * INTO ##tmp_JOB_HEADER From ' +  @BaseSql 
@@ -157,7 +157,11 @@ SELECT   SO.*
 	From
 
 	(Select
-		h.JOB as [HEADER_JOB]
+		h.[JBMASTER_JOB]
+		, h.[JBMASTER_SFX]
+		, h.[JBMASTER_BOMPARENT]
+
+		, h.JOB as [HEADER_JOB]
 		, h.SUFFIX as [HEADER_SUFFIX]
 		, h.PART as [HEADER_PART]
 		, h.PRODUCT_LINE as [HEADER_PRODUCT_LINE]

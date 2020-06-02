@@ -15,7 +15,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,ISNULL(dwc.DimDepartment_Key, -1) as DimDepartmentWorkCenter_Key
 ,ISNULL(ds.DimDepartment_Key, -1) as DimDepartmentShift_Key
 ,ISNULL(de.DimDepartment_Key, -1) as DimDepartmentEmployee_Key
-
+,ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 ,[HEADER_JOB]
 ,[HEADER_SUFFIX]
 ,[HEADER_PART]
@@ -26,7 +26,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,HEADER_SALES_ORDER_LINE
 
 ,stage.[JOB]
-,[SUFFIX]
+,stage.[SUFFIX]
 ,[SEQ] 
 ,[SEQUENCE_KEY]
 
@@ -78,7 +78,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 + HEADER_SALES_ORDER_LINE
 																	
 + stage.[JOB]
-+ [SUFFIX]
++ stage.[SUFFIX]
 + [SEQ] 
 + [SEQUENCE_KEY]
 + [EMPLOYEE] 
@@ -141,14 +141,15 @@ LEFT OUTER JOIN dw.DimProductLine AS pl
 ON	Stage.HEADER_PRODUCT_LINE = pl.ProductLine		
 AND  pl.DWIsCurrent = 1
 
-LEFT JOIN dwstage.APSV3_JBMASTER m
-ON stage.JOB = m.JOB
-and m.BOMPARENT = 1
+--LEFT JOIN dwstage.APSV3_JBMASTER m
+--ON stage.JOB = m.JOB
+--and m.BOMPARENT = 1
 
 LEFT OUTER JOIN dw.DimWorkOrderType AS wo
 ON	
 (CASE WHEN substring(so.SalesOrderNumber, 4,4) = substring(stage.job, 1, 4) THEN 'Sales Order'
-WHEN m.BOMPARENT = 1 THEN 'BOM'
+--WHEN m.BOMPARENT = 1 THEN 'BOM'
+WHEN stage.JBMASTER_BOMPARENT = 1 THEN 'BOM'
 ELSE 'Other'
 END) = wo.WorkOrderType		
 AND  wo.DWIsCurrent = 1
@@ -172,6 +173,12 @@ AND ds.DWIsCurrent = 1
 LEFT JOIN dw.DimDepartment de
 ON stage.DEPT_EMP = de.DepartmentID
 AND de.DWIsCurrent = 1
+
+LEFT OUTER JOIN dw.DimWorkOrder dwo
+ON stage.JOB = dwo.WorkOrderNumber
+AND stage.Suffix = dwo.Suffix
+AND dwstage.udf_cv_nvarchar6_to_date(stage.HEADER_DATE_OPENED)  = dwo.DateOpened
+AND dwo.DWIsCurrent = 1
 
 		
 GO
