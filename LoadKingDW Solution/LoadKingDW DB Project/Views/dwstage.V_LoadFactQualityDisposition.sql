@@ -5,7 +5,7 @@
 CREATE VIEW dwstage.V_LoadFactQualityDisposition
 AS
 SELECT
--1 as DimWorkOrder_Key -- ISNULL(wo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
+ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 ,ISNULL(c.DimCustomer_Key, -1) as DimCustomer_Key
 ,-1 as DimVendor_Key
 ,ISNULL(i.DimInventory_Key, -1) as DimInventory_Key
@@ -16,7 +16,7 @@ SELECT
 
 ,quality.CONTROL_NUMBER as Header_CONTROL_NUMBER
 ,quality.[JOB] as Header_JOB
-,quality.[SUFFIX] as Header_SUFFIX
+,quality.[JOB_SUFFIX] as Header_SUFFIX
 ,quality.[SEQUENCE] as Header_SEQUENCE
 
 ,qd.CONTROL_NUMBER
@@ -51,7 +51,7 @@ SELECT
 , [Type1RecordHash]	 = CAST(HASHBYTES('SHA2_256',
 + quality.CONTROL_NUMBER
 + quality.[JOB]
-+ quality.[SUFFIX]
++ quality.[JOB_SUFFIX]
 + quality.[SEQUENCE]
 
 + qd.CONTROL_NUMBER
@@ -85,8 +85,14 @@ SELECT
 -- SELECT COUNT(*)
 FROM
 dwstage.QUALITY_DISP qd 
-LEFT JOIN dwstage.quality -- Header Level Info
+LEFT JOIN dwstage._V_Quality quality -- Header Level Info
 on qd.CONTROL_NUMBER = quality.CONTROL_NUMBER
+
+LEFT OUTER JOIN dw.DimWorkOrder dwo
+ON quality.JOB = dwo.WorkOrderNumber
+AND quality.Job_Suffix = dwo.Suffix
+AND dwstage.udf_cv_nvarchar6_to_date(quality.Job_Date_Opened)  = dwo.DateOpened
+AND dwo.DWIsCurrent = 1
 
 LEFT JOIN dwstage.QUALITY_ADDL qa
 ON quality.CONTROL_NUMBER = qa.CONTROL_NUM
