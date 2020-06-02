@@ -159,6 +159,7 @@
     <Build Include="Views\dwstage.V_LoadFactQualityDisposition.sql" />
     <Build Include="Stored Procedures\dw.LoadFactQualityDisposition.sql" />
     <Build Include="Stored Procedures\dw.LoadFactQuality.sql" />
+    <Build Include="Tables\dwstage._V_Quality.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

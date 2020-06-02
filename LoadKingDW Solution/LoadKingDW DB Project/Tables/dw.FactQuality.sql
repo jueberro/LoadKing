@@ -20,7 +20,8 @@ CREATE TABLE dw.FactQuality
 -----------------------------------------------------------------
 	[CONTROL_NUMBER] [char](7) NULL, -- SK -- DK
 	[JOB] [char](6) NULL, -- SK -- DK
-	[SUFFIX] [char](3) NULL, -- SK -- DK
+	[JOB_SUFFIX] [char](3) NULL, -- SK -- DK
+	[JOB_DATE_OPENED] [char](6) NULL,
 	[SEQUENCE] [char](6) NULL, -- SK -- DK
 	[KEY_SEQ] [char](4) NULL, -- DK
 	[PO_LINE] [char](4) NULL, -- DK

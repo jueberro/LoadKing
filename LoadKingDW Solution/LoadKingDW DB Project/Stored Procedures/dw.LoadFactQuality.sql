@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE PROCEDURE dw.sp_LoadFactQuality @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadFactQuality] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -46,7 +46,8 @@ DimDate_Key int NOT NULL,
 -- DEGENERATE DETAIL ATTRIBUTES ---------------
 [CONTROL_NUMBER] char(7),
 [JOB] [varchar](50) NULL,
-[SUFFIX] [varchar](50) NULL,
+[JOB_SUFFIX] [varchar](50) NULL,
+[JOB_DATE_OPENED] [char](6) NULL,
 [SEQUENCE] [char](6) NULL,
 [KEY_SEQ] [char](4) NULL, -- DK
 [PO_LINE] [char](4) NULL, -- DK
@@ -85,7 +86,7 @@ DimDate_Key int NOT NULL,
 					(
 					CONTROL_NUMBER CHAR(7)
 					,JOB CHAR(6)
-					,SUFFIX CHAR(3)
+					,JOB_SUFFIX CHAR(3)
 					,SEQUENCE CHAR(6)
 					,Type1RecordHash VARBINARY(64)
 					)
@@ -95,7 +96,7 @@ DimDate_Key int NOT NULL,
 	SELECT	
 					CONTROL_NUMBER
 					,JOB
-					,SUFFIX
+					,JOB_SUFFIX
 					,[SEQUENCE]
 					,Type1RecordHash
 	FROM	dw.FactQuality
@@ -109,7 +110,7 @@ DimDate_Key int NOT NULL,
 						WHERE	
 							TGT.CONTROL_NUMBER = SRC.CONTROL_NUMBER
 							and TGT.JOB = SRC.JOB
-							and TGT.SUFFIX = SRC.SUFFIX
+							and TGT.JOB_SUFFIX = SRC.JOB_SUFFIX
 							and TGT.[SEQUENCE] = SRC.[SEQUENCE]					
 						)
 
@@ -160,7 +161,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	 JOIN   ##FactQuality_SOURCE	AS SRC
 			ON TGT.CONTROL_NUMBER = SRC.CONTROL_NUMBER
 			and TGT.JOB = SRC.JOB
-			and TGT.SUFFIX = SRC.SUFFIX
+			and TGT.JOB_SUFFIX = SRC.JOB_SUFFIX
 			and TGT.[SEQUENCE] = SRC.[SEQUENCE]
 	WHERE	TGT.Type1RecordHash <> SRC.Type1RecordHash
 	
@@ -174,6 +175,7 @@ SET @RowsUpdatedCount = @@ROWCOUNT
 END
 
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
 
 
 GO
