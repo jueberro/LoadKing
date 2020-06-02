@@ -160,6 +160,10 @@
     <Build Include="Stored Procedures\dw.LoadFactQualityDisposition.sql" />
     <Build Include="Stored Procedures\dw.LoadFactQuality.sql" />
     <Build Include="Tables\dwstage._V_JOB_HEADER.sql" />
+    <Build Include="Views\dwstage.V_LoadDimWorkCenter.sql" />
+    <Build Include="Tables\dw.DimWorkCenter.sql" />
+    <Build Include="Tables\dwstage.WORKCENTERS.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimWorkCenter.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

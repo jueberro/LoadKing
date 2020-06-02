@@ -107,5 +107,6 @@
     <Build Include="Stored Procedures\getINVENTORY_MST3.sql" />
     <Build Include="Stored Procedures\getINVENTORY_MSTR.sql" />
     <Build Include="Stored Procedures\getVENDOR_MASTER.sql" />
+    <Build Include="Stored Procedures\getWORKCENTERS.sql" />
   </ItemGroup>
 </Project>
