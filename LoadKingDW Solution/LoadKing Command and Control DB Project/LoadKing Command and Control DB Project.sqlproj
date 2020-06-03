@@ -83,6 +83,9 @@
     <Build Include="Views\ods.LoadLog.sql" />
     <Build Include="Tables\dwetl.DWTableSource.sql" />
     <Build Include="Stored Procedures\dwetl.GetDWTableConfigInfo.sql" />
+    <Build Include="Tables\dbo._ErrorLog.sql" />
+    <Build Include="Tables\dbo._Tablelist.sql" />
+    <Build Include="Tables\dbo._TableListLog.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\LK_CNC.dev.publish.xml" />
