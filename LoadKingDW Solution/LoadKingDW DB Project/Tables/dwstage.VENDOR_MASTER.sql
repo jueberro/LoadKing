@@ -1,5 +1,6 @@
--- USE [LK-GS-EDW]
+--USE [LK-GS-EDW]
 --GO
+
 
 
 CREATE TABLE dwstage.VENDOR_MASTER
