@@ -108,5 +108,7 @@
     <Build Include="Stored Procedures\getINVENTORY_MSTR.sql" />
     <Build Include="Stored Procedures\getVENDOR_MASTER.sql" />
     <Build Include="Stored Procedures\getWORKCENTERS.sql" />
+    <Build Include="Stored Procedures\getGCG_5398_CAR.sql" />
+    <Build Include="Stored Procedures\getGCG_5398_ECR.sql" />
   </ItemGroup>
 </Project>
