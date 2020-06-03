@@ -76,7 +76,6 @@ tl.MasterRunFlag = 'Y' and tl.CurRunFlag  <> 'Y' and tl.TABLE_NAME = '_V_Invento
 order by tl.runpriority, tl.tablenbr asc
 
 
-
 BEGIN TRY
 
 Set @ETLStarted = getdate()

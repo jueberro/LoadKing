@@ -9,8 +9,22 @@ CREATE PROCEDURE dbo.getPRODUCT_LINE
 AS
 
 BEGIN
-	SET ANSI_NULLS ON
-	SET NOCOUNT ON
+
+/* DEBUGGING
+DECLARE
+@SourceTableName varchar(255)
+,@LoadLogKey int
+,@StartDate datetime
+,@EndDate datetime	
+
+SELECT 
+@SourceTableName = '_V_Quality'
+,@LoadLogKey = 0
+,@StartDate = '1/1/1900'
+,@EndDate = getdate() 	
+*/
+
+	SET NOCOUNT ON;
 
 Declare @TblNbr       as Int
 Declare @TblName      as varchar(100)
