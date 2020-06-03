@@ -1,8 +1,7 @@
-USE [LK-GS-ODS]
-GO
 
 
-ALTER PROCEDURE dbo.getINVENTORY_MSTR
+
+CREATE PROCEDURE dbo.getINVENTORY_MSTR
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime

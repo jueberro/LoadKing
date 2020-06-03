@@ -1,8 +1,7 @@
 --USE [LK-GS-ODS]
 --GO
 
-
-ALTER PROCEDURE dbo.getCUSTOMER_MASTER
+CREATE PROCEDURE dbo.getCUSTOMER_MASTER
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime

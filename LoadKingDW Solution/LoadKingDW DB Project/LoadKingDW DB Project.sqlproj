@@ -164,6 +164,11 @@
     <Build Include="Tables\dw.DimWorkCenter.sql" />
     <Build Include="Tables\dwstage.WORKCENTERS.sql" />
     <Build Include="Stored Procedures\dw.LoadDimWorkCenter.sql" />
+    <Build Include="Tables\dwstage._V_Quality.sql" />
+    <Build Include="Tables\dwstage.QUALITY_DISP.sql" />
+    <Build Include="Tables\dwstage.QUALITY_DISCRP_CD.sql" />
+    <Build Include="Tables\dwstage.QUALITY_ADDL.sql" />
+    <Build Include="Functions\dwstage.udf_cv_nvarchar6_yymmdd_to_date.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

@@ -1,8 +1,7 @@
-USE [LK-GS-ODS]
-GO
 
 
-ALTER PROCEDURE dbo.getOE_MULTI_SHIP
+
+CREATE PROCEDURE dbo.getOE_MULTI_SHIP
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime

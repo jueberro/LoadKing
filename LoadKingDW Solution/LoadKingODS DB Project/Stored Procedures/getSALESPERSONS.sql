@@ -1,8 +1,7 @@
-USE [LK-GS-ODS]
-GO
 
 
-ALTER PROCEDURE dbo.getSALESPERSONS
+
+CREATE PROCEDURE dbo.getSALESPERSONS
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime

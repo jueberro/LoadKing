@@ -2,7 +2,7 @@
 --GO
 
 
-ALTER PROCEDURE dbo.getEMPLOYEE_MSTR
+CREATE PROCEDURE dbo.getEMPLOYEE_MSTR
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime

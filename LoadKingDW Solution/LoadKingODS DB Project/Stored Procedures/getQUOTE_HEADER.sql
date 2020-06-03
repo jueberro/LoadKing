@@ -1,8 +1,7 @@
-USE [LK-GS-ODS]
-GO
 
 
-ALTER PROCEDURE dbo.getQUOTE_HEADER
+
+CREATE PROCEDURE dbo.getQUOTE_HEADER
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime

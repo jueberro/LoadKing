@@ -2,7 +2,7 @@
 --GO
 
 
-ALTER PROCEDURE dbo.getINVENTORY_MST3
+CREATE PROCEDURE dbo.getINVENTORY_MST3
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime

@@ -1,8 +1,4 @@
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 -- =============================================
 -- Author:           Edwin Davis
 -- Create date: 4/27/2020
@@ -10,7 +6,7 @@ GO
 -- =============================================
 -- exec dw.[sp_LoadDimUnknownSeed] 
 
-ALTER PROCEDURE dw.sp_LoadDimUnknownSeed 
+CREATE PROCEDURE dw.sp_LoadDimUnknownSeed 
        
 
 AS

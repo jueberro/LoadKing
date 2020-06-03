@@ -1,8 +1,6 @@
-USE [LK-GS-ODS]
-GO
 
 
-ALTER PROCEDURE dbo.getGL_MASTER
+CREATE PROCEDURE dbo.getGL_MASTER
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
