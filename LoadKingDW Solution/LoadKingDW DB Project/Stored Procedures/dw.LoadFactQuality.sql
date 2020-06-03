@@ -41,12 +41,12 @@ DimVendor_Key int NOT NULL,
 DimInventory_Key int NOT NULL,
 DimEmployee_Key int NOT NULL,
 DimDepartmentEmployee_Key int NOT NULL,
-DimDepartmentWorkCenter_Key int NOT NULL,
+DimWorkCenter_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 -- DEGENERATE DETAIL ATTRIBUTES ---------------
 [CONTROL_NUMBER] char(7),
 [JOB] [varchar](50) NULL,
-[JOB_SUFFIX] [varchar](50) NULL,
+[SUFFIX] [varchar](50) NULL,
 [JOB_DATE_OPENED] [char](6) NULL,
 [SEQUENCE] [char](6) NULL,
 [KEY_SEQ] [char](4) NULL, -- DK
@@ -86,7 +86,7 @@ DimDate_Key int NOT NULL,
 					(
 					CONTROL_NUMBER CHAR(7)
 					,JOB CHAR(6)
-					,JOB_SUFFIX CHAR(3)
+					,SUFFIX CHAR(3)
 					,SEQUENCE CHAR(6)
 					,Type1RecordHash VARBINARY(64)
 					)
@@ -96,7 +96,7 @@ DimDate_Key int NOT NULL,
 	SELECT	
 					CONTROL_NUMBER
 					,JOB
-					,JOB_SUFFIX
+					,SUFFIX
 					,[SEQUENCE]
 					,Type1RecordHash
 	FROM	dw.FactQuality
@@ -110,7 +110,7 @@ DimDate_Key int NOT NULL,
 						WHERE	
 							TGT.CONTROL_NUMBER = SRC.CONTROL_NUMBER
 							and TGT.JOB = SRC.JOB
-							and TGT.JOB_SUFFIX = SRC.JOB_SUFFIX
+							and TGT.SUFFIX = SRC.SUFFIX
 							and TGT.[SEQUENCE] = SRC.[SEQUENCE]					
 						)
 
@@ -126,7 +126,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	,TGT.DimInventory_Key = SRC.DimInventory_Key
 	,TGT.[DimEmployee_Key] = SRC.[DimEmployee_Key]
 	,TGT.[DimDepartmentEmployee_Key] = SRC.[DimDepartmentEmployee_Key]
-	,TGT.[DimDepartmentWorkCenter_Key] = SRC.[DimDepartmentWorkCenter_Key]
+	,TGT.[DimWorkCenter_Key] = SRC.[DimWorkCenter_Key]
 	,TGT.DimDate_Key = SRC.DimDate_Key
 
 
@@ -161,7 +161,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	 JOIN   ##FactQuality_SOURCE	AS SRC
 			ON TGT.CONTROL_NUMBER = SRC.CONTROL_NUMBER
 			and TGT.JOB = SRC.JOB
-			and TGT.JOB_SUFFIX = SRC.JOB_SUFFIX
+			and TGT.SUFFIX = SRC.SUFFIX
 			and TGT.[SEQUENCE] = SRC.[SEQUENCE]
 	WHERE	TGT.Type1RecordHash <> SRC.Type1RecordHash
 	

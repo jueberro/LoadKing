@@ -10,7 +10,7 @@ CREATE TABLE dw.FactQualityDisposition
 	[DimInventory_Key] [int] NOT NULL,
 	[DimEmployee_Key] [int] NOT NULL,
 	[DimDepartmentEmployee_Key] [int] NOT NULL,
-	[DimDepartmentWorkCenter_Key] [int] NOT NULL,
+	[DimWorkCenter_Key] [int] NOT NULL,
 	[DimDate_Key] [int] NOT NULL,
 	[Header_CONTROL_NUMBER] [char](7) NULL,
 	[Header_JOB] [char](6) NULL,

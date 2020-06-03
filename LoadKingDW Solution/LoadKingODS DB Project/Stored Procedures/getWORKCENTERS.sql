@@ -1,11 +1,13 @@
 --USE [LK-GS-ODS]
 --GO
 
-CREATE PROCEDURE dbo.getQUALITY_DISP
+
+CREATE PROCEDURE dbo.getWORKCENTERS
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
 ,@EndDate datetime
+
 AS
 
 BEGIN
@@ -53,10 +55,8 @@ from
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
 ON tl.TABLE_NAME = ec.SourceTableName
 where 
-MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName and ec.SourceTableName = @SourceTableName
+MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
-
--- update x set MasterRunFlag = 'Y' from [LK-GS-CNC].dbo._TableList x where Table_Name = 'QUALITY_DISP'
        
 --OPEN TBLList            
 --FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
@@ -106,7 +106,7 @@ BEGIN TRY
 	select 
 	[TableNbr], [TABLE_CAT], [TABLE_SCHEM], [TABLE_NAME], [TABLE_TYPE], 'SSIS Framework Pkg' as [REMARKS], [VIEW_NAME],SourceStoredProc, [ETL_Start], [ETL_Completed]
 	, [Status], [Recordcount], [CurRunFlag], [RunPriority], [MasterRunFlag], [LastBatch], [ServerName], [DBname], [WinUsername], [SqlUsername], [Procname] 
-	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName -- 'QUALITY_DISP' -- @TblName
+	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName 
 
     -- If The Table Exists, truncate table and Insert the records from Source, else create table from source
 
@@ -172,7 +172,6 @@ BEGIN TRY
 	     	Where Table_Name  = @Tblname and LastBatch = @Batch
       
       END
-
 
  END TRY
  BEGIN CATCH  --ERROR TRAPPING

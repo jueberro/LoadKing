@@ -5,22 +5,22 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-10LHH5T"
   DTS:CreatorName="AzureAD\BobRubocki"
-  DTS:DTSID="{4B5E5AC4-9AF9-449B-803A-8303AB18F0B5}"
+  DTS:DTSID="{7CB0D700-DE20-43B9-9AD2-FD5B88ECE8A2}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="DWLoadDimVendor"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="54"
-  DTS:VersionGUID="{5743EE0E-F9D6-4D39-8883-364FB879E1F6}">
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{26D47C21-72F3-4B6E-B85D-0A8773E77114}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{7114E006-2A8D-42D5-BB5A-D9F17F0AFD89}"
+      DTS:DTSID="{040B7D17-E733-4E04-BFA4-66000C23D9DA}"
       DTS:ObjectName="DWTableName">
       <DTS:Property
         DTS:DataType="8"
@@ -29,16 +29,16 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{85E787C2-A794-47BE-BE45-2D22BAACD54B}"
+      DTS:DTSID="{30E25FF9-C353-4D08-9315-7246B22B28AA}"
       DTS:ObjectName="SourceDataSetName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">Vendor_Master</DTS:Property>
+        DTS:Name="ParameterValue">VENDOR_MASTER</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{B40DB47C-C30F-4AF5-A88F-A7AE8250A4D2}"
+      DTS:DTSID="{854562B7-1162-4DFB-8929-3610E244B7E9}"
       DTS:ObjectName="SourceSystemName">
       <DTS:Property
         DTS:DataType="8"
@@ -47,7 +47,7 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{F51549A9-3E84-4498-B94D-7DE61238FE79}"
+      DTS:DTSID="{091DC420-E173-485C-8BC3-BBCA30C51727}"
       DTS:ObjectName="StoredProcedureName">
       <DTS:Property
         DTS:DataType="8"
@@ -57,7 +57,7 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B832C496-5109-4D69-8F3C-482644D0935C}"
+      DTS:DTSID="{E0E20EA7-023F-48D0-B754-25E1BDC79542}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="BatchesToProcessList">
@@ -75,7 +75,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{21943A39-516A-4417-B9EB-FA227D4E0B18}"
+      DTS:DTSID="{FF078350-C982-40C7-8183-656B6AD756E2}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="LoadLogKey">
@@ -84,7 +84,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9534ED02-4FCF-4AA0-ACFE-E10CDD9C7460}"
+      DTS:DTSID="{6B3100D3-80D1-4513-BB1E-CB602207C436}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;SELECT * FROM dbo.VENDOR_MASTER WHERE ETL_Batch = &quot; + (DT_STR, 5, 1252)@[User::SourceLoadLogKey]"
       DTS:IncludeInDebugDump="2345"
@@ -95,7 +95,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{EDE5701F-AC25-4429-AAA4-D21896230FAD}"
+      DTS:DTSID="{4E549DF5-FC71-462B-A890-25CE44EDB0D7}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="RowsInsertedCount">
@@ -104,7 +104,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6A499539-CF44-424A-A936-9D5F1FA5E332}"
+      DTS:DTSID="{9595F6ED-1FCD-4E70-BEBB-038C07854C87}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="RowsUpdatedCount">
@@ -113,7 +113,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{8226C5CF-0262-4742-A894-14F6C3B90C71}"
+      DTS:DTSID="{49A44CCA-D944-4696-B1A6-9BDC06CAA2A1}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="SourceLoadLogKey">
@@ -126,14 +126,14 @@
       DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{429A3480-D3DF-4385-8B7D-013D61755E67}"
+      DTS:DTSID="{1B0DF5D7-33F3-44FF-A0B9-F18449EF90CE}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="FEL - Extract Batches Not Yet Processed in DW Table">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachADOEnumerator"
-        DTS:DTSID="{1C07DCA2-B1F1-470D-942A-AE1C43D4C16B}"
-        DTS:ObjectName="{1C07DCA2-B1F1-470D-942A-AE1C43D4C16B}">
+        DTS:DTSID="{8925BF5C-E750-4BFC-9C3E-40D76A04E657}"
+        DTS:ObjectName="{8925BF5C-E750-4BFC-9C3E-40D76A04E657}">
         <DTS:ObjectData>
           <FEEADO
             EnumType="EnumerateRowsInFirstTable"
@@ -147,7 +147,7 @@
           DTS:CreationName="Microsoft.Pipeline"
           DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{560267EE-FC91-4B31-AB63-B7DDB24F73CB}"
+          DTS:DTSID="{941035F9-AA26-43AC-A224-D58227464E31}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="DFT - Copy One Batch of ODS Data to DW Stage Table"
@@ -1625,7 +1625,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimVendor"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{20F3B900-76E8-41BB-8038-983B10A30571}"
+          DTS:DTSID="{0383743D-4DC2-4FE9-B19A-F398A4FBC686}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - LoadDWDimVendor"
@@ -1656,7 +1656,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{2E0F683B-2944-4FFD-A23F-18EEA608570E}"
+          DTS:DTSID="{97F2A3E5-22C9-4117-BC86-1DF1F6A5F0FD}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - LogLoadStart"
@@ -1714,7 +1714,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{4E060917-1A02-49B6-B441-3558FAE8D639}"
+          DTS:DTSID="{78A395AE-5BFC-4602-A6C7-D6B7D014DD2B}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - LogLoadSuccess"
@@ -1750,7 +1750,7 @@
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{34D3AC37-4B5D-4D64-8CA3-02F8E0193198}"
+          DTS:DTSID="{7905399D-07CC-42B1-ACA1-A5E1458A6972}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - TRUNCATE Stage Tables"
@@ -1767,7 +1767,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{31F440B2-0A58-429A-B7FB-C90AFDCC7A58}"
+          DTS:DTSID="{93457E8C-9A71-4CCA-BEFB-C2C27BFB90CC}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -1775,7 +1775,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{248662FF-6236-45AB-853E-8C8066B4A97E}"
+          DTS:DTSID="{9D4B949C-553D-4818-9575-E00A1EC3F3CD}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimVendor"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
@@ -1783,7 +1783,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
-          DTS:DTSID="{BFCD4EE5-0113-44F5-974B-BFD5D8FF1214}"
+          DTS:DTSID="{BF255F40-B5E8-4B8B-90DF-722D3BF3A3C2}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
@@ -1791,7 +1791,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
-          DTS:DTSID="{77588C89-2EB7-4B16-B891-331B65D6C11B}"
+          DTS:DTSID="{356C218B-10D0-4DE7-995B-847D8DD6F592}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
@@ -1800,8 +1800,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{A1FA74E8-D930-4FDA-AC7F-79C1BF46D7E3}"
-          DTS:ObjectName="{A1FA74E8-D930-4FDA-AC7F-79C1BF46D7E3}"
+          DTS:DTSID="{C1CF80DD-3926-4D49-B4AF-8070DF4F667B}"
+          DTS:ObjectName="{C1CF80DD-3926-4D49-B4AF-8070DF4F667B}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::SourceLoadLogKey" />
       </DTS:ForEachVariableMappings>
@@ -1810,7 +1810,7 @@
       DTS:refId="Package\SQL - GetExtractBatchesToProcess"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{23CBAA0A-345E-4602-A553-E6C0D11F9A62}"
+      DTS:DTSID="{623DBB41-3BE2-4EA8-9FA1-A5376919BBE3}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL - GetExtractBatchesToProcess"
@@ -1851,7 +1851,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{17C0B409-4BC1-4390-9399-6AFEF1A66ADA}"
+      DTS:DTSID="{13E47F44-A167-499A-84AF-D8C550EE1840}"
       DTS:From="Package\SQL - GetExtractBatchesToProcess"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -1861,7 +1861,7 @@
     <DTS:EventHandler
       DTS:refId="Package.EventHandlers[OnError]"
       DTS:CreationName="OnError"
-      DTS:DTSID="{9A7C766C-1F5F-4719-8C02-9572FADE48B2}"
+      DTS:DTSID="{41F5A862-6F9F-440E-9F51-FA5676538E94}"
       DTS:EventID="1431677695"
       DTS:EventName="OnError"
       DTS:LocaleID="-1">
@@ -1869,7 +1869,7 @@
         <DTS:Variable
           DTS:CreationName=""
           DTS:Description="The propagate property of the event"
-          DTS:DTSID="{48969720-8F43-4621-816B-DD9E70BF42D4}"
+          DTS:DTSID="{F06856E4-D54E-47FC-94B4-E23BF89DFBE8}"
           DTS:IncludeInDebugDump="6789"
           DTS:Namespace="System"
           DTS:ObjectName="Propagate">
@@ -1882,7 +1882,7 @@
           DTS:refId="Package.EventHandlers[OnError]\SQL-Log Failure"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{657B73B4-82D2-47BB-9D9A-F242C868CEDB}"
+          DTS:DTSID="{4DBFB44E-F8F4-46DA-8A3B-8504667EDC6B}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL-Log Failure">
@@ -1926,7 +1926,7 @@
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           TopLeft="5.5,207.833333333334" />
         <NodeLayout
-          Size="221,42"
+          Size="230,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimVendor"
           TopLeft="67.1666666666667,313.5" />
         <NodeLayout
@@ -1965,18 +1965,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
-          TopLeft="174.333333333333,355.5">
+          TopLeft="182.166666666667,355.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.666666666667"
+              EndConnector="-11.1666666666667,60.666666666667"
               Start="0,0"
-              End="0,53.166666666667">
+              End="-11.1666666666667,53.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.166666666667" />
+                    End="0,26.3333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.3333333333335"
+                    Point2="0,30.3333333333335"
+                    Point3="-4,30.3333333333335" />
+                  <mssgle:LineSegment
+                    End="-7.16666666666669,30.3333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.16666666666669,30.3333333333335"
+                    Point2="-11.1666666666667,30.3333333333335"
+                    Point3="-11.1666666666667,34.3333333333335" />
+                  <mssgle:LineSegment
+                    End="-11.1666666666667,53.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2009,7 +2021,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
-          TopLeft="179.333333333333,249.833333333334">
+          TopLeft="181.583333333333,249.833333333334">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2097,25 +2109,25 @@
         <NodeLayout
           Size="157,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source"
-          TopLeft="685,115" />
+          TopLeft="903,55" />
         <NodeLayout
           Size="177,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination"
-          TopLeft="678,189" />
+          TopLeft="891,138" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table.Paths[OLE DB Source Output]"
-          TopLeft="765,157">
+          TopLeft="980.5,97">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32"
+              EndConnector="0,41"
               Start="0,0"
-              End="0,24.5">
+              End="0,33.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.5" />
+                    End="0,33.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2128,14 +2140,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
       <Property>
@@ -2145,6 +2149,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

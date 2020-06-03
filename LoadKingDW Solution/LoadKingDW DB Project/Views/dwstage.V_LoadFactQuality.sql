@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE VIEW [dwstage].[V_LoadFactQuality]
+CREATE VIEW dwstage.V_LoadFactQuality
 AS
 SELECT
 ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
@@ -10,7 +10,7 @@ ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 ,ISNULL(i.DimInventory_Key, -1) as DimInventory_Key
 ,ISNULL(e.DimEmployee_Key, -1) as DimEmployee_Key
 ,ISNULL(de.DimDepartment_Key, -1) as DimDepartmentEmployee_Key
-,ISNULL(dw.DimDepartment_Key, -1) as DimDepartmentWorkCenter_Key
+,ISNULL(dw.DimWorkCenter_Key, -1) as DimWorkCenter_Key
 ,ISNULL(d.DimDate_Key, -1) as DimDate_Key
 
 ,stage.CONTROL_NUMBER
@@ -104,8 +104,8 @@ LEFT OUTER JOIN dw.DimDepartment AS de
 ON	Stage.EMPLOYEE_DEPT = de.DepartmentID		
 AND  de.DWIsCurrent = 1
 
-LEFT OUTER JOIN dw.DimDepartment AS dw
-ON	Stage.WORKCENTER = de.DepartmentID		
+LEFT OUTER JOIN dw.DimWorkCenter AS dw
+ON	Stage.WORKCENTER = dw.Machine		
 AND  dw.DWIsCurrent = 1
 
 LEFT OUTER JOIN dw.DimDate AS d
@@ -115,4 +115,5 @@ ON	dwstage.udf_cv_nvarchar8_to_date(Stage.DATE_ENTERED)  = d.[Date]
 		
 
 GO
+
 

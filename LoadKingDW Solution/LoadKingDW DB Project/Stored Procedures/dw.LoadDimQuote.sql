@@ -1,14 +1,8 @@
-USE [LK-GS-EDW]
-GO
+--USE [LK-GS-EDW]
+--GO
 
-/****** Object:  StoredProcedure [dw].[sp_LoadDimQuote]    Script Date: 5/26/2020 10:38:01 AM ******/
-SET ANSI_NULLS ON
-GO
 
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE dw.sp_LoadDimQuote @LoadLogKey INT  AS
+CREATE PROCEDURE dw.sp_LoadDimQuote @LoadLogKey INT  AS
 
 BEGIN
 
@@ -36,9 +30,8 @@ BEGIN
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE #DimQuote_work (
 		[QuoteNumber]				[nchar](7) NOT NULL,
-		[QuoteCreationDate]			[nchar](7) NULL,
-		[QuoteWonLossDate]			[nchar](6) NULL,
-
+		[QuoteCreationDate]			datetime NULL,
+		[QuoteWonLossDate]			datetime NULL,
 
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
@@ -63,7 +56,7 @@ BEGIN
 
     ----  UPDATE The 
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimQuote_current (QuoteNumber NVARCHAR(6)
+	CREATE TABLE #DimQuote_current (QuoteNumber NVARCHAR(7)
 										, Type2RecordHash VARBINARY(64)
 										)
 
