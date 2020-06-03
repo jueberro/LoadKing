@@ -2,7 +2,7 @@
 --GO
 
 
-CREATE PROCEDURE [dbo].[getQuality]
+ CREATE PROCEDURE [dbo].[getQuality]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -182,6 +182,7 @@ SELECT   QUAL.*
 ,q.EMPLOYEE
 ,q.EMPLOYEE_DEPT
 ,q.WORKCENTER
+,q.VENDOR
 
 
 ,q.[QTY_REJECTED]
@@ -351,6 +352,12 @@ SELECT SourceRecordCount = @Reccnt
 
 
 END
+
+
+
+
+
+GO
 
 
 
