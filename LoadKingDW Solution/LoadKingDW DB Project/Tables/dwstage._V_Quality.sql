@@ -19,6 +19,7 @@
 	[EMPLOYEE] [char](5) NULL,
 	[EMPLOYEE_DEPT] [char](4) NULL,
 	[WORKCENTER] [char](4) NULL,
+	[VENDOR] [char](6) NULL,
 	[QTY_REJECTED] [numeric](14, 6) NULL,
 	[ORIG_SCRAP_VALUE] [numeric](12, 2) NULL,
 	[QTY_REMAINING] [numeric](14, 6) NULL,

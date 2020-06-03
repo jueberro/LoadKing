@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadFactQuality"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="61"
-  DTS:VersionGUID="{02761C72-A7C2-4613-9D91-3132F8CDD586}">
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{8D4957B4-875F-4D58-A245-1690E9BD2D09}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -387,6 +387,14 @@
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WORKCENTER]"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[WORKCENTER]" />
                         <inputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VENDOR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="VENDOR"
+                          externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VENDOR]"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[VENDOR]" />
+                        <inputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[QTY_REJECTED]"
                           cachedDataType="numeric"
                           cachedName="QTY_REJECTED"
@@ -613,6 +621,12 @@
                           length="4"
                           name="WORKCENTER" />
                         <externalMetadataColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VENDOR]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="VENDOR" />
+                        <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QTY_REJECTED]"
                           dataType="numeric"
                           name="QTY_REJECTED"
@@ -734,7 +748,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dwstage].[_V_Quality]</property>
+                      name="OpenRowset"></property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -995,6 +1009,17 @@
                           length="4"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[WORKCENTER]"
                           name="WORKCENTER"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[VENDOR]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VENDOR]"
+                          length="6"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[VENDOR]"
+                          name="VENDOR"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[QTY_REJECTED]"
@@ -1265,6 +1290,12 @@
                           length="4"
                           name="WORKCENTER" />
                         <externalMetadataColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VENDOR]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="VENDOR" />
+                        <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QTY_REJECTED]"
                           dataType="numeric"
                           name="QTY_REJECTED"
@@ -1486,6 +1517,13 @@
                           length="4"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WORKCENTER]"
                           name="WORKCENTER" />
+                        <outputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VENDOR]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VENDOR]"
+                          name="VENDOR" />
                         <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QTY_REJECTED]"
                           dataType="numeric"
@@ -2082,25 +2120,37 @@
         <NodeLayout
           Size="157,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source"
-          TopLeft="728,103" />
+          TopLeft="779,71" />
         <NodeLayout
           Size="177,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination"
-          TopLeft="723,192" />
+          TopLeft="779,152" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table.Paths[OLE DB Source Output]"
-          TopLeft="809,145">
+          TopLeft="857.5,113">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47"
+              EndConnector="10,39"
               Start="0,0"
-              End="0,39.5">
+              End="10,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.5" />
+                    End="0,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="4,19.5" />
+                  <mssgle:LineSegment
+                    End="6,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6,19.5"
+                    Point2="10,19.5"
+                    Point3="10,23.5" />
+                  <mssgle:LineSegment
+                    End="10,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2113,20 +2163,15 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
