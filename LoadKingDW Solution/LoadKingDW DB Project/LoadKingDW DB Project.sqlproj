@@ -170,6 +170,8 @@
     <Build Include="Tables\dwstage.QUALITY_ADDL.sql" />
     <Build Include="Functions\dwstage.udf_cv_nvarchar6_yymmdd_to_date.sql" />
     <Build Include="Tables\dw.DimVendor.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimVendor.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimWorkOrderType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
