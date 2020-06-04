@@ -110,5 +110,7 @@
     <Build Include="Stored Procedures\getWORKCENTERS.sql" />
     <Build Include="Stored Procedures\getGCG_5398_CAR.sql" />
     <Build Include="Stored Procedures\getGCG_5398_ECR.sql" />
+    <Build Include="Tables\dbo._V_QualityDisp.sql" />
+    <Build Include="Stored Procedures\getQualityDisp.sql" />
   </ItemGroup>
 </Project>

@@ -7,122 +7,117 @@ AS
 SELECT
 ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 ,ISNULL(c.DimCustomer_Key, -1) as DimCustomer_Key
-,-1 as DimVendor_Key
+,ISNULL(dv.DimVendor_Key, -1) as DimVendor_Key
 ,ISNULL(i.DimInventory_Key, -1) as DimInventory_Key
 ,ISNULL(e.DimEmployee_Key, -1) as DimEmployee_Key
 ,ISNULL(de.DimDepartment_Key, -1) as DimDepartmentEmployee_Key
 ,ISNULL(dw.DimWorkCenter_Key, -1) as DimWorkCenter_Key
 ,ISNULL(d.DimDate_Key, -1) as DimDate_Key
 
-,quality.CONTROL_NUMBER as Header_CONTROL_NUMBER
-,quality.[JOB] as Header_JOB
-,quality.[JOB_SUFFIX] as Header_SUFFIX
-,quality.[SEQUENCE] as Header_SEQUENCE
+,stage.CONTROL_NUMBER as Header_CONTROL_NUMBER
+,stage.[JOB] as Header_JOB
+,stage.[SUFFIX] as Header_SUFFIX
+,stage.[SEQUENCE] as Header_SEQUENCE
 
-,qd.CONTROL_NUMBER
-,qd.DISPOSITION_SEQ
-,qd.DISCREPANCY
-,qdc.DISCREP_DESC
-,qd.DISPOSITION_ACTION
-,qd.USER_DISPOSED_BY
-,qd.NEW_JOB
-,qd.NEW_SUFFIX
-,qd.CNC_ACTION
-,qd.NO_GOOD_RPT
-,qd.INSPECTED_BY
-,qd.USER1
-,qd.USER2
+,stage.CONTROL_NUMBER
+,stage.DISPOSITION_SEQ
+,stage.DISCREPANCY
+,stage.DISCREP_DESC
+,stage.DISPOSITION_ACTION
+,stage.USER_DISPOSED_BY
+,stage.NEW_JOB
+,stage.NEW_SUFFIX
+,stage.CNC_ACTION
+,stage.NO_GOOD_RPT
+,stage.INSPECTED_BY
+,stage.USER1
+,stage.USER2
 
 -- DATES--------------------------------
-,dwstage.udf_cv_nvarchar6__yymmdd_to_date(quality.DATE_QUALITY) as Header_DATE_QUALITY
-,dwstage.udf_cv_nvarchar8_to_date(quality.DATE_ENTERED) as Header_DATE_ENTERED
-,dwstage.udf_cv_nvarchar6__yymmdd_to_date(qa.F_DATE) as Header_F_DATE
-,dwstage.udf_cv_nvarchar8_to_date(qa.CLOSE_DATE) as Header_CLOSE_DATE
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.DATE_QUALITY) as Header_DATE_QUALITY
+,dwstage.udf_cv_nvarchar8_to_date(stage.DATE_ENTERED) as Header_DATE_ENTERED
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.F_DATE) as Header_F_DATE
+,dwstage.udf_cv_nvarchar8_to_date(stage.CLOSE_DATE) as Header_CLOSE_DATE
 
-,dwstage.udf_cv_nvarchar6__yymmdd_to_date(qd.DATE_DISPOSED) as DATE_DISPOSED
-,qd.TIME_DISPOSED
-,dwstage.udf_cv_nvarchar6_to_date(qd.DATE_INSPECTED) as DATE_INSPECTED
-,dwstage.udf_cv_nvarchar6_to_date(qd.DATE_CNC_REQ) as DATE_CNC_REQ
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.DATE_DISPOSED) as DATE_DISPOSED
+,stage.TIME_DISPOSED
+,dwstage.udf_cv_nvarchar6_to_date(stage.DATE_INSPECTED) as DATE_INSPECTED
+,dwstage.udf_cv_nvarchar6_to_date(stage.DATE_CNC_REQ) as DATE_CNC_REQ
 
 -- MEASURES------------------------------
-,qd.QTY_DISPOSED
-,qd.DISPOSED_VALUE
+,stage.QTY_DISPOSED
+,stage.DISPOSED_VALUE
 
 , [Type1RecordHash]	 = CAST(HASHBYTES('SHA2_256',
-+ quality.CONTROL_NUMBER
-+ quality.[JOB]
-+ quality.[JOB_SUFFIX]
-+ quality.[SEQUENCE]
++ stage.CONTROL_NUMBER
++ stage.[JOB]
++ stage.[SUFFIX]
++ stage.[SEQUENCE]
 
-+ qd.CONTROL_NUMBER
-+ qd.DISPOSITION_SEQ
-+ qd.DISCREPANCY
-+ qdc.DISCREP_DESC
-+ qd.DISPOSITION_ACTION
-+ qd.USER_DISPOSED_BY
-+ qd.NEW_JOB
-+ qd.NEW_SUFFIX
-+ qd.CNC_ACTION
-+ qd.NO_GOOD_RPT
-+ qd.INSPECTED_BY
-+ qd.USER1
-+ qd.USER2
++ stage.CONTROL_NUMBER
++ stage.DISPOSITION_SEQ
++ stage.DISCREPANCY
++ stage.DISCREP_DESC
++ stage.DISPOSITION_ACTION
++ stage.USER_DISPOSED_BY
++ stage.NEW_JOB
++ stage.NEW_SUFFIX
++ stage.CNC_ACTION
++ stage.NO_GOOD_RPT
++ stage.INSPECTED_BY
++ stage.USER1
++ stage.USER2
 
-+ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(quality.DATE_QUALITY) AS NVARCHAR(20))
-+ CAST(dwstage.udf_cv_nvarchar8_to_date(quality.DATE_ENTERED) AS NVARCHAR(20))
-+ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(qa.F_DATE) AS NVARCHAR(20))
-+ CAST(dwstage.udf_cv_nvarchar8_to_date(qa.CLOSE_DATE) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.DATE_QUALITY) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar8_to_date(stage.DATE_ENTERED) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.F_DATE) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar8_to_date(stage.CLOSE_DATE) AS NVARCHAR(20))
 
-+ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(qd.DATE_DISPOSED) AS NVARCHAR(20))
-+ CAST(qd.TIME_DISPOSED AS NVARCHAR(20))
-+ CAST(dwstage.udf_cv_nvarchar6_to_date(qd.DATE_INSPECTED) AS NVARCHAR(20))
-+ CAST(dwstage.udf_cv_nvarchar6_to_date(qd.DATE_CNC_REQ) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.DATE_DISPOSED) AS NVARCHAR(20))
++ CAST(stage.TIME_DISPOSED AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6_to_date(stage.DATE_INSPECTED) AS NVARCHAR(20))
++ CAST(dwstage.udf_cv_nvarchar6_to_date(stage.DATE_CNC_REQ) AS NVARCHAR(20))
 
-+ CAST(qd.QTY_DISPOSED AS NVARCHAR(20))
-+ CAST(qd.DISPOSED_VALUE AS NVARCHAR(20))
++ CAST(stage.QTY_DISPOSED AS NVARCHAR(20))
++ CAST(stage.DISPOSED_VALUE AS NVARCHAR(20))
 ) AS VARBINARY (64))
 
 -- SELECT COUNT(*)
 FROM
-dwstage.QUALITY_DISP qd 
-LEFT JOIN dwstage._V_Quality quality -- Header Level Info
-on qd.CONTROL_NUMBER = quality.CONTROL_NUMBER
+dwstage._V_QualityDisp as stage
 
 LEFT OUTER JOIN dw.DimWorkOrder dwo
-ON quality.JOB = dwo.WorkOrderNumber
-AND quality.Job_Suffix = dwo.Suffix
-AND dwstage.udf_cv_nvarchar6_to_date(quality.Job_Date_Opened)  = dwo.DateOpened
+ON stage.JOB = dwo.WorkOrderNumber
+AND stage.Suffix = dwo.Suffix
+AND dwstage.udf_cv_nvarchar6_to_date(stage.Date_Opened)  = dwo.DateOpened
 AND dwo.DWIsCurrent = 1
 
-LEFT JOIN dwstage.QUALITY_ADDL qa
-ON quality.CONTROL_NUMBER = qa.CONTROL_NUM
-
-LEFT JOIN (SELECT [SYS], DISCREP_CODE, DISCREP_DESC FROM dwstage.QUALITY_DISCRP_CD WHERE [SYS] = 'QUA' GROUP BY [SYS], DISCREP_CODE, DISCREP_DESC) qdc
-ON qd.DISCREPANCY = qdc.DISCREP_CODE
-
 LEFT OUTER JOIN dw.DimInventory AS i
-ON    quality.PART = i.PartID
+ON    stage.PART = i.PartID
 AND  i.DWIsCurrent = 1
 
 LEFT OUTER JOIN dw.DimCustomer AS c
-ON    quality.CUSTOMER = c.CustomerID
+ON    stage.CUSTOMER = c.CustomerID
 AND  c.DWIsCurrent = 1
 
 LEFT OUTER JOIN dw.DimEmployee AS e
-ON	quality.Employee = e.EmployeeID
+ON	stage.Employee = e.EmployeeID
 AND  e.DWIsCurrent = 1
 
 LEFT OUTER JOIN dw.DimDepartment AS de
-ON	quality.EMPLOYEE_DEPT = de.DepartmentID		
+ON	stage.EMPLOYEE_DEPT = de.DepartmentID		
 AND  de.DWIsCurrent = 1
 
 LEFT OUTER JOIN dw.DimWorkCenter AS dw
-ON	quality.WORKCENTER = dw.Machine		
+ON	stage.WORKCENTER = dw.Machine		
 AND  dw.DWIsCurrent = 1
 
 LEFT OUTER JOIN dw.DimDate AS d
-ON	dwstage.udf_cv_nvarchar8_to_date(quality.DATE_ENTERED)  = d.[Date]			
+ON	dwstage.udf_cv_nvarchar8_to_date(stage.DATE_ENTERED)  = d.[Date]			
 
+LEFT OUTER JOIN dw.DimVendor AS dv
+ON  CAST(stage.VENDOR AS nchar(6)) = dv.VENDOR
+AND  dv.DWIsCurrent = 1
 
 		
 
