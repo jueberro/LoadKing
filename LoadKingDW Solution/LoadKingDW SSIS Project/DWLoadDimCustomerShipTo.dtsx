@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimCustomerShipTo"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="34"
-  DTS:VersionGUID="{F23325B3-3476-469C-A92D-7AF83E5B536C}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{95A48A70-EDFB-4B6A-9D88-7F62CAAF146E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -51,7 +51,7 @@
       DTS:ObjectName="StoredProcedureName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">sp_LoadDimCustomerShipTo</DTS:Property>
+        DTS:Name="ParameterValue">dw.sp_LoadDimCustomerShipTo</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
