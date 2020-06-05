@@ -2,7 +2,8 @@
 
 BEGIN
 
-
+DECLARE @RowsInsertedCount int
+DECLARE @RowsUpdatedCount int
 	/*
 
 	- This procedure is called from an SSIS package
@@ -97,7 +98,7 @@ BEGIN
 						WHERE	DIM.PrimaryCustomerID = Work.PrimaryCustomerID 
 						    and DIM.ShipToSeq         = Work.ShipToSeq
 						)
-
+SET @RowsInsertedCount = @@ROWCOUNT
 
 	--UPDATE/Expire Existing Items that have Type 2 changes
 	UPDATE	DIM
@@ -109,6 +110,8 @@ BEGIN
 	   AND  Dim.ShipToSeq         = Work.ShipToSeq
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
+
+SET @RowsUpdatedCount = @@ROWCOUNT
 
 
 	--INSERT New versions of expired records that have Type 2 changes
@@ -126,3 +129,7 @@ BEGIN
 	 
 
 END
+
+SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
+
+GO

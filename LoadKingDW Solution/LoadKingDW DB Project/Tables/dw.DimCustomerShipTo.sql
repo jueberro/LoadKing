@@ -1,56 +1,44 @@
-﻿CREATE TABLE [dw].[DimCustomerShipTo] (
-  
-    DimCustomerShipTo_Key       INT        IDENTITY(1,1)      NOT NULL,
-	PrimaryCustomerID			NCHAR(6)                 NOT NULL, 
-	ShipToSeq					NCHAR(6)                 NOT NULL, 
-	ShipToCustomername			NVARCHAR(30)             NOT NULL,  
-	ShipToAddress1				NVARCHAR(30)             NULL, 
-	ShipToAddress2				NVARCHAR(30)             NULL,
-	ShipToAddress3    			NVARCHAR(30)             NULL,
-	ShipToAddress4  			NVARCHAR(30)             NULL,
-	ShipToCity      			NCHAR(15)                NULL,
-	ShipToState	    			NCHAR(2)                 NULL,
-	ShipToZip	    			NCHAR(13)                NULL,
-	ShipToCountry   			NCHAR(12)                NULL,
-	ShipToAttention 			NVARCHAR(30)             NULL, 
-	ShipToTelephone      		NCHAR(13)                NULL,
-	ShipToSalesperson     		NCHAR(3)                 NULL,
-	ShipToShipVia 		  		NCHAR(1)                 NULL,
-	ShipToBranch 		  		NCHAR(2)                 NULL,
-	ShipToTaxENo		  		NCHAR(20)                NULL,
-	ShipToTaxState 		  		NCHAR(2)                 NULL,
-	ShipToTaxZip 		  		NCHAR(13)                NULL,
-	ShipToTax1 			  		NCHAR(3)                 NULL,
-	ShipToTax2 			  		NCHAR(3)                 NULL,
-	ShipToTax3 			  		NCHAR(3)                 NULL,
-	ShipToTax4			  		NCHAR(3)                 NULL,
-	ShipToTax5 			  		NCHAR(3)                 NULL,
-	ShipToWhoLastChanged		NVARCHAR(8)              NULL, 
-	ShipToTrmLastChanged		NUMERIC(2,0)             NULL,
-	ShipToDateLastChanged		DateTime                 NULL,  
-	ShipToPrimaryGroup			NCHAR(2)                 NULL,
-	ShipToCarrierCD				NCHAR(6)                 NULL,  
-
-   	/*Hashes used for identifying changes, not required for reporting*/
-	Type1RecordHash				VARBINARY(64)		NULL,	
-	Type2RecordHash				VARBINARY(64)		NULL,	
-
-	/*DW Metadata fields, not required for reporting*/
-	SourceSystemName			NVARCHAR(100)		NOT NULL,
-	DWEffectiveStartDate		DATETIME2(7)		NOT NULL,
-	DWEffectiveEndDate			DATETIME2(7)		NOT NULL,
-	DWIsCurrent					BIT					NOT NULL,
-
-	/*ETL Metadata fields, not required for reporting (DWEffectiveStartDate may not neccessarily be the same as RecordCreateDate, for example */
-	LoadLogKey					INT					NOT NULL, --ID of ETL process that inserted the record    CONSTRAINT [pk_DimEmployee] PRIMARY KEY CLUSTERED ([DimEmployee_Key] ASC)
-
-    CONSTRAINT [pk_DimCustomerShipTo] PRIMARY KEY CLUSTERED 
+﻿CREATE TABLE [dw].[DimCustomerShipTo](
+	[DimCustomerShipTo_Key] [int] IDENTITY(1,1) NOT NULL,
+	[PrimaryCustomerID] [nchar](6) NOT NULL,
+	[ShipToSeq] [nchar](6) NOT NULL,
+	[ShipToCustomername] [nvarchar](30) NOT NULL,
+	[ShipToAddress1] [nvarchar](30) NULL,
+	[ShipToAddress2] [nvarchar](30) NULL,
+	[ShipToAddress3] [nvarchar](30) NULL,
+	[ShipToAddress4] [nvarchar](30) NULL,
+	[ShipToCity] [nchar](15) NULL,
+	[ShipToState] [nchar](2) NULL,
+	[ShipToZip] [nchar](13) NULL,
+	[ShipToCountry] [nchar](12) NULL,
+	[ShipToAttention] [nvarchar](30) NULL,
+	[ShipToTelephone] [nchar](13) NULL,
+	[ShipToSalesperson] [nchar](3) NULL,
+	[ShipToShipVia] [nchar](1) NULL,
+	[ShipToBranch] [nchar](2) NULL,
+	[ShipToTaxENo] [nchar](20) NULL,
+	[ShipToTaxState] [nchar](2) NULL,
+	[ShipToTaxZip] [nchar](13) NULL,
+	[ShipToTax1] [nchar](3) NULL,
+	[ShipToTax2] [nchar](3) NULL,
+	[ShipToTax3] [nchar](3) NULL,
+	[ShipToTax4] [nchar](3) NULL,
+	[ShipToTax5] [nchar](3) NULL,
+	[ShipToWhoLastChanged] [nvarchar](8) NULL,
+	[ShipToTrmLastChanged] [numeric](2, 0) NULL,
+	[ShipToDateLastChanged] [datetime] NULL,
+	[ShipToPrimaryGroup] [nchar](2) NULL,
+	[ShipToCarrierCD] [nchar](6) NULL,
+	[Type1RecordHash] [varbinary](64) NULL,
+	[Type2RecordHash] [varbinary](64) NULL,
+	[SourceSystemName] [nvarchar](100) NOT NULL,
+	[DWEffectiveStartDate] [datetime2](7) NOT NULL,
+	[DWEffectiveEndDate] [datetime2](7) NOT NULL,
+	[DWIsCurrent] [bit] NOT NULL,
+	[LoadLogKey] [int] NOT NULL,
+ CONSTRAINT [pk_DimCustomerShipTo] PRIMARY KEY CLUSTERED 
 (
-	[DimCustomerShipTo_Key])
-
-)
-GO
-ALTER TABLE dw.DimCustomerShipTo
-  ADD CONSTRAINT [UK_dw_DimCustomerShipDate] UNIQUE (PrimaryCustomerID,ShipToSeq, DWEffectiveStartDate)
- 
-  
+	[DimCustomerShipTo_Key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO 
