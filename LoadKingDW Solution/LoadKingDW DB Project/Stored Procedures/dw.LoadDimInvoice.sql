@@ -18,6 +18,7 @@ BEGIN
     DECLARE @RowsUpdatedCount int
 
 
+
 	SELECT		@CurrentTimestamp = GETUTCDATE()
 
 	BEGIN TRY DROP TABLE #DimInvoice_work		END TRY BEGIN CATCH END CATCH
@@ -60,7 +61,7 @@ BEGIN
     [OLUser1] [nvarchar](30) NULL,				   	
 	[OLUser2] [nvarchar](30) NULL,				   
 	[OLTrackingNotes] [nvarchar](30) NULL,			
-	[OLUser3] [nvarchar](30) NULL,				   
+	[OLUser4] [nvarchar](30) NULL,				   
 	[OLUser5_ShipVia] [nvarchar](30) NULL,			
 	[OLShippingZone] [nchar](6) NULL,				 
 	[OLPhase] [nchar](4) NULL,				   
@@ -128,6 +129,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 						  AND   DIM.OHInvoiceNumber  = Work.OHInvoiceNumber
 	                      AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
+
 
 SET @RowsUpdatedCount = @@ROWCOUNT
 

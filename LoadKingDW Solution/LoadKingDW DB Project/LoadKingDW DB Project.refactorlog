@@ -147,4 +147,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Dept" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="67fa13a3-2ee6-4ce5-a898-53f17df362ea" ChangeDateTime="06/05/2020 15:15:20">
+    <Property Name="ElementName" Value="[dwstage].[_V_Invoice].[OLUser3]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dwstage].[_V_Invoice]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OLUser4" />
+  </Operation>
 </Operations>

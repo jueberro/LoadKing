@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dwstage].[_V_Invoice](
+﻿CREATE TABLE [dbo].[_V_Invoice](
 	[SalesOrderNumber] [nchar](7) NULL,
 	[SalesOrderLine] [nchar](4) NULL,
 	[OLOrderSuffix] [nchar](4) NULL,
