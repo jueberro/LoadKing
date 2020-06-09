@@ -86,6 +86,7 @@
     <Build Include="Tables\dbo._ErrorLog.sql" />
     <Build Include="Tables\dbo._Tablelist.sql" />
     <Build Include="Tables\dbo._TableListLog.sql" />
+    <Build Include="Tables\dwetl.DWTableSourceSort.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\LK_CNC.dev.publish.xml" />
