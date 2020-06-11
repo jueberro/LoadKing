@@ -1,5 +1,5 @@
--------------------
-USE [LK-GS-ODS];
+USE [LK-GS-ODS];
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ TRUNCATE TABLE dbo._V_Salesorder;
 TRUNCATE TABLE dbo.SALESPERSONS;
 TRUNCATE TABLE dbo.VENDOR_MASTER;
 TRUNCATE TABLE dbo.WORKCENTERS;
-TRUNCATE TABLE dbo.JOB_HEADER;
+TRUNCATE TABLE dbo._V_JOB_HEADER;
 TRUNCATE TABLE dbo._V_Inventory;
 TRUNCATE TABLE dbo._V_Invoice;
 TRUNCATE TABLE dbo._V_JOB;
@@ -27,8 +27,10 @@ TRUNCATE TABLE dbo._V_QualityDisp;
 TRUNCATE TABLE dbo._V_SalesOrder;
 
 
+
 --------------------
-USE  [LK-GS-EDW];
+USE  [LK-GS-EDW];
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -45,7 +47,7 @@ TRUNCATE TABLE dwstage._V_SalesOrder;
 TRUNCATE TABLE dwstage.SALESPERSONS;
 TRUNCATE TABLE dwstage.VENDOR_MASTER;
 TRUNCATE TABLE dwstage.WORKCENTERS;
-TRUNCATE TABLE dwstage.JOB_HEADER;
+TRUNCATE TABLE dwstage._V_JOB_HEADER;
 TRUNCATE TABLE dwstage._V_Inventory;
 TRUNCATE TABLE dwstage._V_Invoice;
 TRUNCATE TABLE dwstage._V_JOB;
@@ -57,7 +59,8 @@ TRUNCATE TABLE dwstage._V_SalesOrder;
 
 
 -------------------
-USE [LK-GS-EDW];
+USE [LK-GS-EDW];
+
 
 
 -----------------------------------------------------------------------------------------------------------------------
