@@ -176,6 +176,7 @@
     <Build Include="Tables\dwstage.VENDOR_MASTER.sql" />
     <Build Include="Tables\dwstage._V_QualityDisp.sql" />
     <Build Include="Scripts\TruncateAllCode.sql" />
+    <Build Include="Tables\dwstage._V_JOB_HEADER_HIST.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

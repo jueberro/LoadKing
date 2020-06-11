@@ -41,7 +41,7 @@ BEGIN
 					 )
 		  ) 	-- This would be first yr digit and If the year starts with a 5 it occurred in the 1900's else 2000's
 	  Else   
-		   '01-01-1900'  -- not at least a 6 char string or its not numeric data, 6 char mmddyy string to test for validity  
+		   '01-01-1899'  -- not at least a 6 char string or its not numeric data, 6 char mmddyy string to test for validity  
       End
 
 	  -- Convert time string passed in a date time formatted string
@@ -62,9 +62,8 @@ BEGIN
 		   ' 00:00:00'  -- not at least a 6 char string or its not numeric data, 6 char mmddyy string to test for validity  
       End
 
-      --  Verify that we have a valid date else default to '1900-01-01 00:00:00'
-     -- set    @datepassedback = convert(datetime,case when isdate(@datepassedtest) = 1 then @datepassedtest + ' ' + @TimePassedtest else '01-01-1900 ' + @Timepassedtest end,120)
-	 set    @datepassedback = convert(datetime,case when isdate(@datepassedtest) = 1 then @datepassedtest + ' ' + @TimePassedtest else '01-01-1900 ' + @Timepassedtest end ,120)
+     
+	 set    @datepassedback = convert(datetime,case when isdate(@datepassedtest) = 1 then @datepassedtest + ' ' + @TimePassedtest else '01-01-1899 ' + @Timepassedtest end ,120)
   
      RETURN(@DatePassedBack)
 
