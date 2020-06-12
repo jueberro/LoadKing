@@ -180,6 +180,7 @@
     <Build Include="Tables\dw.LkpJobHeaderHist.sql" />
     <Build Include="Views\dwstage.V_LoadLkpJobHeaderHist.sql" />
     <Build Include="Stored Procedures\dw.LoadLkpJobHeaderHist.sql" />
+    <Build Include="Tables\dwstage._V_PurchaseOrder.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

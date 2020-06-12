@@ -119,5 +119,6 @@
     <Build Include="Tables\dbo._V_JobOperations.sql" />
     <Build Include="Tables\dbo._V_JOB_HEADER_HIST.sql" />
     <Build Include="Stored Procedures\getJOB_HEADER_HIST.sql" />
+    <Build Include="Stored Procedures\getPurchaseOrder.sql" />
   </ItemGroup>
 </Project>
