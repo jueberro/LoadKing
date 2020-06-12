@@ -175,6 +175,7 @@
     <Build Include="Views\dwstage.V_LoadDimVendor.sql" />
     <Build Include="Tables\dwstage.VENDOR_MASTER.sql" />
     <Build Include="Tables\dwstage._V_QualityDisp.sql" />
+    <Build Include="Tables\dwstage._V_PurchaseOrder.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
