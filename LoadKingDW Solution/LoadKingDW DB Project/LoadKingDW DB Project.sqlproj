@@ -178,7 +178,8 @@
     <Build Include="Scripts\TruncateAllCode.sql" />
     <Build Include="Tables\dwstage._V_JOB_HEADER_HIST.sql" />
     <Build Include="Tables\dw.LkpJobHeaderHist.sql" />
-    <Build Include="Tables\dwstage_1._V_JOB_HEADER_HIST.sql" />
+    <Build Include="Views\dwstage.V_LoadLkpJobHeaderHist.sql" />
+    <Build Include="Stored Procedures\dw.LoadLkpJobHeaderHist.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
