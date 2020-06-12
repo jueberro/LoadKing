@@ -17,7 +17,7 @@ FROM
 WHERE 
 	NESTING_INTERFACE = 'N' 
 	AND PRODUCT_LINE <> '  '
-	AND PRODUCT_LINE IN (select distinct product_line from dwstage.JOB_HEADER)
+	AND PRODUCT_LINE IN (select distinct product_line from dwstage._V_JOB_HEADER)
 GROUP BY 
 	PRODUCT_LINE, PRODUCT_LINE_NAME
 

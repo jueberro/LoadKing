@@ -8,7 +8,7 @@
 --       When I tried saving into a datetime field the conversion to datetime failed     
 --       because SQL Server didnt like the date. because it was 0542-66-77.  How
 --       Pervasive allowed that I have no idea, but it doesnt matter.  This is a simple 
---       ISDATE test of a date field that returns 1900-01-01 when it sees a junk date.
+--       ISDATE test of a date field that returns 1899-01-01 when it sees a junk date.
 --======================================================================================
     
 
@@ -30,7 +30,7 @@ BEGIN
 	  
 	  Set     @datestring = ISNULL(@datestring,' ')
 
-	  Set     @datepassedback = convert(datetime,case when isdate(@datestring) = 1 then @datestring else '01-01-1900'  end ,120)
+	  Set     @datepassedback = convert(datetime,case when isdate(@datestring) = 1 then @datestring else '01-01-1899'  end ,120)
 	
        RETURN(@DatePassedBack)
 

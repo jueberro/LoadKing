@@ -7,9 +7,10 @@
 --Procedure Name: [LK-GS-ODS].dbo.getInventory
 --       Created: Pragmatic Works, Edwin Davis 4/28/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Inventory 
+--            r1. JEU 6/11/2020.. fixed date conversions
 --==============================================
 
-CREATE PROCEDURE dbo.getInventory
+CREATE PROCEDURE [dbo].[getInventory]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -74,6 +75,7 @@ ON tl.TABLE_NAME = ec.SourceTableName --'_V_Inventory' --@SourceTableName -- ec.
 where 
 tl.MasterRunFlag = 'Y' and tl.CurRunFlag  <> 'Y' and tl.TABLE_NAME = '_V_Inventory' and ec.ExtractEnabledFlag = 1
 order by tl.runpriority, tl.tablenbr asc
+
 
 
 BEGIN TRY
@@ -170,9 +172,9 @@ SELECT   IM.*
 	From
 
 	(Select
-                    CAST(im.[PART]	                                AS nchar(20))       AS  PartID                 --B         INVENTORY_MSTR    
-                ,dbo.udf_cv_nvarchar6_to_date([DATE_LAST_CHG])	                    AS  DateLastChg		 	   --B	     INVENTORY_MSTR	
-                ,dbo.udf_cv_nvarchar8_to_date([WHO_CHG_LAST])           	        AS  WhoChgLast		 	   --B	     INVENTORY_MSTR	
+                 CAST(im.[PART]	                                AS nchar(20))       AS  PartID                 --B         INVENTORY_MSTR    
+                ,dbo.udf_cv_nvarchar6__yymmdd_to_date(im.[DATE_LAST_CHG])	        AS  DateLastChg		 	   --B	     INVENTORY_MSTR	
+                ,CAST(im.[WHO_CHG_LAST]           	            AS nchar(8))        AS  WhoChgLast		 	   --B	     INVENTORY_MSTR	
                 ,CAST(im.[AMT_PRICE]                            AS decimal(13, 5))  AS  Price	               --D		 INVENTORY_MSTR
                 ,CAST(im.[CODE_ABC]                 			AS nchar(1))	    AS  CodeABC	         	   --D		 INVENTORY_MSTR
                 ,CAST(im.[PRODUCT_LINE]             			AS nchar(2))        AS  ProductLine	     	   --D		 INVENTORY_MSTR
@@ -194,9 +196,9 @@ SELECT   IM.*
                 ,CAST(i3.[TAX_EXEMPT_FLG]                       AS nchar(1)) 	    AS  TaxExemptFlag	       --D		 INVENTORY_MST3	
                 ,CAST(im.[LOCATION]                             AS nchar(2))        AS  Location	       	   --F		 INVENTORY_MSTR	
                 ,CAST(im.[BIN]                                  AS nchar(6))        AS  BIN		         	   --F		 INVENTORY_MSTR	
-                ,dbo.udf_cv_nvarchar8_to_date(DATE_LAST_USAGE)                      AS  DateLastUsage	       --F		 INVENTORY_MSTR	
-                ,dbo.udf_cv_nvarchar8_to_date(DATE_LAST_AUDIT)                      AS  DateLastAudit		   --F		 INVENTORY_MSTR	
-                ,dbo.udf_cv_nvarchar8_to_date(DATE_CYCLE)                           AS  DateCycle		       --F		 INVENTORY_MST2	
+                ,dbo.udf_cv_nvarchar6_to_date(im.DATE_LAST_USAGE)                   AS  DateLastUsage	       --F		 INVENTORY_MSTR	
+                ,dbo.udf_cv_nvarchar6_to_date(im.DATE_LAST_AUDIT)                   AS  DateLastAudit		   --F		 INVENTORY_MSTR	
+                ,dbo.udf_cv_nvarchar6__yymmdd_to_date(i2.DATE_CYCLE)                AS  DateCycle		       --F		 INVENTORY_MST2	
                 ,CAST(im.[CODE_BOM]                             AS nchar(1))        AS  CodeBOM	         	   --F		 INVENTORY_MSTR	
                 ,CAST(im.[CODE_DISCOUNT]                        AS nchar(1))        AS  CodeDiscount		   --F		 INVENTORY_MSTR	
                 ,CAST(im.[CODE_TOTAL]                           AS nchar(1))        AS  CodeTotal	           --F		 INVENTORY_MSTR	
@@ -384,5 +386,4 @@ SELECT SourceRecordCount = @Reccnt
 END
 
 GO
-
 

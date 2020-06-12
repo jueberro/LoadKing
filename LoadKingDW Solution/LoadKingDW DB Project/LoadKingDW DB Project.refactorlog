@@ -154,4 +154,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="OLUser4" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="e4543bca-100b-4b26-88e5-380b7ddbfb87" ChangeDateTime="06/11/2020 19:31:14">
+    <Property Name="ElementName" Value="[dbo].[_V_JOB_HEADER_HIST].[SHIPD_FLG]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[_V_JOB_HEADER_HIST]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SHPD_FLG" />
+  </Operation>
 </Operations>
