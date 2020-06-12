@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="oTxJ8j7SogE=" SSIS:IV="11c9TkX/EQv/LkvdF8UUsg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">KZPksxJY2pZzlr+BFx2Sh5cRcctV0bpXJCa9fBgK4hYysAFbHYH08Z5G/XsdP3xL/xPBY1MuWE8rzZuEU2A5Sig69wrVBUE8+Zw1UeloyTC+16QYKH6EA/cH4i0MrbEQvIEUebnroHdsEdANG5mAVkH4iXzsJRJWKPBpmtFSlq3ICOUUtLoX6ZU97UhQo/jW</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="hVTP17Vqwqk=" SSIS:IV="SA2g1QqJgvMd/zgtVZwtvg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">oRAcRWr0PMWxRvkaCD4dPQL6iuHfOICdMixg+pzxv2OAmBMB/BsP6m2atFYXfxdBMm/EyXCdzxWZ0WwYUU65jlYqSB0fadvyBAAP7pOGgRiaN5ZwslbX88Tk6IvZFVOzCmf7UQfna/Hjn+DOHQScsRicOM4rMtjHicu+xSXPJO6Kz3Z4h/GVKxDrV+bdh7fm</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -2314,10 +2314,10 @@
                 <SSIS:Property SSIS:Name="Name">DWLoadLkpJobHeaderHist</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">54</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">56</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{DC3E14A1-CEFD-47A0-A30F-8C8C3284E374}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{070A07F8-C8E5-4A95-B787-BC9939AC2705}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -2348,7 +2348,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">JOB_HEADER_HIST</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">_V_JOB_HEADER_HIST</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -2376,7 +2376,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadLkpJobHeadrHist</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadLkpJobHeaderHist</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

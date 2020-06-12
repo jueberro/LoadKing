@@ -1,12 +1,4 @@
 ﻿CREATE TABLE [dw].[LkpJobHeaderHist](
-	[DimSalesOrder_Key] [int] NOT NULL,
-	[DimWorkOrderType_Key] [int] NOT NULL,
-	[DimInventory_Key] [int] NOT NULL,
-	[DimCustomer_Key] [int] NOT NULL,
-	[DimSalesPerson_Key] [int] NOT NULL,
-	[DimProductLine_Key] [int] NOT NULL,
-	[DimDate_Key] [int] NOT NULL,
-	[DimWorkOrder_Key] [int] NULL,
 	[JOB] [char](6) NULL,
 	[SUFFIX] [char](3) NULL,
 	[PART] [char](20) NULL,

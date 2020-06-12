@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadLkpJobHeaderHist"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="54"
-  DTS:VersionGUID="{DC3E14A1-CEFD-47A0-A30F-8C8C3284E374}">
+  DTS:VersionBuild="57"
+  DTS:VersionGUID="{156EEB12-11A7-4187-94A5-F98084A3C17F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -33,7 +33,7 @@
       DTS:ObjectName="SourceDataSetName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">JOB_HEADER_HIST</DTS:Property>
+        DTS:Name="ParameterValue">_V_JOB_HEADER_HIST</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -51,7 +51,7 @@
       DTS:ObjectName="StoredProcedureName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">dw.sp_LoadLkpJobHeadrHist</DTS:Property>
+        DTS:Name="ParameterValue">dw.sp_LoadLkpJobHeaderHist</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -4702,33 +4702,33 @@
         <NodeLayout
           Size="255,42"
           Id="Package\SQL - GetExtractBatchesToProcess"
-          TopLeft="1269.41666675359,5.49999999999993" />
+          TopLeft="531.41666675359,10.4999999999999" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="1396.91666675359,47.4999999999999">
+          TopLeft="658.91666675359,52.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-541.41666675359,60.6666666666661"
+              EndConnector="196.58333324641,55.6666666666661"
               Start="0,0"
-              End="-541.41666675359,53.1666666666661">
+              End="196.58333324641,48.1666666666661">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.333333333333" />
+                    End="0,23.8333333333331" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26.333333333333"
-                    Point2="0,30.333333333333"
-                    Point3="-4,30.333333333333" />
+                    Point1="0,23.8333333333331"
+                    Point2="0,27.8333333333331"
+                    Point3="4,27.8333333333331" />
                   <mssgle:LineSegment
-                    End="-537.41666675359,30.333333333333" />
+                    End="192.58333324641,27.8333333333331" />
                   <mssgle:CubicBezierSegment
-                    Point1="-537.41666675359,30.333333333333"
-                    Point2="-541.41666675359,30.333333333333"
-                    Point3="-541.41666675359,34.333333333333" />
+                    Point1="192.58333324641,27.8333333333331"
+                    Point2="196.58333324641,27.8333333333331"
+                    Point3="196.58333324641,31.8333333333331" />
                   <mssgle:LineSegment
-                    End="-541.41666675359,53.1666666666661" />
+                    End="196.58333324641,48.1666666666661" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4756,7 +4756,7 @@
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source"
@@ -4784,20 +4784,14 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
@@ -4808,6 +4802,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

@@ -35,14 +35,7 @@ IF object_id('##LkpJobHeaderHist_TARGET', 'U') is not null -- if table exists
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE ##LkpJobHeaderHist_SOURCE (
 
-DimSalesOrder_Key int NOT NULL,
-DimWorkOrderType_Key int NOT NULL,
-DimInventory_Key int NOT NULL,
-DimCustomer_Key int NOT NULL,
-DimSalesPerson_Key int NOT NULL,
-DimProductLine_Key int NOT NULL,
-DimDate_Key int NOT NULL,
-DimWorkOrder_Key int NOT NULL,
+
 	[JOB] [char](6) NULL,
 	[SUFFIX] [char](3) NULL,
 	[PART] [char](20) NULL,
@@ -162,20 +155,12 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	UPDATE	TGT
 	SET
 
-TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
-,TGT.DimWorkOrderType_Key = SRC.DimWorkOrderType_Key
-,TGT.DimInventory_Key = SRC.DimInventory_Key
-,TGT.DimCustomer_Key = SRC.DimCustomer_Key
-,TGT.DimSalesperson_Key = SRC.DimSalesPerson_Key
-,TGT.DimProductLine_Key = SRC.DimProductLine_Key
-,TGT.DimDate_Key = SRC.DimDate_Key
-,TGT.DimWorkOrder_Key = SRC.DimWorkOrder_Key
 -----------------------------------
 --, JOB			-- NK
 --, SUFFIX		-- NK
 --, PART		-- NK
 
-, TGT.PRODUCT_LINE = SRC.PRODUCT_LINE
+  TGT.PRODUCT_LINE = SRC.PRODUCT_LINE
 , TGT.ROUTER = SRC.ROUTER
 , TGT.PRIORITY = SRC.PRIORITY
 , TGT.DESCRIPTION = SRC.DESCRIPTION
@@ -256,4 +241,3 @@ END
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
 
 GO
-
