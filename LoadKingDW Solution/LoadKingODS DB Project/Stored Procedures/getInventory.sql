@@ -14,7 +14,7 @@ CREATE PROCEDURE [dbo].[getInventory]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 AS
 
 BEGIN
@@ -24,7 +24,7 @@ DECLARE
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 
 SELECT 
 @SourceTableName = '_V_Inventory'
@@ -133,7 +133,7 @@ Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
 
  -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  INVENTORY_MSTR '+ ''''   
 Set @BaseSql = @BaseSql + ')' 
 	  
@@ -144,7 +144,7 @@ Set @Sql = 'Select * INTO ##tmp_Inventory_Mstr From ' +  @BaseSql
 EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  INVENTORY_MST2 '+ '''' 
 Set @BaseSql = @BaseSql + ')' 
 	  
@@ -155,7 +155,7 @@ Set @Sql = 'Select * INTO ##tmp_Inventory_Mst2 From ' +  @BaseSql
 EXEC(@Sql)
 
    -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  INVENTORY_MST3 '+ '''' 
 Set @BaseSql = @BaseSql + ')' 
 	  

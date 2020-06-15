@@ -180,11 +180,10 @@
     <Build Include="Tables\dw.LkpJobHeaderHist.sql" />
     <Build Include="Views\dwstage.V_LoadLkpJobHeaderHist.sql" />
     <Build Include="Stored Procedures\dw.LoadLkpJobHeaderHist.sql" />
-    <Build Include="Tables\dwstage._V_JobOperations_Hist.sql" />
-    <Build Include="Tables\dwstage.JobOperations_Hist.sql" />
-    <Build Include="Tables\dw.LkpJobOperations_Hist.sql" />
-    <Build Include="Views\dwstage.V_LoadLkpJobOperationsHist.sql" />
-    <Build Include="Stored Procedures\dw.LoadLkpJobOperationsHist.sql" />
+    <Build Include="Tables\dwstage._V_PurchaseOrder.sql" />
+    <Build Include="Views\dwstage.V_LoadFactPurchaseOrder.sql" />
+    <Build Include="Tables\dw.FactPurchaseOrder.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactPurchaseOrder.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

@@ -5,7 +5,7 @@ CREATE PROCEDURE dbo.getOE_MULTI_SHIP
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
 AS
 
 BEGIN
@@ -75,7 +75,7 @@ BEGIN TRY
     Set  @TblNamePath = @ODSdatabase + @tblname -- Rev4 i.
 
       -- create the select from source table Openquery using a wildcard
-    Set @BaseSql = ' Openquery([LK_GS],'
+    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
     Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  + ' WHERE DATE_LAST_CHG BETWEEN  ' + '''''' +   cast(CAST(@StartDate as date)as varchar(19)) + '''''' + ' AND ' + '''''' + cast(CAST(@EndDate as date) as varchar(19)) + '''''' 
     Set @BaseSql = @BaseSql + '''' + ')' 
 	  

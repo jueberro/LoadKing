@@ -6,7 +6,7 @@ CREATE PROCEDURE dbo.getGCG_5398_ECR
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
 
 AS
 
@@ -80,7 +80,7 @@ BEGIN TRY
 
 
       -- create the select from source table Openquery using a wildcard
-    Set @BaseSql = ' Openquery([LK_GS],'
+    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
     Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
     Set @BaseSql = @BaseSql + '''' + ')' 
 	  

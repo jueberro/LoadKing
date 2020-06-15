@@ -12,8 +12,8 @@
   DTS:ObjectName="GlobalShopExtractMaster"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="52"
-  DTS:VersionGUID="{02A2D699-3506-48DC-AA92-716986AA5595}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{CEA20453-E86B-4232-98AA-F698239AC2E0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -26,6 +26,15 @@
       <DTS:Property
         DTS:DataType="2"
         DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{3BA88DD0-4C07-475D-812F-2FDEB660B513}"
+      DTS:ObjectName="LinkedServer">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">LK-GS-01</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -189,11 +198,11 @@
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName]+ " , @LoadLogKey = "  +  (DT_STR,9,1252)@[User::LoadLogKey]  + "  , @StartDate = "  +  "'" + (DT_STR,30,1252)@[User::ExtractLowDate] +  "'" +  "  , @EndDate = "  +  "'" +  (DT_STR,30,1252)@[User::ExtractHighDate] +  "'"</DTS:PropertyExpression>
+            DTS:Name="SqlStatementSource">"EXECUTE " +  @[User::SourceSQLString]   + "  @SourceTableName = "  +  @[User::SourceTableName]+ " , @LoadLogKey = "  +  (DT_STR,9,1252)@[User::LoadLogKey]  + "  , @StartDate = "  +  "'" + (DT_STR,30,1252)@[User::ExtractLowDate] +  "'" +  "  , @EndDate = "  +  "'" +  (DT_STR,30,1252)@[User::ExtractHighDate] +  "'" +  "  , @LinkedServer = "  +  "'" +  (DT_STR,30,1252)@[$Package::LinkedServer] +  "'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{B03E4CEB-161B-444B-8FB3-0CE2D51305AF}"
-              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER , @LoadLogKey = 0  , @StartDate = '1/1/1900'  , @EndDate = '1/1/2100'"
+              SQLTask:SqlStatementSource="EXECUTE dbo.getCUSTOMER_MASTER  @SourceTableName = CUSTOMER_MASTER , @LoadLogKey = 0  , @StartDate = '1/1/1900'  , @EndDate = '1/1/2100'  , @LinkedServer = 'LK-GS-01'"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="SourceRecordCount"
@@ -201,6 +210,12 @@
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::SourceTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="$Package::LinkedServer"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="-1" />
