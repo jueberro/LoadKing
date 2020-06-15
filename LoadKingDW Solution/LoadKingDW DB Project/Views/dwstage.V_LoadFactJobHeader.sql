@@ -14,66 +14,66 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,ISNULL(do.DimDate_Key, -1) as DimDate_Key
 ,ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
 
-, stage.JOB
-, stage.SUFFIX
-, stage.PART
-, PRODUCT_LINE
-, ROUTER
-, stage.[PRIORITY]
-, stage.[DESCRIPTION]
-, CUSTOMER
-, CUSTOMER_PO
-, COMMENTS_1
-, BIN
-, FLAG_WO_RELEASED
-, FLAG_WO_PRTD
-, FLAG_HOLD
-, PARENT_WO
-, PARENT_SUFFIX_PARENT
-, SALES_ORDER
-, SALES_ORDER_LINE
-, FLAG_SERIALIZE
-, JOB_LOCKED
-----------------------------------
-, DATE_OPENED
-, DATE_DUE
-, DATE_CLOSED
-, DATE_START
-, DATE_SCH_CMPL_INF
-, DATE_SCH_CMPL_FIN
-, DATE_LAST_SCH_INF
-, DATE_ORIG_DUE
-, DATE_START_OTHER
-, DATE_SHIP_1
-, DATE_SHIP_2
-, DATE_SHIP_3
-, DATE_SHIP_4
-, DATE_LAST_SCH_FIN
-, DATE_DUE_NEW
-, CTR_DATE_REVUE_DUE
-, CTR_DATE_DUE_NEW
-, DATE_MATERIAL_DUE
-, CTR_DATE_MATL_DUE
-, DATE_MATL_ORDER
-, DATE_RELEASED
---------------------------------
-, SCHEDULED_DUE_DATE
-, QTY_ORDER
-, QTY_COMPLETED
-, AMT_PRICE_PER_UNIT
-, AMT_SALES
-, AMT_MATERIAL
-, NUM_HOURS
-, AMT_LABOR
-, AMT_OVERHEAD
-, AMT_PARTIAL_SHPMNT
-, QTY_SHIP_1
-, QTY_CUSTOMER
-, PARTIAL_MATERIAL
-, PARTIAL_LABOR
-, PARTIAL_OVERHEAD
-, PARTIAL_OUTSIDE
-, OUTS
+, stage.JOB                              
+, stage.SUFFIX							 
+, stage.PART							 
+, PRODUCT_LINE							 
+, ROUTER								 
+, stage.[PRIORITY]						 
+, stage.[DESCRIPTION]					 
+, CUSTOMER								 
+, CUSTOMER_PO							 
+, COMMENTS_1							 
+, BIN									 
+, FLAG_WO_RELEASED						 
+, FLAG_WO_PRTD							 
+, FLAG_HOLD								 
+, PARENT_WO								 
+, PARENT_SUFFIX_PARENT					 
+, SALES_ORDER							 
+, SALES_ORDER_LINE						 
+, FLAG_SERIALIZE						 
+, JOB_LOCKED							 
+----------------------------------		 
+, DATE_OPENED							 
+, DATE_DUE								 
+, DATE_CLOSED							 
+, DATE_START							 
+, DATE_SCH_CMPL_INF						 
+, DATE_SCH_CMPL_FIN						 
+, DATE_LAST_SCH_INF						 
+, DATE_ORIG_DUE							 
+, DATE_START_OTHER						 
+, DATE_SHIP_1							 
+, DATE_SHIP_2							 
+, DATE_SHIP_3							 
+, DATE_SHIP_4							 
+, DATE_LAST_SCH_FIN						 
+, DATE_DUE_NEW							 
+, CTR_DATE_REVUE_DUE					 
+, CTR_DATE_DUE_NEW						 
+, DATE_MATERIAL_DUE						 
+, CTR_DATE_MATL_DUE						 
+, DATE_MATL_ORDER						 
+, DATE_RELEASED							 
+--------------------------------		 
+, SCHEDULED_DUE_DATE					 
+, QTY_ORDER								 
+, QTY_COMPLETED							 
+, AMT_PRICE_PER_UNIT					 
+, AMT_SALES								 
+, AMT_MATERIAL							 
+, NUM_HOURS								 
+, AMT_LABOR								 
+, AMT_OVERHEAD							 
+, AMT_PARTIAL_SHPMNT					 
+, QTY_SHIP_1							 
+, QTY_CUSTOMER							 
+, PARTIAL_MATERIAL						 
+, PARTIAL_LABOR							 
+, PARTIAL_OVERHEAD						 
+, PARTIAL_OUTSIDE						 
+, OUTS									 
 
 --, [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
 , [Type1RecordHash]			  = HASHBYTES('SHA2_256',
@@ -151,7 +151,11 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 -- SELECT COUNT(*)
 FROM 
 	--dwstage.JOB_HEADER Stage
-	dwstage._V_JOB_HEADER Stage
+	(Select * from dwstage._V_JOB_HEADER   
+	 UNION ALL
+	 Select * from dwstage._V_JOB_HEADER_HIST  )  as stage
+	
+
 
 LEFT OUTER JOIN (select SalesOrderNumber, min(DimSalesOrder_Key) DimSalesOrder_Key, min(SalesOrderLine) SalesOrderLine, 1 as DWIsCurrent from dw.DimSalesOrder group by SalesOrderNumber)  AS so
 ON	Stage.SALES_ORDER = so.SalesOrderNumber AND	so.DWIsCurrent = 1 
@@ -199,5 +203,6 @@ ON stage.JOB = dwo.WorkOrderNumber
 AND stage.Suffix = dwo.Suffix
 AND dwstage.udf_cv_nvarchar6_to_date(stage.DATE_OPENED)  = dwo.DateOpened
 AND dwo.DWIsCurrent = 1
+
 
 

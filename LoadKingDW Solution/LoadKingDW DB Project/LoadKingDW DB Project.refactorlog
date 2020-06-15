@@ -161,4 +161,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="SHPD_FLG" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="dec3aa7b-5245-47c8-840a-6da9c6c8c490" ChangeDateTime="06/15/2020 13:39:00">
+    <Property Name="ElementName" Value="[dwstage].[_V_JobOperations_Hist].[MACHINE_HRS]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dwstage].[_V_JobOperations_Hist]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MACHINE_HOURS" />
+  </Operation>
 </Operations>
