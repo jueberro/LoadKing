@@ -12,9 +12,8 @@
 CREATE PROCEDURE dbo.getPurchaseOrder
 @SourceTableName varchar(255)
 ,@LoadLogKey int
-,@StartDate datetime
-,@EndDate datetime
-,@LinkedServer varchar(100) = 'LK_GS'
+,@StartDate datetime 
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
 AS
 
 BEGIN
@@ -24,7 +23,7 @@ DECLARE
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 ,@LinkedServer varchar(100)
 
 SELECT 

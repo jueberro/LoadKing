@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="6iXarWENudI=" SSIS:IV="D1pFA2nt4P1tKwssCAw+iQ==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">ve0M8gk/Q5w82xw2cxQ6euEwp4PnrTFcWshUtTZ8YMsh0w5bI6wevbfSsdWA9McUmDCOCjBnv3RgDLwH975PbOYchO01WQM+zeeFlH59+LJUj20GT/1eRxqG68bSxyFMnzfckqo54bxd1bht/5SyZewHXUp0NUKLz44BtjIb8t5RF52JC499eR17mV3J4825</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="WUyrvVj0PaE=" SSIS:IV="f6GcDiOOAEgy8nxUiXRWRw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">w8m/PQ9uX7ho3PMu5xrsfVVIHwhvocx3xLh8ST44fuVv+RReLVLOmZWnuNf8NmoDXIoxfMfaYQ/snJGfMnoZjof3NBGPBTs47xV6USX0f2JiQUPnBah6VTm/zhDyU2sdxq+LtDOytwXXhyhyfpJAB+MUldBPUFJY4rgcR1qH0lqa4NacQsCHmmVY+nqiUug6</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -449,10 +449,10 @@
                 <SSIS:Property SSIS:Name="Name">GlobalShopExtractMaster</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">51</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">53</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8BE95052-E761-44DF-A00F-4593A5DE22B8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B9B6D773-47BE-4160-A2EC-09AD17F5978C}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -470,6 +470,20 @@
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">7</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="LinkedServer">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{3BA88DD0-4C07-475D-812F-2FDEB660B513}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">LK-GS-01</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="SourceSystemName">

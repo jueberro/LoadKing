@@ -13,7 +13,7 @@ CREATE PROCEDURE dbo.getJob_Header
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 AS
 
 BEGIN
@@ -23,7 +23,7 @@ DECLARE
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 
 SELECT 
 @SourceTableName = '_V_Job_Header'
@@ -127,7 +127,7 @@ Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
 
   -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'select m.JOB JBMASTER_JOB, m.sfx JBMASTER_SFX, m.bomparent JBMASTER_BOMPARENT, h.* from job_header h left join APSV3_JBMASTER m on h.JOB = m.job and h.suffix = m.sfx and m.bomparent = 1 '   --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ')' 
 	  
@@ -138,7 +138,7 @@ Set @Sql = 'Select * INTO ##tmp_JOB_HEADER From ' +  @BaseSql
 EXEC(@Sql)
 
 --  -- create the select from source table Openquery using a wildcard
---Set @BaseSql = ' Openquery([LK_GS],'
+--Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 --Set @BaseSql = @BaseSql + '''' + 'Select * from  JOB_DETAIL '  --Rev4 n.
 --Set @BaseSql = @BaseSql + '''' + ' )' 
 	  

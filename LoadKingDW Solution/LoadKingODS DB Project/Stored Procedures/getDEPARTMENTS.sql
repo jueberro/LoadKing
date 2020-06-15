@@ -6,7 +6,7 @@ CREATE PROCEDURE dbo.getDEPARTMENTS
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
 AS
 
 BEGIN
@@ -15,7 +15,7 @@ BEGIN
 DECLARE @SourceTableName varchar(255)
 DECLARE @LoadLogKey int
 DECLARE @StartDate datetime
-DECLARE @EndDate datetime
+DECLARE @EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
 
 SET @SourceTableName = 'DEPARTMENTS'
 SET @LoadLogKey  = 0
@@ -90,7 +90,7 @@ BEGIN TRY
     Set  @TblNamePath = @ODSdatabase + @tblname -- Rev4 i.
 
       -- create the select from source table Openquery using a wildcard
-    Set @BaseSql = ' Openquery([LK_GS],'
+    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
     Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  + ' WHERE LAST_DATE_CHG BETWEEN  ' + '''''' +   cast(CAST(@StartDate as date)as varchar(19)) + '''''' + ' AND ' + '''''' + cast(CAST(@EndDate as date) as varchar(19)) + '''''' 
     Set @BaseSql = @BaseSql + '''' + ')' 
 	  

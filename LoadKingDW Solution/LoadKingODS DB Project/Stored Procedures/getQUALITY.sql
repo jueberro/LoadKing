@@ -6,7 +6,7 @@
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 AS
 
 BEGIN
@@ -16,7 +16,7 @@ DECLARE
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 
 SELECT 
 @SourceTableName = '_V_Quality'
@@ -125,7 +125,7 @@ Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
 
   -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  Quality '   --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ')' 
 
@@ -134,7 +134,7 @@ Set @Sql = 'Select * INTO ##tmp_Quality From ' +  @BaseSql
 EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  Quality_Addl '  --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
@@ -143,7 +143,7 @@ Set @Sql = 'Select * INTO ##tmp_Quality_Addl From ' +  @BaseSql
 EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  Job_Header '  --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ' )' 
 	  

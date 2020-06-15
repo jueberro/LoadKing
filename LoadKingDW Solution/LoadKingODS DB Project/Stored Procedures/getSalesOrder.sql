@@ -14,7 +14,7 @@ CREATE PROCEDURE [dbo].[getSalesOrder]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 AS
 
 BEGIN
@@ -23,7 +23,7 @@ BEGIN
 @SourceTableName varchar(255)  --There is already an object named '##tmp_Order_Header' in the database.
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
 
 SELECT 
 @SourceTableName = '_V_SalesOrder'
@@ -137,7 +137,7 @@ Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
 
   -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_HEADER Where RECORD_TYPE = ' + ''''+ '''' + 'A' + '''' + ''''   --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ')' 
 	  
@@ -146,7 +146,7 @@ Set @Sql = 'Select * INTO ##tmp_Order_Header From ' +  @BaseSql
 EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard (use record Type L to pick up GL account)
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_HEADER Where RECORD_TYPE = ' + ''''+ '''' + 'L' + '''' + ''''   --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ')' 
 	  
@@ -155,7 +155,7 @@ Set @Sql = 'Select * INTO ##tmp_Order_HeaderL From ' +  @BaseSql
 EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([LK_GS],'
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_LINES Where RECORD_TYPE = ' + +'''' + '''' + 'L' + '''' + '''' --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
