@@ -12,8 +12,9 @@
 CREATE PROCEDURE dbo.getPurchaseOrder
 @SourceTableName varchar(255)
 ,@LoadLogKey int
-,@StartDate datetime 
-,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
+,@StartDate datetime
+,@EndDate datetime
+,@LinkedServer varchar(100) = 'LK_GS'
 AS
 
 BEGIN
@@ -23,7 +24,7 @@ DECLARE
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
+,@EndDate datetime	
 ,@LinkedServer varchar(100)
 
 SELECT 
@@ -123,14 +124,14 @@ IF object_id('##tmp_PO_Lines', 'U') is not null -- if table exists
 		Drop table ##tmp_PO_Lines
 	END
 
-IF object_id('##tmp_PO_H_Header', 'U') is not null -- if table exists
+IF object_id('##tmp_POHIST_HEAD', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_PO_H_Header
+		Drop table ##tmp_POHIST_HEAD
 	END
 
-IF object_id('##tmp_PO_H_Lines', 'U') is not null -- if table exists
+IF object_id('##tmp_POHIST_LINES', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_PO_H_Lines
+		Drop table ##tmp_POHIST_LINES
 	END
 
 Declare @Basesql      as varchar(255)
@@ -156,19 +157,19 @@ EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard
 Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-Set @BaseSql = @BaseSql + '''' + 'Select * from  PO_H_HEADER Where FLAG_REC_TYPE = ' + ''''+ '''' + 'A' + '''' + ''''   --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + 'Select * from  POHIST_HEAD Where FLAG_REC_TYPE = ' + ''''+ '''' + 'A' + '''' + ''''   --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ')' 
 	  
-Set @Sql = 'Select * INTO ##tmp_PO_H_Header From ' +  @BaseSql 
+Set @Sql = 'Select * INTO ##tmp_POHIST_HEAD From ' +  @BaseSql 
 
 EXEC(@Sql)
 
   -- create the select from source table Openquery using a wildcard
 Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-Set @BaseSql = @BaseSql + '''' + 'Select * from  PO_H_LINES Where FLAG_REC_TYPE = ' + +'''' + '''' + 'L' + '''' + '''' --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + 'Select * from  POHIST_LINES Where FLAG_REC_TYPE = ' + +'''' + '''' + 'L' + '''' + '''' --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
-Set @Sql = 'Select * INTO ##tmp_PO_H_Lines From ' +  @BaseSql 
+Set @Sql = 'Select * INTO ##tmp_POHIST_LINES From ' +  @BaseSql 
 
 
 EXEC(@Sql)
@@ -283,7 +284,7 @@ UNION ALL -- Get Header and Lines data from History versions
 
 	Select
 	ohh.[PURCHASE_ORDER]								as POH_PURCHASE_ORDER ,
-	ohh.[RECORD_NO]										as POH_RECORD_NO ,
+	ohh.LINE											as POH_RECORD_NO ,
 	ohh.[TERMS]											as POH_TERMS , -- Pay Terms --  Dim candidate key
 	ohh.[VENDOR]										as POH_VENDOR , -- Dim candidate key
 	ohh.[GL_ACCOUNT]									as POH_GL_ACCOUNT , --  Dim candidate key
@@ -319,7 +320,7 @@ UNION ALL -- Get Header and Lines data from History versions
 --PO_LINES -----------------------------------------------------------------------
 
 	olh.[PURCHASE_ORDER]								as POL_PURCHASE_ORDER,
-	olh.[RECORD_NO]										as POL_RECORD_NO,
+	olh.LINE											as POL_RECORD_NO,
 	olh.[PO_TYPE]										as POL_PO_TYPE,
 	olh.[PART]											as POL_PART, -- Not a actual Part
 	olh.[LOCATION]										as POL_LOCATION,
@@ -351,7 +352,7 @@ UNION ALL -- Get Header and Lines data from History versions
 	olh.[EXCHANGE_RATE]									as POL_EXCHANGE_RATE, -- Measure
 	olh.[COST_6_DEC]									as POL_COST_6_DEC, -- Measure
 	olh.[EXCHANGE_EXT]									as POL_EXCHANGE_EXT, -- Measure
-	NULL												as POL_VEN_TAX_PER_PIECE, -- Measure
+	olh.VEN_TAX_PER_PIECE								as POL_VEN_TAX_PER_PIECE, -- Measure
 	olh.[QTY_ALT_ORDER]									as POL_QTY_ALT_ORDER, -- Measure
 	olh.[QTY_RECD_NOT_INSP]								as POL_QTY_RECD_NOT_INSP, -- Measure
 	olh.[COST]											as POL_COST, -- Measure
@@ -360,16 +361,16 @@ UNION ALL -- Get Header and Lines data from History versions
 	olh.[QTY_RECEIVED]									as POL_QTY_RECEIVED, -- Measure
 	olh.[QTY_REJECT]									as POL_QTY_REJECT, -- Measure
 	olh.[QTY_RECV_ALT]									as POL_RECV_ALT, -- Measure
-	NULL												as POL_PUR_TAX_PER_PIECE -- Measure
+	olh.PUR_TAX_PER_PIECE								as POL_PUR_TAX_PER_PIECE -- Measure
 
 	, @TblNbr as ETL_TblNbr
 	, @Batch as ETL_Batch
 	, @ETLCompleted as ETL_Completed
 
 	    FROM
-			##tmp_PO_H_Header ohh
+			##tmp_POHIST_HEAD ohh
 			LEFT JOIN 
-			##tmp_PO_H_Lines olh 
+			##tmp_POHIST_LINES olh 
 			ON ohh.PURCHASE_ORDER = olh.PURCHASE_ORDER
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
@@ -384,8 +385,8 @@ UNION ALL -- Get Header and Lines data from History versions
 	Drop table ##tmp_PO_Header -- select * from ##tmp_PO_Header -- 2,622
 	Drop table ##tmp_PO_Lines -- select * from ##tmp_PO_LINES -- 6,585
 
-	Drop table ##tmp_PO_H_Header -- select * from ##tmp_PO_H_Header
-	Drop table ##tmp_PO_H_Lines -- select * from ##tmp_PO_H_LINES
+	Drop table ##tmp_POHIST_HEAD -- select * from ##tmp_POHIST_HEAD
+	Drop table ##tmp_POHIST_LINES -- select * from ##tmp_POHIST_LINES
 
 
 -- ***** END MULTI SOURCE TABLE LOAD LOGIC ***********************************************
