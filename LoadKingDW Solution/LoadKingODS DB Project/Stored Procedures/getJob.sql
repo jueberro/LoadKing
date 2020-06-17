@@ -1,15 +1,11 @@
---USE [LK-GS-ODS]
---GO
-
-
-
 --==============================================
 --Procedure Name: [LK-GS-ODS].dbo.getJob
 --       Created: Pragmatic Works, Edwin Davis 5/5/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Job
+--             r1. JEU 6/16/2020 - Changed where to use datetime udf
 --==============================================
 
-CREATE PROCEDURE dbo.getJob
+CREATE PROCEDURE [dbo].[getJob]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -216,7 +212,7 @@ SELECT   SO.*
 
 		WHERE -- PULL ALL DELTAS
 			(
-				d.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
+				dbo.udf_cv_nvarchar8_to_date(d.DATE_LAST_CHG) between @StartDate and @EndDate
 			)
 
 	) AS SO
@@ -365,5 +361,6 @@ SELECT SourceRecordCount = @Reccnt
 END
 
 GO
+
 
 
