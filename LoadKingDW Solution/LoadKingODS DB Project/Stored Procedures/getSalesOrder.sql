@@ -8,6 +8,7 @@
 --       Created: Pragmatic Works, Edwin Davis 4/24/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_SalesOrder 
 -- r1 - Joe U - 5/19/2020 - Added logic to use Order_header record type L to get GL
+-- r2 - Joe U - 6/18/2020 - Modified date Last Changed logic to use datetime udf
 --==============================================
 
 CREATE PROCEDURE [dbo].[getSalesOrder]
@@ -251,11 +252,13 @@ SELECT   SO.* INTO ##tmp_SalesOrder
 
 
 		WHERE -- PULL ALL DELTAS
-			(
-				oh.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
+			
+				(
+				dbo.udf_cv_nvarchar8_to_date(oh.DATE_LAST_CHG) between @StartDate and @EndDate
 				OR
-				ol.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
-			)
+                dbo.udf_cv_nvarchar8_to_date(ol.DATE_LAST_CHG) between @StartDate and @EndDate 
+			    )
+			
 
 	) AS SO
 

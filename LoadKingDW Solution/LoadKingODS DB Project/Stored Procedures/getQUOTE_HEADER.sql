@@ -1,14 +1,27 @@
 
 
 
-CREATE PROCEDURE dbo.getQUOTE_HEADER
+CREATE PROCEDURE [dbo].[getQUOTE_HEADER]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK-GS-01'
 AS
 
 BEGIN
+
+/*
+DECLARE @SourceTableName varchar(255)
+DECLARE @LoadLogKey int
+DECLARE @StartDate datetime
+DECLARE @EndDate datetime, @LinkedServer varchar(100) = 'LK-GS-01'
+
+SET @SourceTableName = 'QUOTE_HEADER'
+SET @LoadLogKey  = 0
+SET @StartDate  = '1/1/1900'
+SET @EndDate  = getdate()
+*/
+
 	SET ANSI_NULLS ON
 	SET NOCOUNT ON
 
@@ -53,7 +66,8 @@ from
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
 ON tl.TABLE_NAME = ec.SourceTableName
 where 
-MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName
+MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and  tl.TABLE_NAME = 'QUOTE_HEADER' and ec.ExtractEnabledFlag = 1
+and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
        
 --OPEN TBLList            
@@ -74,14 +88,9 @@ BEGIN TRY
 
     Set  @TblNamePath = @ODSdatabase + @tblname -- Rev4 i.
 
-      -- create the select from source table Openquery using a wildcard
-    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  + ' WHERE DATE_LAST_CHG BETWEEN  ' + '''''' +   cast(CAST(@StartDate as date)as varchar(19)) + '''''' + ' AND ' + '''''' + cast(CAST(@EndDate as date) as varchar(19)) + '''''' 
-    Set @BaseSql = @BaseSql + '''' + ')' 
-	  
- -- Increment the last Batch ID
+    -- Increment the last Batch ID
 
-	Set @Batch = @LoadLogKey --@LastBatch +1
+	Set @Batch = @LoadLogKey -- @LastBatch +1
 
  -- Insert the  the Start Time of the ETL into the table record
   
@@ -105,22 +114,55 @@ BEGIN TRY
 	, [Status], [Recordcount], [CurRunFlag], [RunPriority], [MasterRunFlag], [LastBatch], [ServerName], [DBname], [WinUsername], [SqlUsername], [Procname] 
 	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName 
 
+-- ***** CREATE temp table to do Delta test *********************************************
+
+    IF object_id('##tmp_QuoteHeader', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp_QuoteHeader
+	END
+
+	   -- create the select from source table Openquery using a wildcard
+    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
+    Set @BaseSql = @BaseSql + '''' + ')' 
+	  
+    Set @Sql = 'Select * INTO ##tmp_QuoteHeader From ' +  @BaseSql 
+
+    EXEC(@Sql)
+	
     -- If The Table Exists, truncate table and Insert the records from Source, else create table from source
 
     IF object_id(@TblName, 'U') is not null -- if table exists
       
 	  BEGIN
-	       	 
+
 	  --INSERT New ODS Recs (Append with new Batch ID)
 
-      Set @Sql = 'INSERT INTO ' + @TblName + ' Select *,' + ''''
-	                             + CONVERT(varchar(255),@TblNbr) + '''' + ',' + '''' 
-								 + CONVERT(varchar(255),@Batch)  + '''' + ',' + '''' 
-								 + @TestDate + '''' + ' From ' +  @BaseSql 
+    INSERT INTO dbo.QUOTE_HEADER
 
-      EXEC(@Sql)     -- insert records from source table1
+    SELECT   SO.*
+	
+	From
 
-     --Log to TableList and Tablelistlog
+	(Select
+	 
+      d.*
+	  , @TblNbr as ETL_TablNbr
+	  , @Batch as ETL_Batch
+	  , getdate() as ETL_Completed -- select count(*)
+	
+	    FROM
+		##tmp_QuoteHeader d
+				WHERE -- PULL ALL DELTAS
+			(
+				dbo.udf_cv_nvarchar8_to_date(d.DATE_LAST_CHG) between @StartDate and @EndDate
+			)
+
+	) AS SO
+	 
+	Drop table ##tmp_Department -- select count(*) from ##tmp_JOB_DETAIL
+  
+   --Log to TableList and Tablelistlog
 
 	
 	   Set @SQL = 'Update [LK-GS-CNC].dbo._TablelistLOG '
@@ -260,5 +302,6 @@ SELECT SourceRecordCount = @Reccnt
 
 END
 GO
+
 
 

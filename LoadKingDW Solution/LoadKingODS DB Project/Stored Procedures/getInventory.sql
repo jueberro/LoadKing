@@ -4,10 +4,12 @@
 
 
 --==============================================
---Procedure Name: [LK-GS-ODS].dbo.getInventory
---       Created: Pragmatic Works, Edwin Davis 4/28/2020
---       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Inventory 
---            r1. JEU 6/11/2020.. fixed date conversions
+-- Procedure Name: [LK-GS-ODS].dbo.getInventory
+--        Created: Pragmatic Works, Edwin Davis 4/28/2020
+--        Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Inventory 
+--             r1. JEU 6/11/2020.. fixed date conversions
+--             r2. JEU 6/18/2020.. fixed date test in the where on the extract
+--            
 --==============================================
 
 CREATE PROCEDURE [dbo].[getInventory]
@@ -237,8 +239,11 @@ SELECT   IM.*
 				##tmp_Inventory_Mst3 i3
 				ON i2.Part = i3.Part and i2.Location = i3.Location
 
-		WHERE -- PULL ALL DELTAS	
-				im.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
+		WHERE -- PULL ALL DELTAS	--This date does not contain a testable date.  No dates past 2006??  Waiting on answer from LoadKing
+				
+				
+				dbo.udf_cv_nvarchar6__yymmdd_to_date(im.DATE_LAST_CHG) between @StartDate and @EndDate
+			
 
 	) AS IM
 	
@@ -386,4 +391,3 @@ SELECT SourceRecordCount = @Reccnt
 END
 
 GO
-

@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimWorkOrder"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="62"
-  DTS:VersionGUID="{AFF19643-203D-49B6-8E79-89E457B73B20}">
+  DTS:VersionBuild="63"
+  DTS:VersionGUID="{4314D4A3-6B37-4C2D-B6C8-03A5658E3431}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -33,7 +33,7 @@
       DTS:ObjectName="SourceDataSetName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">JOB_HEADER</DTS:Property>
+        DTS:Name="ParameterValue">_V_JOB_HEADER</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""

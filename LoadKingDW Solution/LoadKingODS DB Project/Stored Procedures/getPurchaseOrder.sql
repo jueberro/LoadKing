@@ -3,13 +3,7 @@
 
 
 
---==============================================
---Procedure Name: [LK-GS-ODS].dbo.getSalesOrder
---       Created: Pragmatic Works, Edwin Davis 6/12/2020
---       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_PurchaseOrder 
---==============================================
-
-CREATE PROCEDURE dbo.getPurchaseOrder
+CREATE PROCEDURE [dbo].[getPurchaseOrder]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -274,11 +268,14 @@ SELECT   PO.*
 			ON oh.PURCHASE_ORDER = ol.PURCHASE_ORDER
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
-			(
-				oh.CHANGE_DATE between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
+			
+			
+				(
+				dbo.udf_cv_nvarchar6_to_date(oh.CHANGE_DATE) between @StartDate and @EndDate
 				OR
-				ol.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
-			)
+				dbo.udf_cv_nvarchar8_to_date(ol.DATE_LAST_CHG) between @StartDate and @EndDate
+		   	    )
+		   
 
 UNION ALL -- Get Header and Lines data from History versions 
 
@@ -374,11 +371,12 @@ UNION ALL -- Get Header and Lines data from History versions
 			ON ohh.PURCHASE_ORDER = olh.PURCHASE_ORDER
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
-			(
-				ohh.CHANGE_DATE between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
+				(
+				dbo.udf_cv_nvarchar6_to_date(ohh.CHANGE_DATE) between @StartDate and @EndDate
 				OR
-				olh.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
-			)
+				dbo.udf_cv_nvarchar8_to_date(olh.DATE_LAST_CHG) between @StartDate and @EndDate
+		   	    )
+		   
 
 	) AS PO
 	

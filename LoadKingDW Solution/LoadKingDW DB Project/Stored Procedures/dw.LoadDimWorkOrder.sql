@@ -27,7 +27,7 @@ BEGIN
 	CREATE TABLE #DimWorkOrder_work (
 		[WorkOrderNumber_DW]				[nchar](15) NOT NULL,
 		[WorkOrderNumber]			        [nchar](6)  NULL,
-		[Suffix]                            [nchar](6)  NULL,
+		[Suffix]                            [nchar](3)  NULL,
 		[DateOpened]                        datetime    NULL,
 
 		/*Hashes used for identifying changes, not required for reporting*/
