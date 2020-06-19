@@ -1,5 +1,5 @@
 ﻿
-Create VIEW [dwstage].[V_LoadFactInventory] AS
+CREATE VIEW [dwstage].[V_LoadFactInventory] AS
 
 SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
           ,DimLastChgDate_Key          = ISNULL(LastChgDate.DimDate_Key,        -1)
@@ -41,18 +41,20 @@ SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
 		  ,Stage.UsageDecember          
 	    	--just a change to force a refresh
 		    /*Hash used for identifying changes, not required for reporting*/
-		  , RecordHash				  = HASHBYTES('SHA2_256',        													
-                                                                             cast(stage.[DateLastUsage]     as nvarchar(26))		
-																		 +   cast(stage.[DateLastAudit]     as nvarchar(26))	
-																		 +   cast(stage.[DateLastChg]       as nvarchar(26))	
+		  , RecordHash				  = HASHBYTES('SHA2_256',  
+																		stage.PartID
+                                                                         +   cast(stage.[DateLastUsage]     as nvarchar(20))		
+																		 +   cast(stage.[DateLastAudit]     as nvarchar(20))	
+																		 +   stage.[Location]
+																		 +   cast(stage.[DateLastChg]       as nvarchar(20))
 																		 +   stage.[WhoChgLast] 		
 																		 +   [BIN]     		
-																		 +   cast(stage.[DateCycle]         as nvarchar(26))
+																		 +   cast(stage.[DateCycle]         as nvarchar(20))
 																		 +   [CodeBOM]
 																		 +   [CodeDiscount]
 																		 +   [CodeTotal]
-																		 +   cast([PriorUsage]              as nvarchar(16))
-																		 +   cast([AltCostAmt]              as nvarchar(12))
+																		 +   cast([PriorUsage]              as nvarchar(7))
+																		 +   cast([AltCostAmt]              as nvarchar(26))
 																		 +   cast([MinMultiple]             as nvarchar(12))
 																		 +   cast([FloorStockingLevel]      as nvarchar(12))
 																		 +   cast([QtyOnHand]               as nvarchar(12))
@@ -72,7 +74,8 @@ SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
 																		 +   cast([UsageSeptember]          as nvarchar(7))
 																		 +   cast([UsageOctober]            as nvarchar(7))
 																		 +   cast([UsageNovember]           as nvarchar(7))
-																		 +   cast([UsageDecember]           as nvarchar(7)))
+																		 +   cast([UsageDecember]           as nvarchar(7))
+																		 )
 
 		
 FROM	dwstage._V_Inventory as Stage

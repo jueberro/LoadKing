@@ -1,4 +1,8 @@
-﻿CREATE TABLE [dw].[FactInventory](
+--USE [LK-GS-EDW]
+--GO
+
+CREATE TABLE dw.FactInventory
+(
 	[DimInventory_Key] [int] NOT NULL,
 	[DimLastChgDate_Key] [int] NULL,
 	[DimLastUsageDate_Key] [int] NULL,
@@ -15,8 +19,8 @@
 	[CodeBOM] [nchar](1) NULL,
 	[CodeDiscount] [nchar](1) NULL,
 	[CodeTotal] [nchar](1) NULL,
-	[PriorUsage] [decimal](16, 6) NULL,
-	[AltCostAmt] [decimal](12, 4) NULL,
+	[PriorUsage] [decimal](7, 0) NULL,
+	[AltCostAmt] [decimal](16, 6) NULL,
 	[MinMultiple] [decimal](12, 4) NULL,
 	[FloorStockingLevel] [decimal](12, 4) NULL,
 	[QtyOnHand] [decimal](12, 4) NULL,
