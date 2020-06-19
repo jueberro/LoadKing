@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadFactInvoice"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="55"
-  DTS:VersionGUID="{FB8453E0-1225-4DFE-BAC1-83E9CBC9ED4E}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{FB95AB1A-3EF1-41EA-8EE1-631C08005B6E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -147,6 +147,7 @@
           DTS:CreationName="Microsoft.Pipeline"
           DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{4E537AC3-C46D-4F9F-908F-7CEF6C1BFE56}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -2723,6 +2724,29 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{63abc07e-6519-4429-aafc-3f40d3ed2573}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
+              SQLTask:SqlStatementSource="INSERT INTO [LK-GS-EDW].dwstage._v_invoice&#xA;SELECT * FROM [LK-GS-ODS].dbo._v_invoice where ETL_BATCH = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::SourceLoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWFactInvoice"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -2892,10 +2916,18 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
-          DTS:DTSID="{AD972C73-481D-4C75-859E-892872DC0856}"
+          DTS:DTSID="{D2016573-CFAB-49E9-867A-E7B69CC8FC5D}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{3BE8B413-F8A2-4E2A-8B11-FB8CB429FF9E}"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
           DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWFactInvoice" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
@@ -3025,7 +3057,7 @@
         <NodeLayout
           Size="351,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
-          TopLeft="5.5,207.833333333334" />
+          TopLeft="7.5,169.833333333334" />
         <NodeLayout
           Size="210,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWFactInvoice"
@@ -3041,21 +3073,21 @@
         <NodeLayout
           Size="238,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
-          TopLeft="58.5,108.166666666667" />
+          TopLeft="58.5,90.166666666667" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
           TopLeft="174.416666666667,48.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.666666666667"
+              EndConnector="0,41.6666666666669"
               Start="0,0"
-              End="0,52.166666666667">
+              End="0,34.1666666666669">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.166666666667" />
+                    End="0,34.1666666666669" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3088,18 +3120,56 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
-          TopLeft="179.25,150.166666666667">
+          TopLeft="180.25,132.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,57.666666666667"
+              EndConnector="0,37.666666666667"
               Start="0,0"
-              End="0,50.166666666667">
+              End="0,30.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.166666666667" />
+                    End="0,30.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          TopLeft="160,246" />
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
+          TopLeft="183,211.833333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62,34.166666666666"
+              Start="0,0"
+              End="62,26.666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.083333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.083333333333"
+                    Point2="0,17.083333333333"
+                    Point3="4,17.083333333333" />
+                  <mssgle:LineSegment
+                    End="58,17.083333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58,17.083333333333"
+                    Point2="62,17.083333333333"
+                    Point3="62,21.083333333333" />
+                  <mssgle:LineSegment
+                    End="62,26.666666666666" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3109,19 +3179,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
-          TopLeft="179.333333333333,249.833333333334">
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 4]"
+          TopLeft="245,288">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,63.666666666666"
+              EndConnector="-72.8333333333333,25.5"
               Start="0,0"
-              End="0,56.166666666666">
+              End="-72.8333333333333,18">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56.166666666666" />
+                    End="0,8.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.75"
+                    Point2="0,12.75"
+                    Point3="-4,12.75" />
+                  <mssgle:LineSegment
+                    End="-68.8333333333333,12.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-68.8333333333333,12.75"
+                    Point2="-72.8333333333333,12.75"
+                    Point3="-72.8333333333333,16.75" />
+                  <mssgle:LineSegment
+                    End="-72.8333333333333,18" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3229,14 +3311,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
       <Property>
@@ -3246,6 +3320,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
