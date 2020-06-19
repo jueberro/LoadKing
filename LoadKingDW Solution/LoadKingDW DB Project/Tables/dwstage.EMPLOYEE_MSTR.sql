@@ -118,15 +118,15 @@
 	[EMPLR_HC_PT_8] [numeric](8, 2) NULL,
 	[EMPLR_HC_PT_9] [numeric](8, 2) NULL,
 	[EMPLR_HC_PT_10] [numeric](8, 2) NULL,
-	[FILLER485] [char](485) NULL,
-	[SOC_SEC_ENC] [char](20) NULL,
-	[SOC_SEC_ENC_FLG] [char](1) NULL,
+	[FILLER506] [char](506) NULL,
 	[EMAIL_ADDR] [char](100) NULL,
 	[MAX_VAC_HOUR] [numeric](4, 0) NULL,
 	[STD_EARN_8] [numeric](8, 2) NULL,
 	[STD_EARN_9] [numeric](8, 2) NULL,
 	[STD_EARN_10] [numeric](8, 2) NULL,
-	[FILLER38] [char](38) NULL,
+	[DD_BANK_ROUTING_NO] [char](17) NULL,
+	[DD_BANK_ACCOUNT_NO] [char](15) NULL,
+	[FILLER6] [char](6) NULL,
 	[ALPHA_SORT] [char](12) NULL,
 	[VACATION_LEFT] [numeric](5, 2) NULL,
 	[SICK_LEFT] [numeric](5, 2) NULL,
@@ -172,13 +172,11 @@
 	[EXCL_BIO] [bit] NULL,
 	[CONTRACT_EMP] [char](1) NULL,
 	[EMAIL_DIR_DEP] [char](1) NULL,
-	[SICK_ANNUAL_CRRYOVR] [numeric](5, 2) NULL,
-	[FILLER] [char](72) NULL,
-	[ETL_TblNbr] [varchar](3) NOT NULL,
-	[ETL_Batch] [varchar](1) NOT NULL,
-	[ETL_Completed] [varchar](19) NOT NULL
+	[FILLER] [char](77) NULL,
+	[ETL_TblNbr] [int] NOT NULL,
+	[ETL_Batch] [int] NOT NULL,
+	[ETL_Completed] [datetime] NOT NULL
 ) ON [PRIMARY]
-
 GO
 
 

@@ -271,7 +271,7 @@ SELECT   PO.*
 			
 			
 				(
-				dbo.udf_cv_nvarchar8_to_date(oh.CHANGE_DATE) between @StartDate and @EndDate
+				dbo.udf_cv_nvarchar6_to_date(oh.CHANGE_DATE) between @StartDate and @EndDate
 				OR
 				dbo.udf_cv_nvarchar8_to_date(ol.DATE_LAST_CHG) between @StartDate and @EndDate
 		   	    )
@@ -371,11 +371,12 @@ UNION ALL -- Get Header and Lines data from History versions
 			ON ohh.PURCHASE_ORDER = olh.PURCHASE_ORDER
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
-			(
-				dbo.udf_cv_nvarchar8_to_date(ohh.CHANGE_DATE) between @StartDate and @EndDate
+				(
+				dbo.udf_cv_nvarchar6_to_date(ohh.CHANGE_DATE) between @StartDate and @EndDate
 				OR
 				dbo.udf_cv_nvarchar8_to_date(olh.DATE_LAST_CHG) between @StartDate and @EndDate
 		   	    )
+		   
 
 	) AS PO
 	
