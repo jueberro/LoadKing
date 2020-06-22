@@ -1,59 +1,47 @@
-﻿CREATE TABLE [ods_globalshop].[LoadLog]
+﻿USE [LK-GS-CNC]
+GO
+
+/****** Object:  Table [ods_globalshop].[LoadLog]    Script Date: 6/22/2020 5:43:32 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [ods_globalshop].[LoadLog](
+	[LoadLogKey] [int] IDENTITY(1,1) NOT NULL,
+	[ProcessPlatformName] [nvarchar](100) NULL,
+	[ProcessName] [nvarchar](100) NULL,
+	[ProcessExecutionId] [uniqueidentifier] NULL,
+	[SourceSystemName] [nvarchar](100) NOT NULL,
+	[SourceDataSetName] [nvarchar](100) NOT NULL,
+	[ExecutionStatusCode] [varchar](25) NOT NULL,
+	[ExecutionStatusMessage] [nvarchar](1500) NOT NULL,
+	[ExtractLowDate] [datetime] NULL,
+	[StartDate] [datetime] NOT NULL,
+	[EndDate] [datetime] NULL,
+	[SourceRecordCount] [int] NULL,
+	[RecordCreateDate] [datetime2](7) NOT NULL,
+	[RecordLastUpdatedDate] [datetime2](7) NOT NULL,
+	[RecordCreatedByName] [nvarchar](100) NOT NULL,
+	[RecordLastUpdatedByName] [nvarchar](100) NOT NULL,
+	[SysStartTime] [datetime2](7) NOT NULL,
+	[SysEndTime] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_ods_globalshop_LoadLog] PRIMARY KEY CLUSTERED 
 (
-    [LoadLogKey]				INT IDENTITY (1, 1) NOT NULL,
-	[ProcessPlatformName]		NVARCHAR(100)			NULL,	-- e.g. SSIS, Data Factory, Logic App, etc
-	[ProcessName]				NVARCHAR(100)			NULL,	-- e.g. Package/Pipeline name, Procore Extract App name, etc.
-	[ProcessExecutionId]		UNIQUEIDENTIFIER		NULL,	-- i.e. a GUID tied to a unique instance of execution (SSIS, ADF, etc.)
-    [SourceSystemName]			NVARCHAR (100)		NOT NULL,	-- e.g. Global Shop, AutoQuotes, etc.
-    [SourceDataSetName]			NVARCHAR (100)		NOT NULL,	-- i.e. Table name for a relational source
-    [ExecutionStatusCode]		VARCHAR (25)		NOT	NULL,	-- e.g. INPG, SUCC, FAIL
-    [ExecutionStatusMessage]	NVARCHAR (1500)		NOT	NULL,
-	[ExtractLowDate]			DATETIME				NULL,
-    [StartDate]					DATETIME			NOT NULL,
-    [EndDate]					DATETIME				NULL,
-
-	[SourceRecordCount]			INT						NULL,
-
-    [RecordCreateDate]			DATETIME2 (7)		NOT NULL,
-    [RecordLastUpdatedDate]		DATETIME2 (7)		NOT NULL,
-    [RecordCreatedByName]		NVARCHAR (100)		NOT NULL,
-    [RecordLastUpdatedByName]	NVARCHAR (100)		NOT NULL,
-
-	/*Temporal Table Requirements*/
-	[SysStartTime]	DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL , 
-	[SysEndTime]	DATETIME2 GENERATED ALWAYS AS ROW END	HIDDEN NOT NULL , 
-	PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)
-)
-
-
-WITH	(
-			SYSTEM_VERSIONING = ON (HISTORY_TABLE = ods_globalshop.LoadLog_history) --New or existing table
-		)
-
+	[LoadLogKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
-ALTER TABLE ods_globalshop.LoadLog
-ADD CONSTRAINT [PK_ods_globalshop_LoadLog] PRIMARY KEY CLUSTERED ([LoadLogKey] ASC)
-
+ALTER TABLE [ods_globalshop].[LoadLog] ADD  CONSTRAINT [DF_ods_globalshop_LoadLog_RecordCreateDate]  DEFAULT (getutcdate()) FOR [RecordCreateDate]
 GO
 
-ALTER TABLE ods_globalshop.LoadLog
-ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordCreateDate] DEFAULT (GETUTCDATE()) FOR [RecordCreateDate]
-
+ALTER TABLE [ods_globalshop].[LoadLog] ADD  CONSTRAINT [DF_ods_globalshop_LoadLog_RecordLastUpdatedDate]  DEFAULT (getutcdate()) FOR [RecordLastUpdatedDate]
 GO
 
-ALTER TABLE ods_globalshop.LoadLog
-ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordLastUpdatedDate] DEFAULT (GETUTCDATE()) FOR [RecordLastUpdatedDate]
-
+ALTER TABLE [ods_globalshop].[LoadLog] ADD  CONSTRAINT [DF_ods_globalshop_LoadLog_RecordCreatedByName]  DEFAULT (suser_sname()) FOR [RecordCreatedByName]
 GO
 
-ALTER TABLE ods_globalshop.LoadLog
-ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordCreatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordCreatedByName]
-
+ALTER TABLE [ods_globalshop].[LoadLog] ADD  CONSTRAINT [DF_ods_globalshop_LoadLog_RecordLastUpdatedByName]  DEFAULT (suser_sname()) FOR [RecordLastUpdatedByName]
 GO
-
-ALTER TABLE ods_globalshop.LoadLog
-ADD CONSTRAINT [DF_ods_globalshop_LoadLog_RecordLastUpdatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordLastUpdatedByName]
-
-GO
-
