@@ -1,7 +1,7 @@
---USE [LK-GS-EDW]
---GO
 
-CREATE VIEW dwstage.V_LoadFactJobOperations
+
+
+CREATE VIEW [dwstage].[V_LoadFactJobOperations]
 AS
 SELECT 
 ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
@@ -145,7 +145,9 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 -- Insert into dwstage._v_job select * from [lk-gs-ods].dbo._v_job
 -- SELECT COUNT(*)
 FROM 
-	dwstage._V_JobOperations Stage
+	(Select * from dwstage._V_JOBOperations  
+	 UNION ALL
+	 Select * from dwstage._V_JOBOperations_HIST  )  as stage
 
 -- insert into dwstage._V_JobOperations select * from [lk-gs-ods].dbo._V_JobOperations where etl_batch <> 0
 
@@ -196,5 +198,3 @@ AND dwo.DWIsCurrent = 1
 
 		
 GO
-
-

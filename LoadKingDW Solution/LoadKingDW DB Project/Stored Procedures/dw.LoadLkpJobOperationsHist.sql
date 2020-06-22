@@ -32,14 +32,7 @@ IF object_id('##LkpJobOperationsHist_TARGET', 'U') is not null -- if table exist
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE ##LkpJobOperationsHist_SOURCE (
 
-DimSalesOrder_Key int NOT NULL,
-DimWorkOrderType_Key int NOT NULL,
-DimInventory_Key int NOT NULL,
-DimCustomer_Key int NOT NULL,
-DimSalesPerson_Key int NOT NULL,
-DimProductLine_Key int NOT NULL,
-DimDate_Key int NOT NULL,
-DimWorkOrder_Key int NOT NULL,
+
 -- DEGENERATE HEADER ATTRIBUTES ----------------------------------------------
 [HEADER_JOB] [char](6) NULL,
 [HEADER_SUFFIX] [char](3) NULL,
@@ -210,7 +203,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	, TGT.[UNIT_D6] = SRC.[UNIT_D6]
 	, TGT.[LEAD_TIME] = SRC.[LEAD_TIME]
 	, TGT.Type1RecordHash = SRC.Type1RecordHash
-	FROM	dw.LkpJobOperations_Hist		AS TGT
+	FROM	dw.LkpJobOperationsHist		AS TGT
 	 JOIN   ##LkpJobOperationsHist_SOURCE	AS SRC
 			ON TGT.JOB = SRC.JOB
 			and TGT.SUFFIX = SRC.SUFFIX

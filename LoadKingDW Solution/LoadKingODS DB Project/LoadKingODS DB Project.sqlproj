@@ -133,5 +133,6 @@
     <Build Include="Tables\dbo.SALESPERSONS.sql" />
     <Build Include="Tables\dbo.VENDOR_MASTER.sql" />
     <Build Include="Tables\dbo.WORKCENTERS.sql" />
+    <Build Include="Stored Procedures\dbo.getJobOperatoions_Hist.sql" />
   </ItemGroup>
 </Project>

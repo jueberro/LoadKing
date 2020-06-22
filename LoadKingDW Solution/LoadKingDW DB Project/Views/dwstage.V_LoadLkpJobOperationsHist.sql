@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dwstage].[V_LkpJobOperatoinsHist]
+﻿CREATE VIEW [dwstage].[V_LoadLkpJobOperationsHist]
 AS
 SELECT 
 

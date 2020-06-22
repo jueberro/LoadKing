@@ -184,6 +184,10 @@
     <Build Include="Views\dwstage.V_LoadFactPurchaseOrder.sql" />
     <Build Include="Tables\dw.FactPurchaseOrder.sql" />
     <Build Include="Stored Procedures\dw.LoadFactPurchaseOrder.sql" />
+    <Build Include="Tables\dwstage._V_JobOperations_Hist.sql" />
+    <Build Include="Views\dwstage.V_LoadLkpJobOperationsHist.sql" />
+    <Build Include="Stored Procedures\dw.LoadLkpJobOperationsHist.sql" />
+    <Build Include="Tables\dw.LkpJobOperationsHist.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

@@ -1,4 +1,4 @@
-﻿CREATE TABLE dw.LkpJobOperations_Hist
+﻿CREATE TABLE dw.LkpJobOperationsHist
 (
 --------------------------------------------------------
 	[HEADER_JOB] [char](6) NULL,
