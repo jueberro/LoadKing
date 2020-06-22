@@ -91,10 +91,10 @@ DimWorkOrder_Key int NOT NULL,
 	--[SHIPD_FLG] [char](1) NULL,--OK
 	--[FILLER4] [char](6) NULL,
 --HEADER DATES --------------------------------------------
-	[HEADER_DATE_OPENED] [char](6) NULL,
-	[HEADER_DATE_DUE] [char](6) NULL,
-	[HEADER_DATE_CLOSED] [char](6) NULL,
-	[HEADER_DATE_START] [char](6) NULL,
+	[HEADER_DATE_OPENED] datetime NULL,
+	[HEADER_DATE_DUE] datetime NULL,
+	[HEADER_DATE_CLOSED] datetime NULL,
+	[HEADER_DATE_START] datetime NULL,
 	--[DATE_SCH_CMPL_INF] [char](6) NULL,
 	--[DATE_SCH_CMPL_FIN] [char](6) NULL,
 	--[DATE_LAST_SCH_INF] [char](6) NULL,
@@ -115,10 +115,10 @@ DimWorkOrder_Key int NOT NULL,
 	--[SCHEDULED_DUE_DATE] [char](6) NULL,
 
 -- DETAIL DATES ----------------------------------------------------
-	[DATE_SEQUENCE] [char](6) NULL,--ok
-	[CHARGE_DATE] [char](8) NULL,--ok
-	[DATE_OUT] [char](6) NULL,--ok
-	[DATE_LAST_CHG] [char](8) NULL,--ok
+	[DATE_SEQUENCE] datetime NULL,--ok
+	[CHARGE_DATE] datetime NULL,--ok
+	[DATE_OUT] datetime NULL,--ok
+	[DATE_LAST_CHG] datetime NULL,--ok
 
 --HEADER MEASURES --------------------------------------------------
 	--[QTY_ORDER] [numeric](12, 4) NULL,

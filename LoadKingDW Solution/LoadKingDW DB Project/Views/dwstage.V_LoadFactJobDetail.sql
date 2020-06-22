@@ -43,14 +43,14 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,[SHIFT_GROUP]
 
 ----------------------------------
-,[HEADER_DATE_OPENED]
-,[HEADER_DATE_DUE]
-,[HEADER_DATE_CLOSED]
-,[HEADER_DATE_START]
-,[DATE_SEQUENCE]
-,[CHARGE_DATE]
-,[DATE_OUT]
-,[DATE_LAST_CHG] 
+,dwstage.udf_cv_nvarchar6_to_date(stage.HEADER_DATE_OPENED)		[HEADER_DATE_OPENED]
+,dwstage.udf_cv_nvarchar6_to_date(stage.HEADER_DATE_DUE)		[HEADER_DATE_DUE]
+,dwstage.udf_cv_nvarchar6_to_date(stage.HEADER_DATE_CLOSED)		[HEADER_DATE_CLOSED]
+,dwstage.udf_cv_nvarchar6_to_date(stage.HEADER_DATE_START)		[HEADER_DATE_START]
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.DATE_SEQUENCE)	[DATE_SEQUENCE]
+,dwstage.udf_cv_nvarchar8_to_date(stage.CHARGE_DATE)			[CHARGE_DATE] 
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(stage.DATE_OUT)		[DATE_OUT]
+,dwstage.udf_cv_nvarchar8_to_date(stage.DATE_LAST_CHG)			[DATE_LAST_CHG] 
 
 --------------------------------
 ,[RATE_EMPLOYEE]
@@ -160,7 +160,7 @@ ON	dwstage.udf_cv_nvarchar6_to_date(Stage.HEADER_DATE_OPENED)  = do.[Date]
 
 LEFT OUTER JOIN dw.DimEmployee AS e
 ON	Stage.EMPLOYEE = e.EmployeeName	
-AND  sp.DWIsCurrent = 1
+AND  e.DWIsCurrent = 1
 
 LEFT JOIN dw.DimDepartment dwc
 ON stage.DEPT_WORKCENTER = dwc.DepartmentID
