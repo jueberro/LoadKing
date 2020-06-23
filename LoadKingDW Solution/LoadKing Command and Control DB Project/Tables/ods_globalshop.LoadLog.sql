@@ -1,14 +1,4 @@
-﻿USE [LK-GS-CNC]
-GO
-
-/****** Object:  Table [ods_globalshop].[LoadLog]    Script Date: 6/22/2020 5:43:32 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [ods_globalshop].[LoadLog](
+﻿CREATE TABLE [ods_globalshop].[LoadLog](
 	[LoadLogKey] [int] IDENTITY(1,1) NOT NULL,
 	[ProcessPlatformName] [nvarchar](100) NULL,
 	[ProcessName] [nvarchar](100) NULL,
@@ -25,8 +15,8 @@ CREATE TABLE [ods_globalshop].[LoadLog](
 	[RecordLastUpdatedDate] [datetime2](7) NOT NULL,
 	[RecordCreatedByName] [nvarchar](100) NOT NULL,
 	[RecordLastUpdatedByName] [nvarchar](100) NOT NULL,
-	[SysStartTime] [datetime2](7) NOT NULL,
-	[SysEndTime] [datetime2](7) NOT NULL,
+	[SysStartTime] [datetime2](7) NULL,
+	[SysEndTime] [datetime2](7) NULL,
  CONSTRAINT [PK_ods_globalshop_LoadLog] PRIMARY KEY CLUSTERED 
 (
 	[LoadLogKey] ASC

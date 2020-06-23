@@ -8,8 +8,8 @@
 	[SSISPackageName] [nvarchar](100) NULL,
 	[StoredProcedureName] [nvarchar](100) NULL,
 	[LoadDWTableFlag] [bit] NULL,
-	[SysStartTime] [datetime2](7) NOT NULL,
-	[SysEndTime] [datetime2](7) NOT NULL,
+	[SysStartTime] [datetime2](7)  NULL,
+	[SysEndTime] [datetime2](7)  NULL,
 	[Sort] [int] NULL,
  CONSTRAINT [PK_dwetl_DWTableSource] PRIMARY KEY CLUSTERED 
 (

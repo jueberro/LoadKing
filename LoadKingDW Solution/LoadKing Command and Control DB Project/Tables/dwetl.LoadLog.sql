@@ -9,8 +9,8 @@
 	[SourceLoadLogKey] [int] NOT NULL,
 	[ExecutionStatusCode] [varchar](25) NOT NULL,
 	[ExecutionStatusMessage] [nvarchar](1500) NOT NULL,
-	[StartDate] [datetime2](7) NOT NULL,
-	[EndDate] [datetime2](7) NULL,
+	[StartDate] [datetime](7) NOT NULL,
+	[EndDate] [datetime](7) NULL,
 	[SourceRecordsRead] [int] NULL,
 	[RowsInsertedCount] [int] NULL,
 	[RowsUpdatedCount] [int] NULL,
@@ -18,8 +18,8 @@
 	[RecordLastUpdatedDate] [datetime2](7) NOT NULL,
 	[RecordCreatedByName] [nvarchar](100) NOT NULL,
 	[RecordLastUpdatedByName] [nvarchar](100) NOT NULL,
-	[SysStartTime] [datetime2](7) NOT NULL,
-	[SysEndTime] [datetime2](7) NOT NULL,
+	[SysStartTime] [datetime2](7) NULL,
+	[SysEndTime] [datetime2](7) NULL,
  CONSTRAINT [PK_dwetl_LoadLog] PRIMARY KEY CLUSTERED 
 (
 	[LoadLogKey] ASC
