@@ -134,5 +134,6 @@
     <Build Include="Tables\dbo.VENDOR_MASTER.sql" />
     <Build Include="Tables\dbo.WORKCENTERS.sql" />
     <Build Include="Stored Procedures\dbo.getJobOperatoions_Hist.sql" />
+    <Build Include="Stored Procedures\dbo.sp_PurgeODSBatches.sql" />
   </ItemGroup>
 </Project>
