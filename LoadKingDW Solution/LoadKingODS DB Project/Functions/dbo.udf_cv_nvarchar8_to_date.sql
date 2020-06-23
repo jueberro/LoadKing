@@ -42,12 +42,12 @@ BEGIN
 		 + substring(@datestring,7,2)
   	
 	  Else   
-		   '01-01-1899'  -- not at least a 6 char string so stuff it with an error date - I will use '01-01-1900' to tell me it had
+		   '12-31-1999'  -- not at least a 6 char string so stuff it with an error date - I will use '01-01-1900' to tell me it had
 		                 -- a tring too short for our requirment in this function of a 6 char mmddyy string to test for validity 
       End
       
           --  Verify that we have a valid date in thius 6 char string
-      Set @datepassedback = convert(date,case when isdate(@datepassedtest) = 1 then @datepassedtest else '01-01-1899' end)
+      Set @datepassedback = convert(date,case when isdate(@datepassedtest) = 1 then @datepassedtest else '12-31-1999' end)
 
       RETURN(@DatePassedBack)
 

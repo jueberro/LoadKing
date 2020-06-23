@@ -39,12 +39,12 @@ BEGIN
 					 )
 		  ) 	-- This would be first yr digit and If the year starts with a 5 it occurred in the 1900's else 2000's
 	  Else   
-		   '01-01-1899'  -- not at least a 6 char string so stuff it with an error date - I will use '01-01-1899' to tell me it had
+		   '12-31-1999'  -- not at least a 6 char string so stuff it with an error date - I will use '01-01-1899' to tell me it had
 		                 -- a tring too short for our requirment in this function of a 6 char mmddyy string to test for validity 
       End
       
           --  Verify that we have a valid date in thius 6 char string
-          set @datepassedback = convert(date,case when isdate(@datepassedtest) = 1 then @datepassedtest else '01-01-1899' end)
+          set @datepassedback = convert(date,case when isdate(@datepassedtest) = 1 then @datepassedtest else '12-31-1999' end)
 
       RETURN(@DatePassedBack)
 
