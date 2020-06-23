@@ -76,16 +76,16 @@ HEADER_SALESPERSON char(3) NULL,
 [SHIFT_GROUP] [char](8) NULL,
 
 --HEADER DATES --------------------------------------------
-[HEADER_DATE_OPENED] [char](6) NULL,
-[HEADER_DATE_DUE] [char](6) NULL,
-[HEADER_DATE_CLOSED] [char](6) NULL,
-[HEADER_DATE_START] [char](6) NULL,
+[HEADER_DATE_OPENED] datetime NULL,
+[HEADER_DATE_DUE] datetime NULL,
+[HEADER_DATE_CLOSED] datetime NULL,
+[HEADER_DATE_START] datetime NULL,
 
 -- DETAIL DATES ----------------------------------------------------
-[DATE_SEQUENCE] [char](6) NULL,
-[CHARGE_DATE] [char](8) NULL,
-[DATE_OUT] [char](6) NULL,
-[DATE_LAST_CHG] [char](8) NULL,
+[DATE_SEQUENCE] datetime NULL,
+[CHARGE_DATE] datetime NULL,
+[DATE_OUT] datetime NULL,
+[DATE_LAST_CHG] datetime NULL,
 
 -- DETAIL MEASURES ------------------------------------------------------
 [RATE_EMPLOYEE] [numeric](10, 4) NULL,

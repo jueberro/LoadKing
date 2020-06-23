@@ -1,31 +1,27 @@
-﻿CREATE TABLE [dwetl].[DWTableSource]
+﻿CREATE TABLE [dwetl].[DWTableSource](
+	[DWTableName] [nvarchar](100) NOT NULL,
+	[DWTableType] [nvarchar](100) NOT NULL,
+	[SourceSystemName] [nvarchar](100) NOT NULL,
+	[SourceDataSetName] [nvarchar](100) NOT NULL,
+	[ODSTableName] [nvarchar](100) NULL,
+	[StageTableName] [nvarchar](100) NULL,
+	[SSISPackageName] [nvarchar](100) NULL,
+	[StoredProcedureName] [nvarchar](100) NULL,
+	[LoadDWTableFlag] [bit] NULL,
+	[SysStartTime] [datetime2](7) NOT NULL,
+	[SysEndTime] [datetime2](7) NOT NULL,
+	[Sort] [int] NULL,
+ CONSTRAINT [PK_dwetl_DWTableSource] PRIMARY KEY CLUSTERED 
 (
-	[DWTableName]				NVARCHAR(100)		NOT NULL,
-	[DWTableType]				NVARCHAR(100)		NOT NULL,
-	[SourceSystemName]			NVARCHAR(100)		NOT NULL,
-	[SourceDataSetName]			NVARCHAR(100)		NOT NULL,
-	[ODSTableName]				NVARCHAR(100)			NULL,
-	[StageTableName]			NVARCHAR(100)			NULL,
-	[SSISPackageName]			NVARCHAR(100)			NULL,
-	[StoredProcedureName]		NVARCHAR(100)			NULL,
-	[LoadDWTableFlag]			BIT						NULL, -- A switch to enable/diable a table load
-
-	/*Temporal Table Requirements*/
-	[SysStartTime]	DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL , 
-	[SysEndTime]	DATETIME2 GENERATED ALWAYS AS ROW END	HIDDEN NOT NULL , 
-	PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)
-)
-WITH	(
-			SYSTEM_VERSIONING = ON (HISTORY_TABLE = dwetl.DWTableSource_history) --New or existing table
-		)
-
-
+	[DWTableName] ASC,
+	[SourceSystemName] ASC,
+	[SourceDataSetName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
-ALTER TABLE dwetl.DWTableSource
-ADD CONSTRAINT [PK_dwetl_DWTableSource] PRIMARY KEY ([DWTableName], [SourceSystemName], [SourceDataSetName])
-
+ALTER TABLE [dwetl].[DWTableSource] ADD  CONSTRAINT [DF_dwetl_DWTableSource_LoadDWTableFlag]  DEFAULT ((1)) FOR [LoadDWTableFlag]
 GO
 
-ALTER TABLE dwetl.DWTableSource
-ADD CONSTRAINT [DF_dwetl_DWTableSource_LoadDWTableFlag] DEFAULT (1) FOR LoadDWTableFlag
+ALTER TABLE [dwetl].[DWTableSource] ADD  DEFAULT ((999)) FOR [Sort]
+GO

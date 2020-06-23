@@ -1,4 +1,3 @@
-
 CREATE TABLE [dbo].[_TablelistLog](
 	[TableNbr] [int] NOT NULL,
 	[TABLE_CAT] [nvarchar](255) NULL,
@@ -22,6 +21,3 @@ CREATE TABLE [dbo].[_TablelistLog](
 	[SqlUsername] [nvarchar](255) NULL,
 	[Procname] [nvarchar](255) NULL
 ) ON [PRIMARY]
-GO
-
-

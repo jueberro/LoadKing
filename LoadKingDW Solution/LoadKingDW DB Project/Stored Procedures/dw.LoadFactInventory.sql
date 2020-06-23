@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadFactInventory] @LoadLogKey INT  AS
+﻿CREATE PROCEDURE dw.sp_LoadFactInventory @LoadLogKey INT  
+AS
 
 BEGIN
 
@@ -57,8 +58,8 @@ IF object_id('##FactInventory_TARGET', 'U') is not null -- if table exists
 	CodeBOM					nchar(1)        	  	NULL,
 	CodeDiscount			nchar(1)          		NULL,
 	CodeTotal				nchar(1)         		NULL,
-	PriorUsage				decimal(16, 6)	  		NULL,
-	AltCostAmt				decimal(12, 4)      	NULL,
+	PriorUsage				decimal(7, 0)	  		NULL,
+	AltCostAmt				decimal(16, 6)      	NULL,
 	MinMultiple				decimal(12, 4)          NULL,
 	FloorStockingLevel		decimal(12, 4)  	  	NULL,
 	QtyOnHand				decimal(12, 4)      	NULL,

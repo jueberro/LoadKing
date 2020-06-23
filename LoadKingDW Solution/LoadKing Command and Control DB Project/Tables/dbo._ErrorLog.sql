@@ -1,5 +1,3 @@
-
-
 CREATE TABLE [dbo].[_Errorlog](
 	[Batch] [int] NULL,
 	[Tbl1Nbr] [int] NULL,
@@ -25,6 +23,3 @@ CREATE TABLE [dbo].[_Errorlog](
 	[Tbl2Nbr] [int] NULL,
 	[Tbl2Name] [nvarchar](255) NULL
 ) ON [PRIMARY]
-GO
-
-

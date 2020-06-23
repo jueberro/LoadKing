@@ -1,4 +1,3 @@
-
 CREATE TABLE [dbo].[_Tablelist](
 	[TableNbr] [int] IDENTITY(1,1) NOT NULL,
 	[TABLE_CAT] [nvarchar](255) NULL,
@@ -23,5 +22,3 @@ CREATE TABLE [dbo].[_Tablelist](
 	[Procname] [nvarchar](255) NULL
 ) ON [PRIMARY]
 GO
-
-

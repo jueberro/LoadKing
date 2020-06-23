@@ -3,6 +3,8 @@
 --       Created: Pragmatic Works, Edwin Davis 5/5/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Job
 --             r1. JEU 6/16/2020 - Changed where to use datetime udf
+--             r1. ELD 6/22/2020 - Added History tables 
+
 --==============================================
 
 CREATE PROCEDURE [dbo].[getJob]
@@ -19,7 +21,7 @@ DECLARE
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK-GS-01'	
 
 SELECT 
 @SourceTableName = '_V_job'
@@ -108,14 +110,24 @@ Set @Batch = @LoadLogKey --@LastBatch +1
 
 -- ***** BEGIN MULTI SOURCE TABLE LOAD LOGIC *********************************************
 
-IF object_id('##tmp_JOB_HEADER', 'U') is not null -- if table exists
+IF object_id('##tmp1_JOB_HEADER', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_JOB_HEADER
+		Drop table ##tmp1_JOB_HEADER
 	END
 
-IF object_id('##tmp_JOB_DETAIL', 'U') is not null -- if table exists
+IF object_id('##tmp1_JOB_DETAIL', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_JOB_DETAIL
+		Drop table ##tmp1_JOB_DETAIL
+	END
+
+IF object_id('##tmp1_JOB_HIST_MAST', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp1_JOB_HIST_MAST
+	END
+
+IF object_id('##tmp1_JOB_HIST_DTL', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp1_JOB_HIST_DTL
 	END
 
 
@@ -129,7 +141,7 @@ Set @BaseSql = @BaseSql + '''' + ')'
 	  
  
 
-Set @Sql = 'Select * INTO ##tmp_JOB_HEADER From ' +  @BaseSql 
+Set @Sql = 'Select * INTO ##tmp1_JOB_HEADER From ' +  @BaseSql 
 
 EXEC(@Sql)
 
@@ -138,18 +150,40 @@ Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
 Set @BaseSql = @BaseSql + '''' + 'Select * from  JOB_DETAIL '  --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
-Set @Sql = 'Select * INTO ##tmp_JOB_DETAIL From ' +  @BaseSql 
+Set @Sql = 'Select * INTO ##tmp1_JOB_DETAIL From ' +  @BaseSql 
+
+EXEC(@Sql)
+
+-- 6/22/2020 ELD Extract the history data
+
+  -- create the select from source table Openquery using a wildcard
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+Set @BaseSql = @BaseSql + '''' + 'select m.JOB JBMASTER_JOB, m.sfx JBMASTER_SFX, m.bomparent JBMASTER_BOMPARENT, h.* from JOB_HIST_MAST h left join APSV3_JBMASTER m on h.JOB = m.job and h.suffix = m.sfx and m.bomparent = 1 '   --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + ')' 
+	  
+ 
+
+Set @Sql = 'Select * INTO ##tmp1_JOB_HIST_MAST From ' +  @BaseSql 
+
+EXEC(@Sql)
+
+  -- create the select from source table Openquery using a wildcard
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+Set @BaseSql = @BaseSql + '''' + 'Select * from  JOB_HIST_DTL '  --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + ' )' 
+	  
+Set @Sql = 'Select * INTO ##tmp1_JOB_HIST_DTL From ' +  @BaseSql 
 
 EXEC(@Sql)
 
 
 INSERT INTO dbo._V_Job
 
-SELECT   SO.*
+SELECT   *
 	--INTO [LK-GS-ODS].dbo._V_Job
 	From
-
-	(Select
+(
+	Select
 	   h.[JBMASTER_JOB]
 	  ,h.[JBMASTER_SFX]
 	  ,h.[JBMASTER_BOMPARENT]
@@ -204,9 +238,9 @@ SELECT   SO.*
 			 , @Batch as ETL_Batch
 			 , getdate() as ETL_Completed -- select count(*)
 		FROM
-		##tmp_JOB_HEADER h
+		##tmp1_JOB_HEADER h
 		LEFT JOIN 
-		##tmp_JOB_DETAIL d 
+		##tmp1_JOB_DETAIL d 
 		ON h.JOB = d.JOB
 		AND h.SUFFIX = d.SUFFIX
 
@@ -215,11 +249,80 @@ SELECT   SO.*
 				dbo.udf_cv_nvarchar8_to_date(d.DATE_LAST_CHG) between @StartDate and @EndDate
 			)
 
-	) AS SO
-	
+UNION ALL
 
-	Drop table ##tmp_JOB_HEADER -- select count(*) from ##tmp_JOB_HEADER
-	Drop table ##tmp_JOB_DETAIL -- select count(*) from ##tmp_JOB_DETAIL
+	Select
+	   h.[JBMASTER_JOB]
+	  ,h.[JBMASTER_SFX]
+	  ,h.[JBMASTER_BOMPARENT]
+	  ,h.JOB as [HEADER_JOB]
+      , h.SUFFIX as [HEADER_SUFFIX]
+      , h.PART as [HEADER_PART]
+      , h.PRODUCT_LINE as [HEADER_PRODUCT_LINE]
+      , h.SALESPERSON as [HEADER_SALESPERSON]
+      , h.CUSTOMER as [HEADER_CUSTOMER]
+	  , h.SALES_ORDER as [HEADER_SALES_ORDER]
+	  , h.SALES_ORDER_LINE as [HEADER_SALES_ORDER_LINE]
+      ,d.[JOB]
+      ,d.[SUFFIX]
+      ,d.[SEQ]
+      ,d.[SEQUENCE_KEY]
+      ,d.[EMPLOYEE]
+      ,d.[DESCRIPTION]
+      ,NULL --d.[DEPT_WORKCENTER]
+      ,d.[RATE_WORKCENTER]
+      ,left(d.Dept_EMPLOYEE, 4) -- d.[DEPT_EMP]
+      ,d.[MACHINE]
+      ,d.[PART]
+      ,d.[REFERENCE]
+      ,d.[LMO]
+      ,d.[RATE_TYPE]
+      ,d.LOC
+      ,d.[SHIFT_SHIFT]
+      ,d.[SHIFT_DEPT]
+      ,d.[SHIFT_GROUP]
+      , h.DATE_OPENED as [HEADER_DATE_OPENED]
+      , h.DATE_DUE as [HEADER_DATE_DUE]
+      , h.DATE_CLOSED as [HEADER_DATE_CLOSED]
+      , h.DATE_START as [HEADER_DATE_START]
+      ,d.[DATE_SEQUENCE]
+      ,d.[CHARGE_DATE]
+      ,d.[DATE_OUT]
+      ,d.[DATE_LAST_CHG]
+      ,d.[RATE_EMPLOYEE]
+      ,d.[HOURS_WORKED]
+      ,d.[PIECES_SCRAP]
+      ,d.[PIECES_COMPLTD]
+      ,d.[AMOUNT_LABOR]
+      ,d.[AMT_OVERHEAD]
+      ,d.[AMT_STANDARD]
+      ,d.[AMT_SCRAP]
+      ,d.MACHINE_HOURS
+      ,d.[MULTIPLE_FRACTION]
+      ,d.[START_TIME]
+      ,d.[END_TIME]
+	 
+			 , @TblNbr as ETL_TablNbr
+			 , @Batch as ETL_Batch
+			 , getdate() as ETL_Completed -- select count(*)
+		FROM
+		##tmp1_JOB_HIST_MAST h
+		LEFT JOIN 
+		##tmp1_JOB_HIST_DTL d 
+		ON h.JOB = d.JOB
+		AND h.SUFFIX = d.SUFFIX
+
+		WHERE -- PULL ALL DELTAS
+			(
+				dbo.udf_cv_nvarchar8_to_date(d.DATE_LAST_CHG) between @StartDate and @EndDate
+			)
+) CurrentAndHistory
+
+	Drop table ##tmp1_JOB_HEADER -- select count(*) from ##tmp1_JOB_HEADER
+	Drop table ##tmp1_JOB_DETAIL -- select count(*) from ##tmp1_JOB_DETAIL
+
+	Drop table ##tmp1_JOB_HIST_MAST -- select count(*) from ##tmp1_JOB_HIST_MAST
+	Drop table ##tmp1_JOB_HIST_DTL -- select count(*) from ##tmp1_JOB_HIST_DTL
 
 
 

@@ -1,21 +1,13 @@
-﻿CREATE TABLE [ods_globalshop].[ExtractConfiguration]
+﻿CREATE TABLE [ods_globalshop].[ExtractConfiguration](
+	[SourceTableName] [nvarchar](100) NOT NULL,
+	[TargetTableName] [nvarchar](100) NOT NULL,
+	[SourceSQLString] [nvarchar](4000) NULL,
+	[ExtractEnabledFlag] [bit] NULL,
+	[SysStartTime] [datetime2](7) NOT NULL,
+	[SysEndTime] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_ods_globalshop_ExtractConfiguration] PRIMARY KEY CLUSTERED 
 (
-	[SourceTableName]			NVARCHAR(100)		NOT NULL,
-	[TargetTableName]			NVARCHAR(100)		NOT NULL,
-	[SourceSQLString]			NVARCHAR(4000)			NULL,
-	[ExtractEnabledFlag]		BIT						NULL, -- A switch to enable/diable a table load
-    
-	/*Temporal Table Requirements*/
-	[SysStartTime]	DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL , 
-	[SysEndTime]	DATETIME2 GENERATED ALWAYS AS ROW END	HIDDEN NOT NULL , 
-	PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime),
-	
-	CONSTRAINT [PK_ods_globalshop_ExtractConfiguration] PRIMARY KEY ([SourceTableName])
-)
-
-WITH	(
-			SYSTEM_VERSIONING = ON (HISTORY_TABLE = ods_globalshop.ExtractConfiguration_history) --New or existing table
-		)
-
+	[SourceTableName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-

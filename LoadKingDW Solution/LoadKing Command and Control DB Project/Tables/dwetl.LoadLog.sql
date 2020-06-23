@@ -1,64 +1,40 @@
-﻿CREATE TABLE [dwetl].[LoadLog] (
-    [LoadLogKey]				INT IDENTITY (1, 1) NOT NULL,
-	[ProcessPlatformName]		NVARCHAR(100)			NULL,	-- e.g. SSIS, Data Factory, Logic App, etc
-	[ProcessName]				NVARCHAR(100)			NULL,	-- e.g. Package/Pipeline name, Procore Extract App name, etc.
-	[ProcessExecutionId]		UNIQUEIDENTIFIER		NULL,	-- i.e. a GUID tied to a unique instance of execution (SSIS, ADF, etc.)
-
-	[DWTableName]				NVARCHAR(100)			NULL,	
-	[SourceSystemName]			NVARCHAR (100)		NOT NULL,
-	[SourceDataSetName]			NVARCHAR (100)		NOT NULL,
-	[SourceLoadLogKey]			INT					NOT NULL,
-
-    [ExecutionStatusCode]		VARCHAR (25)		NOT	NULL,
-    [ExecutionStatusMessage]	NVARCHAR (1500)		NOT	NULL,
-
-	[StartDate]					DATETIME2 (7)		NOT NULL,
-    [EndDate]					DATETIME2 (7)			NULL,
-	[SourceRecordsRead]			INT						NULL,
-	[RowsInsertedCount]			INT						NULL,
-	[RowsUpdatedCount]			INT						NULL,
-
-    [RecordCreateDate]			DATETIME2 (7)		NOT NULL,
-    [RecordLastUpdatedDate]		DATETIME2 (7)		NOT NULL,
-    [RecordCreatedByName]		NVARCHAR (100)		NOT NULL,
-    [RecordLastUpdatedByName]	NVARCHAR (100)		NOT NULL,
-
-	/*Temporal Table Requirements*/
-	[SysStartTime]	DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL , 
-	[SysEndTime]	DATETIME2 GENERATED ALWAYS AS ROW END	HIDDEN NOT NULL , 
-	PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)
-
-	)
-WITH	(
-			SYSTEM_VERSIONING = ON (HISTORY_TABLE = dwetl.LoadLog_history) --New or existing table
-		)
-
+﻿CREATE TABLE [dwetl].[LoadLog](
+	[LoadLogKey] [int] IDENTITY(1,1) NOT NULL,
+	[ProcessPlatformName] [nvarchar](100) NULL,
+	[ProcessName] [nvarchar](100) NULL,
+	[ProcessExecutionId] [uniqueidentifier] NULL,
+	[DWTableName] [nvarchar](100) NULL,
+	[SourceSystemName] [nvarchar](100) NOT NULL,
+	[SourceDataSetName] [nvarchar](100) NOT NULL,
+	[SourceLoadLogKey] [int] NOT NULL,
+	[ExecutionStatusCode] [varchar](25) NOT NULL,
+	[ExecutionStatusMessage] [nvarchar](1500) NOT NULL,
+	[StartDate] [datetime2](7) NOT NULL,
+	[EndDate] [datetime2](7) NULL,
+	[SourceRecordsRead] [int] NULL,
+	[RowsInsertedCount] [int] NULL,
+	[RowsUpdatedCount] [int] NULL,
+	[RecordCreateDate] [datetime2](7) NOT NULL,
+	[RecordLastUpdatedDate] [datetime2](7) NOT NULL,
+	[RecordCreatedByName] [nvarchar](100) NOT NULL,
+	[RecordLastUpdatedByName] [nvarchar](100) NOT NULL,
+	[SysStartTime] [datetime2](7) NOT NULL,
+	[SysEndTime] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_dwetl_LoadLog] PRIMARY KEY CLUSTERED 
+(
+	[LoadLogKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
-ALTER TABLE dwetl.LoadLog
-ADD CONSTRAINT [PK_dwetl_LoadLog] PRIMARY KEY CLUSTERED ([LoadLogKey] ASC)
-
-
+ALTER TABLE [dwetl].[LoadLog] ADD  CONSTRAINT [DF_dwetl_LoadLog_RecordCreateDate]  DEFAULT (getutcdate()) FOR [RecordCreateDate]
 GO
 
-ALTER TABLE dwetl.LoadLog
-ADD CONSTRAINT [DF_dwetl_LoadLog_RecordCreateDate] DEFAULT (GETUTCDATE()) FOR [RecordCreateDate]
-
+ALTER TABLE [dwetl].[LoadLog] ADD  CONSTRAINT [DF_dwetl_LoadLog_RecordLastUpdatedDate]  DEFAULT (getutcdate()) FOR [RecordLastUpdatedDate]
 GO
 
-ALTER TABLE dwetl.LoadLog
-ADD CONSTRAINT [DF_dwetl_LoadLog_RecordLastUpdatedDate] DEFAULT (GETUTCDATE()) FOR [RecordLastUpdatedDate]
-
+ALTER TABLE [dwetl].[LoadLog] ADD  CONSTRAINT [DF_dwetl_LoadLog_RecordCreatedByName]  DEFAULT (suser_sname()) FOR [RecordCreatedByName]
 GO
 
-ALTER TABLE dwetl.LoadLog
-ADD CONSTRAINT [DF_dwetl_LoadLog_RecordCreatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordCreatedByName]
-
+ALTER TABLE [dwetl].[LoadLog] ADD  CONSTRAINT [DF_dwetl_LoadLog_RecordLastUpdatedByName]  DEFAULT (suser_sname()) FOR [RecordLastUpdatedByName]
 GO
-
-ALTER TABLE dwetl.LoadLog
-ADD CONSTRAINT [DF_dwetl_LoadLog_RecordLastUpdatedByName] DEFAULT (SUSER_SNAME()) FOR [RecordLastUpdatedByName]
-
-GO
-
-

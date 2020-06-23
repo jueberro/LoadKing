@@ -1,5 +1,11 @@
-﻿CREATE TABLE [dwstage].[QUOTE_HEADER] (
-[QUOTE_NO] [char](7) NULL,
+--USE [LK-GS-EDW]
+--GO
+
+
+
+CREATE TABLE dwstage.QUOTE_HEADER
+(
+	[QUOTE_NO] [char](7) NULL,
 	[RECORD_NO] [char](4) NULL,
 	[QUOTE_SHIP_ID] [char](6) NULL,
 	[RECORD_TYPE] [char](1) NULL,
@@ -132,14 +138,14 @@
 	[AUTO_FRT_FLAG] [char](1) NULL,
 	[QUOTE_WON_LOSS_DATE] [char](8) NULL,
 	[FACILITY] [char](3) NULL,
-	[FILLER262] [char](262) NULL,
+	[FILLER250] [char](250) NULL,
+	[FILLER12] [char](12) NULL,
 	[NO_DLVR_BEFORE_DATE] [char](8) NULL,
 	[MUST_DLVR_BY_DATE] [char](8) NULL,
 	[TRNSFR_LOCN] [char](2) NULL,
 	[INTRANSIT_AUTO] [numeric](1, 0) NULL,
 	[TRANSIT_NO] [numeric](7, 0) NULL,
-	[FILLER174] [char](174) NULL,
-	[TAX_ORGN_ADR] [numeric](2, 0) NULL,
+	[FILLER176] [char](176) NULL,
 	[TAX_ZONE_1] [char](2) NULL,
 	[TAX_ZONE_2] [char](2) NULL,
 	[TAX_ZONE_3] [char](2) NULL,
@@ -185,9 +191,7 @@
 	[ETL_TblNbr] [int] NULL,
 	[ETL_Batch] [int] NULL,
 	[ETL_Completed] [datetime] NULL
+) ON [PRIMARY]
+GO
 
-	
 
-
-    
-);
