@@ -46,20 +46,20 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,[HOLD_PO]
 
 ----------------------------------
-,[HEADER_DATE_OPENED]
-,[HEADER_DATE_DUE]
-,[HEADER_DATE_CLOSED]
-,[HEADER_DATE_START]
+,dwstage.udf_cv_nvarchar6_to_date(HEADER_DATE_OPENED)		[HEADER_DATE_OPENED]
+,dwstage.udf_cv_nvarchar6_to_date(HEADER_DATE_DUE)			[HEADER_DATE_DUE]
+,dwstage.udf_cv_nvarchar6_to_date(HEADER_DATE_CLOSED)		[HEADER_DATE_CLOSED]
+,dwstage.udf_cv_nvarchar6_to_date(HEADER_DATE_START)		[HEADER_DATE_START]
 
-,[DATE_START]
-,[DATE_DUE]
-,[DATE_MATERIAL_DUE]
-,[DATE_COMPLETED]
-,[DATE_HARD]
-,[DATE_OPER_ST_MDY]
-,[DATE_PO_ORDER]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_START)				[DATE_START]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_DUE)					[DATE_DUE]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_MATERIAL_DUE)		[DATE_MATERIAL_DUE]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_COMPLETED)			[DATE_COMPLETED]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_HARD)				[DATE_HARD]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_OPER_ST_MDY)			[DATE_OPER_ST_MDY]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_PO_ORDER)			[DATE_PO_ORDER]
 ,[DATE_OPER_SK_YEAR]
-,[DATE_OPER_SK_MDY]
+,dwstage.udf_cv_nvarchar6_to_date(DATE_OPER_SK_MDY)			[DATE_OPER_SK_MDY]
 ,[DATE_OPER_ST_YEAR]
 
 --------------------------------
