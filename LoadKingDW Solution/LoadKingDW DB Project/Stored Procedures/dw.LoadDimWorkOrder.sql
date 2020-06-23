@@ -54,7 +54,7 @@ BEGIN
 	
     
 	--CREATE TEMP table to be used below for identifying records with Type 2 changes
-	CREATE TABLE #DimWorkOrder_current (WorkOrderNumber_DW NVARCHAR(6))
+	CREATE TABLE #DimWorkOrder_current (WorkOrderNumber_DW NVARCHAR(15))
 
 	--Load temp table with NK and Type2RecordHash for CURRENT dimension records
 	INSERT INTO #DimWorkOrder_Current
