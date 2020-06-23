@@ -188,6 +188,7 @@
     <Build Include="Views\dwstage.V_LoadLkpJobOperationsHist.sql" />
     <Build Include="Stored Procedures\dw.LoadLkpJobOperationsHist.sql" />
     <Build Include="Tables\dw.LkpJobOperationsHist.sql" />
+    <Build Include="Tables\dwstage._V_QUOTE.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
