@@ -42,11 +42,11 @@ BEGIN
 		 + substring(@datestring,7,2)
   	
 	  Else   
-		   '01-01-1899'  
+		   '12-31-1999'  
       End
       
           --  Verify that we have a valid date in thius 6 char string
-      Set @datepassedback = convert(date,case when isdate(@datepassedtest) = 1 then @datepassedtest else '01-01-1899' end)
+      Set @datepassedback = convert(date,case when isdate(@datepassedtest) = 1 then @datepassedtest else '12-31-1999' end)
 
       RETURN(@DatePassedBack)
 

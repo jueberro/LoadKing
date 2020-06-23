@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimWorkOrder"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="63"
-  DTS:VersionGUID="{4314D4A3-6B37-4C2D-B6C8-03A5658E3431}">
+  DTS:VersionBuild="64"
+  DTS:VersionGUID="{5F630EE9-17ED-4B1D-9E3A-7F44A61ED8B3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -147,6 +147,7 @@
           DTS:CreationName="Microsoft.Pipeline"
           DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{95AFC3A4-5CA2-438C-9052-829FBFAA91FC}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -4285,6 +4286,29 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ad0ef31c-fa0f-485b-ba40-f170a5ba2683}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
+              SQLTask:SqlStatementSource="INSERT INTO [LK-GS-EDW].dwstage._V_JOB_HEADER&#xA; SELECT * FROM [LK-GS-ODS].dbo._V_JOB_HEADER where ETL_BATCH = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::SourceLoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimWorkOrder"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -4454,10 +4478,18 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
-          DTS:DTSID="{EF12C1DB-E201-42D4-8792-B1F836E31CCC}"
+          DTS:DTSID="{68E126C1-3439-467B-BCFE-6D4136B04144}"
           DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{25272C8D-7BE3-42B6-AEFB-B39C94A18E1A}"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
           DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimWorkOrder" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
@@ -4587,7 +4619,7 @@
         <NodeLayout
           Size="351,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table"
-          TopLeft="5.5,207.833333333334" />
+          TopLeft="45.5,176.833333333334" />
         <NodeLayout
           Size="227,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWDimWorkOrder"
@@ -4662,18 +4694,68 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
-          TopLeft="179.25,150.166666666667">
+          TopLeft="177.5,150.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,57.666666666667"
+              EndConnector="43.5,26.666666666667"
               Start="0,0"
-              End="0,50.166666666667">
+              End="43.5,19.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.166666666667" />
+                    End="0,9.3333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.3333333333335"
+                    Point2="0,13.3333333333335"
+                    Point3="4,13.3333333333335" />
+                  <mssgle:LineSegment
+                    End="39.5,13.3333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.5,13.3333333333335"
+                    Point2="43.5,13.3333333333335"
+                    Point3="43.5,17.3333333333335" />
+                  <mssgle:LineSegment
+                    End="43.5,19.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          TopLeft="457,243" />
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
+          TopLeft="221,218.833333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="321,24.166666666666"
+              Start="0,0"
+              End="321,16.666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.083333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.083333333333"
+                    Point2="0,12.083333333333"
+                    Point3="4,12.083333333333" />
+                  <mssgle:LineSegment
+                    End="317,12.083333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="317,12.083333333333"
+                    Point2="321,12.083333333333"
+                    Point3="321,16.083333333333" />
+                  <mssgle:LineSegment
+                    End="321,16.666666666666" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4683,19 +4765,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 3]"
-          TopLeft="181.333333333333,249.833333333334">
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 4]"
+          TopLeft="542,285">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,64.666666666666"
+              EndConnector="-360.333333333333,29.5"
               Start="0,0"
-              End="0,57.166666666666">
+              End="-360.333333333333,22">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.166666666666" />
+                    End="0,10.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.75"
+                    Point2="0,14.75"
+                    Point3="-4,14.75" />
+                  <mssgle:LineSegment
+                    End="-356.333333333333,14.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-356.333333333333,14.75"
+                    Point2="-360.333333333333,14.75"
+                    Point3="-360.333333333333,18.75" />
+                  <mssgle:LineSegment
+                    End="-360.333333333333,22" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4728,17 +4822,17 @@
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.333333333333" />
+                    End="0,15.3333333333331" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.333333333333"
-                    Point2="0,19.333333333333"
-                    Point3="4,19.333333333333" />
+                    Point1="0,15.3333333333331"
+                    Point2="0,19.3333333333331"
+                    Point3="4,19.3333333333331" />
                   <mssgle:LineSegment
-                    End="533.58333324641,19.333333333333" />
+                    End="533.58333324641,19.3333333333331" />
                   <mssgle:CubicBezierSegment
-                    Point1="533.58333324641,19.333333333333"
-                    Point2="537.58333324641,19.333333333333"
-                    Point3="537.58333324641,23.333333333333" />
+                    Point1="533.58333324641,19.3333333333331"
+                    Point2="537.58333324641,19.3333333333331"
+                    Point3="537.58333324641,23.3333333333331" />
                   <mssgle:LineSegment
                     End="537.58333324641,31.1666666666661" />
                 </mssgle:SegmentCollection>

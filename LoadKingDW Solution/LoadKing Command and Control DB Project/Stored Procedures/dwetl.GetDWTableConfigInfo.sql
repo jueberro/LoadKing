@@ -22,11 +22,9 @@ BEGIN
 		  , ds.SourceDataSetName
 		  , ds.SSISPackageName
 	FROM	dwetl.DWTableSource ds
-	LEFT JOIN dwetl.DWTableSourceSort dsd
-	ON  ds.DWTableName = dsd.DWTableName
 	WHERE	ds.DWTableType = @DWTableType
 	 AND	LoadDWTableFlag = 1			-- Used primarily during testing to enable/disable loads
-	Order By dsd.Sort
+	Order By ds.Sort
 
 END
 

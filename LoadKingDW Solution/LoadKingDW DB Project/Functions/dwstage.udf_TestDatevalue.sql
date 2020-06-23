@@ -30,7 +30,7 @@ BEGIN
 	  
 	  Set     @datestring = ISNULL(@datestring,' ')
 
-	  Set     @datepassedback = convert(datetime,case when isdate(@datestring) = 1 then @datestring else '01-01-1899'  end ,120)
+	  Set     @datepassedback = convert(datetime,case when isdate(@datestring) = 1 then @datestring else '12-31-1999'  end ,120)
 	
        RETURN(@DatePassedBack)
 
