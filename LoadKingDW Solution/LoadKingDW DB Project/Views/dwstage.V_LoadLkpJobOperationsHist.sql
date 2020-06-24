@@ -44,7 +44,7 @@ SELECT
 ,dwstage.udf_cv_nvarchar6_to_date(DATE_START)				[DATE_START]
 ,dwstage.udf_cv_nvarchar6_to_date(DATE_DUE)					[DATE_DUE]
 ,dwstage.udf_cv_nvarchar6_to_date(DATE_MATERIAL_DUE)		[DATE_MATERIAL_DUE]
-,dwstage.udf_cv_nvarchar6_to_date(DATE_COMPLETED)			[DATE_COMPLETED]
+,dwstage.udf_cv_nvarchar6__yymmdd_to_date(DATE_COMPLETED)			[DATE_COMPLETED]
 ,dwstage.udf_cv_nvarchar6_to_date(DATE_HARD)				[DATE_HARD]
 ,dwstage.udf_cv_nvarchar6_to_date(DATE_OPER_ST_MDY)			[DATE_OPER_ST_MDY]
 ,dwstage.udf_cv_nvarchar6_to_date(DATE_PO_ORDER)			[DATE_PO_ORDER]
