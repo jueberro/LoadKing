@@ -97,7 +97,6 @@
     <Build Include="Stored Procedures\dw.LoadDimSalesOrder.sql" />
     <Build Include="Tables\dw.DimDate.sql" />
     <Build Include="Tables\dw.DimSalesperon.sql" />
-    <Build Include="Tables\dw.DimQuote.sql" />
     <Build Include="Scripts\Build_DimDate_DimTime.sql" />
     <Build Include="Views\dwstage.V_LoadDimSalesperson.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesperson.sql" />
@@ -189,6 +188,7 @@
     <Build Include="Stored Procedures\dw.LoadLkpJobOperationsHist.sql" />
     <Build Include="Tables\dw.LkpJobOperationsHist.sql" />
     <Build Include="Tables\dwstage._V_QUOTE.sql" />
+    <Build Include="Tables\dw.DimQuote.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

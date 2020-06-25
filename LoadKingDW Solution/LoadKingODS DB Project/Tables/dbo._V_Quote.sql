@@ -1,5 +1,4 @@
-﻿CREATE TABLE [dw].[DimQuote](
-	[DimQuote_Key] [int] IDENTITY(1,1) NOT NULL,
+﻿CREATE TABLE [dbo].[_V_QUOTE](
 	[QH_QUOTE_NO] [char](7) NULL,
 	[QH_RECORD_TYPE] [char](1) NULL,
 	[QH_CUSTOMER] [char](6) NULL,
@@ -113,18 +112,8 @@
 	[QL_PRICE_QUOTE] [numeric](16, 6) NULL,
 	[QL_PRICE_DISC_ORD] [numeric](16, 6) NULL,
 	[QL_EXTENSION_QUOTE] [numeric](16, 2) NULL,
-	[Type1RecordHash] [varbinary](64) NULL,
-	[Type2RecordHash] [varbinary](64) NULL,
-	[SourceSystemName] [nvarchar](100) NOT NULL,
-	[DWEffectiveStartDate] [datetime2](7) NOT NULL,
-	[DWEffectiveEndDate] [datetime2](7) NOT NULL,
-	[DWIsCurrent] [bit] NOT NULL,
-	[LoadLogKey] [int] NOT NULL,
- CONSTRAINT [pk_DimQuote] PRIMARY KEY CLUSTERED 
-(
-	[DimQuote_Key] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[ETL_TblNbr] [int] NULL,
+	[ETL_Batch] [int] NULL,
+	[ETL_Completed] [datetime] NULL
 ) ON [PRIMARY]
 GO
-
-

@@ -139,5 +139,6 @@
     <Build Include="Functions\dbo.udf_cv_nvarchar8_to_date.sql" />
     <Build Include="Functions\dbo.udf_testdatevalue.sql" />
     <Build Include="Stored Procedures\getQUOTE.sql" />
+    <Build Include="Tables\dbo._V_Quote.sql" />
   </ItemGroup>
 </Project>

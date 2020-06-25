@@ -29,7 +29,7 @@ CREATE TABLE dwstage._V_QUOTE
 	[QH_QTE_CREATED_BY] [char](8) NULL,
 	[QH_PRIMARY_GRP] [char](2) NULL,
 	[QH_CARRIER_CD] [char](6) NULL,
------------------------------------------------------------------
+
 	[QH_DATE_LAST_CHG] datetime NULL, -- DATE
 	[QH_DATE_DUE] datetime NULL, -- DATE
 	[QH_DATE_QUOTE_CNV] datetime NULL, -- DATE
@@ -37,8 +37,7 @@ CREATE TABLE dwstage._V_QUOTE
 	[QH_QTE_CREATED_DATE] datetime NULL, -- DATE
 	[QH_QUOTE_WON_LOSS_DATE] datetime NULL, -- DATE
 	[QH_MUST_DLVR_BY_DATE] datetime NULL, -- DATE
------------------------------------------------------------------
---CREATE TABLE [dbo].[QUOTE_LINES]
+
 
 	[QL_QUOTE_NO] [char](7) NULL,
 	[QL_RECORD_NO] [char](4) NULL,
@@ -99,14 +98,14 @@ CREATE TABLE dwstage._V_QUOTE
 	[QL_TAX_IMPORT_FLG] [numeric](3, 0) NULL,
 	[QL_FILLER6] [char](6) NULL,
 	[QL_FLAG_ALWAYS_DISCOUNT] [char](1) NULL,
----------------------------------------------------------------------
+
 	[QL_DATE_SHIP] datetime NULL, -- DATE
 	[QL_DATE_QUOTE] datetime NULL, -- DATE
 	[QL_DATE_ITEM_PROM] datetime NULL, -- DATE
 	[QL_ITEM_PROMISE_DT] datetime NULL, -- DATE
 	[QL_DATE_LAST_INVOICE] datetime NULL, -- DATE
 	[QL_DATE_LAST_CHG] datetime NULL, -- DATE
---Possible Measure ---------------------------------------------------------
+
 	[QL_QTY_QUOTED] [numeric](13, 4) NULL, -- M
 	[QL_QTY_SHIPPED] [numeric](13, 4) NULL, -- M
 	[QL_QTY_BO] [numeric](13, 4) NULL, -- M
@@ -121,7 +120,7 @@ CREATE TABLE dwstage._V_QUOTE
 	[QL_PRICE_QUOTE] [numeric](16, 6) NULL, -- M
 	[QL_PRICE_DISC_ORD] [numeric](16, 6) NULL, -- M
 	[QL_EXTENSION_QUOTE] [numeric](16, 2) NULL, -- M
--------------------------------------------------------------
+
 	[ETL_TblNbr] [int] NULL,
 	[ETL_Batch] [int] NULL,
 	[ETL_Completed] [datetime] NULL
