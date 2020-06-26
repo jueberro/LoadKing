@@ -177,6 +177,8 @@ BEGIN TRY
 	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
 					      Where  Table_Name   = ' + '''' + @TblName + ''''  -- Rev4 l
 
+       EXEC(@Sql)
+
 	-- ELD added Record Count
 	 SET @Reccnt = 
 		(Select RecordCount from [LK-GS-CNC].dbo._Tablelist Where Table_Name = @TblName and Lastbatch = @Batch)
