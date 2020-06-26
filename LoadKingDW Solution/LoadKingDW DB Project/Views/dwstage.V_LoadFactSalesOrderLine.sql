@@ -3,7 +3,7 @@
 
 
 
-CREATE VIEW dwstage.V_LoadFactSalesOrderLine AS
+CREATE VIEW [dwstage].[V_LoadFactSalesOrderLine] AS
 
 SELECT    DimSalesOrder_Key			 = ISNULL(DSO.DimSalesOrder_Key,      -1)
 	    , DimCustomer_Key			 = ISNULL(DC.DimCustomer_Key,         -1)
@@ -104,13 +104,16 @@ FROM	dwstage._V_SalesOrder as Stage
    AND  SalesP.DWIsCurrent = 1 -- DI.DWIsCurrent = 1 -- ELD 5/20/2020 Was joing to the wrong dim
 
 LEFT OUTER JOIN dw.DimQuote AS Quote
-  ON	Stage.OHQuoteNumber = Quote.QuoteNumber
-   AND  DI.DWIsCurrent = 1
+ on stage.OHQuoteNumber   = quote.QH_QUOTE_NO
+and stage.SalesOrderLine  = quote.QL_RECORD_NO
+and stage.OLPartID        = quote.QL_PART
+  AND  DI.DWIsCurrent = 1
+
+
+
 
  LEFT OUTER JOIN dw.DimCustomerShipTo AS DCST
   ON	stage.OHShipToSeq = DCST.ShipToSeq
    AND     Stage.OHCustomerID  = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
 GO
-
-

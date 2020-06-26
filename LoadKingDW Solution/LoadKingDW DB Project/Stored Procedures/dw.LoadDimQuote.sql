@@ -194,7 +194,7 @@ BEGIN
 	WHERE	NOT EXISTS(	SELECT  1
 						FROM	dw.DimQuote AS DIM
 						WHERE	DIM.QH_QUOTE_NO = Work.QH_QUOTE_NO
-						  AND   DIM.QL_QUOTE_NO = Work.QL_QUOTE_NO 
+						  AND   DIM.QL_RECORD_NO = Work.QL_RECORD_NO 
 						)
 SET @RowsInsertedCount = @@ROWCOUNT
 
@@ -205,18 +205,18 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	FROM	dw.DimQuote		AS DIM
 	 JOIN   #DimQuote_work	AS Work
 	  ON	DIM.QH_QUOTE_NO = Work.QH_QUOTE_NO
-	   AND  DIM.QL_QUOTE_NO = Work.QL_QUOTE_NO 
+	   AND  DIM.QL_RECORD_NO = Work.QL_RECORD_NO 
 	   AND	Dim.DWIsCurrent = 1
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 
 SET @RowsUpdatedCount = @@ROWCOUNT	
 	--INSERT New versions of expired records that have Type 2 changes
-	INSERT INTO dw.DimSalesPerson
+	INSERT INTO dw.DimQuote
 	SELECT	Work.*
 	FROM	#DimQuote_current AS DIM
 	 JOIN   #DimQuote_work    AS Work
 	   ON	DIM.QH_QUOTE_NO = Work.QH_QUOTE_NO
-	   AND  DIM.QL_QUOTE_NO = Work.QL_QUOTE_NO 
+	   AND  DIM.QL_RECORD_NO = Work.QL_RECORD_NO 
 	WHERE	DIM.Type2RecordHash <> Work.Type2RecordHash
 	
 	--DROP temp tables
