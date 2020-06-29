@@ -71,7 +71,6 @@
     <Build Include="Schemas\dwlookup.sql" />
     <Build Include="Tables\dwstage.EMPLOYEE_MSTR.sql" />
     <Build Include="Tables\dwstage.CUSTOMER_MASTER.sql" />
-    <Build Include="Tables\dwstage.CUSTOMER_SHIPTO.sql" />
     <Build Include="Functions\dwstage.udf_cv_nvarchar6_to_date.sql" />
     <Build Include="Functions\dwstage.udf_cv_nvarchar8_to_date.sql" />
     <Build Include="Tables\dw.DimCustomer.sql" />
@@ -89,9 +88,6 @@
     <Build Include="Stored Procedures\dw.LoadDimInventory.sql" />
     <Build Include="Tables\dw.DimInventory.sql" />
     <Build Include="Views\dwstage.V_LoadFactSalesOrderLine.sql" />
-    <Build Include="Tables\dwstage.RMA_HIST_LINE.sql" />
-    <Build Include="Tables\dwstage.RMA_LINES.sql" />
-    <Build Include="Tables\dwstage.RMA_HEADER.sql" />
     <Build Include="Stored Procedures\dw.LoadFactSalesOrderLine.sql" />
     <Build Include="Views\dwstage.V_LoadDimSalesOrder.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesOrder.sql" />
@@ -100,7 +96,6 @@
     <Build Include="Scripts\Build_DimDate_DimTime.sql" />
     <Build Include="Views\dwstage.V_LoadDimSalesperson.sql" />
     <Build Include="Stored Procedures\dw.LoadDimSalesperson.sql" />
-    <Build Include="Tables\dwstage.Quote_Header.sql" />
     <Build Include="Views\dwstage.V_LoadDimQuote.sql" />
     <Build Include="Stored Procedures\dw.LoadDimQuote.sql" />
     <Build Include="Tables\dwstage.GL_Master.sql" />
@@ -136,7 +131,6 @@
     <Build Include="Views\dwstage.V_LoadFactInvoice.sql" />
     <Build Include="Stored Procedures\dw.LoadFactInvoice.sql" />
     <Build Include="Tables\dwstage._V_JOB.sql" />
-    <Build Include="Tables\dwstage.APSV3_JBMASTER.sql" />
     <Build Include="Stored Procedures\dw.LoadFactJobDetail.sql" />
     <Build Include="Views\dwstage.V_LoadFactJobDetail.sql" />
     <Build Include="Tables\dw.DimDepartment.sql" />
@@ -164,9 +158,6 @@
     <Build Include="Tables\dwstage.WORKCENTERS.sql" />
     <Build Include="Stored Procedures\dw.LoadDimWorkCenter.sql" />
     <Build Include="Tables\dwstage._V_Quality.sql" />
-    <Build Include="Tables\dwstage.QUALITY_DISP.sql" />
-    <Build Include="Tables\dwstage.QUALITY_DISCRP_CD.sql" />
-    <Build Include="Tables\dwstage.QUALITY_ADDL.sql" />
     <Build Include="Functions\dwstage.udf_cv_nvarchar6_yymmdd_to_date.sql" />
     <Build Include="Tables\dw.DimVendor.sql" />
     <Build Include="Stored Procedures\dw.LoadDimVendor.sql" />

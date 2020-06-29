@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Stored Procedures\dbo.ExtractGlobalShopSourceTableData.sql" />
-    <Build Include="Stored Procedures\getQUOTE_HEADER.sql" />
     <Build Include="Stored Procedures\getSALESPERSONS.sql" />
     <Build Include="Stored Procedures\getOE_MULTI_SHIP.sql" />
     <Build Include="Stored Procedures\getGL_MASTER.sql" />
@@ -82,16 +81,12 @@
     <Build Include="Stored Procedures\getJOB_HEADER.sql" />
     <Build Include="Stored Procedures\getInvoice.sql" />
     <Build Include="Stored Procedures\getJob.sql" />
-    <Build Include="Stored Procedures\getAPSV3_JBMASTER.sql" />
     <Build Include="Stored Procedures\getDEPARTMENTS.sql" />
     <Build Include="Stored Procedures\getJobOperations.sql" />
     <Build Include="Functions\dbo.udf_cv_nvarchar6_to_date.sql" />
     <Build Include="Functions\dbo.udf_cv_nvarchar6__yymmdd_to_date.sql" />
     <Build Include="Stored Procedures\getQUALITY.sql" />
     <Build Include="Stored Procedures\getPRODUCT_LINE.sql" />
-    <Build Include="Stored Procedures\getINVENTORY_MST2.sql" />
-    <Build Include="Stored Procedures\getINVENTORY_MST3.sql" />
-    <Build Include="Stored Procedures\getINVENTORY_MSTR.sql" />
     <Build Include="Stored Procedures\getVENDOR_MASTER.sql" />
     <Build Include="Stored Procedures\getWORKCENTERS.sql" />
     <Build Include="Stored Procedures\getGCG_5398_CAR.sql" />
