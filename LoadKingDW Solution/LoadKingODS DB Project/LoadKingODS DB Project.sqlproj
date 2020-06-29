@@ -126,5 +126,6 @@
     <Build Include="Functions\dbo.udf_testdatevalue.sql" />
     <Build Include="Stored Procedures\getQUOTE.sql" />
     <Build Include="Tables\dbo._V_Quote.sql" />
+    <Build Include="Stored Procedures\getPO_RECEIVER.sql" />
   </ItemGroup>
 </Project>
