@@ -128,6 +128,11 @@ IF object_id('##tmp_POHIST_LINES', 'U') is not null -- if table exists
 		Drop table ##tmp_POHIST_LINES
 	END
 
+IF object_id('##tmp_Vendor_Addl', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp_Vendor_Addl
+	END
+
 Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
 
@@ -165,6 +170,14 @@ Set @BaseSql = @BaseSql + '''' + ' )'
 	  
 Set @Sql = 'Select * INTO ##tmp_POHIST_LINES From ' +  @BaseSql 
 
+EXEC(@Sql)
+
+  -- create the select from source table Openquery using a wildcard
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+Set @BaseSql = @BaseSql + '''' + 'Select * from  VENDOR_ADDL Where REC = 3'
+Set @BaseSql = @BaseSql + '''' + ' )' 
+	  
+Set @Sql = 'Select * INTO ##tmp_Vendor_Addl From ' +  @BaseSql 
 
 EXEC(@Sql)
 
@@ -179,6 +192,8 @@ SELECT   PO.*
 	Select
 	oh.[PURCHASE_ORDER]									as POH_PURCHASE_ORDER ,
 	oh.[RECORD_NO]										as POH_RECORD_NO ,
+	oa.[CRITICAL_SUPPL]                                 as POA_CRITICAL_SUPPL ,
+	oa.[APPROVED_SUPPL]                                 as POA_APPROVED_SUPPL ,
 	oh.[TERMS]											as POH_TERMS , -- Pay Terms --  Dim candidate key
 	oh.[VENDOR]											as POH_VENDOR , -- Dim candidate key
 	oh.[GL_ACCOUNT]										as POH_GL_ACCOUNT , --  Dim candidate key
@@ -266,12 +281,15 @@ SELECT   PO.*
 			LEFT JOIN 
 			##tmp_PO_Lines ol 
 			ON oh.PURCHASE_ORDER = ol.PURCHASE_ORDER
+			LEFT JOIN
+			##tmp_Vendor_Addl oa
+			ON oh.VENDOR = oa.VENDOR
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
 			
 			
 				(
-				dbo.udf_cv_nvarchar6_to_date(oh.CHANGE_DATE) between @StartDate and @EndDate
+				dbo.udf_cv_nvarchar8_to_date(oh.CHANGE_DATE) between @StartDate and @EndDate
 				OR
 				dbo.udf_cv_nvarchar8_to_date(ol.DATE_LAST_CHG) between @StartDate and @EndDate
 		   	    )
@@ -282,6 +300,8 @@ UNION ALL -- Get Header and Lines data from History versions
 	Select
 	ohh.[PURCHASE_ORDER]								as POH_PURCHASE_ORDER ,
 	ohh.LINE											as POH_RECORD_NO ,
+	oa.[CRITICAL_SUPPL]                                 as POA_CRITICAL_SUPPL ,
+	oa.[APPROVED_SUPPL]                                 as POA_APPROVED_SUPPL ,
 	ohh.[TERMS]											as POH_TERMS , -- Pay Terms --  Dim candidate key
 	ohh.[VENDOR]										as POH_VENDOR , -- Dim candidate key
 	ohh.[GL_ACCOUNT]									as POH_GL_ACCOUNT , --  Dim candidate key
@@ -369,10 +389,13 @@ UNION ALL -- Get Header and Lines data from History versions
 			LEFT JOIN 
 			##tmp_POHIST_LINES olh 
 			ON ohh.PURCHASE_ORDER = olh.PURCHASE_ORDER
+			LEFT JOIN
+			##tmp_Vendor_Addl oa
+			ON ohh.VENDOR = oa.VENDOR
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
 				(
-				dbo.udf_cv_nvarchar6_to_date(ohh.CHANGE_DATE) between @StartDate and @EndDate
+				dbo.udf_cv_nvarchar8_to_date(ohh.CHANGE_DATE) between @StartDate and @EndDate
 				OR
 				dbo.udf_cv_nvarchar8_to_date(olh.DATE_LAST_CHG) between @StartDate and @EndDate
 		   	    )

@@ -1,4 +1,4 @@
-CREATE TABLE [dwstage].[_V_PurchaseOrder](
+﻿CREATE TABLE [dbo].[_V_PurchaseOrder](
 	[POH_PURCHASE_ORDER] [char](7) NULL,
 	[POH_RECORD_NO] [char](4) NULL,
 	[POA_CRITICAL_SUPPL]  [char] (1) NULL,

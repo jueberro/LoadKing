@@ -180,6 +180,9 @@
     <Build Include="Tables\dw.LkpJobOperationsHist.sql" />
     <Build Include="Tables\dwstage._V_QUOTE.sql" />
     <Build Include="Tables\dw.DimQuote.sql" />
+    <Build Include="Tables\dw.DimPurchaseOrder.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimPurchaseOrder.sql" />
+    <Build Include="Views\dwstage.V_LoadDimPurchaseOrder.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

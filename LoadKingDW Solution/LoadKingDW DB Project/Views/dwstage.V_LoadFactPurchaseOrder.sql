@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE VIEW dwstage.V_LoadFactPurchaseOrder 
+CREATE VIEW [dwstage].[V_LoadFactPurchaseOrder] 
 AS
 
 SELECT    
@@ -12,17 +12,21 @@ SELECT
 	,-1											as DimPaymentTerms_Key
 	,isnull(LastReceivedDate.DimDate_Key, -1)	as DimDate_Key
         --Attributes
-	, Stage.[POL_PURCHASE_ORDER]
-	, Stage.[POL_RECORD_NO]
-	, Stage.[POH_DATE_ORDER]
-	, Stage.[POH_DATE_REQ]
-	, Stage.[POH_DATE_DUE]
-	, Stage.[POL_DATE_LAST_RECEIVED]
-	    --Measures
+	, Stage.[POL_PURCHASE_ORDER]             
+	, Stage.[POL_RECORD_NO]					 
+	, Stage.[POH_DATE_ORDER]				 
+	, Stage.[POH_DATE_REQ]					 
+	, Stage.[POH_DATE_DUE]					 
+	, Stage.[POL_DATE_LAST_RECEIVED]         
+	, Stage.[POL_DATE_LAST_CHG] 
+	, Stage.[POH_CHANGE_DATE]   
+	, Stage.[POH_SHIP_DATE]       
+		
+	--Measures							 
 	, Stage.[POL_COST]
-	, Stage.[POL_QTY_ORDER]
-	, Stage.[POL_EXTENSION]                
-	, Stage.[POL_QTY_RECEIVED] 					   
+	, Stage.[POL_QTY_ORDER]                  
+	, Stage.[POL_EXTENSION]                  
+	, Stage.[POL_QTY_RECEIVED] 				 
 	, Stage.[POL_VEN_TAX]                 
 	, Stage.[POL_PUR_TAX]                
 	, Stage.[POL_ROLL_QTY]			   
@@ -47,6 +51,9 @@ SELECT
 			+   cast(stage.[POH_DATE_REQ]           as nvarchar(20))      		
 			+   cast(stage.[POH_DATE_DUE]           as nvarchar(20))
 			+   cast(stage.[POL_DATE_LAST_RECEIVED] as nvarchar(20))
+            +   cast(Stage.[POL_DATE_LAST_CHG]      as nvarchar(20))
+			+   cast(Stage.[POH_CHANGE_DATE]        as nvarchar(20))
+			+   cast(Stage.[POH_SHIP_DATE]     	    as nvarchar(20))
 			+   cast(stage.[POL_COST]				as nvarchar(16))
 			+   cast(stage.[POL_QTY_ORDER]          as nvarchar(16))
 			+   cast(stage.[POL_EXTENSION]			as nvarchar(16))
@@ -72,10 +79,10 @@ SELECT
 -- select count(*)
 FROM	dwstage._V_PurchaseOrder as Stage
    
- --LEFT OUTER JOIN dw.DimPurchaseOrder AS po
- -- ON	Stage.PurchaseOrder = po.PurchaseOrder
- -- AND	stage.PurchaseOrderLine = po.PurchaseOrderLine -- 
- -- AND	po.DWIsCurrent = 1 
+ LEFT OUTER JOIN dw.DimPurchaseOrder AS po
+  ON	Stage.POH_PURCHASE_ORDER = po.POH_Purchase_Order
+  AND	stage.POH_RECORD_NO = po.POH_RECORD_NO
+  AND	po.DWIsCurrent = 1 
 
  LEFT OUTER JOIN dw.DimInventory AS i
   ON    Stage.POL_PART = i.PartID
