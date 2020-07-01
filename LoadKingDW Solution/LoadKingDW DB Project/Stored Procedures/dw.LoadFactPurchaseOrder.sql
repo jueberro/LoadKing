@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE PROCEDURE dw.sp_LoadFactPurchaseOrder @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadFactPurchaseOrder] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -49,6 +49,10 @@ DimDate_Key int NOT NULL,
 [POH_DATE_REQ] [datetime] NULL,
 [POH_DATE_DUE] [datetime] NULL,
 [POL_DATE_LAST_RECEIVED] [datetime] NULL,
+[POL_DATE_LAST_CHG] [datetime] NULL,
+[POH_CHANGE_DATE] [datetime] NULL,  
+[POH_SHIP_DATE]  [datetime] NULL,     
+
 --HEADER MEASURES --------------------------------------------------
 [POL_COST] [numeric](14, 4) NULL,
 [POL_QTY_ORDER] [numeric](14, 4) NULL,
@@ -126,6 +130,9 @@ SET @RowsInsertedCount = @@ROWCOUNT
 , TGT.[POH_DATE_REQ] = SRC.[POH_DATE_REQ]
 , TGT.[POH_DATE_DUE] = SRC.[POH_DATE_DUE]
 , TGT.[POL_DATE_LAST_RECEIVED] = SRC.[POL_DATE_LAST_RECEIVED]
+, TGT.[POL_DATE_LAST_CHG]      = SRC.[POL_DATE_LAST_CHG]
+, TGT.[POH_CHANGE_DATE]   	   = SRC.[POH_CHANGE_DATE]  
+, TGT.[POH_SHIP_DATE]          = SRC.[POH_SHIP_DATE]    
 , TGT.[POL_COST] = SRC.[POL_COST]
 , TGT.[POL_QTY_ORDER] = SRC.[POL_QTY_ORDER]
 , TGT.[POL_EXTENSION] = SRC.[POL_EXTENSION]

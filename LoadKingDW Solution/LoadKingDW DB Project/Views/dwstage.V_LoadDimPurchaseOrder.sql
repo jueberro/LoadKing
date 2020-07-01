@@ -3,7 +3,7 @@ CREATE VIEW [dwstage].[V_LoadDimPurchaseOrder]
 	AS
     SELECT  
 	                [POH_PURCHASE_ORDER]   --[char](7) NULL,
-				,   [POH_RECORD_NO] --[char](4) NULL,
+				,   [POL_RECORD_NO] --[char](4) NULL,
 				,   [POA_CRITICAL_SUPPL] --[char](1) NULL,
 				,   [POA_APPROVED_SUPPL] --[char](1) NULL,
 				,   [POH_TERMS] --[char](12) NULL,
@@ -47,7 +47,7 @@ CREATE VIEW [dwstage].[V_LoadDimPurchaseOrder]
 			    ,   [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
                 ,   [Type2RecordHash]			  = HASHBYTES('SHA2_256',        
                                                                              [POH_PURCHASE_ORDER]   --[char](7) NULL,
-																		 +   [POH_RECORD_NO] --[char](4) NULL,
+																		 +   [POL_RECORD_NO] --[char](4) NULL,
 																		 +   [POA_CRITICAL_SUPPL] --[char](1) NULL,
 																		 +   [POA_APPROVED_SUPPL] --[char](1) NULL,
 																		 +   [POH_TERMS] --[char](12) NULL,

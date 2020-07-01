@@ -5,7 +5,7 @@ CREATE VIEW [dwstage].[V_LoadFactPurchaseOrder]
 AS
 
 SELECT    
-	-1											as DimPurchaseOrder_Key 
+	 isnull(po.DimPurchaseOrder_Key, -1)  		as DimPurchaseOrder_Key 
 	,isnull(i.DimInventory_Key, -1)				as DimInventory_Key
 	,isnull(v.DimVendor_Key, -1)				as DimVendor_Key
 	,isnull(gl.DimGLAccount_Key, -1)			as DimGLAccount_Key
@@ -80,8 +80,8 @@ SELECT
 FROM	dwstage._V_PurchaseOrder as Stage
    
  LEFT OUTER JOIN dw.DimPurchaseOrder AS po
-  ON	Stage.POH_PURCHASE_ORDER = po.POH_Purchase_Order
-  AND	stage.POH_RECORD_NO = po.POH_RECORD_NO
+  ON	Stage.POL_PURCHASE_ORDER = po.POH_Purchase_Order
+  AND	stage.POL_RECORD_NO = po.POH_RECORD_NO
   AND	po.DWIsCurrent = 1 
 
  LEFT OUTER JOIN dw.DimInventory AS i

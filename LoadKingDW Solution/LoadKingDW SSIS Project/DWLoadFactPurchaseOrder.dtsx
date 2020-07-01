@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadFactPurchaseOrder"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="64"
-  DTS:VersionGUID="{C8B4A13A-6088-49F5-AE01-BAC3382FCC38}">
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{533B6FEB-E2E5-4B55-989F-4B7636548F47}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -3060,7 +3060,7 @@
         <NodeLayout
           Size="171,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
-          TopLeft="85.8333333333333,5.50000000000004" />
+          TopLeft="87.8333333333333,7.50000000000003" />
         <NodeLayout
           Size="185,43"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
@@ -3071,18 +3071,18 @@
           TopLeft="58.5,108.166666666667" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
-          TopLeft="174.416666666667,48.5">
+          TopLeft="175.416666666667,50.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.666666666667"
+              EndConnector="0,57.666666666667"
               Start="0,0"
-              End="0,52.166666666667">
+              End="0,50.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.166666666667" />
+                    End="0,50.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3286,7 +3286,7 @@
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source"
@@ -3314,7 +3314,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
