@@ -183,6 +183,10 @@
     <Build Include="Tables\dw.DimPurchaseOrder.sql" />
     <Build Include="Stored Procedures\dw.LoadDimPurchaseOrder.sql" />
     <Build Include="Views\dwstage.V_LoadDimPurchaseOrder.sql" />
+    <Build Include="Views\dwstage.V_LoadFactPurchaseOrderReceiver.sql" />
+    <Build Include="Tables\dw.FactPurchaseOrderReceiver.sql" />
+    <Build Include="Tables\dwstage.PO_RECEIVER.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactPurchaseOrderReceiver.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
