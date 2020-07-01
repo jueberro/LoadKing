@@ -14,6 +14,8 @@ SELECT
 	      , [VendorTerritory]   = CAST(vm.[Territory]      AS [nchar](2))
 	      , [VendorCodeArea]    = CAST(vm.[Code_Area]      AS [nchar](2))
 		  , [VendorEmail]       = CAST(vm2.[Address2]   AS [nvarchar](30))
+		  , [VendorApproved_Suppl] =  CAST(vm2.[Approved_Suppl]  AS [nchar](1))
+		  , [VendorCritical_Suppl] =  CAST(vm2.[Critical_Suppl]  AS [nchar](1))
 		  , [Type1RecordHash]		      = CAST(0 AS VARBINARY(64))
 		  , [Type2RecordHash]			  = HASHBYTES('SHA2_256',        
 															+ CAST(vm.[Vendor]         AS [nchar](6))
@@ -28,9 +30,10 @@ SELECT
 															+ CAST(vm.[INTL_ADRS]      AS [nchar](1))
 															+ CAST(vm.[Territory]      AS [nchar](2))
 															+ CAST(vm.[Code_Area]      AS [nchar](2))
-															+ CAST(vm2.[Address2]   AS [nvarchar](30))
-															)
-	
+															+ CAST(vm2.[Address2]      AS [nvarchar](30))
+															+ CAST(vm2.[Approved_Suppl]  AS [nchar](1))
+															+ CAST(vm2.[Critical_Suppl]  AS [nchar](1))
+	                                                    )
 	
 	
 	     , [SourceSystemName]		  = CAST('Global Shop'        AS NVARCHAR(100))
@@ -41,7 +44,7 @@ SELECT
 
 
 
-		FROM         (Select * from dwstage.VENDOR_MASTER WHERE   dwstage.VENDOR_MASTER.REC = 1) as vm
-		INNER JOIN   (Select * from dwstage.VENDOR_MASTER WHERE   dwstage.VENDOR_MASTER.REC = 3) as vm2
+		FROM         (Select * from dwstage._V_Vendor WHERE   dwstage._V_Vendor.REC = 1) as vm
+		INNER JOIN   (Select * from dwstage._V_Vendor WHERE   dwstage._V_Vendor.REC = 3) as vm2
 		ON vm.Vendor = vm2.Vendor
 GO

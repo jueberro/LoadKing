@@ -13,6 +13,8 @@
 	[VendorTerritory] [nchar](2) NULL,
 	[VendorCodeArea] [nchar](2) NULL,
 	[VendorEmail] [nvarchar](30) NULL,
+	[VendorApproved_Suppl] [nchar](1) NULL,
+	[VendorCritical_Suppl] [nchar](1) NULL,
 	[Type1RecordHash] [varbinary](64) NULL,
 	[Type2RecordHash] [varbinary](64) NULL,
 	[SourceSystemName] [nvarchar](100) NOT NULL,

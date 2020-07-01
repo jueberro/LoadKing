@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimVendor"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="59"
-  DTS:VersionGUID="{26D47C21-72F3-4B6E-B85D-0A8773E77114}">
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{B176CDE2-74B0-45A0-BF42-BBB760E0C3AC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -33,7 +33,7 @@
       DTS:ObjectName="SourceDataSetName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">VENDOR_MASTER</DTS:Property>
+        DTS:Name="ParameterValue">_V_Vendor</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -86,12 +86,12 @@
       DTS:CreationName=""
       DTS:DTSID="{6B3100D3-80D1-4513-BB1E-CB602207C436}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT * FROM dbo.VENDOR_MASTER WHERE ETL_Batch = &quot; + (DT_STR, 5, 1252)@[User::SourceLoadLogKey]"
+      DTS:Expression="&quot;SELECT * FROM dbo._V_Vendor WHERE ETL_Batch = &quot; + (DT_STR, 5, 1252)@[User::SourceLoadLogKey]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ODSExtractSQL">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT * FROM dbo.VENDOR_MASTER WHERE ETL_Batch = 0</DTS:VariableValue>
+        DTS:DataType="8">SELECT * FROM dbo._V_Vendor WHERE ETL_Batch = 0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -173,7 +173,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dwstage].[VENDOR_MASTER]</property>
+                      name="OpenRowset">[dwstage].[_V_Vendor]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -478,6 +478,22 @@
                           externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FILLER]"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FILLER]" />
                         <inputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CRITICAL_SUPPL]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="CRITICAL_SUPPL"
+                          externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CRITICAL_SUPPL]"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CRITICAL_SUPPL]" />
+                        <inputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[APPROVED_SUPPL]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="APPROVED_SUPPL"
+                          externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[APPROVED_SUPPL]"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[APPROVED_SUPPL]" />
+                        <inputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ETL_TblNbr]"
                           cachedDataType="i4"
                           cachedName="ETL_TblNbr"
@@ -684,6 +700,18 @@
                           dataType="str"
                           length="3"
                           name="FILLER" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CRITICAL_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="CRITICAL_SUPPL" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[APPROVED_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="APPROVED_SUPPL" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ETL_TblNbr]"
                           dataType="i4"
@@ -1127,6 +1155,28 @@
                           name="FILLER"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CRITICAL_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CRITICAL_SUPPL]"
+                          length="1"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CRITICAL_SUPPL]"
+                          name="CRITICAL_SUPPL"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[APPROVED_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APPROVED_SUPPL]"
+                          length="1"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[APPROVED_SUPPL]"
+                          name="APPROVED_SUPPL"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[ETL_TblNbr]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
@@ -1342,6 +1392,18 @@
                           dataType="str"
                           length="3"
                           name="FILLER" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CRITICAL_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="CRITICAL_SUPPL" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APPROVED_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="APPROVED_SUPPL" />
                         <externalMetadataColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ETL_TblNbr]"
                           dataType="i4"
@@ -1579,6 +1641,20 @@
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FILLER]"
                           name="FILLER" />
                         <outputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CRITICAL_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CRITICAL_SUPPL]"
+                          name="CRITICAL_SUPPL" />
+                        <outputColumn
+                          refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APPROVED_SUPPL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APPROVED_SUPPL]"
+                          name="APPROVED_SUPPL" />
+                        <outputColumn
                           refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ETL_TblNbr]"
                           dataType="i4"
                           lineageId="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ETL_TblNbr]"
@@ -1759,7 +1835,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
-              SQLTask:SqlStatementSource="TRUNCATE TABLE dwstage.VENDOR_MASTER" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dwstage._V_Vendor" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2109,25 +2185,25 @@
         <NodeLayout
           Size="157,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source"
-          TopLeft="903,55" />
+          TopLeft="584,98" />
         <NodeLayout
           Size="177,42"
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination"
-          TopLeft="891,138" />
+          TopLeft="580,179" />
         <EdgeLayout
           Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table.Paths[OLE DB Source Output]"
-          TopLeft="980.5,97">
+          TopLeft="665.5,140">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,39"
               Start="0,0"
-              End="0,33.5">
+              End="0,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2140,6 +2216,14 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
       <Property>
@@ -2149,14 +2233,6 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

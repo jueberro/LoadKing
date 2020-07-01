@@ -3,7 +3,7 @@
 
 
 
-CREATE PROCEDURE dw.sp_LoadDimVendor @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadDimVendor] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -49,6 +49,8 @@ DECLARE @RowsUpdatedCount int
 		[VendorTerritory]         [nchar](2) NULL,
 		[VendorCodeArea]          [nchar](2) NULL,
 		[VendorEmail]             [nchar](30) NULL,
+		[VendorApproved_Supppl]   [nchar](1) NULL,
+        [VendorCritical_Supppl]   [nchar](1) NULL,
 
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
