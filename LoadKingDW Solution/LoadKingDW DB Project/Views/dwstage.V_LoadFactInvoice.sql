@@ -8,7 +8,9 @@
 		        ,   DimCustomerShipTo_Key     	 = ISNULL(DCST.DimCustomerShipTo_Key, -1)											
 		        ,   DimInventory_Key 			 = ISNULL(DI.DimInventory_Key,        -1)											
 		        ,   DimGLAccount_Key             = ISNULL(GLAcct.DimGLAccount_Key,    -1)											
-		        ,   DimSalesperson_Key           = ISNULL(SalesP.DimSalesperson_Key,  -1)											
+		        ,   DimSalesperson_Key           = ISNULL(SalesP.DimSalesperson_Key,  -1)	
+				,   DimDropShipPO_Key            = ISNULL(DropShip.DimPurchaseOrder_Key, -1)
+
 	            ,   stage.[SalesOrderNumber]   	AS SalesOrderNumber																					
 				,   stage.[SalesOrderLine] 		AS SalesOrderLine																					
 				,   stage.[OHOrderSuffix] 		AS OHOrderSuffix																						
@@ -95,5 +97,10 @@ LEFT OUTER JOIN dw.DimInvoice AS DSO
   ON	stage.OLCustShipTo = DCST.ShipToSeq
    AND     Stage.OLCustomer = DCST.PrimaryCustomerID
       AND	DCST.DWIsCurrent = 1
+  
+  LEFT OUTER JOIN dw.DimPurchaseOrder  AS DropShip
+  ON    stage.OLDropPO = Dropship.POH_PURCHASE_ORDER
+   AND    stage.OLDropPOLine = Dropship.POH_RECORD_NO
+      AND	DCST.DWIsCurrent = 1
 
-	  GO
+GO

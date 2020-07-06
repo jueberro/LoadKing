@@ -19,6 +19,8 @@
 	[OLDateShipped] [date] NULL,
 	[OLDateLineInvoiced] [date] NULL,
 	[OLCustDueDate] [date] NULL,
+	[OLDropPO] [nchar](7) NULL,
+	[OLDropPOLine] [nchar](4) NULL,
 	[OLBranch] [nchar](2) NULL,
 	[OLShipVia] [nvarchar](20) NULL,
 	[OLCustomerPart] [nvarchar](20) NULL,

@@ -5,6 +5,7 @@
 --Procedure Name: [LK-GS-ODS].dbo.getInvoice
 --       Created: Pragmatic Works, Edwin Davis 5/5/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Invoice 
+--           R1 - JEU 7/6/2020 - Added Drop PO
 --==============================================
 
 CREATE PROCEDURE [dbo].[getInvoice]
@@ -120,6 +121,10 @@ IF object_id('##tmp_Order_Hist_Line', 'U') is not null -- if table exists
 		Drop table ##tmp_Order_Hist_Line
 	END
 
+IF object_id('##tmp_PODropShip', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp_PODropShip
+	END
 
 Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
@@ -141,6 +146,15 @@ Set @BaseSql = @BaseSql + '''' + 'Select * from  ORDER_HIST_LINE '  --Rev4 n.
 Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
 Set @Sql = 'Select * INTO ##tmp_Order_Hist_Line From ' +  @BaseSql 
+
+EXEC(@Sql)
+
+  -- create the select from source table Openquery using a wildcard
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+Set @BaseSql = @BaseSql + '''' + 'Select * from  PO_DROP_SHIP '  --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + ' )' 
+	  
+Set @Sql = 'Select * INTO ##tmp_PODropShip From ' +  @BaseSql 
 
 EXEC(@Sql)
 
@@ -172,6 +186,8 @@ SELECT   SO.*
 			,CAST(ol.DATE_SHIPPED         AS    date)               AS            OLDateShipped
 			,CAST(ol.DATE_INVOICE         AS    date)               AS            OLDateLineInvoiced
 			,CAST(ol.MUST_DLVR_DATE       AS    date)               AS            OLCustDueDate
+			,CAST(ds.po                   as    nchar(7))           AS            OLDropPO           --new r1
+			,CAST(ds.po_line              as    nchar(4))           AS            OLDropPOLine       --new r1
 			,CAST(ol.BRANCH               AS    nchar(2))           AS            OLBranch
 			,CAST(ol.SHIP_VIA             AS    [nvarchar](20))     AS            OLShipVia
 			,CAST(ol.CUSTOMER_PART        AS    [nvarchar](20))     AS            OLCustomerPart
@@ -232,6 +248,11 @@ SELECT   SO.*
 		ON oh.ORDER_NO = ol.ORDER_NO
 		AND oh.ORDER_SUFFIX = ol.ORDER_SUFFIX
 		AND oh.INVOICE = ol.INVOICE
+		LEFT JOIN
+		##tmp_PODropShip ds
+		on oh.Order_No = ds.Order_No
+		and oh.Order_Line = ds.Order_Line
+	    and oh.Part = ds.Part
 
 		-- truncate table dbo._v_Invoice -- select * from dbo._v_Invoice
 

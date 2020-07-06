@@ -10,7 +10,7 @@ SELECT
 	,isnull(v.DimVendor_Key, -1)				as DimVendor_Key
 	,isnull(gl.DimGLAccount_Key, -1)			as DimGLAccount_Key
 	,-1											as DimPaymentTerms_Key
-	,isnull(LastReceivedDate.DimDate_Key, -1)	as DimDate_Key
+	,isnull(DateDue.DimDate_Key, -1)	        as DimDate_Key
         --Attributes
 	, Stage.[POL_PURCHASE_ORDER]             
 	, Stage.[POL_RECORD_NO]					 
@@ -96,8 +96,8 @@ FROM	dwstage._V_PurchaseOrder as Stage
   ON	Stage.POH_GL_ACCOUNT = gl.GLAccount		
    AND  gl.DWIsCurrent = 1
 
- LEFT OUTER JOIN dw.DimDate AS LastReceivedDate
-  ON	Stage.POL_DATE_LAST_RECEIVED = LastReceivedDate.[Date]			
+ LEFT OUTER JOIN dw.DimDate AS DateDue
+  ON	Stage.POH_DATE_DUE = DateDue.[Date]			
 
  --LEFT OUTER JOIN dw.DimPaymentTerms AS pt
  -- ON	Stage.Terms = pt.PaymentTerms			
@@ -105,5 +105,8 @@ FROM	dwstage._V_PurchaseOrder as Stage
 
 
 GO
+
+
+
 
 

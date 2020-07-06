@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[_V_PurchaseOrder](
 	[POH_PURCHASE_ORDER] [char](7) NULL,
 	[POH_RECORD_NO] [char](4) NULL,
-	[POA_CRITICAL_SUPPL]  [char] (1) NULL,
-	[POA_APPROVED_SUPPL]  [char] (1) NULL,
+	[POA_CRITICAL_SUPPL] [char](1) NULL,
+	[POA_APPROVED_SUPPL] [char](1) NULL,
 	[POH_TERMS] [char](12) NULL,
 	[POH_VENDOR] [char](6) NULL,
 	[POH_GL_ACCOUNT] [char](15) NULL,

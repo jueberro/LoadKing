@@ -9,6 +9,7 @@
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_SalesOrder 
 -- r1 - Joe U - 5/19/2020 - Added logic to use Order_header record type L to get GL
 -- r2 - Joe U - 6/18/2020 - Modified date Last Changed logic to use datetime udf
+
 --==============================================
 
 CREATE PROCEDURE [dbo].[getSalesOrder]
@@ -134,6 +135,7 @@ IF object_id('##tmp_SalesOrder', 'U') is not null -- if table exists
 	END
 
 
+
 Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
 
@@ -163,6 +165,7 @@ Set @BaseSql = @BaseSql + '''' + ' )'
 Set @Sql = 'Select * INTO ##tmp_Order_Lines From ' +  @BaseSql 
 
 EXEC(@Sql)
+
 
 
 SELECT   SO.* INTO ##tmp_SalesOrder
@@ -199,6 +202,7 @@ SELECT   SO.* INTO ##tmp_SalesOrder
          , CAST(oh.QUOTE             AS nchar(7))                AS OHQuoteNumber                     -- [ORDER_HEADER]
          , CAST(oh.GL_Account        AS nchar(15))               AS OHGLAccount                       -- [ORDER_HEADER] --Record Type L, just to get the GLAccount
 	     , CAST(ol.PART              AS nchar(20))               AS OLPartID                          -- [ORDER_LINE]
+		
 
 -- Attributes
   		 , CAST(ol.CUSTOMER_PART                      	      AS nvarchar(20)) AS OLCustomerPart     -- [ORDER_LINE] 
@@ -246,9 +250,11 @@ SELECT   SO.* INTO ##tmp_SalesOrder
 			LEFT JOIN 
 			##tmp_Order_Lines ol 
 			ON oh.ORDER_NO = ol.ORDER_NO
+			
 		--	LEFT JOIN 
 			--##tmp_Order_HeaderL ohl 
 		--	ON oh.ORDER_NO = ohl.ORDER_NO
+		   
 
 
 		WHERE -- PULL ALL DELTAS
@@ -423,5 +429,4 @@ END
 
 
 GO
-
 
