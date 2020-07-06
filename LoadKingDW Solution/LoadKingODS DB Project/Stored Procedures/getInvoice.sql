@@ -250,8 +250,8 @@ SELECT   SO.*
 		AND oh.INVOICE = ol.INVOICE
 		LEFT JOIN
 		##tmp_PODropShip ds
-		on oh.Order_No = ds.Order_No
-		and oh.Order_Line = ds.Order_Line
+		on ol.Order_No = ds.Order_No
+		and ol.Order_Line = ds.Order_Line
 	    and ol.Part = ds.Part
 
 		-- truncate table dbo._v_Invoice -- select * from dbo._v_Invoice

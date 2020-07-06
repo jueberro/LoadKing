@@ -47,6 +47,7 @@ IF object_id('##FactInvoice_TARGET', 'U') is not null -- if table exists
 	[DimInventory_Key]              [int] NOT NULL,
 	[DimGLAccount_Key]              [int] NOT NULL,
 	[DimSalesperson_Key]            [int] NOT NULL,
+	[DimDropShipPO_Key]             [int] NOT NULL,
 	
 	
 	[SalesOrderNumber] [nchar](7) NULL,   
@@ -134,7 +135,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 ,TGT.[DimInventory_Key]                = SRC.DimInventory_Key
 ,TGT.[DimGLAccount_Key]                = SRC.DimGLAccount_Key
 ,TGT.[DimSalesperson_Key]              = SRC.[DimSalesperson_Key] 
-
+,TGT.[DimDropShipPO_Key]              = SRC.[DimDropShipPO_Key] 
 , TGT.[SalesOrderNumber]     = SRC.[SalesOrderNumber]    
 , TGT.[SalesOrderLine]       = SRC.[SalesOrderLine]      
 , TGT.[OHOrderSuffix]        = SRC.[OHOrderSuffix]       
