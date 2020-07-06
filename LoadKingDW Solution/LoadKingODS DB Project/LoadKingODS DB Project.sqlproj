@@ -125,5 +125,6 @@
     <Build Include="Tables\dbo._V_Vendor.sql" />
     <Build Include="Stored Procedures\getVendor.sql" />
     <Build Include="Tables\dbo._V_PurchaseOrder.sql" />
+    <Build Include="Stored Procedures\getINVENTORY_HIST.sql" />
   </ItemGroup>
 </Project>
