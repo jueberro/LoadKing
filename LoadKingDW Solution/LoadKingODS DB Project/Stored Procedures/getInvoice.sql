@@ -252,7 +252,7 @@ SELECT   SO.*
 		##tmp_PODropShip ds
 		on oh.Order_No = ds.Order_No
 		and oh.Order_Line = ds.Order_Line
-	    and oh.Part = ds.Part
+	    and ol.Part = ds.Part
 
 		-- truncate table dbo._v_Invoice -- select * from dbo._v_Invoice
 
