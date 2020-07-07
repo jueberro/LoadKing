@@ -39,7 +39,6 @@ DimPurchaseOrder_Key int NOT NULL,
 DimInventory_Key int NOT NULL,
 DimVendor_Key int NOT NULL,
 DimGLAccount_Key int NOT NULL,
-DimPaymentTerms_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 -- DEGENERATE HEADER ATTRIBUTES ----------------------------------------------
 [POL_PURCHASE_ORDER] [char](7) NULL,
@@ -122,7 +121,6 @@ SET @RowsInsertedCount = @@ROWCOUNT
 , TGT.DimInventory_Key = SRC.DimInventory_Key
 , TGT.DimVendor_Key = SRC.DimVendor_Key
 , TGT.DimGLAccount_Key = SRC.DimGLAccount_Key
-, TGT.DimPaymentTerms_Key = SRC.DimPaymentTerms_Key
 , TGT.DimDate_Key = SRC.DimDate_Key
 , TGT.[POL_PURCHASE_ORDER] = SRC.[POL_PURCHASE_ORDER]
 , TGT.[POL_RECORD_NO] = SRC.[POL_RECORD_NO]

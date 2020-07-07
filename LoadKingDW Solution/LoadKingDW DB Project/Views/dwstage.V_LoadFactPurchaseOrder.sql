@@ -9,7 +9,6 @@ SELECT
 	,isnull(i.DimInventory_Key, -1)				as DimInventory_Key
 	,isnull(v.DimVendor_Key, -1)				as DimVendor_Key
 	,isnull(gl.DimGLAccount_Key, -1)			as DimGLAccount_Key
-	,-1											as DimPaymentTerms_Key
 	,isnull(DateDue.DimDate_Key, -1)	        as DimDate_Key
         --Attributes
 	, Stage.[POL_PURCHASE_ORDER]             
@@ -99,9 +98,7 @@ FROM	dwstage._V_PurchaseOrder as Stage
  LEFT OUTER JOIN dw.DimDate AS DateDue
   ON	Stage.POH_DATE_DUE = DateDue.[Date]			
 
- --LEFT OUTER JOIN dw.DimPaymentTerms AS pt
- -- ON	Stage.Terms = pt.PaymentTerms			
- --  AND  pt.DWIsCurrent = 1
+
 
 
 GO

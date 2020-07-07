@@ -6,7 +6,6 @@ CREATE TABLE [dw].[FactPurchaseOrder](
 	[DimInventory_Key] [int] NOT NULL,
 	[DimVendor_Key] [int] NOT NULL,
 	[DimGLAccount_Key] [int] NOT NULL,
-	[DimPaymentTerms_Key] [int] NOT NULL,
 	[DimDate_Key] [int] NOT NULL,
 	[POL_PURCHASE_ORDER] [char](7) NULL,
 	[POL_RECORD_NO] [char](4) NULL,
