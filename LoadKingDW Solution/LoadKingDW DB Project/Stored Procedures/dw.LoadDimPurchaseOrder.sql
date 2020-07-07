@@ -56,7 +56,8 @@ BEGIN
     [POL_LOCATION] [char](2) NULL, 
     [POL_DESCRIPTION] [char](30) NULL,
     [POL_PART_MFG_NO] [char](23) NULL, 
-    [POL_FILL_EXTENSION] [numeric](1, 0) NULL,
+    [dropshippo_flag] [CHAR](1) null,
+	[POL_FILL_EXTENSION] [numeric](1, 0) NULL,
     [POL_EXTENSION] [numeric](15, 2) NULL, 
     [POL_FILLER10] [char](14) NULL,
 	[POL_FILL_EXCH_EXT] [numeric](1, 0) NULL,
@@ -148,3 +149,4 @@ END
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
 
 GO
+

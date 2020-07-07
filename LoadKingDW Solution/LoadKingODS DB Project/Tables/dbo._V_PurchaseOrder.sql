@@ -38,6 +38,7 @@
 	[POL_LOCATION] [char](2) NULL,
 	[POL_DESCRIPTION] [char](30) NULL,
 	[POL_PART_MFG_NO] [char](23) NULL,
+	[DROPSHIPPO_FLAG] [char](1) NULL,
 	[POL_FILL_EXTENSION] [numeric](1, 0) NULL,
 	[POL_EXTENSION] [numeric](15, 2) NULL,
 	[POL_FILLER10] [char](14) NULL,

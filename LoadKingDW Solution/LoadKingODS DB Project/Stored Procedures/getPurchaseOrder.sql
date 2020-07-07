@@ -181,6 +181,18 @@ Set @Sql = 'Select * INTO ##tmp_Vendor_Addl From ' +  @BaseSql
 
 EXEC(@Sql)
 
+  -- create the select from source table Openquery using a wildcard
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+Set @BaseSql = @BaseSql + '''' + 'Select * from  PO_DROP_SHIP '  --Rev4 n.
+Set @BaseSql = @BaseSql + '''' + ' )' 
+	  
+Set @Sql = 'Select * INTO ##tmp_PODropShip From ' +  @BaseSql 
+
+EXEC(@Sql)
+
+
+
+
 Set @ETLCompleted = getdate()
 
 INSERT INTO dbo._V_PurchaseOrder
@@ -236,6 +248,11 @@ SELECT   PO.*
 	ol.[DESCRIPTION]									as POL_DESCRIPTION, -- Pay Terms (miss parsed with Location)
 	ol.[PART_MFG_NO]									as POL_PART_MFG_NO, --possible part
 -----------------------------------------------------------------------------------
+     Case
+	  When ds.PO is not null
+	   Then 'Y' else 'N'             -- Create a Drop Ship PO Flag to identifyPo's found in Drop Ship PO table
+     End As DropShipPO_Flag,         
+-----------------------------------------------------------------------------------
 	ol.[FILL_EXTENSION]									as POL_FILL_EXTENSION,
 	ol.[EXTENSION]										as POL_EXTENSION,
 	ol.[FILLER10]										as POL_FILLER10,
@@ -284,6 +301,11 @@ SELECT   PO.*
 			LEFT JOIN
 			##tmp_Vendor_Addl oa
 			ON oh.VENDOR = oa.VENDOR
+			LEFT JOIN
+	    	##tmp_PODropShip ds
+		    on  ol.Purchase_Order = ds.PO
+		    and ol.Record_No      = ds.PO_Line
+	        and ol.Part           = ds.Part
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
 			
@@ -344,6 +366,11 @@ UNION ALL -- Get Header and Lines data from History versions
 	olh.[DESCRIPTION]									as POL_DESCRIPTION, -- Pay Terms (miss parsed with Location)
 	olh.[PART_MFG_NO]									as POL_PART_MFG_NO, --possible part
 -----------------------------------------------------------------------------------
+     Case
+	  When ds.PO is not null
+	   Then 'Y' else 'N'             -- Create a Drop Ship PO Flag to identifyPo's found in Drop Ship PO table
+     End As DropShipPO_Flag,         
+-----------------------------------------------------------------------------------
 	NULL												as POL_FILL_EXTENSION,
 	olh.[EXTENSION]										as POL_EXTENSION,
 	olh.[FILLER10]										as POL_FILLER10,
@@ -392,6 +419,11 @@ UNION ALL -- Get Header and Lines data from History versions
 			LEFT JOIN
 			##tmp_Vendor_Addl oa
 			ON ohh.VENDOR = oa.VENDOR
+			LEFT JOIN
+			##tmp_PODropShip ds
+		    on  olh.Purchase_Order = ds.PO
+		    and olh.Line           = ds.PO_Line
+	        and olh.Part           = ds.Part
 
 		WHERE -- PULL ALL DELTAS -- *** Header CHANGE_DATE not being populated, will force all record to need to be pulled ***
 				(
@@ -408,6 +440,8 @@ UNION ALL -- Get Header and Lines data from History versions
 
 	Drop table ##tmp_POHIST_HEAD -- select * from ##tmp_POHIST_HEAD
 	Drop table ##tmp_POHIST_LINES -- select * from ##tmp_POHIST_LINES
+
+	drop table ##tmp_PODropShip 
 
 
 -- ***** END MULTI SOURCE TABLE LOAD LOGIC ***********************************************
