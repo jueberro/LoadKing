@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="bwKJpJg9Iwk=" SSIS:IV="1vdEmTPNzy49+TT1Ra0o8w==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">Zc1X1A4jAIwkspOLtOQn7pNi8AD6HLpY+7GNVLDy7jQE/Bb2cw9jAtdRMopyU453C1q8A5ixjHPO7byNIImDzJqQbn6SVcsk5kmGqnlLKvBI89nzVT0UYtEJgDRE2Hm+EQj1RgQoPTVlEy1B0bEyiGpn2QM2vUL9s8gS5EebzjI55dZ7In7+MjwM784xrnjI</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="H5Kvw9IsolM=" SSIS:IV="OPgxgfGkm5Vbp79kyjbiHw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">MfkNab6LEWmgSQyestTi8lXskbWAqkGOjo/jtBL9StDxkczCFgrEsWlKr3Y5DZOmHs12W8ICk96aoBhbw8fW98UKXhRTHnIumzob49X4OFFb4kxDL6w60IAwQpe04FdXGtIFKUlRgAjJXyKY+iXNsJe+y1gFOR+5Fj/JRYnzAfgtlBj+cU11Cm9hjuS+aeA1</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -63,6 +63,7 @@
           <SSIS:Package SSIS:Name="DWLoadDimPurchaseOrder.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadFactPurchaseOrderReceiver.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadFactInventoryMovement.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadLkpOrderChanges.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LK_CNC.conmgr" />
@@ -2766,6 +2767,80 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">dw.sp_LoadFactInventoryMovement</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DWLoadLkpOrderChanges.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C99F6905-503D-45B2-8C81-E8B97FA075C5}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadLkpOrderChanges</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">68</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7E9B9FB6-2861-43F5-B6E9-4D1F07EA808A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="DWTableName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{2AD589C0-68FF-42BD-A820-ADB8DF08A8AA}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">LkpOrderChanges</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceDataSetName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{85453291-D64D-4AE0-A82A-FDCB2E8C622A}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">ORDER_CHANGES</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceSystemName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{C0FD4238-DB75-4783-BC41-2C7B5CD5A909}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Global Shop</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="StoredProcedureName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{0DAE3149-645F-4EB9-AA53-999B2628D048}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadLkpOrderChanges</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

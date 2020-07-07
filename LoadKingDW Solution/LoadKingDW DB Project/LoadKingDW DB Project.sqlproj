@@ -191,6 +191,7 @@
     <Build Include="Tables\dwstage.INVENTORY_HIST.sql" />
     <Build Include="Stored Procedures\dw.LoadFactInventoryMovement.sql" />
     <Build Include="Views\dwstage.V_LoadFactInventoryMovement.sql" />
+    <Build Include="Stored Procedures\dw.LoadLkpOrderChanges.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
