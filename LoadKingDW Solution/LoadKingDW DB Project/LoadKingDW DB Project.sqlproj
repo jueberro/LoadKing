@@ -187,6 +187,10 @@
     <Build Include="Tables\dw.FactPurchaseOrderReceiver.sql" />
     <Build Include="Tables\dwstage.PO_RECEIVER.sql" />
     <Build Include="Stored Procedures\dw.LoadFactPurchaseOrderReceiver.sql" />
+    <Build Include="Tables\dw.FactInventoryMovement.sql" />
+    <Build Include="Tables\dwstage.INVENTORY_HIST.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactInventoryMovement.sql" />
+    <Build Include="Views\dwstage.V_LoadFactInventoryMovement.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
