@@ -192,7 +192,14 @@
     <Build Include="Stored Procedures\dw.LoadFactInventoryMovement.sql" />
     <Build Include="Views\dwstage.V_LoadFactInventoryMovement.sql" />
     <Build Include="Stored Procedures\dw.LoadLkpOrderChanges.sql" />
-    <Build Include="Tables\dwstage.GL_AP_CHECK_DTL.sql" />
+    <Build Include="Tables\dwstage.GCG_5398_CAR.sql" />
+    <Build Include="Tables\dwstage.GCG_5398_ECR.sql" />
+    <Build Include="Tables\dw.FactEngineeringCAR.sql" />
+    <Build Include="Tables\dw.FactEngineeringECR.sql" />
+    <Build Include="Views\dwstage.V_LoadFactEngineeringCAR.sql" />
+    <Build Include="Views\dwstage.V_LoadFactEngineeringECR.sql" />
+    <Build Include="Stored Procedures\dw.sp_LoadFactEngineeringCAR.sql" />
+    <Build Include="Stored Procedures\dw.sp_LoadFactEngineeringECR.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />

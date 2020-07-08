@@ -1,23 +1,33 @@
---USE [LK-GS-ODS]
---GO
-
-
-CREATE PROCEDURE dbo.getGCG_5398_CAR
-@SourceTableName varchar(255)
-,@LoadLogKey int
-,@StartDate datetime
-,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'
-
+CREATE PROCEDURE [dbo].[getGCG_5398_CAR]
+ @SourceTableName varchar(255) --= 'GCG_5398_CAR'
+,@LoadLogKey int --= 999
+,@StartDate datetime --= '07/07/2020'
+,@EndDate datetime --= '07/07/2020'
+,@LinkedServer varchar(100) = 'LK-GS-01'
+-- EXECUTE [dbo].[getGCG_5398_CAR]
 AS
 
 BEGIN
+
+/*
+DECLARE @SourceTableName varchar(255)
+DECLARE @LoadLogKey int
+DECLARE @StartDate datetime
+DECLARE @EndDate datetime, @LinkedServer varchar(100) = 'LK-GS-01'
+
+SET @SourceTableName = 'GCG_5398_CAR'
+SET @LoadLogKey  = 0
+SET @StartDate  = '1/1/1900'
+SET @EndDate  = getdate()
+*/
+
 	SET ANSI_NULLS ON
 	SET NOCOUNT ON
 
 Declare @TblNbr       as Int
 Declare @TblName      as varchar(100)
-Declare @Basesql      as varchar(255)
-Declare @Sql          as varchar(1000) 
+Declare @Basesql      as varchar(4000)
+Declare @Sql          as varchar(4000) 
 Declare @Reccnt       as int
 Declare @ETLStarted   as datetime
 Declare @Servername   as varchar(255)
@@ -53,17 +63,14 @@ Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBa
 from 
 [LK-GS-CNC].dbo._TableList tl
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
-ON tl.TABLE_NAME = @SourceTableName 
+ON tl.TABLE_NAME = ec.SourceTableName
 where 
-MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1 and ec.SourceTableName = @SourceTableName
+MasterRunFlag = 'Y' and  tl.TABLE_NAME = 'GCG_5398_CAR' and ec.ExtractEnabledFlag = 1
+--and CurRunFlag  <> 'Y' 
+and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
-
--- update x set MasterRunFlag = 'Y' from [LK-GS-CNC].dbo._TableList x where Table_Name = 'CUSTOMER_MASTER'
        
---OPEN TBLList            
---FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
-
---WHILE @@fetch_status = 0            
+       
 BEGIN  
 BEGIN TRY
 
@@ -78,17 +85,11 @@ BEGIN TRY
 
     Set  @TblNamePath = @ODSdatabase + @tblname -- Rev4 i.
 
+    -- Increment the last Batch ID
 
-      -- create the select from source table Openquery using a wildcard
-    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
-    Set @BaseSql = @BaseSql + '''' + ')' 
-	  
- -- Increment the last Batch ID
+	Set @Batch = @LoadLogKey -- @LastBatch +1
 
-	Set @Batch = @LoadLogKey--@LastBatch +1
-
- -- Insert the  the Start Time of the ETL into the table record
+ --Insert the  the Start Time of the ETL into the table record
   
  Update [LK-GS-CNC].dbo._Tablelist  -- Rev4 c.
     Set ETL_Start       = @ETLStarted,
@@ -108,24 +109,48 @@ BEGIN TRY
 	select 
 	[TableNbr], [TABLE_CAT], [TABLE_SCHEM], [TABLE_NAME], [TABLE_TYPE], 'SSIS Framework Pkg' as [REMARKS], [VIEW_NAME],SourceStoredProc, [ETL_Start], [ETL_Completed]
 	, [Status], [Recordcount], [CurRunFlag], [RunPriority], [MasterRunFlag], [LastBatch], [ServerName], [DBname], [WinUsername], [SqlUsername], [Procname] 
-	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName -- 'CUSTOMER_MASTER' -- @TblName
+	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName 
 
+-- ***** CREATE temp table to do Delta test *********************************************
+
+    IF object_id('##tmp_GCG_5398_CAR', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp_GCG_5398_CAR
+	END
+
+	   -- create the select from source table Openquery using a wildcard
+    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
+    Set @BaseSql = @BaseSql + '''' + ')' 
+	  
+    Set @Sql = 'Select * INTO ##tmp_GCG_5398_CAR From ' +  @BaseSql 
+
+	
+    EXEC(@Sql)
+    -- select * from ##tmp_GCG_5398_CAR
     -- If The Table Exists, truncate table and Insert the records from Source, else create table from source
 
     IF object_id(@TblName, 'U') is not null -- if table exists
       
 	  BEGIN
-	       	 
+
 	  --INSERT New ODS Recs (Append with new Batch ID)
 
-      Set @Sql = 'INSERT INTO ' + @TblName + ' Select *,' + ''''
-	                             + CONVERT(varchar(255),@TblNbr) + '''' + ',' + '''' 
-								 + CONVERT(varchar(255),@Batch)  + '''' + ',' + '''' 
-								 + @TestDate + '''' + ' From ' +  @BaseSql 
-
-      EXEC(@Sql)     -- insert records from source table1
-
-     --Log to TableList and Tablelistlog
+    INSERT INTO [dbo].[GCG_5398_CAR]
+          
+SELECT so.*
+FROM   ( 
+      SELECT 
+        d.* 
+       ,@TblNbr   AS etl_tblnbr 
+       ,@Batch    AS etl_batch  
+       ,Getdate() AS etl_completed -- select count(*) 
+      FROM   ##tmp_GCG_5398_CAR d
+	) AS SO
+	 
+	Drop table ##tmp_GCG_5398_CAR -- select count(*) from ##tmp_JOB_DETAIL
+  
+   --Log to TableList and Tablelistlog
 
 	
 	   Set @SQL = 'Update [LK-GS-CNC].dbo._TablelistLOG '
@@ -139,7 +164,7 @@ BEGIN TRY
 	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
 					      Where  Table_Name   = ' + '''' + @TblName + ''''  -- Rev4 l
 
-       EXEC(@Sql)
+       EXEC(@Sql) 
 
 	-- ELD added Record Count
 	 SET @Reccnt = 
@@ -176,62 +201,6 @@ BEGIN TRY
 	     	Where Table_Name  = @Tblname and LastBatch = @Batch
       
       END
-    ELSE
-      BEGIN 
-       --Create New ODS File (Table did not exist)
-	    
-     Set @Sql = 'Select *,' + '''' + CONVERT(varchar(255),@TblNbr) + '''' + ' as ETL_TblNbr ,' + '''' 
-							       + CONVERT(varchar(255),@Batch)  + '''' + ' as ETL_Batch ,' + '''' 
-								   + @TestDate + '''' + ' as ETL_Completed INTO ' + @TblName + ' From ' +  @BaseSql 
-       EXEC(@Sql)  
-       
-
-	 --Log to TableList and Tablelistlog
-
-	   Set @SQL = 'Update [LK-GS-CNC].dbo._TablelistLOG '
-	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
-					      Where  Table_Name   = ' + '''' + @TblName + '''' 
-					 + '     and LastBatch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) -- Rev4 l
-    
-	   EXEC(@Sql)
-
-	   Set @SQL = 'Update [LK-GS-CNC].dbo._TableList '
-	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
-					      Where  Table_Name   = ' + '''' + @TblName + ''''  -- Rev4 l
-    
-	   EXEC(@Sql)
-   
-
-	Update  [LK-GS-CNC].dbo._TableList  -- Rev4 c.
-        Set ETL_Start       =  @ETLStarted,
-	        ETL_Completed   =  getdate(),
-	        Status          =  'Completed',
-            LastBatch       =  @Batch,
-            ServerName      =  @Servername,
-	        DBName          =  @DataBaseName,
-	        WinUsername     =  @Winusername,
-		    SQLUsername     =  @SQLUsername,  
-		    Procname        =  @Procname,  
-		    CurRunFlag      =  'N',
-			Remarks         = 'Full Load'
-	     	Where Table_Name  = @Tblname
-
-	Update [LK-GS-CNC].dbo._TablelistLOG  -- Rev4 c.
-	        Set ETL_Start   =  @ETLStarted,
-	        ETL_Completed   =  getdate(),
-	        Status          =  'Completed',
-            ServerName      =  @Servername,
-	        DBName          =  @DataBaseName,
-	        WinUsername     =  @Winusername,
-		    SQLUsername     =  @SQLUsername,  
-		    Procname        =  @Procname,  
-		    CurRunFlag      =  'N',
-			Remarks         = 'Full Load'
-	     	Where Table_name  = @Tblname and LastBatch = @Batch
-      
-      
-	
-      END
 
  END TRY
  BEGIN CATCH  --ERROR TRAPPING
@@ -264,7 +233,6 @@ BEGIN TRY
 		,@WinUsername
 		,@SQLUsername
 		,@Procname
-
 	
 		-- Complete the Logging for _TableList and _TablelistLOG to show Error Status  -- rev4 g.5
 		 
@@ -283,7 +251,6 @@ BEGIN TRY
     
 	   EXEC(@Sql)
    
-
 		 Update  [LK-GS-CNC].dbo._TableList  -- Rev4 g.
         Set ETL_Start       =  @ETLStarted,
 	        ETL_Completed   =  getdate(),
@@ -320,13 +287,8 @@ END
 --CLOSE TblList           
 --DEALLOCATE TBLList    
 
-
 -- Return one row result set to use in SSIS package
 SELECT SourceRecordCount = @Reccnt
 
-
-    
 END
 GO
-
-
