@@ -126,5 +126,7 @@
     <Build Include="Stored Procedures\getVendor.sql" />
     <Build Include="Tables\dbo._V_PurchaseOrder.sql" />
     <Build Include="Stored Procedures\getINVENTORY_HIST.sql" />
+    <Build Include="Tables\dbo.GCG_5398_CAR.sql" />
+    <Build Include="Tables\dbo.GCG_5398_ECR.sql" />
   </ItemGroup>
 </Project>
