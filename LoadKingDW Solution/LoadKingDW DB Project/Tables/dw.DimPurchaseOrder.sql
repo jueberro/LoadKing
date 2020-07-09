@@ -8,6 +8,8 @@
 	[POH_ORDER_TAX] [char](1) NULL,
 	[POH_FLAG_INSURANCE] [char](1) NULL,
 	[POH_BUYER] [char](3) NULL,
+	[POH_DATE_ORDER] datetime NULL,
+	[POH_DATE_DUE] datetime NULL,
 	[POH_SHIP_VIA] [char](15) NULL,
 	[POH_CODE_FOB] [char](15) NULL,
 	[POH_FLAG_RECV_CLOSED] [char](1) NULL,
