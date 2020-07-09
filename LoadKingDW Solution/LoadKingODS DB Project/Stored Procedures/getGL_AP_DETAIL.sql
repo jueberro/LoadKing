@@ -1,38 +1,31 @@
-﻿--==============================================
---Procedure Name: [LK-GS-ODS].dbo.getJobOperations_Hist
---       Created: Pragmatic Works, Joe ueberroth, 06-13-2020
---       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_JobOperations_Hist
---==============================================
-
-CREATE PROCEDURE [dbo].[getJobOperations_Hist]
+﻿CREATE PROCEDURE [dbo].[getGL_AP_DETAIL]
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
-,@EndDate datetime, @LinkedServer varchar(100) = 'LK_GS'	
+,@EndDate datetime, @LinkedServer varchar(100) = 'LK-GS-01'
 AS
 
 BEGIN
 
-/* DEBUGGING
-DECLARE
-@SourceTableName varchar(255)
-,@LoadLogKey int
-,@StartDate datetime
-,@EndDate datetime	
+/*
+DECLARE @SourceTableName varchar(255)
+DECLARE @LoadLogKey int
+DECLARE @StartDate datetime
+DECLARE @EndDate datetime, @LinkedServer varchar(100) = 'LK-GS-01'
 
-SELECT 
-@SourceTableName = '_V_JobOperations_Hist'
-,@LoadLogKey = 0
-,@StartDate = '1/1/1900'
-,@EndDate = getdate() 	
+SET @SourceTableName = 'GL_AP_DETAIL'
+SET @LoadLogKey  = 0
+SET @StartDate  = '1/1/1900'
+SET @EndDate  = getdate()
 */
 
-
-SET NOCOUNT ON;
-
+	SET ANSI_NULLS ON
+	SET NOCOUNT ON
 
 Declare @TblNbr       as Int
 Declare @TblName      as varchar(100)
+Declare @Basesql      as varchar(4000)
+Declare @Sql          as varchar(4000) 
 Declare @Reccnt       as int
 Declare @ETLStarted   as datetime
 Declare @Servername   as varchar(255)
@@ -50,6 +43,7 @@ Declare @ODSdatabase  as nvarchar(100)
 Declare @ActiveTable  as nvarchar(100)
 Declare @TblNamePath  as nvarchar(100)
 Declare @Viewname     as nvarchar(100)
+Declare @BaseSQLTblName as nvarchar(100) --Rev4 n.
 
 Set @Servername   = @@SERVERNAME  
 Set @Databasename = DB_NAME()     
@@ -61,26 +55,39 @@ Set @EDWdatabase  = '[LK-GS-EDW].dbo.'
 Set @ODSdatabase  = '[LK-GS-ODS].dbo.'
 
 
-Select @TblNbr = TableNbr,@Tblname = Table_Name,@Viewname = View_Name,@LastBatch = LastBatch 
+--DECLARE TBLList CURSOR FOR    -- Create a CURSOR of TableNbr's to process from _TableList table     
+ 
+Select @TblName = TABLE_NAME, @TblNbr = TableNbr, @Viewname = View_Name, @LastBatch = LastBatch 
 from 
 [LK-GS-CNC].dbo._TableList tl
 JOIN [LK-GS-CNC].ods_globalshop.ExtractConfiguration ec 
-ON tl.TABLE_NAME = @SourceTableName -- ec.SourceTableName
+ON tl.TABLE_NAME = ec.SourceTableName
 where 
-MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and ec.ExtractEnabledFlag = 1
+MasterRunFlag = 'Y' and CurRunFlag  <> 'Y' and  tl.TABLE_NAME = 'GL_AP_DETAIL' and ec.ExtractEnabledFlag = 1
+and ec.SourceTableName = @SourceTableName
 order by runpriority, tablenbr asc
+       
+--OPEN TBLList            
+--FETCH NEXT FROM TBLList INTO @TblNbr,@Tblname,@Viewname,@LastBatch       -- rev4 e.    
 
-
+--WHILE @@fetch_status = 0            
+BEGIN  
 BEGIN TRY
 
-Set @ETLStarted = getdate()
-set @TestDate = convert(varchar,@ETLStarted,120) -- use for ETLCompleted in batch insert on tables.
+    -- Use a View if refernced in the __Tablelist to extract data
+    Set @BaseSQLTblname = ISNULL(@Viewname,@Tblname) --Rev4 n.
 
---Update destination tablename to reflect the LK-GS-EDW database since we are in ODS->EDW TSQL
-Set  @TblNamePath = @ODSdatabase + @tblname -- Rev4 i.
+    Set @ETLStarted = getdate()
+	  
+	set @TestDate = convert(varchar,@ETLStarted,120) -- use for ETLCompleted in batch insert on tables.
+  
+    --Update destination tablename to reflect the LK-GS-EDW database since we are in ODS->EDW TSQL
 
- -- Increment the last Batch ID
-Set @Batch = @LoadLogKey --@LastBatch +1
+    Set  @TblNamePath = @ODSdatabase + @tblname -- Rev4 i.
+
+    -- Increment the last Batch ID
+
+	Set @Batch = @LoadLogKey -- @LastBatch +1
 
  -- Insert the  the Start Time of the ETL into the table record
   
@@ -104,170 +111,111 @@ Set @Batch = @LoadLogKey --@LastBatch +1
 	, [Status], [Recordcount], [CurRunFlag], [RunPriority], [MasterRunFlag], [LastBatch], [ServerName], [DBname], [WinUsername], [SqlUsername], [Procname] 
 	from [LK-GS-CNC].dbo._TableList Where Table_Name = @TblName 
 
--- ***** BEGIN MULTI SOURCE TABLE LOAD LOGIC *********************************************
+-- ***** CREATE temp table to do Delta test *********************************************
 
-IF object_id('##tmp_JOB_HEADER', 'U') is not null -- if table exists
+    IF object_id('##tmp_GL_AP_DETAIL', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_JOB_HEADER
+		Drop table ##tmp_Department
 	END
 
-IF object_id('##tmp_JOB_OPERATIONS', 'U') is not null -- if table exists
+	IF object_id('##tmp_GL_AP_DETAIL_HIST', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_JOB_OPERATIONS
+		Drop table ##tmp_Department
 	END
 
-Declare @Basesql      as varchar(255)
-Declare @Sql          as varchar(1000) 
-
-  -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-Set @BaseSql = @BaseSql + '''' + 'select m.JOB JBMASTER_JOB, m.sfx JBMASTER_SFX, m.bomparent JBMASTER_BOMPARENT, h.* from job_hist_mast h left join APSV3_JBMASTER m on h.JOB = m.job and h.suffix = m.sfx and m.bomparent = 1 '   --Rev4 n.
-Set @BaseSql = @BaseSql + '''' + ')' 
+	   -- create the select from source table Openquery using a wildcard
+    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
+    Set @BaseSql = @BaseSql + '''' + ')' 
 	  
-Set @Sql = 'Select * INTO ##tmp_JOB_HEADER From ' +  @BaseSql 
+    Set @Sql = 'Select * INTO ##tmp_GL_AP_DETAIL From '   +  @BaseSql 
 
-EXEC(@Sql)
+    EXEC(@Sql)
 
-  -- create the select from source table Openquery using a wildcard
-Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-Set @BaseSql = @BaseSql + '''' + 'Select * from  JOB_hist_ops '  --Rev4 n.
-Set @BaseSql = @BaseSql + '''' + ' )' 
+	   -- create the select from source table Openquery using a wildcard
+    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
+    Set @BaseSql = @BaseSql + '''' + ')' 
 	  
-Set @Sql = 'Select * INTO ##tmp_JOB_OPERATIONS From ' +  @BaseSql 
+    Set @Sql = 'Select * INTO ##tmp_GL_AP_DETAIL_HIST From ' +  @BaseSql 
 
-EXEC(@Sql)
+    EXEC(@Sql)
+	
+    -- If The Table Exists, truncate table and Insert the records from Source, else create table from source
 
+    IF object_id(@TblName, 'U') is not null -- if table exists
+      
+	  BEGIN
 
+	  --INSERT New ODS Recs (Append with new Batch ID)
 
---DECLARE @TblNbr int
---DECLARE @Batch int
+    INSERT INTO dbo.GL_AP_DETAIL
 
---SET @TblNbr = 1847
---SET @Batch = 0
-
-INSERT INTO dbo._V_JobOperations_Hist
-
-SELECT   SO.*
-	--INTO [LK-GS-ODS].dbo._V_JobOperations
+    SELECT   GL.*
+	
 	From
 
 	(Select
-		  h.[JBMASTER_JOB]
-		, h.[JBMASTER_SFX]
-		, h.[JBMASTER_BOMPARENT]
-
-		, h.JOB                   as [HEADER_JOB]
-		, h.SUFFIX                as [HEADER_SUFFIX]
-		, h.PART                  as [HEADER_PART]
-		, h.PRODUCT_LINE          as [HEADER_PRODUCT_LINE]
-		, h.SALESPERSON           as [HEADER_SALESPERSON]
-		, h.CUSTOMER              as [HEADER_CUSTOMER]
-		, h.SALES_ORDER           as [HEADER_SALES_ORDER]
-		, h.SALES_ORDER_LINE      as [HEADER_SALES_ORDER_LINE]
-
-		, o.[JOB]
-		, o.[SUFFIX]
-		, o.[SEQ]
-
-		, o.[OPERATION]
-		, o.[LMO]
-		, o.[DESCRIPTION]
-		, o.[UM]
-		, o.[PART]
-		, o.[ROUTER]
-		, o.[ROUTER_SEQ] 
-		, o.[FLAG_CLOSED] 
-		, o.[TIME_START]
-		, o.[MACHINE_HOURS]
-		, o.[TIME_ELAPSED]
-		, o.[FACTOR_WORKCENTER]
-		, o.[PROJ_GROUP] -- DIM
-		, o.[SEQ_PO]
-		, o.[PO_ASSIGNED]
-		, o.[MAIN_COMMENT]
-		, o.[WORK_STARTED]
-		, o.[HOLD_PO]
-
-		, h.DATE_OPENED as [HEADER_DATE_OPENED]
-		, h.DATE_DUE as [HEADER_DATE_DUE]
-		, h.DATE_CLOSED as [HEADER_DATE_CLOSED]
-		, h.DATE_START as [HEADER_DATE_START]
-
-		, o.[DATE_START]
-		, o.[DATE_DUE]
-		, o.[DATE_MATERIAL_DUE]
-		, o.[DATE_COMPLETED]
-		, o.[DATE_HARD]
-		, o.[DATE_OPER_ST_MDY]
-		, o.[DATE_PO_ORDER]
-		, o.[DATE_OPER_SK_YEAR]
-		, o.[DATE_OPER_SK_MDY]
-		, o.[DATE_OPER_ST_YEAR]
-
-		, o.[UNITS_OPEN]
-		, o.[UNITS_COMPLETE]
-		, o.[SETUP]
-		, o.[UNITS]
-		, o.[BURDEN]
-		, o.[HOURS_ESTIMATED]
-		, o.[HOURS_ACTUAL]
-		, o.[DOLLARS_ESTIMATED]
-		, o.[DOLLARS_ACTUAL]
-		, o.[YIELD]
-		, o.[YIELD_RATIO]
-		, o.[CREW_SIZE]
-		, o.[UNIT_D6]
-		, o.[LEAD_TIME]
-
-		, @TblNbr as ETL_TablNbr
-		, @Batch as ETL_Batch
-		, getdate() as ETL_Completed -- select count(*)
-		FROM
-		##tmp_JOB_HEADER h
-		LEFT JOIN 
-		##tmp_JOB_OPERATIONS o
-		ON h.JOB = o.JOB
-		AND h.SUFFIX = o.SUFFIX
-
-		--WHERE -- PULL ALL DELTAS
-		--	(
-		--		d.DATE_LAST_CHG between cast(CAST(@StartDate as date)as varchar(19)) and cast(CAST(@EndDate as date) as varchar(19))
-		--	)
-
-	) AS SO
+	 
+		apd.*    
+	    , @TblNbr as ETL_TablNbr
+	    , @Batch as ETL_Batch
+	    , getdate() as ETL_Completed 
 	
+	    FROM
+		##tmp_GL_AP_DETAIL  apd
+				WHERE -- PULL ALL DELTAS
+			(
+				LAST_CHG_DATE between @StartDate and @EndDate
+			)
+  
+   
+   
+  UNION ALL
+  
+       Select
+	 
+		apdh.*    
+	    , @TblNbr as ETL_TablNbr
+	    , @Batch as ETL_Batch
+	    , getdate() as ETL_Completed 
+	
+	    FROM
+		##tmp_GL_AP_DETAIL_HIST apdh
+				WHERE -- PULL ALL DELTAS
+			(
+				LAST_CHG_DATE between @StartDate and @EndDate
+			)
 
-	Drop table ##tmp_JOB_HEADER -- select count(*) from ##tmp_JOB_HEADER
-	Drop table ##tmp_JOB_OPERATIONS -- select count(*) from ##tmp_JOB_OPERATIONS
+	) AS GL
+	 
+	Drop table ##tmp_GL_AP_DETAIL 
+    Drop table ##tmp_GL_AP_DETAIL_HIST
 
 
-
--- ***** END MULTI SOURCE TABLE LOAD LOGIC ***********************************************
-
-
---Log to TableList and Tablelistlog
+   --Log to TableList and Tablelistlog
 
 	
-Set @SQL = 'Update [LK-GS-CNC].dbo._TablelistLOG '
-	        + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
-					Where  Table_Name   = ' + '''' + @TblName + '''' 
-				+ '     and Lastbatch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) -- Rev4 l
+	   Set @SQL = 'Update [LK-GS-CNC].dbo._TablelistLOG '
+	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
+					      Where  Table_Name   = ' + '''' + @TblName + '''' 
+					 + '     and Lastbatch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) -- Rev4 l
     
-EXEC(@Sql)
+	   EXEC(@Sql)
 
-Set @SQL = 'Update [LK-GS-CNC].dbo._TableList '
-	        + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
-					Where  Table_Name   = ' + '''' + @TblName + ''''  -- Rev4 l
+	   Set @SQL = 'Update [LK-GS-CNC].dbo._TableList '
+	              + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
+					      Where  Table_Name   = ' + '''' + @TblName + ''''  -- Rev4 l
 
-EXEC(@Sql)
+       EXEC(@Sql)
 
--- ELD added Record Count
-SET @Reccnt = 
-(Select RecordCount from [LK-GS-CNC].dbo._Tablelist Where Table_Name = @TblName and Lastbatch = @Batch)
+	-- ELD added Record Count
+	 SET @Reccnt = 
+		(Select RecordCount from [LK-GS-CNC].dbo._Tablelist Where Table_Name = @TblName and Lastbatch = @Batch)
 
 
-EXEC(@Sql)
-
+	   EXEC(@Sql)
+	   
 	Update  [LK-GS-CNC].dbo._TableList  -- Rev4 c.
         Set ETL_Start       =  @ETLStarted,
 	        ETL_Completed   =  getdate(),
@@ -294,8 +242,10 @@ EXEC(@Sql)
 		    CurRunFlag      =  'N',
 			Remarks         = 'Full Load'
 	     	Where Table_Name  = @Tblname and LastBatch = @Batch
-END TRY
+      
+      END
 
+ END TRY
  BEGIN CATCH  --ERROR TRAPPING
  
 	 INSERT INTO [LK-GS-CNC].dbo._ErrorLog
@@ -373,12 +323,15 @@ END TRY
 	     	Where Table_Name  = @Tblname and LastBatch = @Batch
 
  END CATCH    
- 
+   
+-- Print @Tblname
+    --FETCH NEXT FROM TBLList INTO  @TblNbr,@Tblname, @Viewname,@LastBatch     -- rev4 e.  
+END            
+--CLOSE TblList           
+--DEALLOCATE TBLList    
+
 -- Return one row result set to use in SSIS package
 SELECT SourceRecordCount = @Reccnt
- 
-
 
 END
-
 GO

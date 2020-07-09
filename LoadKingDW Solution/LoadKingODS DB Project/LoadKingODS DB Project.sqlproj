@@ -114,7 +114,6 @@
     <Build Include="Tables\dbo.SALESPERSONS.sql" />
     <Build Include="Tables\dbo.VENDOR_MASTER.sql" />
     <Build Include="Tables\dbo.WORKCENTERS.sql" />
-    <Build Include="Stored Procedures\dbo.getJobOperatoions_Hist.sql" />
     <Build Include="Stored Procedures\dbo.sp_PurgeODSBatches.sql" />
     <Build Include="Functions\dbo.udf_cv_char6_date_char8_time_to_datetime.sql" />
     <Build Include="Functions\dbo.udf_cv_nvarchar8_to_date.sql" />
@@ -128,5 +127,10 @@
     <Build Include="Stored Procedures\getINVENTORY_HIST.sql" />
     <Build Include="Tables\dbo.GCG_5398_CAR.sql" />
     <Build Include="Tables\dbo.GCG_5398_ECR.sql" />
+    <Build Include="Stored Procedures\getJobOperations_Hist.sql" />
+    <Build Include="Stored Procedures\getGL_AP_CHECK_DTL.sql" />
+    <Build Include="Stored Procedures\getGL_AP_DETAIL.sql" />
+    <Build Include="Tables\dbo.GL_AP_CHECK_DTL.sql" />
+    <Build Include="Tables\dbo.GL_AP_DETAIL.sql" />
   </ItemGroup>
 </Project>

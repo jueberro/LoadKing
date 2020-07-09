@@ -200,6 +200,8 @@
     <Build Include="Views\dwstage.V_LoadFactEngineeringECR.sql" />
     <Build Include="Stored Procedures\dw.sp_LoadFactEngineeringCAR.sql" />
     <Build Include="Stored Procedures\dw.sp_LoadFactEngineeringECR.sql" />
+    <Build Include="Tables\dwstage.GL_AP_CHECK_DTL.sql" />
+    <Build Include="Tables\dwstage.GL_AP_DETAIL.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
