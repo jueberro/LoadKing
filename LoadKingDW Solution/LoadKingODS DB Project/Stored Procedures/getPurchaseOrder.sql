@@ -233,6 +233,7 @@ SELECT   PO.*
 	dbo.udf_cv_nvarchar6_to_date(oh.DATE_ORDER)			as POH_DATE_ORDER,
 	dbo.udf_cv_nvarchar6_to_date(oh.DATE_REQ)			as POH_DATE_REQ,
 	dbo.udf_cv_nvarchar6_to_date(oh.DATE_DUE)			as POH_DATE_DUE,
+    dbo.udf_cv_nvarchar6_to_date(ol.DATE_DUE_LINE)		as POL_DATE_DUE_LINE,
 	---------------------------------------------------------
 	oh.[PART_PD]										as POH_PART_PD, -- Measure candidate
 	oh.[SB_PAID]										as POH_SB_PAID, -- Measure candidate
@@ -351,6 +352,7 @@ UNION ALL -- Get Header and Lines data from History versions
 	dbo.udf_cv_nvarchar6_to_date(ohh.DATE_ORDER)		as POH_DATE_ORDER,
 	dbo.udf_cv_nvarchar6_to_date(ohh.DATE_REQ)			as POH_DATE_REQ,
 	dbo.udf_cv_nvarchar6_to_date(ohh.DATE_DUE)			as POH_DATE_DUE,
+	dbo.udf_cv_nvarchar6_to_date(olh.DATE_DUE_LINE)		as POL_DATE_DUE_LINE,
 	---------------------------------------------------------
 	ohh.[PART_PD]										as POH_PART_PD, -- Measure candidate
 	ohh.[SB_PAID]										as POH_SB_PAID, -- Measure candidate
@@ -584,5 +586,6 @@ SELECT SourceRecordCount = @Reccnt
 END
 
 GO
+
 
 

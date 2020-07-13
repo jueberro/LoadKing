@@ -123,24 +123,27 @@ BEGIN TRY
 		Drop table ##tmp_Department
 	END
 
-	   -- create the select from source table Openquery using a wildcard
-    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
-    Set @BaseSql = @BaseSql + '''' + ')' 
-	  
-    Set @Sql = 'Select * INTO ##tmp_GL_AP_CHECK_DTL From '   +  @BaseSql 
-
-    EXEC(@Sql)
 
 	   -- create the select from source table Openquery using a wildcard
-    Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
-    Set @BaseSql = @BaseSql + '''' + ')' 
+	Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+	Set @BaseSql = @BaseSql + '''' + 'Select * from  GL_AP_CHECK_DTL '  --Rev4 n.
+	Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
-    Set @Sql = 'Select * INTO ##tmp_GL_AP_CHECK_DTL_H From ' +  @BaseSql 
-
-    EXEC(@Sql)
+	Set @Sql = 'Select * INTO ##tmp_GL_AP_CHECK_DTL From '   +  @BaseSql 
 	
+	EXEC(@Sql)
+	
+	
+	   -- create the select from source table Openquery using a wildcard
+	Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+	Set @BaseSql = @BaseSql + '''' + 'Select * from  GL_AP_CHECK_DTL_H '  --Rev4 n.
+	Set @BaseSql = @BaseSql + '''' + ' )' 
+	  
+	Set @Sql = 'Select * INTO ##tmp_GL_AP_CHECK_DTL_H From ' +  @BaseSql 
+	
+	EXEC(@Sql)
+	
+
     -- If The Table Exists, truncate table and Insert the records from Source, else create table from source
 
     IF object_id(@TblName, 'U') is not null -- if table exists
