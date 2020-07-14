@@ -65,7 +65,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,[MULTIPLE_FRACTION]
 ,[START_TIME]
 ,[END_TIME]
-
+,FLAG_INDIRECT
 , [Type1RecordHash]	 = HASHBYTES('SHA2_256',
 
 + [HEADER_JOB]
@@ -113,7 +113,8 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 + CAST([MACHINE_HRS] AS NVARCHAR(20))
 + CAST([MULTIPLE_FRACTION] AS NVARCHAR(20))
 + CAST([START_TIME] AS NVARCHAR(20))
-+ CAST([END_TIME] AS NVARCHAR(20))														
++ CAST([END_TIME] AS NVARCHAR(20))
++ CAST(FLAG_INDIRECT AS NVARCHAR(1))
 )
 -- Insert into dwstage._v_job select * from [lk-gs-ods].dbo._v_job
 -- SELECT COUNT(*)

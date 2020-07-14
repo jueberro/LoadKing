@@ -1,8 +1,6 @@
 --USE [LK-GS-EDW]
 --GO
 
-
-
 CREATE TABLE dwstage._V_JOB
 (
 	[JBMASTER_JOB] [char](6) NULL,
@@ -54,6 +52,7 @@ CREATE TABLE dwstage._V_JOB
 	[MULTIPLE_FRACTION] [numeric](6, 5) NULL,
 	[START_TIME] [char](4) NULL,
 	[END_TIME] [char](4) NULL,
+	FLAG_INDIRECT CHAR(1) NULL,
 	[ETL_TblNbr] [int] NULL,
 	[ETL_Batch] [int] NULL,
 	[ETL_Completed] [datetime] NULL
