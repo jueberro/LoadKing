@@ -11,7 +11,8 @@ CREATE VIEW [dwstage].[V_LoadDimPurchaseOrder]
 				,   [POH_FLAG_INSURANCE] --[char](1) NULL,
 				,   [POH_BUYER] --[char](3) NULL,
 				,   [POH_DATE_ORDER] -- 
-				,   [POH_DATE_DUE] -- 
+				,	[POH_DATE_DUE] -- 
+				,   [POL_DATE_DUE_LINE]
 				,   [POH_SHIP_VIA] --[char](15) NULL,
 				,   [POH_CODE_FOB] --[char](15) NULL,
 				,   [POH_FLAG_RECV_CLOSED] --[char](1) NULL,
@@ -58,6 +59,8 @@ CREATE VIEW [dwstage].[V_LoadDimPurchaseOrder]
 																		 +   [POH_FLAG_INSURANCE] --[char](1) NULL,
 																		 +   [POH_BUYER] --[char](3) NULL,
 																		 +   cast([POH_DATE_ORDER] as nvarchar(20)) --[numeric](14, 2) NULL,
+																		 +   cast([POH_DATE_DUE] as nvarchar(20)) --[numeric](14, 2) NULL,
+																		 +   cast([POL_DATE_DUE_LINE] as nvarchar(20)) --[numeric](14, 2) NULL,
 																		 +   [POH_SHIP_VIA] --[char](15) NULL,
 																		 +   [POH_CODE_FOB] --[char](15) NULL,
 																		 +   [POH_FLAG_RECV_CLOSED] --[char](1) NULL,

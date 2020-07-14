@@ -28,6 +28,7 @@ CREATE TABLE [dwstage].[_V_PurchaseOrder](
 	[POH_DATE_ORDER] [datetime] NULL,
 	[POH_DATE_REQ] [datetime] NULL,
 	[POH_DATE_DUE] [datetime] NULL,
+	[POL_DATE_DUE_LINE] [datetime] NULL,
 	[POH_PART_PD] [numeric](14, 2) NULL,
 	[POH_SB_PAID] [numeric](14, 2) NULL,
 	[POH_DISCOUNT_A] [numeric](5, 4) NULL,

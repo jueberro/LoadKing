@@ -115,27 +115,28 @@ BEGIN TRY
 
     IF object_id('##tmp_GL_AP_DETAIL', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_Department
+		Drop table ##tmp_GL_AP_DETAIL
 	END
 
 	IF object_id('##tmp_GL_AP_DETAIL_HIST', 'U') is not null -- if table exists
 	BEGIN
-		Drop table ##tmp_Department
+		Drop table ##tmp_GL_AP_DETAIL_HIST
 	END
 
 	   -- create the select from source table Openquery using a wildcard
     Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
-    Set @BaseSql = @BaseSql + '''' + ')' 
+    Set @BaseSql = @BaseSql + '''' + 'Select * from  GL_AP_DETAIL '  --Rev4 n.
+    Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
     Set @Sql = 'Select * INTO ##tmp_GL_AP_DETAIL From '   +  @BaseSql 
 
     EXEC(@Sql)
 
+
 	   -- create the select from source table Openquery using a wildcard
     Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
-    Set @BaseSql = @BaseSql + '''' + 'Select * from ' + @BaseSQLTblname  
-    Set @BaseSql = @BaseSql + '''' + ')' 
+    Set @BaseSql = @BaseSql + '''' + 'Select * from  GL_AP_DETAIL_HIST '  --Rev4 n.
+    Set @BaseSql = @BaseSql + '''' + ' )' 
 	  
     Set @Sql = 'Select * INTO ##tmp_GL_AP_DETAIL_HIST From ' +  @BaseSql 
 
