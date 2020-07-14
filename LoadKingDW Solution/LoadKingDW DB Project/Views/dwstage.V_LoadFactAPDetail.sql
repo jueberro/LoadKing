@@ -98,9 +98,9 @@ SELECT
 	+ CAST([TRANS_DATE_SQL]      AS       nvarchar(20))    --Date Key
 	+ CAST([INVC_DATE_SQL]       AS       nvarchar(20))    --Date Key
 	+ CAST([INVC_DUE_DATE_SEQL]  AS       nvarchar(20))    --Date Key
-	+ CAST([DISC_DUE_DATE_SQL]   AS       nvarchar(20))    --Date Key
+--	+ CAST([DISC_DUE_DATE_SQL]   AS       nvarchar(20))    --Date Key
 	+ CAST([LAST_CHG_DATE]       AS       nvarchar(20))    --Date Key
-	+ CAST([EXCH_DATE_SQL]       AS       nvarchar(20))    --Date Key
+--	+ CAST([EXCH_DATE_SQL]       AS       nvarchar(20))    --Date Key
 	+ CAST([LAST_CHG_BY]         AS       [nchar](8))        
 	+ CAST([TRAN_TYPE]           AS       nvarchar(2)) --[numeric](2, 0)) 
 	+ CAST([AP_CODE]             AS       nvarchar(2)) --[numeric](2, 0)  
