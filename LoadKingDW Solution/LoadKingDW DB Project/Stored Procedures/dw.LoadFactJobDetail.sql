@@ -100,7 +100,7 @@ HEADER_SALESPERSON char(3) NULL,
 [MULTIPLE_FRACTION] [numeric](6, 5) NULL,
 [START_TIME] [char](4) NULL,
 [END_TIME] [char](4) NULL,
-
+FLAG_INDIRECT char(1) NULL,
 /*Hashes used for identifying changes, not required for reporting*/
 [Type1RecordHash]			VARBINARY(64)	NULL	--66 allows for "0x" + 64 characater hash
 )
@@ -212,6 +212,7 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 , TGT.[MULTIPLE_FRACTION] = SRC.[MULTIPLE_FRACTION]
 , TGT.[START_TIME] = SRC.[START_TIME]
 , TGT.[END_TIME] = SRC.[END_TIME]
+, TGT.FLAG_INDIRECT = SRC.FLAG_INDIRECT
 , TGT.Type1RecordHash = SRC.Type1RecordHash
 	FROM	dw.FactJobDetail		AS TGT
 	 JOIN   ##FactJobDetail_SOURCE	AS SRC

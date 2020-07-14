@@ -1,13 +1,18 @@
+--USE [LK-GS-ODS]
+--GO
+
+
 --==============================================
 --Procedure Name: [LK-GS-ODS].dbo.getJob
 --       Created: Pragmatic Works, Edwin Davis 5/5/2020
 --       Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Job
 --             r1. JEU 6/16/2020 - Changed where to use datetime udf
---             r1. ELD 6/22/2020 - Added History tables 
+--             r2. ELD 6/22/2020 - Added History tables
+--			   r3. ELD 7/9/20220 - Added column FLAG_INDIRECT			   
 
 --==============================================
 
-CREATE PROCEDURE [dbo].[getJob]
+CREATE PROCEDURE dbo.getJob
 @SourceTableName varchar(255)
 ,@LoadLogKey int
 ,@StartDate datetime
@@ -233,6 +238,7 @@ SELECT   *
       ,d.[MULTIPLE_FRACTION]
       ,d.[START_TIME]
       ,d.[END_TIME]
+	  ,d.FLAG_INDIRECT
 	 
 			 , @TblNbr as ETL_TablNbr
 			 , @Batch as ETL_Batch
@@ -301,6 +307,7 @@ UNION ALL
       ,d.[MULTIPLE_FRACTION]
       ,d.[START_TIME]
       ,d.[END_TIME]
+	  ,d.FLAG_INDIRECT
 	 
 			 , @TblNbr as ETL_TablNbr
 			 , @Batch as ETL_Batch
@@ -343,8 +350,8 @@ Set @SQL = 'Update [LK-GS-CNC].dbo._TableList '
 	        + 'Set  RecordCount  = (Select count(*) from ' + @TblNamePath  + ' Where ETL_Batch = ' + rtrim(ltrim(convert(nvarchar(4),@Batch))) + ') 
 					Where  Table_Name   = ' + '''' + @TblName + ''''  -- Rev4 l
 
+    
 EXEC(@Sql)
-
 
 -- ELD added Record Count
 SET @Reccnt = 
@@ -467,6 +474,5 @@ SELECT SourceRecordCount = @Reccnt
 END
 
 GO
-
 
 
