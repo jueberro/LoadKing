@@ -1,0 +1,673 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/7/2020 11:57:12 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-10LHH5T"
+  DTS:CreatorName="AzureAD\BobRubocki"
+  DTS:DTSID="{81D251F1-E66C-41A1-94E5-A20CF8F7B183}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DWLoadFactAROpenItems"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="73"
+  DTS:VersionGUID="{2C91D35F-BD19-46BE-BDD1-817862362802}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{8FB81AA0-1B97-4EE9-92D7-D9D42C5F836D}"
+      DTS:ObjectName="DWTableName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">FactAROpenItems</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{1F48F8E5-40DB-4AF0-A526-679A61EB7BBB}"
+      DTS:ObjectName="SourceDataSetName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">AR_OPEN_ITEMS</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{441069CD-57AC-4776-9D8D-E8F786D0CFBD}"
+      DTS:ObjectName="SourceSystemName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Global Shop</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{8D0A6CF5-D1C7-4694-95F8-ED84018583F6}"
+      DTS:ObjectName="StoredProcedureName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">dw.sp_LoadFactAROpenItems</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7AC5F510-B6FF-4439-86A3-BD6E05CB176A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchesToProcessList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9470EF05-B7FD-4932-893F-2C72F538DCBF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadLogKey">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D63A7052-FA7C-4440-88B6-EF2193220088}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT * FROM dbo.PO_RECEIVER WHERE ETL_Batch = &quot; + (DT_STR, 5, 1252)@[User::SourceLoadLogKey]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ODSExtractSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT * FROM dbo.PO_RECEIVER WHERE ETL_Batch = 0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ACAAA163-DA11-4831-81D9-CEE3802143DC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{013565F4-B40B-4734-8EE5-F844D93AA0BD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D0B5D327-B82A-4748-A535-1C139B1F6F76}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceLoadLogKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{148EA1A6-1872-4F20-AE4F-81A9DEBF4336}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FEL - Extract Batches Not Yet Processed in DW Table">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{99C923E9-1B55-446A-96D4-85A32D4126EB}"
+        DTS:ObjectName="{99C923E9-1B55-446A-96D4-85A32D4126EB}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::BatchesToProcessList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1654F332-853B-4BCB-979D-E920AB180ECE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
+              SQLTask:SqlStatementSource="INSERT INTO [LK-GS-EDW].dwstage.AR_OPEN_ITEMS&#xA; SELECT * FROM [LK-GS-ODS].dbo.AR_OPEN_ITEMS where ETL_BATCH = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::SourceLoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWFactAROpenItems"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2DB01E20-DB25-4BDF-B370-C62C937D4E41}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - LoadDWFactAROpenItems"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
+              SQLTask:SqlStatementSource="EXEC dw.sp_LoadFactAROpenItems ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="RowsInsertedCount"
+                SQLTask:DtsVariableName="User::RowsInsertedCount" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="RowsUpdatedCount"
+                SQLTask:DtsVariableName="User::RowsUpdatedCount" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7961AB21-7BBA-4AC1-B4E2-AED959BC17AA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - LogLoadStart"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
+              SQLTask:SqlStatementSource="EXEC dwetl.LogLoadStart @ProcessPlatformName = 'SSIS'&#xA;&#x9;&#x9;&#x9;, @ProcessName = ?&#xA;&#x9;&#x9;&#x9;, @ProcessExecutionId = ?&#xA;&#x9;&#x9;&#x9;, @DWTableName = ?&#xA;&#x9;&#x9;&#x9;, @SourceSystemName = ?&#xA;&#x9;&#x9;&#x9;, @SourceDataSetName = ? &#xA;&#x9;&#x9;&#x9;, @SourceLoadLogKey = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="LoadLogKey"
+                SQLTask:DtsVariableName="User::LoadLogKey" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="72"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="$Package::DWTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="$Package::SourceSystemName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="$Package::SourceDataSetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::SourceLoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{26D46405-8E2D-4F09-9659-240AF110210A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - LogLoadSuccess"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
+              SQLTask:SqlStatementSource="EXEC dwetl.LogLoadSuccess @LoadLogKey = ?, @SourceRecordsRead = 0, @RowsInsertedCount = ?, @RowsUpdatedCount = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::RowsInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::RowsUpdatedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{878514B7-AEE3-4E46-953A-EBB3FF7216AF}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - TRUNCATE Stage Tables"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{ADD285D7-8138-4900-9B18-B457ED1D5EB5}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dwstage.AR_OPEN_ITEMS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3B58C43B-C8DA-4101-931F-ECE0766E2498}"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{095F8ED3-B33C-4DD8-A76A-09B88C0C593F}"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWFactAROpenItems"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{40AC07A2-3B5B-4E9E-ABB2-7EA3CB7CDBE0}"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{13ECB0D5-6C92-4F80-8E77-3F61E3737BD7}"
+          DTS:From="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWFactAROpenItems" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{718FCBAC-8792-498A-841C-044BC72A3159}"
+          DTS:ObjectName="{718FCBAC-8792-498A-841C-044BC72A3159}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::SourceLoadLogKey" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - GetExtractBatchesToProcess"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6F85DDC9-C4C7-4495-A076-1257869E9B38}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - GetExtractBatchesToProcess"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
+          SQLTask:SqlStatementSource="EXEC dwetl.GetBatchesToProcess @DWTableName = ?&#xA;&#x9;&#x9;&#x9;, @SourceSystemName = ?&#xA;&#x9;&#x9;&#x9;, @SourceDataSetName = ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BatchesToProcessList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DWTableName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::SourceSystemName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="$Package::SourceDataSetName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3C0ECFF1-9FA5-4DC2-9969-0AB83180499F}"
+      DTS:From="Package\SQL - GetExtractBatchesToProcess"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\FEL - Extract Batches Not Yet Processed in DW Table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{F960A1CD-531B-4934-8827-9BA7D51A741E}"
+      DTS:EventID="1431677695"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{52E82AFD-4146-4620-B696-4D000657A73E}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL-Log Failure"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BBCB421B-5842-46AA-A8ED-BEF9C3E37A85}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL-Log Failure">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5810AB6-4230-4EFA-8AC8-5C4F645E16A0}"
+              SQLTask:SqlStatementSource="EXEC dwetl.logloadfailure ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\Execute SQL Task"
+          TopLeft="70,160" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LoadDWFactAROpenItems"
+          TopLeft="45.1666666666667,234.5" />
+        <NodeLayout
+          Size="171,43"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadStart"
+          TopLeft="85.8333333333333,5.50000000000004" />
+        <NodeLayout
+          Size="185,43"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - LogLoadSuccess"
+          TopLeft="51.5,323.166666666667" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table\SQL - TRUNCATE Stage Tables"
+          TopLeft="46.5,78.166666666667" />
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint]"
+          TopLeft="168.416666666667,48.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.666666666667"
+              Start="0,0"
+              End="0,22.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 1]"
+          TopLeft="167.166666666667,276.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.1666666666667,46.666666666667"
+              Start="0,0"
+              End="-23.1666666666667,39.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.3333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.3333333333335"
+                    Point2="0,23.3333333333335"
+                    Point3="-4,23.3333333333335" />
+                  <mssgle:LineSegment
+                    End="-19.1666666666667,23.3333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.1666666666667,23.3333333333335"
+                    Point2="-23.1666666666667,23.3333333333335"
+                    Point3="-23.1666666666667,27.3333333333335" />
+                  <mssgle:LineSegment
+                    End="-23.1666666666667,39.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 2]"
+          TopLeft="165.5,120.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.5,39.833333333333"
+              Start="0,0"
+              End="-10.5,32.333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9166666666665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.9166666666665"
+                    Point2="0,19.9166666666665"
+                    Point3="-4,19.9166666666665" />
+                  <mssgle:LineSegment
+                    End="-6.5,19.9166666666665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.5,19.9166666666665"
+                    Point2="-10.5,19.9166666666665"
+                    Point3="-10.5,23.9166666666665" />
+                  <mssgle:LineSegment
+                    End="-10.5,32.333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table.PrecedenceConstraints[Constraint 4]"
+          TopLeft="155,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.1666666666667,32.5"
+              Start="0,0"
+              End="12.1666666666667,25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.25"
+                    Point2="0,16.25"
+                    Point3="4,16.25" />
+                  <mssgle:LineSegment
+                    End="8.16666666666669,16.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.16666666666669,16.25"
+                    Point2="12.1666666666667,16.25"
+                    Point3="12.1666666666667,20.25" />
+                  <mssgle:LineSegment
+                    End="12.1666666666667,25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="493,421"
+          Size="493,464"
+          Id="Package\FEL - Extract Batches Not Yet Processed in DW Table"
+          TopLeft="114.5,166.499999999999" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\SQL - GetExtractBatchesToProcess"
+          TopLeft="421.41666675359,51.4999999999999" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="548.91666675359,93.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-187.91666675359,72.999999999999"
+              Start="0,0"
+              End="-187.91666675359,65.499999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.4999999999995" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.4999999999995"
+                    Point2="0,36.4999999999995"
+                    Point3="-4,36.4999999999995" />
+                  <mssgle:LineSegment
+                    End="-183.91666675359,36.4999999999995" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-183.91666675359,36.4999999999995"
+                    Point2="-187.91666675359,36.4999999999995"
+                    Point3="-187.91666675359,40.4999999999995" />
+                  <mssgle:LineSegment
+                    End="-187.91666675359,65.499999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package.EventHandlers[OnError]\SQL-Log Failure"
+          TopLeft="248,95" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
