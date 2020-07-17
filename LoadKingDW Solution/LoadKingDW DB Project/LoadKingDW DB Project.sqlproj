@@ -213,6 +213,10 @@
     <Build Include="Tables\dw.FactAROpenItems.sql" />
     <Build Include="Tables\dwstage.AP_OPEN_ITEMS.sql" />
     <Build Include="Tables\dwstage.AR_OPEN_ITEMS.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactGLDetail.sql" />
+    <Build Include="Views\dwstage.V_LoadFactGLDetail.sql" />
+    <Build Include="Tables\dw.FactGLDetail.sql" />
+    <Build Include="Tables\dwstage.GL_DETAIL.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
