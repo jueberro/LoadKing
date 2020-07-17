@@ -132,6 +132,9 @@
     <Build Include="Stored Procedures\getGL_AP_DETAIL.sql" />
     <Build Include="Tables\dbo.GL_AP_CHECK_DTL.sql" />
     <Build Include="Tables\dbo.GL_AP_DETAIL.sql" />
-    <Build Include="Stored Procedures\getGL_DETAIL.sql" />
+    <Build Include="Stored Procedures\getAP_OPEN_ITEMS.sql" />
+    <Build Include="Tables\dbo.AP_OPEN_ITEMS.sql" />
+    <Build Include="Tables\dbo.AR_OPEN_ITEMS.sql" />
+    <Build Include="Stored Procedures\getAR_OPEN_ITEMS.sql" />
   </ItemGroup>
 </Project>

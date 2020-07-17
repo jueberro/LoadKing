@@ -197,18 +197,22 @@
     <Build Include="Tables\dw.FactEngineeringECR.sql" />
     <Build Include="Views\dwstage.V_LoadFactEngineeringCAR.sql" />
     <Build Include="Views\dwstage.V_LoadFactEngineeringECR.sql" />
-    <Build Include="Stored Procedures\dw.sp_LoadFactEngineeringCAR.sql" />
-    <Build Include="Stored Procedures\dw.sp_LoadFactEngineeringECR.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactEngineeringCAR.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactEngineeringECR.sql" />
     <Build Include="Tables\dwstage.GL_AP_CHECK_DTL.sql" />
     <Build Include="Tables\dwstage.GL_AP_DETAIL.sql" />
     <Build Include="Views\dwstage.V_LoadFactAPDetail.sql" />
     <Build Include="Tables\dw.FactAPDetal.sql" />
     <Build Include="Tables\dw.DimGLAccount.sql" />
     <Build Include="Stored Procedures\dw.LoadFactAPDetail.sql" />
-    <Build Include="Tables\dwstage.FactGLTable.sql" />
-    <Build Include="Stored Procedures\dw.LoadFactGLDetail.sql" />
-    <Build Include="Tables\dw.FactGLDetail.sql" />
-    <Build Include="Views\dwstage.V_LoadFactGLDetail.sql" />
+    <Build Include="Tables\dw.FactAPOpenItems.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactAPOpenItems.sql" />
+    <Build Include="Views\dwstage.V_LoadFactAPOpenItems.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactAROpenItems.sql" />
+    <Build Include="Views\dwstage.V_LoadFactAROpenItems.sql" />
+    <Build Include="Tables\dw.FactAROpenItems.sql" />
+    <Build Include="Tables\dwstage.AP_OPEN_ITEMS.sql" />
+    <Build Include="Tables\dwstage.AR_OPEN_ITEMS.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
