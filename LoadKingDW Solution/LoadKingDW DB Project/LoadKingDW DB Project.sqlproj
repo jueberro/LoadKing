@@ -205,6 +205,10 @@
     <Build Include="Tables\dw.FactAPDetal.sql" />
     <Build Include="Tables\dw.DimGLAccount.sql" />
     <Build Include="Stored Procedures\dw.LoadFactAPDetail.sql" />
+    <Build Include="Tables\dwstage.FactGLTable.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactGLDetail.sql" />
+    <Build Include="Tables\dw.FactGLDetail.sql" />
+    <Build Include="Views\dwstage.V_LoadFactGLDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
