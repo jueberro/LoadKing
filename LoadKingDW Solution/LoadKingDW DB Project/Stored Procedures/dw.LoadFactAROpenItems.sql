@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dw].[sp_LoadFactAROpenItems] @LoadLogKey INT  AS
 
 BEGIN
+
 DECLARE @RowsInsertedCount int
 DECLARE @RowsUpdatedCount int
 
@@ -31,6 +32,7 @@ IF object_id('##FactAROpenItems_TARGET', 'U') is not null -- if table exists
 	[DimGLAccount_Key] [int] NOT NULL,
 	[DimDateInvoice_key] [int] NOT NULL,
 	[DimDateTransaction_key] [int] NOT NULL,
+	[DimSalesPerson_key] [int] NOT NULL,
 	[CUSTOMER] [char](7) NULL,
 	[INVOICE] [char](7) NULL,
 	[BATCH_CODE] [char](2) NULL,

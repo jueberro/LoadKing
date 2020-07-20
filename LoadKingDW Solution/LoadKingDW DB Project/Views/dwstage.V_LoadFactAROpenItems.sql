@@ -5,6 +5,7 @@ SELECT
 	,ISNULL(gl.DimGLAccount_Key, -1) as DimGLAccount_Key
 	,ISNULL(di.DimDate_Key, -1) as DimDateInvoice_key
 	,ISNULL(dt.DimDate_Key, -1) as [DimDateTransaction_key]
+	,ISNULL(sp.DimSalesperson_Key, -1) as [DimSalesperson_Key]
     ,[CUSTOMER]
     ,[INVOICE]
     ,[BATCH_CODE]
@@ -62,9 +63,10 @@ LEFT OUTER JOIN dw.DimCustomer AS c
 ON c.CustomerID = ar.Customer AND c.DWIsCurrent = 1
 LEFT OUTER JOIN dw.DimGLAccount AS gl
 ON gl.GLAccount = ar.GL_ACCOUNT AND gl.DWIsCurrent = 1
+LEFT OUTER JOIN dw.DimSalesPerson AS sp
+ON sp.SalespersonID = ar.SALESPERSON AND sp.DWIsCurrent = 1
 LEFT OUTER JOIN dw.DimDate AS di
-ON	dwstage.udf_cv_nvarchar6_to_date(ar.DATE_INVOICE)  = di.[Date]
+ON	dwstage.udf_cv_nvarchar6_to_date(ar.DATE_INVOICE) = di.[Date]
 LEFT OUTER JOIN dw.DimDate AS dt
-ON	dwstage.udf_cv_nvarchar6_to_date(ar.DATE_TRANSACTION)  = dt.[Date]
-
+ON	dwstage.udf_cv_nvarchar6_to_date(ar.DATE_TRANSACTION) = dt.[Date]
 GO
