@@ -136,5 +136,7 @@
     <Build Include="Tables\dbo.AP_OPEN_ITEMS.sql" />
     <Build Include="Tables\dbo.AR_OPEN_ITEMS.sql" />
     <Build Include="Stored Procedures\getAR_OPEN_ITEMS.sql" />
+    <Build Include="Stored Procedures\getWORKGROUP_HEAD.sql" />
+    <Build Include="Tables\dbo.WORGGROUP_HEAD.sql" />
   </ItemGroup>
 </Project>

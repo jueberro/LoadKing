@@ -217,6 +217,10 @@
     <Build Include="Views\dwstage.V_LoadFactGLDetail.sql" />
     <Build Include="Tables\dw.FactGLDetail.sql" />
     <Build Include="Tables\dwstage.GL_DETAIL.sql" />
+    <Build Include="Tables\dwstage.WORKGROUP_HEAD.sql" />
+    <Build Include="Stored Procedures\dw.LoadDimWorkgroupHead.sql" />
+    <Build Include="Views\dwstage.V_LoadDimWorkgroupHead.sql" />
+    <Build Include="Tables\dw.DimWorkgroupHead.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
