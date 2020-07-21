@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-10LHH5T</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="RHaiFEkxyXo=" SSIS:IV="72AwbeuNxdpb3GTIonZF7g==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">lrafOe7FaCUIeLO27bpt7d37Df+SLq29UtQwsIW0thcS6ZFRGBrqcwPycYuofPuKfNvvzBVXQ/9QweKRol0ZPaKNvzA5A+RpCS3hgq7RP4K75I0dlzKAp8JTfTqs9RL4oB3oyzqD4i2rRAqhTvfm72RC9UJGLjXaxDyMG/5rzwecWXrlWpLcBH9kzx5WZIv/</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="mLHlhrT2Rc8=" SSIS:IV="4/rqVtxg722AkmkFraCVSA==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">5/zaO6vzRTInYbK4u72AgmgAsvhb9YsTb4A392WH9H960QhX5UUU74pPsC6ZMxrGqbGfKEE4EU7oa/MNOD8VdHMy/jJOP0GEtVqvRsw1gDRYl8xQHbE+mnGizF1D2VEiMZSynVUdwADahy1dpQkA54I49RCnODsDCnC0XfxVu5fbnxq6JbB/5QgZ6ndJvWX5</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -71,6 +71,7 @@
           <SSIS:Package SSIS:Name="DWLoadFactAROpenItems.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadFactGLDetail.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DWLoadDimWorkgroupHead.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DWLoadFactGLJournalDetail.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LK_CNC.conmgr" />
@@ -3366,6 +3367,80 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">dw.sp_LoadDimWorkgroupHead</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DWLoadFactGLJournalDetail.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{37559347-9E99-4865-8EEF-737EEE51838D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DWLoadFactGLDetail</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">65</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A86503A7-14CB-46CA-8C19-8E18CFA255D3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="DWTableName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{63869E98-82FB-49B7-BF49-71B504BC51DE}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">FactGLDetail</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceDataSetName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{35CAF608-1406-4C74-8925-1FDDA63C6383}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">GL_JOURNAL_DTL</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="SourceSystemName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{9F65E63B-3CAB-446F-B5B5-E23C414DFD5D}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Global Shop</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="StoredProcedureName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{EC09E1D3-65BE-4485-BF78-B9738906BD2D}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">dw.sp_LoadFactGLJournalDetail</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

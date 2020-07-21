@@ -138,5 +138,6 @@
     <Build Include="Stored Procedures\getAR_OPEN_ITEMS.sql" />
     <Build Include="Stored Procedures\getWORKGROUP_HEAD.sql" />
     <Build Include="Tables\dbo.WORGGROUP_HEAD.sql" />
+    <Build Include="Stored Procedures\getGL_JOURNAL_DTL.sql" />
   </ItemGroup>
 </Project>

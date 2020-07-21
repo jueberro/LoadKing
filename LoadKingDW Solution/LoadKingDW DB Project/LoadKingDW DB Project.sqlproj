@@ -221,6 +221,10 @@
     <Build Include="Stored Procedures\dw.LoadDimWorkgroupHead.sql" />
     <Build Include="Views\dwstage.V_LoadDimWorkgroupHead.sql" />
     <Build Include="Tables\dw.DimWorkgroupHead.sql" />
+    <Build Include="Views\dwstage.V_LoadFactGLJournalDetail.sql" />
+    <Build Include="Tables\dw.FactGLJournalDetail.sql" />
+    <Build Include="Tables\dwstage.GL_JOURNAL_DTL.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactGLJournalDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
