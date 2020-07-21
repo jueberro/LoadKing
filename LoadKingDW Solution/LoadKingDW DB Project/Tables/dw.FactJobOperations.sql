@@ -11,6 +11,7 @@ CREATE TABLE dw.FactJobOperations
 	[DimProductLine_Key] [int] NOT NULL,
 	[DimDate_Key] [int] NOT NULL,
 	DimWorkOrder_Key int NOT NULL,
+	DimWorkgroupHead_Key int NOT NULL,
 --------------------------------------------------------
 	[HEADER_JOB] [char](6) NULL,
 	[HEADER_SUFFIX] [char](3) NULL,
