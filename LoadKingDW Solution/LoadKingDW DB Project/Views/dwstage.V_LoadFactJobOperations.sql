@@ -1,6 +1,4 @@
 
-
-
 CREATE VIEW [dwstage].[V_LoadFactJobOperations]
 AS
 SELECT 
@@ -12,6 +10,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 ,ISNULL(pl.DimProductLine_Key, -1) as DimProductLine_Key
 ,ISNULL(do.DimDate_Key, -1) as DimDate_Key
 ,ISNULL(dwo.DimWorkOrder_Key, -1) as DimWorkOrder_Key
+,ISNULL(wg.DimWorkgroupHead_Key, -1) as DimWorkgroupHead_Key
 
 ,[HEADER_JOB]
 ,[HEADER_SUFFIX]
@@ -167,6 +166,11 @@ AND  c.DWIsCurrent = 1
 LEFT OUTER JOIN dw.DimSalesPerson AS sp
 ON	Stage.HEADER_SALESPERSON = sp.SalespersonID	
 AND  sp.DWIsCurrent = 1
+
+LEFT OUTER JOIN dw.DimWorkgroupHead AS wg
+ON	Stage.Part = wg.Work_Group	
+AND  wg.DWIsCurrent = 1
+
 
 LEFT OUTER JOIN dw.DimProductLine AS pl
 ON	Stage.HEADER_PRODUCT_LINE = pl.ProductLine		

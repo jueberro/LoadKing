@@ -1,7 +1,7 @@
 --USE [LK-GS-EDW]
 --GO
 
-CREATE PROCEDURE dw.sp_LoadFactJobOperations @LoadLogKey INT  AS
+CREATE PROCEDURE [dw].[sp_LoadFactJobOperations] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -43,6 +43,7 @@ DimSalesPerson_Key int NOT NULL,
 DimProductLine_Key int NOT NULL,
 DimDate_Key int NOT NULL,
 DimWorkOrder_Key int NOT NULL,
+DimWorkgroupHead_Key int NOT NULL,
 -- DEGENERATE HEADER ATTRIBUTES ----------------------------------------------
 [HEADER_JOB] [char](6) NULL,
 [HEADER_SUFFIX] [char](3) NULL,
@@ -164,6 +165,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	,TGT.DimProductLine_Key = SRC.DimProductLine_Key
 	,TGT.DimDate_Key = SRC.DimDate_Key
 	,TGT.DimWorkOrder_Key = SRC.DimWorkOrder_Key
+	,TGT.DimWorkgroupHead_Key = SRC.DimWorkgroupHead_Key
 	-----------------------------------
 	, TGT.[HEADER_JOB] = SRC.[HEADER_JOB]
 	, TGT.[HEADER_SUFFIX] = SRC.[HEADER_SUFFIX]
