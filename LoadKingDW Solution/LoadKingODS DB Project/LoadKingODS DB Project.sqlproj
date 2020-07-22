@@ -139,5 +139,6 @@
     <Build Include="Stored Procedures\getWORKGROUP_HEAD.sql" />
     <Build Include="Tables\dbo.WORGGROUP_HEAD.sql" />
     <Build Include="Stored Procedures\getGL_JOURNAL_DTL.sql" />
+    <Build Include="Stored Procedures\getGL_BALANCES.sql" />
   </ItemGroup>
 </Project>

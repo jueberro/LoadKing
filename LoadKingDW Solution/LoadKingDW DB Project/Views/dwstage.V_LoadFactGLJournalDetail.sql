@@ -57,7 +57,7 @@ SELECT
 	+ CAST([POST_DATE_SQL]         AS nvarchar(20)) --[date]           
 	+ CAST([TRANS_DATE_SQL]        AS nvarchar(20)) --[date]            
     + CAST([REVERSE_FLAG]          AS nchar(1))     --[bit]            
-	+ CAST([REVERSE_DATE_SQL]      AS nvarchar(20)) --[date]            
+	+ CAST(ISNULL([REVERSE_DATE_SQL],'1999-12-31')      AS nvarchar(20)) --[date]            
 	+ CAST([PERIOD]                AS nvarchar(2))  --[numeric](2, 0))    
 	+ CAST([PERIOD_BEG_DATE_SQL]   AS nvarchar(20)) --[date]            
 	+ CAST([PERIOD_END_DATE_SQL]   AS nvarchar(20)) --[date]            
