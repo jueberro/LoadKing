@@ -4,9 +4,9 @@ AS
 SELECT 
         ISNULL(pd.DimDate_Key, -1)              as DimDatePostDateSql_Key
 	   ,ISNULL(td.DimDate_Key, -1)              as DimDateTransDateSql_Key
-	   ,ISNULL(rd.DimDate_Key, -1)              as DimDateInvcDateSql_Key  
-	   ,ISNULL(pbd.DimDate_Key, -1)             as DimDateInvcDueDateSql_Key  
-	   ,ISNULL(ped.DimDate_Key, -1)             as DimDateDiscDueDateSql_Key
+	   ,ISNULL(rd.DimDate_Key, -1)              as DimDateReverseDateSql_Key  
+	   ,ISNULL(pbd.DimDate_Key, -1)             as DimDatePeriodBegDateSql_Key  
+	   ,ISNULL(ped.DimDate_Key, -1)             as DimDatePeriodEndDateSql_Key
 	   ,ISNULL(lcd.DimDate_Key, -1)             as DimDateLastChgDateSql_Key  
 	   ,ISNULL(gl.DimGLAccount_Key, -1)         as DimGLAccount_Key
 	
@@ -51,24 +51,25 @@ SELECT
 
       
 	+ CAST([GL_NUMBER]             AS [nchar](15))       
-    + CAST([BATCH]                 AS [nchar](5))        
-	+ CAST([LINE]                  AS nvarchar(5)) --[numeric](5, 0))  
-	+ CAST([SEQ]                   AS nvarchar(8)) --[numeric](8, 0))  
+	+ CAST([POST_DATE]             AS [nchar](8))        
+	+ CAST([BATCH]                 AS [nchar](5))        
+	+ CAST([LINE]                  AS nvarchar(5))  --[numeric](5, 0))  
+	+ CAST([SEQ]                   AS nvarchar(8))  --[numeric](8, 0))  
 	+ CAST([POST_DATE_SQL]         AS nvarchar(20)) --[date]           
 	+ CAST([TRANS_DATE_SQL]        AS nvarchar(20)) --[date]            
-    + CAST([REVERSE_FLAG]          AS nchar(1)) --[bit]            
+    + CAST([REVERSE_FLAG]          AS nchar(1))     --[bit]            
 --	+ CAST([REVERSE_DATE_SQL]      AS nvarchar(20)) --[date]            
-	+ CAST([PERIOD]                AS nvarchar(2)) --[numeric](2, 0))    
+	+ CAST([PERIOD]                AS nvarchar(2))  --[numeric](2, 0))    
 	+ CAST([PERIOD_BEG_DATE_SQL]   AS nvarchar(20)) --[date]            
 	+ CAST([PERIOD_END_DATE_SQL]   AS nvarchar(20)) --[date]            
     + CAST([REFERENCE]             AS [nchar](15))       
 	+ CAST([DESCRIPTION]           AS [nchar](30))       
 	+ CAST([VOUCHER]               AS [nchar](7))        
-	+ CAST([DB_CR_FLAG]            AS nchar(1)) --[bit]            
+	+ CAST([DB_CR_FLAG]            AS nchar(1))     --[bit]            
 	+ CAST([AMOUNT_CMPNY]          AS nvarchar(16)) --[numeric](16, 0))  
-	+ CAST([APPL_TYPE]             AS nvarchar(2)) --[numeric](2, 0))    
-	+ CAST([TRAN_TYPE]             AS nvarchar(2)) --[numeric](2, 0)) 
-	+ CAST([DATA_CNV_FLAG]         AS nvarchar(2)) --[numeric](2, 0))  
+	+ CAST([APPL_TYPE]             AS nvarchar(2))  --[numeric](2, 0))    
+	+ CAST([TRAN_TYPE]             AS nvarchar(2))  --[numeric](2, 0)) 
+	+ CAST([DATA_CNV_FLAG]         AS nvarchar(2))  --[numeric](2, 0))  
 	+ CAST([ASSET]                 AS [nchar](6))        
 	+ CAST([PERIOD_13_FLAG]        AS nchar(1)) --[bit]            
 	+ CAST([USERID]                AS [nchar](8))        
@@ -111,6 +112,5 @@ ON	Stage.LAST_CHG_DATE  = lcd.[Date]
 LEFT OUTER JOIN dw.DimGLAccount AS gl
 ON	Stage.GL_Number  = gl.[GLAccount]
 and gl.DWIsCurrent = 1
-
 
 GO

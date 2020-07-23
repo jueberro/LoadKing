@@ -225,9 +225,11 @@
     <Build Include="Tables\dw.FactGLJournalDetail.sql" />
     <Build Include="Tables\dwstage.GL_JOURNAL_DTL.sql" />
     <Build Include="Stored Procedures\dw.LoadFactGLJournalDetail.sql" />
-    <Build Include="Views\dwstage.V_LoadFactGLBalances.sql" />
+    <Build Include="Tables\dwstage.GL_AR_DETAIL.sql" />
+    <Build Include="Views\dwstage.V_LoadFactGLARDetail.sql" />
     <Build Include="Tables\dw.FactGLBalances.sql" />
     <Build Include="Tables\dwstage.GL_BALANCES.sql" />
+    <Build Include="Views\dwstage.V_LoadFactGLBalances.sql" />
     <Build Include="Stored Procedures\dw.LoadFactGL_BALANCES.sql" />
   </ItemGroup>
   <ItemGroup>

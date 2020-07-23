@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [dw].[FactGLDetail](
 	[DimDatePostDateSql_Key] [int] NOT NULL,
 	[DimDateTransDateSql_Key] [int] NOT NULL,
-	[DimDateInvcDateSql_Key] [int] NOT NULL,
-	[DimDateInvcDueDateSql_Key] [int] NOT NULL,
-	[DimDateDiscDueDateSql_Key] [int] NOT NULL,
+	[DimDateReverseDateSql_Key] [int] NOT NULL,
+	[DimDatePeriodBegDateSql_Key] [int] NOT NULL,
+	[DimDatePeriodEndDateSql_Key] [int] NOT NULL,
 	[DimDateLastChgDateSql_Key] [int] NOT NULL,
 	[DimGLAccount_Key] [int] NOT NULL,
 	[GL_NUMBER] [char](15) NULL,
