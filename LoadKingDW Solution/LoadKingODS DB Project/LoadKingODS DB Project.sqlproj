@@ -140,7 +140,5 @@
     <Build Include="Tables\dbo.WORGGROUP_HEAD.sql" />
     <Build Include="Stored Procedures\getGL_JOURNAL_DTL.sql" />
     <Build Include="Stored Procedures\getGL_BALANCES.sql" />
-    <Build Include="Tables\dbo.GL_JOURNAL_DTL.sql" />
-    <Build Include="Tables\dbo.GL_BALANCES.sql" />
   </ItemGroup>
 </Project>
