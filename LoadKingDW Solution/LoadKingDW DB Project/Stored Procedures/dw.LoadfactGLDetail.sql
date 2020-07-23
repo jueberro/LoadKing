@@ -31,13 +31,13 @@ IF object_id('##FactGLDetail_TARGET', 'U') is not null -- if table exists
 
 	--CREATE TEMP table With SAME structure as destination table (except for IDENTITY field)
 	CREATE TABLE ##FactGLDetail_SOURCE (
-	[DimDatePostDateSql_Key]     [int] NOT NULL,
-	[DimDateTransDateSql_Key]    [int] NOT NULL,
-	[DimDateInvcDateSql_Key]     [int] NOT NULL,
-	[DimDateInvcDueDateSql_Key]  [int] NOT NULL,
-	[DimDateDiscDueDateSql_Key]  [int] NOT NULL,
-	[DimDateLastChgDateSql_Key]  [int] NOT NULL,
-	[DimGLAccount_Key]           [int] NOT NULL,
+	[DimDatePostDateSql_Key]        [int] NOT NULL,
+	[DimDateTransDateSql_Key]       [int] NOT NULL,
+	[DimDateReverseDateSql_Key]     [int] NOT NULL,
+	[DimDatePeriodBegDateSql_Key]   [int] NOT NULL,
+	[DimDatePeriodEndDateSql_Key]   [int] NOT NULL,
+	[DimDateLastChgDateSql_Key]     [int] NOT NULL,
+	[DimGLAccount_Key]              [int] NOT NULL,
     [GL_NUMBER] [char](15) NULL,
 	[BATCH] [char](5) NULL,
 	[LINE] [numeric](5, 0) NULL,
@@ -126,11 +126,11 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	UPDATE	TGT
 	SET
 
- TGT.DimDatePostDateSql_Key    = SRC.DimDatePostDateSql_Key
-,TGT.DimDateTransDateSql_Key   = SRC.DimDateTransDateSql_Key
-,TGT.DimDateInvcDateSql_Key    = SRC.DimDateInvcDateSql_Key  
-,TGT.DimDateInvcDueDateSql_Key = SRC.DimDateInvcDueDateSql_Key  
-,TGT.DimDateDiscDueDateSql_Key = SRC.DimDateDiscDueDateSql_Key
+ TGT.DimDatePostDateSql_Key       = SRC.DimDatePostDateSql_Key
+,TGT.DimDateTransDateSql_Key      = SRC.DimDateTransDateSql_Key
+,TGT.DimDateReverseDateSql_Key    = SRC.DimDateReverseDateSql_Key  
+,TGT.DimDatePeriodBegDateSql_Key  = SRC.DimDatePeriodBegDateSql_Key  
+,TGT.DimDatePeriodEndDateSql_Key  = SRC.DimDatePeriodEndDateSql_Key
 ,TGT.DimDateLastChgDateSql_Key = SRC.DimDateLastChgDateSql_Key  
 ,TGT.DimGLAccount_Key          = SRC.DimGLAccount_Key
 ,TGT.[GL_NUMBER]               = SRC.[GL_NUMBER]             
@@ -189,7 +189,6 @@ SET @RowsUpdatedCount = @@ROWCOUNT
 END
 
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
-
 
 
 GO
