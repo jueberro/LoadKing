@@ -231,6 +231,8 @@
     <Build Include="Tables\dwstage.GL_BALANCES.sql" />
     <Build Include="Views\dwstage.V_LoadFactGLBalances.sql" />
     <Build Include="Stored Procedures\dw.LoadFactGL_BALANCES.sql" />
+    <Build Include="Tables\dw.FactGLARDetail.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactGLARDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DimensionTemplate.sql" />
