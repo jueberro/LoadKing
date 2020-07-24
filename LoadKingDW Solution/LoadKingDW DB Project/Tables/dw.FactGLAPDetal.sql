@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dw].[FactAPDetail](
+﻿CREATE TABLE [dw].[FactGLAPDetail](
 	[DimDatePostDateSql_Key] [int] NOT NULL,
 	[DimDateTransDateSql_Key] [int] NOT NULL,
 	[DimDateInvcDateSql_Key] [int] NOT NULL,

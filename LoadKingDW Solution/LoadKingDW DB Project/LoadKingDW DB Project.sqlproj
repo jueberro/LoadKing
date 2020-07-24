@@ -201,10 +201,10 @@
     <Build Include="Stored Procedures\dw.LoadFactEngineeringECR.sql" />
     <Build Include="Tables\dwstage.GL_AP_CHECK_DTL.sql" />
     <Build Include="Tables\dwstage.GL_AP_DETAIL.sql" />
-    <Build Include="Views\dwstage.V_LoadFactAPDetail.sql" />
-    <Build Include="Tables\dw.FactAPDetal.sql" />
+    <Build Include="Views\dwstage.V_LoadFactGLAPDetail.sql" />
+    <Build Include="Tables\dw.FactGLAPDetal.sql" />
     <Build Include="Tables\dw.DimGLAccount.sql" />
-    <Build Include="Stored Procedures\dw.LoadFactAPDetail.sql" />
+    <Build Include="Stored Procedures\dw.LoadFactGLAPDetail.sql" />
     <Build Include="Tables\dw.FactAPOpenItems.sql" />
     <Build Include="Stored Procedures\dw.LoadFactAPOpenItems.sql" />
     <Build Include="Views\dwstage.V_LoadFactAPOpenItems.sql" />

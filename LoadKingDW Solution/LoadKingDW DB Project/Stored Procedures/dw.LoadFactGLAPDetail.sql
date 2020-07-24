@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dw].[sp_LoadFactAPDetail] @LoadLogKey INT  AS
+﻿CREATE PROCEDURE [dw].[sp_LoadFactGLAPDetail] @LoadLogKey INT  AS
 
 BEGIN
 
@@ -116,7 +116,7 @@ IF object_id('##FactAPDetail_TARGET', 'U') is not null -- if table exists
 )
 	--Load #SOURCE table with data in the format in which it will appear in the dimension
 	INSERT INTO ##FactAPDetail_SOURCE
-			SELECT * from dwstage.V_LoadFactAPDetail
+			SELECT * from dwstage.V_LoadFactGLAPDetail
 
 --CREATE TEMP table to be used below for identifying records with CHANGES 
 
@@ -139,14 +139,14 @@ IF object_id('##FactAPDetail_TARGET', 'U') is not null -- if table exists
 			,[LINE]  
 			,[SEQ]    
 			,Type1RecordHash 
-	FROM	dw.FactAPDetail
+	FROM	dw.FactGLAPDetail
 
 	--INSERT NEW TARGET Items
-	INSERT INTO dw.FactAPDetail 
+	INSERT INTO dw.FactGLAPDetail 
 	SELECT	*
 	FROM	##FactAPDetail_SOURCE AS SRC
 	WHERE	NOT EXISTS(	SELECT  1
-						FROM	dw.FactAPDetail AS TGT
+						FROM	dw.FactGLAPDetail AS TGT
 						WHERE	
 							    TGT.[GL_NUMBER]   = SRC.[GL_NUMBER] 
 							and TGT.[POST_DATE]   = SRC.[POST_DATE] 
@@ -247,7 +247,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 								
 
 
-	FROM	dw.FactAPDetail		    AS TGT
+	FROM	dw.FactGLAPDetail		    AS TGT
 	 JOIN   ##FactAPDetail_SOURCE	AS SRC
 			ON  TGT.[GL_NUMBER]  =  SRC.[GL_NUMBER] 
 			and TGT.[POST_DATE]  =	SRC.[POST_DATE] 
