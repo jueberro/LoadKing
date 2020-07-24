@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE dw.sp_LoadFactInventory @LoadLogKey INT  
+﻿CREATE PROCEDURE [dw].[sp_LoadFactInventory] @LoadLogKey INT  
 AS
 
 BEGIN
@@ -80,6 +80,7 @@ IF object_id('##FactInventory_TARGET', 'U') is not null -- if table exists
 	UsageOctober			decimal(7,0) 	  		NULL,
 	UsageNovember			decimal(7,0) 	  		NULL,
 	UsageDecember			decimal(7,0)    		NULL,
+	Qty_Allocated           decimal(15,6)           NULL,
     RecordHash              Varbinary(64)	        NULL
 
 	)
@@ -166,6 +167,7 @@ SET @RowsInsertedCount = @@ROWCOUNT
 	TGT.UsageOctober					 = SRC.UsageOctober			,
 	TGT.UsageNovember					 = SRC.UsageNovember		,
 	TGT.UsageDecember					 = SRC.UsageDecember		,
+	TGT.Qty_Allocated                    = SRC.Qty_Allocated        ,
 	TGT.RecordHash           			 = SRC.RecordHash          	
 
 

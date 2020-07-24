@@ -51,6 +51,7 @@
 	[UsageOctober] [decimal](7, 0) NULL,
 	[UsageNovember] [decimal](7, 0) NULL,
 	[UsageDecember] [decimal](7, 0) NULL,
+	[Qty_Allocated] [decimal](15, 6) NULL,
 	[ETL_TblNbr] [int] NULL,
 	[ETL_Batch] [int] NULL,
 	[ETL_Completed] [datetime] NULL

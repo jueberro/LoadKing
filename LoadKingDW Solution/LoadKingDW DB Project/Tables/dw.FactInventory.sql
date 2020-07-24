@@ -41,6 +41,7 @@ CREATE TABLE dw.FactInventory
 	[UsageOctober] [decimal](7, 0) NULL,
 	[UsageNovember] [decimal](7, 0) NULL,
 	[UsageDecember] [decimal](7, 0) NULL,
+	[Qty_Allocated] [decimal](15,6) NULL,
 	[RecordHash] [varbinary](64) NULL
 ) ON [PRIMARY]
 GO

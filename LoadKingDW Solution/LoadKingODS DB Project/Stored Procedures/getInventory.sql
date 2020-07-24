@@ -9,7 +9,7 @@
 --        Purpose: Insert a new Batch into ODS File [LK-GS-ODS].ods._V_Inventory 
 --             r1. JEU 6/11/2020.. fixed date conversions
 --             r2. JEU 6/18/2020.. fixed date test in the where on the extract
---            
+--             r3. JEU 7/24/2020.. add Quantity as Qty_Allocated from Item_master
 --==============================================
 
 CREATE PROCEDURE [dbo].[getInventory]
@@ -131,6 +131,11 @@ IF object_id('##tmp_Inventory_Mst3', 'U') is not null -- if table exists
 		Drop table ##tmp_Inventory_Mst3
 	END
 
+IF object_id('##tmp_Item_Master', 'U') is not null -- if table exists
+	BEGIN
+		Drop table ##tmp_Item_Master
+	END
+
 Declare @Basesql      as varchar(255)
 Declare @Sql          as varchar(1000) 
 
@@ -166,6 +171,18 @@ Set @BaseSql = @BaseSql + ')'
 Set @Sql = 'Select * INTO ##tmp_Inventory_Mst3 From ' +  @BaseSql 
 
 EXEC(@Sql)
+
+   -- create the select from source table Openquery using a wildcard
+Set @BaseSql = ' Openquery([' + @LinkedServer  + '],'
+Set @BaseSql = @BaseSql + '''' + 'Select * from  ITEM_MASTER '+ '''' 
+Set @BaseSql = @BaseSql + ')' 
+	  
+ 
+
+Set @Sql = 'Select * INTO ##tmp_Item_Master From ' +  @BaseSql 
+
+EXEC(@Sql)
+
 
 
 INSERT INTO dbo._V_Inventory
@@ -226,6 +243,7 @@ SELECT   IM.*
                 ,CAST(im.[QTY_USAGE_MO_10]						AS decimal(7,0)) 	AS  UsageOctober		   --F		 INVENTORY_MSTR	
                 ,CAST(im.[QTY_USAGE_MO_11]						AS decimal(7,0)) 	AS  UsageNovember		   --F		 INVENTORY_MSTR	
                 ,CAST(im.[QTY_USAGE_MO_12]						AS decimal(7,0)) 	AS  UsageDecember          --F		 INVENTORY_MSTR	
+				,CAST(itm.qty_allocated                         AS decimal(15,6))   AS  Qty_Allocated          --F       ITEM_MASTER
 		 
 				 , @TblNbr as ETL_TablNbr
 				 , @Batch as ETL_Batch
@@ -238,6 +256,13 @@ SELECT   IM.*
 				LEFT JOIN 
 				##tmp_Inventory_Mst3 i3
 				ON i2.Part = i3.Part and i2.Location = i3.Location
+				Left Join
+                 (Select Part, sum(Quantity) As Qty_Allocated
+                       from ##tmp_Item_Master
+                        where Allocated = 'Y'
+                        group by Part) As ITM
+                ON ITM.Part = IM.Part
+
 
 		WHERE -- PULL ALL DELTAS	--This date does not contain a testable date.  No dates past 2006??  Waiting on answer from LoadKing
 				
