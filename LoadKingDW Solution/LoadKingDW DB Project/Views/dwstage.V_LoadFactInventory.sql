@@ -38,7 +38,8 @@ SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
 		  ,Stage.UsageSeptember		  
 		  ,Stage.UsageOctober		  
 		  ,Stage.UsageNovember		  
-		  ,Stage.UsageDecember          
+		  ,Stage.UsageDecember       
+		  ,Stage.Qty_Allocated
 	    	--just a change to force a refresh
 		    /*Hash used for identifying changes, not required for reporting*/
 		  , RecordHash				  = HASHBYTES('SHA2_256',  
@@ -75,6 +76,7 @@ SELECT     DimInventory_Key			   = ISNULL(DIN.DimInventory_Key,      -1)
 																		 +   cast([UsageOctober]            as nvarchar(7))
 																		 +   cast([UsageNovember]           as nvarchar(7))
 																		 +   cast([UsageDecember]           as nvarchar(7))
+																		 +   isnull(cast([Qty_Allocated]           as nvarchar(15)),' ')
 																		 )
 
 		

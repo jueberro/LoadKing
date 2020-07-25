@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dwstage].[V_LoadFactAPDetail]
+﻿CREATE VIEW [dwstage].[V_LoadFactGLAPDetail]
 AS
 SELECT 
        ISNULL(pd.DimDate_Key, -1)              as DimDatePostDateSql_Key
