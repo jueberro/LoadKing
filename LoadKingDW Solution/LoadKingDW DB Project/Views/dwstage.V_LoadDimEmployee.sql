@@ -17,6 +17,15 @@ SELECT
 		, [EmployeeDepartment]		= CAST(DEPT_EMPLOYEE		AS NCHAR(4))
 		, [EmployeeIsSalesperson]	= CAST(0					AS BIT) 	
 		, [EmployeeInitials]        = CAST([EMPL_INITIALS]      AS NVARCHAR(3))
+
+		,[PAY_TYPE] 
+		,[FREQUENCY] 
+		,[RATE] 
+		,[SHIFT] 
+
+
+
+
 		, [Type1RecordHash]			= CAST(0 AS VARBINARY(64))
 		, [Type2RecordHash]			= HASHBYTES('SHA2_256', CAST(EMPLOYEE		AS NCHAR(5))
 															+ CAST(RECORD_TYPE		AS NCHAR(1))
@@ -31,6 +40,11 @@ SELECT
 															+ CAST(DEPT_EMPLOYEE	AS NCHAR(4))
 															+ CAST(0				AS NCHAR(1))
 															+ CAST([EMPL_INITIALS]  AS NVARCHAR(3))
+
+															+ CAST([PAY_TYPE]		AS NCHAR(1))
+															+ CAST([FREQUENCY]		AS NVARCHAR(1))
+															+ CAST([RATE]			AS NVARCHAR(20))
+															+ CAST([SHIFT]			AS NVARCHAR(1))
 															)
 		
 		, [SourceSystemName]		= CAST('Global Shop'        AS NVARCHAR(100))
@@ -41,4 +55,5 @@ SELECT
 		, [LoadLogKey]				= CAST(0                    AS INT)
 		FROM dwstage.EMPLOYEE_MSTR 
 GO
+
 
