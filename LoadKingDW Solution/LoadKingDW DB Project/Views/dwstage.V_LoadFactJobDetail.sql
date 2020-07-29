@@ -119,7 +119,7 @@ ISNULL(so.DimSalesOrder_Key, -1) as DimSalesOrder_Key
 -- Insert into dwstage._v_job select * from [lk-gs-ods].dbo._v_job
 -- SELECT COUNT(*)
 FROM 
-	dwstage._V_JOB Stage
+	dwstage._V_JOB Stage -- 2,556,152
 
 LEFT OUTER JOIN (select SalesOrderNumber, min(DimSalesOrder_Key) DimSalesOrder_Key, min(SalesOrderLine) SalesOrderLine, 1 as DWIsCurrent from dw.DimSalesOrder group by SalesOrderNumber)  AS so
 ON	Stage.HEADER_SALES_ORDER = so.SalesOrderNumber AND	so.DWIsCurrent = 1 
@@ -130,7 +130,7 @@ AND  i.DWIsCurrent = 1
 
 -- ******* REMOVE THIS subquery once DimCustomer is reloaded *******************************
 
-LEFT OUTER JOIN (select min(CustomerID) CustomerID, min(DimCustomer_Key) DimCustomer_Key, 1 as DWIsCurrent from dw.DimCustomer group by CustomerID)  AS c
+LEFT OUTER JOIN dw.DimCustomer c -- (select min(CustomerID) CustomerID, min(DimCustomer_Key) DimCustomer_Key, 1 as DWIsCurrent from dw.DimCustomer group by CustomerID)  AS c
 ON    Stage.HEADER_CUSTOMER = c.CustomerID
 AND  c.DWIsCurrent = 1
 
@@ -160,7 +160,7 @@ LEFT OUTER JOIN dw.DimDate AS do
 ON	dwstage.udf_cv_nvarchar6_to_date(Stage.HEADER_DATE_OPENED)  = do.[Date]			
 
 LEFT OUTER JOIN dw.DimEmployee AS e
-ON	Stage.EMPLOYEE = e.EmployeeName	
+ON	Stage.EMPLOYEE = e.EmployeeID -- e.EmployeeName	
 AND  e.DWIsCurrent = 1
 
 LEFT JOIN dw.DimDepartment dwc
