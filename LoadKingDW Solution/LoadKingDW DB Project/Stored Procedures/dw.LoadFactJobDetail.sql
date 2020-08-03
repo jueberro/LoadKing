@@ -119,6 +119,7 @@ FLAG_INDIRECT char(1) NULL,
 					,SEQUENCE_KEY CHAR(4)
 					,PART CHAR(20)
 					,HEADER_CUSTOMER CHAR(6)
+					,CHARGE_DATE datetime
 					, Type1RecordHash VARBINARY(64)
 					)
 
@@ -131,6 +132,7 @@ FLAG_INDIRECT char(1) NULL,
 			,SEQUENCE_KEY
 			,PART
 			,HEADER_CUSTOMER
+			,CHARGE_DATE
 			, Type1RecordHash
 	FROM	dw.FactJobDetail
 
@@ -146,7 +148,8 @@ FLAG_INDIRECT char(1) NULL,
 							and TGT.SEQ = SRC.SEQ
 							and TGT.SEQUENCE_KEY = SRC.SEQUENCE_KEY
 							and TGT.PART = SRC.PART
-							and TGT.HEADER_CUSTOMER = SRC.HEADER_CUSTOMER					
+							and TGT.HEADER_CUSTOMER = SRC.HEADER_CUSTOMER
+							and TGT.CHARGE_DATE = SRC.CHARGE_DATE
 						)
 
 SET @RowsInsertedCount = @@ROWCOUNT
@@ -221,7 +224,8 @@ TGT.DimSalesOrder_Key = SRC.DimSalesOrder_Key
 			and TGT.SEQ = SRC.SEQ
 			and TGT.SEQUENCE_KEY = SRC.SEQUENCE_KEY
 			and TGT.PART = SRC.PART
-			and TGT.HEADER_CUSTOMER = SRC.HEADER_CUSTOMER					
+			and TGT.HEADER_CUSTOMER = SRC.HEADER_CUSTOMER
+			and TGT.CHARGE_DATE = SRC.CHARGE_DATE
 	WHERE	TGT.Type1RecordHash <> SRC.Type1RecordHash
 
 SET @RowsUpdatedCount = @@ROWCOUNT
@@ -236,4 +240,5 @@ END
 SELECT RowsInsertedCount = @RowsInsertedCount, RowsUpdatedCount = @RowsUpdatedCount
 
 GO
+
 
