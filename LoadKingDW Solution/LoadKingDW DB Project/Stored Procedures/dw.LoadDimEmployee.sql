@@ -44,6 +44,11 @@ DECLARE @RowsUpdatedCount int
 		[EmployeeIsSalesperson]		BIT				NULL,
 		[EmployeeInitials]          NVARCHAR(3)     NULL,
 
+		[PAY_TYPE]					char(1)			NULL,
+		[FREQUENCY]					char(1)			NULL,
+		[RATE]						numeric(9,3)	NULL,
+		[SHIFT]						char(1)			NULL,
+
 		/*Hashes used for identifying changes, not required for reporting*/
 		[Type1RecordHash]			VARBINARY(64)  	NULL,	--66 allows for "0x" + 64 characater hash
 		[Type2RecordHash]			VARBINARY(64)	NULL,	--66 allows for "0x" + 64 characater hash
