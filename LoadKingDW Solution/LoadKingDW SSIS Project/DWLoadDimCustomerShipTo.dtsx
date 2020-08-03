@@ -12,8 +12,8 @@
   DTS:ObjectName="DWLoadDimCustomer"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="55"
-  DTS:VersionGUID="{A2EE868F-626C-445B-97BF-73DE93327F9D}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{5774AE3B-DECA-454E-8885-C8F58CDCDE70}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -33,7 +33,7 @@
       DTS:ObjectName="SourceDataSetName">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">CustomerShipTo</DTS:Property>
+        DTS:Name="ParameterValue">OE_MULTI_SHIP</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -4230,14 +4230,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Destination">
     <Properties>
       <Property>
@@ -4247,6 +4239,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Extract Batches Not Yet Processed in DW Table\DFT - Copy One Batch of ODS Data to DW Stage Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
