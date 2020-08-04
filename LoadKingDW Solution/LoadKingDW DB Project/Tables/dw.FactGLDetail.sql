@@ -1,4 +1,6 @@
-﻿CREATE TABLE [dw].[FactGLDetail](
+﻿CREATE TABLE dw.FactGLDetail
+(
+	[FactGLDetail_Key] [int] IDENTITY(1,1) NOT NULL,
 	[DimDatePostDateSql_Key] [int] NOT NULL,
 	[DimDateTransDateSql_Key] [int] NOT NULL,
 	[DimDateReverseDateSql_Key] [int] NOT NULL,
